@@ -404,48 +404,194 @@ body {
 .workspace-view {
   width: 100%;
   height: 100%;
-  flex-direction: row;
+  flex-direction: column !important;
+  overflow: hidden;
 }
 
-/* Left Sidebar (240px) */
-.left-sidebar {
-  width: 240px;
+/* TOP HORIZONTAL RIBBON: BAN KỸ THUẬT */
+.workspace-top-ribbon {
+  height: 48px;
   background: var(--white);
-  border-right: 1px solid var(--slate-200);
+  border-bottom: 1.5px solid var(--slate-200);
   display: flex;
-  flex-direction: column;
-  padding: 16px 12px;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.alex-desk-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-50);
+  border: 1px solid var(--teal-200);
+  border-radius: 20px;
+  padding: 4px 10px 4px 4px;
   flex-shrink: 0;
 }
 
-.active-desk-card {
-  background: var(--teal-50);
-  border: 1.5px solid var(--teal-100);
-  border-radius: 8px;
-  padding: 10px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.avatar-circle {
-  width: 32px;
-  height: 32px;
+.avatar-circle-sm {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: var(--teal-600);
   color: var(--white);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.desk-info .name {
-  font-size: 12px;
+.alex-desk-name {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--teal-900);
+  line-height: 1.2;
+}
+
+.alex-desk-status {
+  font-size: 9px;
+  color: #047857;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dot-online-sm {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.ribbon-v-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--slate-200);
+  flex-shrink: 0;
+}
+
+/* Horizontal Swarm Chips Strip */
+.swarm-horizontal-container {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.swarm-horizontal-scroll {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px;
+  scrollbar-width: thin;
+}
+
+.swarm-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 4px 9px 4px 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.swarm-chip:hover {
+  background: var(--teal-50);
+  border-color: var(--teal-300);
+  transform: translateY(-1px);
+}
+
+.chip-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--slate-200);
+  color: var(--slate-700);
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chip-name {
+  font-size: 11px;
   font-weight: 700;
+  color: var(--slate-700);
+}
+
+.chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #94A3B8;
+}
+
+.chip-dot.online {
+  background: #10B981;
+}
+
+.chip-token {
+  font-size: 9px;
+  font-weight: 600;
   color: var(--teal-700);
+  background: var(--teal-100);
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+/* Ribbon Actions (Right) */
+.workspace-ribbon-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ribbon-indicator {
+  font-size: 10px;
+  background: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  border-radius: 5px;
+  padding: 4px 8px;
+}
+
+.emergency-stop-btn-sm {
+  padding: 5px 10px;
+  background: #DC2626;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.3);
+  transition: all 0.15s;
+}
+
+.emergency-stop-btn-sm:hover {
+  background: #B91C1C;
+}
+
+/* Main Split: Center Chat + Right Live Kanban */
+.workspace-main-split {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  height: calc(100% - 48px);
 }
 
 .desk-info .status {

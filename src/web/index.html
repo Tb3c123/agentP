@@ -133,137 +133,143 @@
     <!-- ================= VIEW 2: MAIN COMMAND WORKSPACE ================= -->
     <section class="view-panel workspace-view active" id="viewWorkspace">
 
-      <!-- LEFT SIDEBAR: SINGLE DESK & SWARM (240px) -->
-      <aside class="left-sidebar">
-        <div class="active-desk-card">
-          <div class="avatar-circle">PM</div>
-          <div class="desk-info">
-            <div class="name">Alex (Lead/PM)</div>
-            <div class="status">● Đang trực tuyến</div>
+      <!-- TOP RIBBON: BAN KỸ THUẬT (14 NHÂN SỰ ĐẨY SANG NGANG PHÍA TRÊN) -->
+      <div class="workspace-top-ribbon">
+        <!-- Alex PM Single Desk Pill -->
+        <div class="alex-desk-pill">
+          <div class="avatar-circle-sm">PM</div>
+          <div class="alex-desk-meta">
+            <div class="alex-desk-name">Alex (Lead/PM)</div>
+            <div class="alex-desk-status"><span class="dot-online-sm"></span> Trực tuyến</div>
           </div>
         </div>
 
-        <div class="sidebar-heading">BAN KỸ THUẬT (14 NHÂN SỰ)</div>
-        <div class="swarm-list" id="swarmListContainer">
-          <!-- Dynamically populated -->
-        </div>
+        <div class="ribbon-v-divider"></div>
 
-        <div style="margin-top: 14px; border-top: 1px solid #E2E8F0; padding-top: 12px;">
-          <div class="sidebar-heading">CÔNG CỤ HỆ THỐNG</div>
-          <div style="font-size: 11px; display: flex; justify-content: space-between; padding: 4px 0; color: #334155;">
-            <span>🩺 Pre-flight Check:</span>
-            <span style="color: #047857; font-weight: 700;">100% OK</span>
-          </div>
-          <div style="font-size: 11px; display: flex; justify-content: space-between; padding: 4px 0; color: #334155;">
-            <span>🔗 agentP Core 1:1 Sessions:</span>
-            <span style="color: #0D9488; font-weight: 700;">14 Live</span>
+        <!-- 13 Swarm Specialists Horizontal Chips -->
+        <div class="swarm-horizontal-container">
+          <div class="swarm-horizontal-scroll" id="swarmListContainer">
+            <!-- Dynamically populated chips -->
           </div>
         </div>
 
-        <!-- Emergency Stop Button -->
-        <button class="emergency-stop-btn" onclick="triggerEmergencyStop()">
-          ⏹️ DỪNG ĐỘT NGỘT (ESC)
-        </button>
-      </aside>
-
-      <!-- CENTER: CHAT STREAM & CHECKPOINT GATE -->
-      <section class="center-chat-workspace">
-        <div class="chat-stream" id="chatStream">
-          <!-- Dynamically rendered -->
-        </div>
-
-        <!-- Bottom Chat Input Bar -->
-        <div class="chat-input-bar">
-          <input 
-            type="text" 
-            class="chat-input" 
-            id="chatInputBox" 
-            placeholder="Nhập chỉ thị tiếp theo cho Alex (Lead/PM)..."
-            onkeydown="if(event.key === 'Enter') handleSendMessage()"
-          />
-          <button class="send-btn" onclick="handleSendMessage()">Gửi lệnh ➔</button>
-        </div>
-      </section>
-
-      <!-- ================= RIGHT PANEL: EXPANDED SPATIAL LIVE KANBAN (580px) ================= -->
-      <aside class="right-panel">
-        
-        <!-- HEADER -->
-        <div class="panel-header">
-          <span>📋 TIẾN ĐỘ LIVE KANBAN (TOÀN CẢNH)</span>
-          <button class="btn-small" style="color: #0F766E; font-weight: 700;" onclick="alert('Đang mở Kanban Studio 6 cột toàn màn hình...')">⛶ Mở Studio</button>
-        </div>
-
-        <!-- SECTION 1: LIVE KANBAN WIDGET (MAXIMUM EXPANDED SPACE) -->
-        <div class="kanban-section">
-          <div class="mini-kanban-grid">
-            <!-- TO DO -->
-            <div class="kanban-col todo">
-              <div class="col-header">
-                <span>Chờ Làm</span>
-                <span id="countTodo" style="background:#E2E8F0; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
-              </div>
-              <div class="col-cards" id="colCardsTodo"></div>
-            </div>
-            <!-- CODING -->
-            <div class="kanban-col coding">
-              <div class="col-header">
-                <span>Đang Làm ⚡</span>
-                <span id="countCoding" style="background:#CCFBF1; color:#0F766E; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
-              </div>
-              <div class="col-cards" id="colCardsCoding"></div>
-            </div>
-            <!-- QA -->
-            <div class="kanban-col qa">
-              <div class="col-header">
-                <span>Kiểm Thử 🛑</span>
-                <span id="countQA" style="background:#FEF3C7; color:#92400E; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
-              </div>
-              <div class="col-cards" id="colCardsQA"></div>
-            </div>
-            <!-- DONE -->
-            <div class="kanban-col done">
-              <div class="col-header">
-                <span>Hoàn Tất ✓</span>
-                <span id="countDone" style="background:#D1FAE5; color:#065F46; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
-              </div>
-              <div class="col-cards" id="colCardsDone"></div>
-            </div>
+        <!-- System Status & Emergency Stop -->
+        <div class="workspace-ribbon-actions">
+          <div class="ribbon-indicator" title="Pre-flight System Diagnostics">
+            <span>🩺 7/7 OK</span>
           </div>
+          <div class="ribbon-indicator" title="1:1 Isolated AI Sessions">
+            <span>🔗 14 Live</span>
+          </div>
+          <button class="emergency-stop-btn-sm" onclick="triggerEmergencyStop()" title="Dừng đột ngột toàn bộ agent ngầm">
+            ⏹️ DỪNG (ESC)
+          </button>
         </div>
+      </div>
 
-        <!-- SECTION 2: BOTTOM TOOLS DOCK (GIT STAGING & AVD RUNNER AT THE VERY BOTTOM) -->
-        <div class="bottom-tools-dock">
+      <!-- MAIN WORKSPACE SPLIT (CHAT + LIVE KANBAN) -->
+      <div class="workspace-main-split">
+
+        <!-- CENTER: CHAT STREAM & CHECKPOINT GATE -->
+        <section class="center-chat-workspace">
+          <div class="chat-stream" id="chatStream">
+            <!-- Dynamically rendered -->
+          </div>
+
+          <!-- Bottom Chat Input Bar -->
+          <div class="chat-input-bar">
+            <input 
+              type="text" 
+              class="chat-input" 
+              id="chatInputBox" 
+              placeholder="Nhập chỉ thị tiếp theo cho Alex (Lead/PM)..."
+              onkeydown="if(event.key === 'Enter') handleSendMessage()"
+            />
+            <button class="send-btn" onclick="handleSendMessage()">Gửi lệnh ➔</button>
+          </div>
+        </section>
+
+        <!-- RIGHT PANEL: EXPANDED SPATIAL LIVE KANBAN (580px) -->
+        <aside class="right-panel">
           
-          <!-- Box 1: Git Staging Diff -->
-          <div class="tool-box">
-            <div class="tool-box-header">
-              <span>🌿 GIT STAGING</span>
-              <span style="font-size:10px;"><span class="lines-added">+45</span> / <span class="lines-deleted">-12</span></span>
-            </div>
-            <div class="git-compact-diff">
-              <div>• cart_bloc.dart <span class="lines-added">+28</span></div>
-              <div>• cart.controller.ts <span class="lines-added">+17</span></div>
-            </div>
-            <div style="font-size:9px; color:#94A3B8; margin-top:2px;">Nhánh: feature/cart-voucher</div>
+          <!-- HEADER -->
+          <div class="panel-header">
+            <span>📋 TIẾN ĐỘ LIVE KANBAN (TOÀN CẢNH)</span>
+            <button class="btn-small" style="color: #0F766E; font-weight: 700;" onclick="switchView('kanban')">⛶ Mở Studio</button>
           </div>
 
-          <!-- Box 2: Android AVD Runner -->
-          <div class="tool-box">
-            <div class="tool-box-header">
-              <span>📱 MÁY ẢO AVD</span>
-              <span style="color:#047857; font-size:9px; font-weight:700;">● Port 5554</span>
-            </div>
-            <div style="font-size:10px; font-weight:600; color:#0F172A; margin:2px 0;">Pixel 8 Pro (API 34)</div>
-            <div class="avd-compact-actions">
-              <button class="btn-small" onclick="alert('⚡ Đã kích hoạt Flutter Hot Reload (r)!')">🔄 Reload</button>
-              <button class="btn-small" onclick="alert('📸 Đã chụp màn hình AVD lưu vào docs/assets/!')">📸 Chụp</button>
+          <!-- SECTION 1: LIVE KANBAN WIDGET (MAXIMUM EXPANDED SPACE) -->
+          <div class="kanban-section">
+            <div class="mini-kanban-grid">
+              <!-- TO DO -->
+              <div class="kanban-col todo">
+                <div class="col-header">
+                  <span>Chờ Làm</span>
+                  <span id="countTodo" style="background:#E2E8F0; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+                </div>
+                <div class="col-cards" id="colCardsTodo"></div>
+              </div>
+              <!-- CODING -->
+              <div class="kanban-col coding">
+                <div class="col-header">
+                  <span>Đang Làm ⚡</span>
+                  <span id="countCoding" style="background:#CCFBF1; color:#0F766E; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+                </div>
+                <div class="col-cards" id="colCardsCoding"></div>
+              </div>
+              <!-- QA -->
+              <div class="kanban-col qa">
+                <div class="col-header">
+                  <span>Kiểm Thử 🛑</span>
+                  <span id="countQA" style="background:#FEF3C7; color:#92400E; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+                </div>
+                <div class="col-cards" id="colCardsQA"></div>
+              </div>
+              <!-- DONE -->
+              <div class="kanban-col done">
+                <div class="col-header">
+                  <span>Hoàn Tất ✓</span>
+                  <span id="countDone" style="background:#D1FAE5; color:#065F46; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+                </div>
+                <div class="col-cards" id="colCardsDone"></div>
+              </div>
             </div>
           </div>
 
-        </div>
+          <!-- SECTION 2: BOTTOM TOOLS DOCK (GIT STAGING & AVD RUNNER AT THE VERY BOTTOM) -->
+          <div class="bottom-tools-dock">
+            
+            <!-- Box 1: Git Staging Diff -->
+            <div class="tool-box">
+              <div class="tool-box-header">
+                <span>🌿 GIT STAGING</span>
+                <span style="font-size:10px;"><span class="lines-added">+45</span> / <span class="lines-deleted">-12</span></span>
+              </div>
+              <div class="git-compact-diff">
+                <div>• cart_bloc.dart <span class="lines-added">+28</span></div>
+                <div>• cart.controller.ts <span class="lines-added">+17</span></div>
+              </div>
+              <div style="font-size:9px; color:#94A3B8; margin-top:2px;">Nhánh: feature/cart-voucher</div>
+            </div>
 
-      </aside>
+            <!-- Box 2: Android AVD Runner -->
+            <div class="tool-box">
+              <div class="tool-box-header">
+                <span>📱 MÁY ẢO AVD</span>
+                <span style="color:#047857; font-size:9px; font-weight:700;">● Port 5554</span>
+              </div>
+              <div style="font-size:10px; font-weight:600; color:#0F172A; margin:2px 0;">Pixel 8 Pro (API 34)</div>
+              <div class="avd-compact-actions">
+                <button class="btn-small" onclick="alert('⚡ Đã kích hoạt Flutter Hot Reload (r)!')">🔄 Reload</button>
+                <button class="btn-small" onclick="alert('📸 Đã chụp màn hình AVD lưu vào docs/assets/!')">📸 Chụp</button>
+              </div>
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div> <!-- .workspace-main-split -->
 
     </section>
 

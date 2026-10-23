@@ -1,372 +1,373 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions & Styles -->
   <defs>
-    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+    <style>
+      .text-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 800; }
+      .text-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 500; }
+      .text-mono { font-family: "JetBrains Mono", Menlo, monospace; }
+      .shadow-panel { filter: drop-shadow(0px 2px 8px rgba(15, 23, 42, 0.05)); }
+      .shadow-card { filter: drop-shadow(0px 1px 3px rgba(15, 23, 42, 0.04)); }
+    </style>
+    <linearGradient id="primary-teal" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0D9488"/>
       <stop offset="100%" stop-color="#0F766E"/>
     </linearGradient>
-    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.05"/>
-    </filter>
+    <linearGradient id="amber-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
   </defs>
 
-  
-  <!-- Top Navigation Header -->
-  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
-  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
-  
-  <!-- AgentP Brand with Fedora Accent -->
-  <g transform="translate(28, 14)">
+  <!-- Canvas Background (Porcelain White #F8FAFC) -->
+  <rect width="1440" height="900" fill="#F8FAFC"/>
+
+  <!-- ================= 1. ANTIGRAVITY ACTIVITY LEFT RAIL (72px) ================= -->
+  <rect x="0" y="0" width="72" height="900" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Brand Fedora Monogram at Top -->
+  <g transform="translate(18, 16)">
+    <!-- Fedora Hat Icon -->
+    <path d="M2 17 C2 15, 6 13, 17 13 C28 13, 32 15, 32 17 L34 19 C34 20, 32 21, 17 21 C2 21, 0 20, 0 19 Z" fill="#78350F"/>
+    <path d="M6 13 L8 3 C8 1.5, 12 0.5, 17 0.5 C22 0.5, 26 1.5, 26 3 L28 13 Z" fill="#78350F"/>
+    <rect x="7.5" y="10" width="19" height="2.5" fill="#0D9488" rx="0.8"/>
+  </g>
+
+  <!-- Divider below Logo -->
+  <line x1="12" y1="56" x2="60" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- Antigravity Rail Icons Stack -->
+  <!-- 1. Bàn Làm Việc Alex (ACTIVE) -->
+  <g transform="translate(0, 68)">
+    <rect x="0" y="0" width="4" height="48" fill="#0D9488"/> <!-- Active Indicator Pill -->
+    <rect x="12" y="4" width="48" height="40" rx="8" fill="#F0FDFA"/>
+    <text x="36" y="28" font-size="20" text-anchor="middle">🧑‍💼</text>
+  </g>
+
+  <!-- 2. Mã Nguồn & Tệp Tin (Explorer) -->
+  <g transform="translate(0, 124)">
+    <rect x="12" y="4" width="48" height="40" rx="8" fill="transparent"/>
+    <text x="36" y="28" font-size="20" text-anchor="middle">💻</text>
+  </g>
+
+  <!-- 3. Bảng Tiến Độ (Kanban) -->
+  <g transform="translate(0, 180)">
+    <rect x="12" y="4" width="48" height="40" rx="8" fill="transparent"/>
+    <text x="36" y="28" font-size="20" text-anchor="middle">📋</text>
+  </g>
+
+  <!-- 4. Xưởng Thiết Kế (Studio UI) -->
+  <g transform="translate(0, 236)">
+    <rect x="12" y="4" width="48" height="40" rx="8" fill="transparent"/>
+    <text x="36" y="28" font-size="20" text-anchor="middle">🎨</text>
+  </g>
+
+  <!-- 5. Khởi Tạo Ý Tưởng (Launchpad) -->
+  <g transform="translate(0, 292)">
+    <rect x="12" y="4" width="48" height="40" rx="8" fill="transparent"/>
+    <text x="36" y="28" font-size="20" text-anchor="middle">🌱</text>
+  </g>
+
+  <!-- Rail Bottom: Host & Settings -->
+  <g transform="translate(0, 800)">
+    <!-- Host Dot -->
+    <circle cx="36" cy="16" r="4" fill="#10B981"/>
+    <!-- Settings Gear -->
+    <rect x="16" y="36" width="40" height="40" rx="8" fill="#F1F5F9"/>
+    <text x="36" y="61" font-size="18" text-anchor="middle">⚙️</text>
+  </g>
+
+  <!-- ================= 2. TOP HORIZONTAL SWARM RIBBON (Y = 0 to 52, X = 72 to 1440) ================= -->
+  <rect x="72" y="0" width="1368" height="52" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Left of Ribbon: Alex PM Executive Desk Pill -->
+  <g transform="translate(86, 9)">
+    <rect width="180" height="34" rx="17" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1.2"/>
+    <circle cx="18" cy="17" r="13" fill="#0D9488"/>
+    <text x="18" y="21" fill="#FFFFFF" class="text-title" font-size="10" text-anchor="middle">PM</text>
+    <text x="38" y="16" fill="#0F766E" class="text-title" font-size="11">Alex (Lead/PM)</text>
+    <circle cx="42" cy="25" r="3" fill="#10B981"/>
+    <text x="49" y="28" fill="#047857" class="text-body" font-size="9">Đang trực tuyến</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="280" y1="12" x2="280" y2="40" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Center of Ribbon: 13 Swarm Specialists Horizontal Chips Strip -->
+  <!-- Chip 1: Marcus BA -->
+  <g transform="translate(294, 11)">
+    <rect width="108" height="30" rx="15" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="15" cy="15" r="10" fill="#FEF3C7"/>
+    <text x="15" y="18" fill="#92400E" class="text-title" font-size="8" text-anchor="middle">BA</text>
+    <text x="30" y="16" fill="#334155" class="text-title" font-size="10">Marcus</text>
+    <circle cx="33" cy="23" r="2.5" fill="#10B981"/>
+    <text x="70" y="20" fill="#0D9488" class="text-mono" font-size="8">⚡ 1.2k</text>
+  </g>
+
+  <!-- Chip 2: Elena UI/UX -->
+  <g transform="translate(410, 11)">
+    <rect width="104" height="30" rx="15" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="15" cy="15" r="10" fill="#FCE7F3"/>
+    <text x="15" y="18" fill="#9D174D" class="text-title" font-size="8" text-anchor="middle">UI</text>
+    <text x="30" y="16" fill="#334155" class="text-title" font-size="10">Elena</text>
+    <circle cx="33" cy="23" r="2.5" fill="#10B981"/>
+    <text x="66" y="20" fill="#0D9488" class="text-mono" font-size="8">⚡ 1.2k</text>
+  </g>
+
+  <!-- Chip 3: David FE Dev -->
+  <g transform="translate(522, 11)">
+    <rect width="104" height="30" rx="15" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="15" cy="15" r="10" fill="#E0F2FE"/>
+    <text x="15" y="18" fill="#075985" class="text-title" font-size="8" text-anchor="middle">FE</text>
+    <text x="30" y="16" fill="#334155" class="text-title" font-size="10">David</text>
+    <circle cx="33" cy="23" r="2.5" fill="#10B981"/>
+    <text x="66" y="20" fill="#0D9488" class="text-mono" font-size="8">⚡ 4.1k</text>
+  </g>
+
+  <!-- Chip 4: Carlos BE Dev -->
+  <g transform="translate(634, 11)">
+    <rect width="104" height="30" rx="15" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="15" cy="15" r="10" fill="#DCFCE7"/>
+    <text x="15" y="18" fill="#166534" class="text-title" font-size="8" text-anchor="middle">BE</text>
+    <text x="30" y="16" fill="#334155" class="text-title" font-size="10">Carlos</text>
+    <circle cx="33" cy="23" r="2.5" fill="#10B981"/>
+    <text x="66" y="20" fill="#0D9488" class="text-mono" font-size="8">⚡ 2.1k</text>
+  </g>
+
+  <!-- Chip 5: Lucas Senior -->
+  <g transform="translate(746, 11)">
+    <rect width="104" height="30" rx="15" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="15" cy="15" r="10" fill="#EDE9FE"/>
+    <text x="15" y="18" fill="#5B21B6" class="text-title" font-size="8" text-anchor="middle">SR</text>
+    <text x="30" y="16" fill="#334155" class="text-title" font-size="10">Lucas</text>
+    <circle cx="33" cy="23" r="2.5" fill="#10B981"/>
+    <text x="66" y="20" fill="#0D9488" class="text-mono" font-size="8">⚡ 1.8k</text>
+  </g>
+
+  <!-- Chip 6: Maya Arch -->
+  <g transform="translate(858, 11)">
+    <rect width="100" height="30" rx="15" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="15" cy="15" r="10" fill="#CCFBF1"/>
+    <text x="15" y="18" fill="#115E59" class="text-title" font-size="8" text-anchor="middle">AR</text>
+    <text x="30" y="16" fill="#334155" class="text-title" font-size="10">Maya</text>
+    <circle cx="33" cy="23" r="2.5" fill="#10B981"/>
+    <text x="64" y="20" fill="#0D9488" class="text-mono" font-size="8">⚡ 1.5k</text>
+  </g>
+
+  <!-- Chip 7: Viktor QA -->
+  <g transform="translate(966, 11)">
+    <rect width="100" height="30" rx="15" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="15" cy="15" r="10" fill="#FEE2E2"/>
+    <text x="15" y="18" fill="#991B1B" class="text-title" font-size="8" text-anchor="middle">QA</text>
+    <text x="30" y="16" fill="#334155" class="text-title" font-size="10">Viktor</text>
+    <circle cx="33" cy="23" r="2.5" fill="#10B981"/>
+    <text x="64" y="20" fill="#0D9488" class="text-mono" font-size="8">⚡ 800</text>
+  </g>
+
+  <!-- Right of Ribbon: Health, Sessions, Emergency Stop -->
+  <g transform="translate(1080, 11)">
+    <!-- Pre-flight Pill -->
+    <rect width="76" height="30" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <text x="38" y="19" fill="#047857" class="text-title" font-size="10" text-anchor="middle">🩺 7/7 OK</text>
+  </g>
+
+  <g transform="translate(1164, 11)">
+    <!-- 14 Sessions Pill -->
+    <rect width="82" height="30" rx="6" fill="#F0FDFA" stroke="#99F6E4"/>
+    <text x="41" y="19" fill="#0D9488" class="text-title" font-size="10" text-anchor="middle">🔗 14 Live</text>
+  </g>
+
+  <g transform="translate(1254, 10)">
+    <!-- Emergency Stop Button -->
+    <rect width="170" height="32" rx="6" fill="#DC2626"/>
+    <text x="85" y="20" fill="#FFFFFF" class="text-title" font-size="11" text-anchor="middle">⏹️ DỪNG ĐỘT NGỘT (ESC)</text>
+  </g>
+
+  <!-- ================= 3. MAIN WORKSPACE CANVAS (Y = 52 to 900) ================= -->
+  <!-- Split into: Left Chat Canvas (X = 72 to 860, width 788) & Right Live Kanban (X = 860 to 1440, width 580) -->
+
+  <!-- A. CENTER CHAT WORKSPACE (WIDTH 788px) -->
+  <rect x="72" y="52" width="788" height="848" fill="#F8FAFC"/>
+  <line x1="860" y1="52" x2="860" y2="900" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Chat Message 1: User -->
+  <g transform="translate(420, 75)">
+    <rect width="420" height="48" rx="8" fill="#0D9488"/>
+    <text x="20" y="28" fill="#FFFFFF" class="text-body" font-size="13">Hãy thiết kế module giỏ hàng và tích điểm đổi quà voucher.</text>
+  </g>
+
+  <!-- Chat Message 2: Alex Lead/PM Response -->
+  <g transform="translate(92, 140)">
+    <rect width="748" height="350" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" class="shadow-panel"/>
     
-    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
-    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
-    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+    <!-- PM Header -->
+    <circle cx="28" cy="26" r="14" fill="#0D9488"/>
+    <text x="28" y="30" fill="#FFFFFF" class="text-title" font-size="10" text-anchor="middle">PM</text>
+    <text x="50" y="26" fill="#0F172A" class="text-title" font-size="13">Alex (Trưởng Dự Án / Lead PM)</text>
+    <text x="50" y="38" fill="#64748B" class="text-body" font-size="10">Điều phối Swarm qua agentP Core Daemon • 1.4s • 🪙 1,420 tokens</text>
 
-    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
-    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
-  </g>
-
-  <!-- Breadcrumb / Active Page Indicator -->
-  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
-  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
-  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 2: 🧑‍💼 Bàn Làm Việc Cùng Alex</text>
-
-  <!-- Project Selector Pill -->
-  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
-  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
-
-  <!-- Quick Nav Tabs -->
-  <g transform="translate(635, 16)">
-    <rect x="0" y="0" width="80" height="24" rx="4" fill="#CCFBF1"/>
-    <text x="40" y="16" text-anchor="middle" fill="#0F766E" font-size="11" font-weight="700">🧑‍💼 Bàn Làm Việc</text>
-
-    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
-    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">📋 Bảng Tiến Độ</text>
-
-    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
-    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">🎨 Xưởng Thiết Kế</text>
-
-    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
-    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">💻 Mã Nguồn</text>
-  </g>
-
-  <!-- Host Status & Token Meter -->
-  <g transform="translate(1120, 15)">
-    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
-    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
-    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
-    
-    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
-    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
-  </g>
-
-
-  <!-- ================= 1. LEFT SIDEBAR: SINGLE DESK & SWARM (240px) ================= -->
-  <rect x="0" y="56" width="240" height="844" fill="#FFFFFF"/>
-  <line x1="240" y1="56" x2="240" y2="900" stroke="#E2E8F0" stroke-width="1"/>
-
-  <!-- Active Single Desk Pill -->
-  <g transform="translate(12, 68)">
-    <rect x="0" y="0" width="216" height="42" rx="8" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1.5"/>
-    <circle cx="22" cy="21" r="10" fill="#0D9488"/>
-    <text x="22" y="25" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">PM</text>
-    <text x="38" y="20" fill="#0F766E" font-size="12" font-weight="700">Alex (Lead/PM)</text>
-    <text x="38" y="33" fill="#0D9488" font-size="10" font-weight="600">● Đang trực tuyến</text>
-  </g>
-
-  <!-- Backstage Swarm Section -->
-  <text x="16" y="132" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.5">BACKSTAGE SWARM (14 ROLES)</text>
-
-  <!-- Roles Checklist with Token Icons -->
-  <g transform="translate(16, 142)">
-    <!-- Marcus BA -->
-    <rect x="0" y="0" width="208" height="24" rx="4" fill="#FFFFFF"/>
-    <circle cx="8" cy="12" r="3" fill="#10B981"/>
-    <text x="18" y="15" fill="#334155" font-size="11">Marcus (BA)</text>
-    <text x="175" y="15" fill="#0F766E" font-size="10" font-weight="bold">🪙 4.2k</text>
-
-    <!-- Elena UI/UX -->
-    <rect x="0" y="26" width="208" height="24" rx="4" fill="#FFFFFF"/>
-    <circle cx="8" cy="38" r="3" fill="#10B981"/>
-    <text x="18" y="39" fill="#334155" font-size="11">Elena (UI/UX)</text>
-    <text x="175" y="39" fill="#0F766E" font-size="10" font-weight="bold">🪙 8.5k</text>
-
-    <!-- Maya Architect -->
-    <rect x="0" y="52" width="208" height="24" rx="4" fill="#FFFFFF"/>
-    <circle cx="8" cy="64" r="3" fill="#10B981"/>
-    <text x="18" y="65" fill="#334155" font-size="11">Maya (Architect)</text>
-    <text x="175" y="65" fill="#0F766E" font-size="10" font-weight="bold">🪙 6.1k</text>
-
-    <!-- David FE Dev -->
-    <rect x="0" y="78" width="208" height="24" rx="4" fill="#F0FDFA"/>
-    <circle cx="8" cy="90" r="3" fill="#0D9488"/>
-    <text x="18" y="91" fill="#0F766E" font-size="11" font-weight="bold">David (FE Flutter)</text>
-    <text x="175" y="91" fill="#D97706" font-size="10" font-weight="bold">⚡ Busy</text>
-
-    <!-- Carlos BE Dev -->
-    <rect x="0" y="104" width="208" height="24" rx="4" fill="#F0FDFA"/>
-    <circle cx="8" cy="116" r="3" fill="#0D9488"/>
-    <text x="18" y="117" fill="#0F766E" font-size="11" font-weight="bold">Carlos (BE Nest)</text>
-    <text x="175" y="117" fill="#D97706" font-size="10" font-weight="bold">⚡ Busy</text>
-
-    <!-- Viktor QA -->
-    <rect x="0" y="130" width="208" height="24" rx="4" fill="#FFFFFF"/>
-    <circle cx="8" cy="142" r="3" fill="#10B981"/>
-    <text x="18" y="143" fill="#334155" font-size="11">Viktor (QA Lead)</text>
-    <text x="175" y="143" fill="#10B981" font-size="10" font-weight="bold">✓ 8 pass</text>
-
-    <!-- Liam DevOps -->
-    <rect x="0" y="156" width="208" height="24" rx="4" fill="#FFFFFF"/>
-    <circle cx="8" cy="168" r="3" fill="#94A3B8"/>
-    <text x="18" y="169" fill="#64748B" font-size="11">Liam (DevOps)</text>
-    <text x="175" y="169" fill="#64748B" font-size="10">Idle</text>
-  </g>
-
-  <!-- Preflight & Tools Quick Links -->
-  <g transform="translate(16, 350)">
-    <text x="0" y="0" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.5">CÔNG CỤ HỆ THỐNG</text>
-    <rect x="0" y="10" width="208" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
-    <text x="10" y="29" fill="#334155" font-size="11">🩺 Chẩn đoán Pre-flight</text>
-    <text x="180" y="29" fill="#10B981" font-size="11">100%</text>
-
-    <rect x="0" y="46" width="208" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
-    <text x="10" y="65" fill="#334155" font-size="11">🔗 9router 1:1 Sessions</text>
-    <text x="180" y="65" fill="#0D9488" font-size="11">✓</text>
-
-    <rect x="0" y="82" width="208" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
-    <text x="10" y="101" fill="#334155" font-size="11">📱 Mobile Remote Host</text>
-    <text x="180" y="101" fill="#10B981" font-size="11">Live</text>
-  </g>
-
-  <!-- Emergency Stop Button at bottom of sidebar -->
-  <g transform="translate(16, 836)">
-    <rect x="0" y="0" width="208" height="42" rx="8" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.2" cursor="pointer"/>
-    <text x="104" y="26" text-anchor="middle" fill="#DC2626" font-size="12" font-weight="bold">⏹️ DỪNG ĐỘT NGỘT (ESC)</text>
-  </g>
-
-  <!-- ================= 2. CENTER: CHAT STREAM & CHECKPOINT GATE (680px) ================= -->
-  <!-- User Message -->
-  <g transform="translate(260, 76)">
-    <rect x="180" y="0" width="480" height="60" rx="8" fill="#0D9488"/>
-    <text x="200" y="24" fill="#FFFFFF" font-size="13" font-weight="600">Bạn (Chủ dự án):</text>
-    <text x="200" y="45" fill="#F0FDFA" font-size="13">Hãy triển khai module Giỏ hàng (Cart) và áp dụng mã Voucher giảm giá.</text>
-  </g>
-
-  <!-- PM Message with Thinking and Swarm Progress -->
-  <g transform="translate(260, 150)">
-    <!-- Avatar & Title -->
-    <circle cx="16" cy="16" r="14" fill="#0D9488"/>
-    <text x="16" y="21" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">PM</text>
-    <text x="40" y="16" fill="#0F172A" font-size="14" font-weight="700">Alex (Lead/PM)</text>
-    <text x="155" y="16" fill="#64748B" font-size="11">vừa xong • Claude 3.5 Sonnet</text>
-
-    <!-- Message Bubble -->
-    <rect x="36" y="26" width="624" height="68" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
-    <text x="52" y="50" fill="#1E293B" font-size="13">Chào bạn! Tôi đã phân bổ nhiệm vụ: Marcus (BA) viết specs, Maya dựng schema SQLite,</text>
-    <text x="52" y="72" fill="#1E293B" font-size="13">David (FE) viết CartBloc, Carlos (BE) viết NestJS endpoint, và Viktor (QA) viết unit test.</text>
-
-    <!-- RAW MODEL THINKING BOX -->
-    <g transform="translate(36, 102)">
-      <rect x="0" y="0" width="624" height="74" rx="6" fill="#F1F5F9" stroke="#CBD5E1"/>
-      <text x="12" y="20" fill="#475569" font-size="11" font-weight="bold" font-family="'JetBrains Mono', monospace">💭 RAW MODEL THINKING LOG: Thought for 8.4s (1,248 tokens)</text>
-      <text x="12" y="38" fill="#64748B" font-size="10" font-family="'JetBrains Mono', monospace">&lt;thinking&gt; Plan: 1. Validate voucher discount rules 2. Trigger SQLite state migration</text>
-      <text x="12" y="54" fill="#64748B" font-size="10" font-family="'JetBrains Mono', monospace">3. Dispatch tasks to David &amp; Carlos 4. Run Jest + Flutter test suite &lt;/thinking&gt;</text>
+    <!-- Raw Model Thinking Log Box (Expandable) -->
+    <g transform="translate(20, 52)">
+      <rect width="708" height="74" rx="6" fill="#0F172A"/>
+      <text x="16" y="20" fill="#38BDF8" class="text-mono" font-size="10">💭 RAW MODEL THINKING LOG (&lt;thinking&gt; tag • 1.2s)</text>
+      <text x="16" y="38" fill="#94A3B8" class="text-mono" font-size="9">1. Marcus (BA): Soạn thảo DTO giỏ hàng và quy tắc tích điểm (100đ = 1 xu 🪙)</text>
+      <text x="16" y="52" fill="#94A3B8" class="text-mono" font-size="9">2. Elena (UI) &amp; David (FE): Lập trình CartCheckoutButton màu Alpine Teal</text>
+      <text x="16" y="66" fill="#94A3B8" class="text-mono" font-size="9">3. Viktor (QA): Viết 5 unit tests và cập nhật trạng thái vào SQLite WAL</text>
     </g>
 
-    <!-- BACKSTAGE LIVE TASK BADGES -->
-    <g transform="translate(36, 186)">
-      <rect x="0" y="0" width="624" height="42" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
-      <circle cx="16" cy="21" r="5" fill="#10B981"/>
-      <text x="28" y="25" fill="#0F766E" font-size="11" font-weight="bold">Swarm Update:</text>
-      <rect x="120" y="10" width="130" height="22" rx="4" fill="#FFFFFF" stroke="#CCFBF1"/>
-      <text x="126" y="25" fill="#0F766E" font-size="10">TASK-102: David (FE) ✓</text>
-      <rect x="260" y="10" width="130" height="22" rx="4" fill="#FFFFFF" stroke="#CCFBF1"/>
-      <text x="266" y="25" fill="#0F766E" font-size="10">TASK-103: Carlos (BE) ✓</text>
-      <rect x="400" y="10" width="140" height="22" rx="4" fill="#FFFFFF" stroke="#A7F3D0"/>
-      <text x="406" y="25" fill="#047857" font-size="10">TASK-101: 8/8 test pass ✓</text>
-    </g>
+    <!-- Text Content -->
+    <text x="20" y="150" fill="#1E293B" class="text-body" font-size="13">Chào bạn, tôi là Alex. Tôi đã tiếp nhận yêu cầu và điều phối ban kỹ thuật 14 nhân sự.</text>
+    <text x="20" y="172" fill="#1E293B" class="text-body" font-size="13">Nhiệm vụ đã được chuyển cho David (FE Dev) lập trình và Viktor (QA) kiểm thử.</text>
 
-    <!-- ================= USER CHECKPOINT GATE #03 ================= -->
-    <g transform="translate(36, 240)">
-      <rect x="0" y="0" width="624" height="150" rx="10" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.8" filter="url(#cardShadow)"/>
-      <circle cx="28" cy="28" r="12" fill="#D97706"/>
-      <text x="28" y="33" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">🛑</text>
-      
-      <text x="48" y="32" fill="#92400E" font-size="14" font-weight="800">CHECKPOINT #03: YÊU CẦU PHÊ DUYỆT CỦA BẠN</text>
-      <text x="48" y="54" fill="#78350F" font-size="12">Module Giỏ hàng &amp; Voucher đã vượt qua 8/8 test tự động của Viktor (QA Lead).</text>
-      <text x="48" y="70" fill="#78350F" font-size="12">Thay đổi: 3 files (+45 lines, -12 lines). Bạn muốn thực hiện hành động nào tiếp theo?</text>
+    <!-- Checkpoint Gate #04 Card -->
+    <g transform="translate(20, 194)">
+      <rect width="708" height="136" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.5"/>
+      <text x="20" y="26" fill="#92400E" class="text-title" font-size="12">🛑 CỔNG NGHIỆM THU #04: CHỜ BẠN DUYỆT (USER CHECKPOINT GATE)</text>
+      <text x="20" y="46" fill="#78350F" class="text-body" font-size="11">David và Lucas đã hoàn thành module Cart Checkout Button. Đã vượt qua 29/29 test suites.</text>
+      <text x="20" y="64" fill="#047857" class="text-mono" font-size="10">Diff: +45 lines / -12 lines • 2 files modified • Đã sẵn sàng merge Git</text>
 
-      <!-- Action Buttons -->
-      <g transform="translate(48, 88)">
-        <!-- Green Approve & Merge Git -->
-        <rect x="0" y="0" width="170" height="38" rx="6" fill="#10B981" cursor="pointer"/>
-        <text x="85" y="24" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">✅ Duyệt &amp; Merge Git</text>
-
-        <!-- Blue/Teal Test on AVD -->
-        <rect x="180" y="0" width="170" height="38" rx="6" fill="#0D9488" cursor="pointer"/>
-        <text x="265" y="24" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">📱 Chạy thử trên AVD</text>
-
-        <!-- Neutral Request Changes -->
-        <rect x="360" y="0" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#CBD5E1" cursor="pointer"/>
-        <text x="435" y="24" text-anchor="middle" fill="#475569" font-size="12" font-weight="bold">✍️ Yêu cầu sửa</text>
+      <!-- 3 Standard Checkpoint Action Buttons -->
+      <g transform="translate(20, 84)">
+        <!-- Button 1: Approve -->
+        <rect width="180" height="34" rx="6" fill="#059669"/>
+        <text x="90" y="21" fill="#FFFFFF" class="text-title" font-size="11" text-anchor="middle">✅ Duyệt &amp; Merge Git</text>
+      </g>
+      <g transform="translate(212, 84)">
+        <!-- Button 2: Test on AVD -->
+        <rect width="160" height="34" rx="6" fill="#0284C7"/>
+        <text x="80" y="21" fill="#FFFFFF" class="text-title" font-size="11" text-anchor="middle">📱 Thử Trên Máy Ảo</text>
+      </g>
+      <g transform="translate(384, 84)">
+        <!-- Button 3: Feedback -->
+        <rect width="130" height="34" rx="6" fill="#FFFFFF" stroke="#D1D5DB"/>
+        <text x="65" y="21" fill="#4B5563" class="text-title" font-size="11" text-anchor="middle">✍️ Yêu Cầu Sửa</text>
       </g>
     </g>
   </g>
 
   <!-- Bottom Chat Input Bar -->
-  <g transform="translate(260, 824)">
-    <rect x="0" y="0" width="660" height="54" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
-    <text x="18" y="32" fill="#94A3B8" font-size="13">Nhập chỉ thị tiếp theo cho Alex (Lead/PM) hoặc gõ /help...</text>
-    <rect x="530" y="10" width="118" height="34" rx="6" fill="url(#primaryTeal)" cursor="pointer"/>
-    <text x="589" y="32" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">Gửi lệnh ➔</text>
+  <g transform="translate(92, 824)">
+    <rect width="748" height="52" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" class="shadow-panel"/>
+    <text x="20" y="31" fill="#94A3B8" class="text-body" font-size="13">Nhập chỉ thị tiếp theo cho Alex (Lead/PM)...</text>
+    <rect x="636" y="8" width="102" height="36" rx="6" fill="#0D9488"/>
+    <text x="687" y="30" fill="#FFFFFF" class="text-title" font-size="12" text-anchor="middle">Gửi lệnh ➔</text>
   </g>
 
-  <!-- ================= 3. RIGHT PANEL: EXPANDED SPATIAL LIVE KANBAN WITH BOTTOM TOOLS DOCK (500px) ================= -->
-  <rect x="920" y="56" width="520" height="844" fill="#FFFFFF"/>
-  <line x1="920" y1="56" x2="920" y2="900" stroke="#E2E8F0" stroke-width="1"/>
+  <!-- ================= B. RIGHT PANEL: EXPANDED LIVE KANBAN (580px) ================= -->
+  <rect x="860" y="52" width="580" height="848" fill="#FFFFFF"/>
 
-  <!-- Mini-Kanban Header -->
-  <g transform="translate(936, 72)">
-    <rect x="0" y="0" width="488" height="36" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
-    <circle cx="18" cy="18" r="4" fill="#0D9488"/>
-    <text x="30" y="22" fill="#0F172A" font-size="12" font-weight="800">📋 TIẾN ĐỘ LIVE KANBAN (TOÀN CẢNH)</text>
-    <rect x="375" y="6" width="102" height="24" rx="4" fill="#F0FDFA" stroke="#CCFBF1"/>
-    <text x="426" y="22" text-anchor="middle" fill="#0F766E" font-size="10" font-weight="bold">⛶ Mở Studio</text>
+  <!-- Panel Header -->
+  <g transform="translate(860, 52)">
+    <rect width="580" height="42" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+    <text x="20" y="26" fill="#0F172A" class="text-title" font-size="12">📋 TIẾN ĐỘ LIVE KANBAN (TOÀN CẢNH)</text>
+    <rect x="470" y="8" width="94" height="26" rx="5" fill="#F0FDFA" stroke="#99F6E4"/>
+    <text x="517" y="24" fill="#0F766E" class="text-title" font-size="10" text-anchor="middle">⛶ Mở Studio</text>
   </g>
 
-  <!-- 4 SPATIOUS KANBAN COLUMNS (Height 520px - Maximized Space!) -->
-  <g transform="translate(936, 118)">
-    <!-- COL 1: CHỜ LÀM (116px) -->
-    <rect x="0" y="0" width="116" height="520" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
-    <rect x="6" y="6" width="104" height="24" rx="4" fill="#F1F5F9"/>
-    <text x="12" y="22" fill="#475569" font-size="10" font-weight="bold">CHỜ LÀM (1)</text>
+  <!-- Live Kanban 4 Columns Grid -->
+  <g transform="translate(876, 106)">
+    <!-- Column 1: Chờ Làm -->
+    <g transform="translate(0, 0)">
+      <rect width="130" height="560" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <rect width="130" height="30" rx="6" fill="#F1F5F9"/>
+      <text x="10" y="19" fill="#475569" class="text-title" font-size="10">CHỜ LÀM</text>
+      <circle cx="112" cy="15" r="7" fill="#E2E8F0"/>
+      <text x="112" y="18" fill="#475569" class="text-mono" font-size="8" text-anchor="middle">1</text>
+      
+      <!-- Card -->
+      <rect x="8" y="38" width="114" height="66" rx="5" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="14" y="52" fill="#0284C7" class="text-mono" font-size="7">FE • TASK-105</text>
+      <text x="14" y="66" fill="#1E293B" class="text-title" font-size="9">Banner Vouchers</text>
+      <text x="14" y="84" fill="#94A3B8" class="text-body" font-size="8">David (FE Dev)</text>
+    </g>
+
+    <!-- Column 2: Đang Làm ⚡ -->
+    <g transform="translate(138, 0)">
+      <rect width="130" height="560" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <rect width="130" height="30" rx="6" fill="#CCFBF1"/>
+      <text x="10" y="19" fill="#0F766E" class="text-title" font-size="10">ĐANG LÀM ⚡</text>
+      <circle cx="112" cy="15" r="7" fill="#99F6E4"/>
+      <text x="112" y="18" fill="#0F766E" class="text-mono" font-size="8" text-anchor="middle">1</text>
+      
+      <!-- Card Active -->
+      <rect x="8" y="38" width="114" height="74" rx="5" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5" class="shadow-card"/>
+      <text x="14" y="52" fill="#0D9488" class="text-mono" font-size="7">FE • TASK-104</text>
+      <text x="14" y="66" fill="#0F172A" class="text-title" font-size="9">Cart Button Redesign</text>
+      <text x="14" y="84" fill="#0D9488" class="text-body" font-size="8">David • Onlook Sync</text>
+      <text x="14" y="98" fill="#94A3B8" class="text-mono" font-size="7">🪙 4.1k tokens</text>
+    </g>
+
+    <!-- Column 3: Kiểm Thử 🛑 -->
+    <g transform="translate(276, 0)">
+      <rect width="130" height="560" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <rect width="130" height="30" rx="6" fill="#FEF3C7"/>
+      <text x="10" y="19" fill="#92400E" class="text-title" font-size="10">KIỂM THỬ 🛑</text>
+      <circle cx="112" cy="15" r="7" fill="#FDE68A"/>
+      <text x="112" y="18" fill="#92400E" class="text-mono" font-size="8" text-anchor="middle">1</text>
+      
+      <!-- Card QA -->
+      <rect x="8" y="38" width="114" height="66" rx="5" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="14" y="52" fill="#DC2626" class="text-mono" font-size="7">QA • TASK-103</text>
+      <text x="14" y="66" fill="#1E293B" class="text-title" font-size="9">E2E Flow Test</text>
+      <text x="14" y="84" fill="#94A3B8" class="text-body" font-size="8">Viktor QA • 100% OK</text>
+    </g>
+
+    <!-- Column 4: Hoàn Tất ✓ -->
+    <g transform="translate(414, 0)">
+      <rect width="130" height="560" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <rect width="130" height="30" rx="6" fill="#DCFCE7"/>
+      <text x="10" y="19" fill="#166534" class="text-title" font-size="10">HOÀN TẤT ✓</text>
+      <circle cx="112" cy="15" r="7" fill="#BBF7D0"/>
+      <text x="112" y="18" fill="#166534" class="text-mono" font-size="8" text-anchor="middle">4</text>
+      
+      <!-- Card Done -->
+      <rect x="8" y="38" width="114" height="56" rx="5" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="14" y="52" fill="#059669" class="text-mono" font-size="7">BE • TASK-102</text>
+      <text x="14" y="66" fill="#64748B" class="text-body" font-size="9">agentP Core Daemon</text>
+      <text x="14" y="80" fill="#10B981" class="text-title" font-size="8">Đã Duyệt (Passed)</text>
+    </g>
+  </g>
+
+  <!-- SECTION 2: BOTTOM TOOLS DOCK (SIDE-BY-SIDE AT VERY BOTTOM) -->
+  <g transform="translate(876, 680)">
+    <rect width="548" height="204" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
     
-    <!-- Card in To Do -->
-    <g transform="translate(6, 38)">
-      <rect x="0" y="0" width="104" height="84" rx="5" fill="#FFFFFF" stroke="#CBD5E1"/>
-      <text x="8" y="18" fill="#0D9488" font-size="9" font-weight="bold">TASK-104</text>
-      <text x="8" y="34" fill="#0F172A" font-size="9" font-weight="600">QR Payment</text>
-      <text x="8" y="48" fill="#64748B" font-size="8">VNPay API</text>
-      <line x1="8" y1="58" x2="96" y2="58" stroke="#F1F5F9"/>
-      <text x="8" y="72" fill="#64748B" font-size="8">Liam • ⚡ 950</text>
+    <!-- Box 1: Git Staging Diff (Left half) -->
+    <g transform="translate(12, 12)">
+      <rect width="254" height="180" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="12" y="24" fill="#0F172A" class="text-title" font-size="11">🌿 GIT STAGING</text>
+      <text x="195" y="24" fill="#059669" class="text-mono" font-size="10">+45 / <tspan fill="#DC2626">-12</tspan></text>
+      <line x1="12" y1="36" x2="242" y2="36" stroke="#F1F5F9" stroke-width="1"/>
+
+      <text x="12" y="58" fill="#334155" class="text-mono" font-size="9">• cart_bloc.dart <tspan fill="#059669">+28</tspan></text>
+      <text x="12" y="76" fill="#334155" class="text-mono" font-size="9">• cart_button.tsx <tspan fill="#059669">+17</tspan></text>
+      <text x="12" y="94" fill="#94A3B8" class="text-mono" font-size="9">• router.py (refactor)</text>
+      
+      <rect x="12" y="128" width="230" height="26" rx="4" fill="#F0FDFA" stroke="#99F6E4"/>
+      <text x="127" y="145" fill="#0F766E" class="text-title" font-size="9" text-anchor="middle">Nhánh: feature/cart-voucher</text>
     </g>
 
-    <!-- COL 2: ĐANG LÀM (118px) -->
-    <rect x="124" y="0" width="118" height="520" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
-    <rect x="130" y="6" width="106" height="24" rx="4" fill="#CCFBF1"/>
-    <text x="136" y="22" fill="#0F766E" font-size="10" font-weight="bold">ĐANG LÀM (2)</text>
+    <!-- Box 2: Android AVD Runner (Right half) -->
+    <g transform="translate(282, 12)">
+      <rect width="254" height="180" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="12" y="24" fill="#0F172A" class="text-title" font-size="11">📱 MÁY ẢO AVD</text>
+      <circle cx="204" cy="20" r="3" fill="#10B981"/>
+      <text x="212" y="24" fill="#047857" class="text-mono" font-size="9">5554</text>
+      <line x1="12" y1="36" x2="242" y2="36" stroke="#F1F5F9" stroke-width="1"/>
 
-    <!-- Card 1 in Coding -->
-    <g transform="translate(130, 38)">
-      <rect x="0" y="0" width="106" height="90" rx="5" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.2"/>
-      <text x="8" y="18" fill="#0D9488" font-size="9" font-weight="bold">TASK-102</text>
-      <text x="8" y="34" fill="#0F172A" font-size="9" font-weight="600">Cart Bloc State</text>
-      <text x="8" y="48" fill="#64748B" font-size="8">Flutter state</text>
-      <line x1="8" y1="62" x2="98" y2="62" stroke="#F0FDFA"/>
-      <text x="8" y="78" fill="#0F766E" font-size="8" font-weight="bold">David ⚡ 1.2k</text>
-    </g>
+      <text x="12" y="58" fill="#0F172A" class="text-title" font-size="10">Pixel 8 Pro (API 34)</text>
+      <text x="12" y="74" fill="#64748B" class="text-body" font-size="9">Flutter Standalone Runner: Sẵn sàng</text>
 
-    <!-- Card 2 in Coding -->
-    <g transform="translate(130, 136)">
-      <rect x="0" y="0" width="106" height="90" rx="5" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.2"/>
-      <text x="8" y="18" fill="#0D9488" font-size="9" font-weight="bold">TASK-103</text>
-      <text x="8" y="34" fill="#0F172A" font-size="9" font-weight="600">Nest Cart API</text>
-      <text x="8" y="48" fill="#64748B" font-size="8">REST + DTO</text>
-      <line x1="8" y1="62" x2="98" y2="62" stroke="#F0FDFA"/>
-      <text x="8" y="78" fill="#0F766E" font-size="8" font-weight="bold">Carlos ⚡ 980</text>
-    </g>
+      <!-- Mini Phone Viewport Screen Mockup -->
+      <rect x="12" y="86" width="110" height="74" rx="4" fill="#0F172A"/>
+      <rect x="22" y="94" width="90" height="12" rx="2" fill="#0D9488"/>
+      <rect x="22" y="112" width="90" height="36" rx="2" fill="#1E293B"/>
 
-    <!-- COL 3: KIỂM THỬ (118px) -->
-    <rect x="250" y="0" width="118" height="520" rx="6" fill="#FFFBEB" stroke="#FDE68A"/>
-    <rect x="256" y="6" width="106" height="24" rx="4" fill="#FEF3C7"/>
-    <text x="262" y="22" fill="#92400E" font-size="10" font-weight="bold">KIỂM THỬ (1)</text>
+      <!-- AVD Actions -->
+      <rect x="136" y="94" width="104" height="28" rx="4" fill="#F1F5F9" stroke="#E2E8F0"/>
+      <text x="188" y="112" fill="#334155" class="text-title" font-size="9" text-anchor="middle">🔄 Hot Reload</text>
 
-    <!-- Card in QA -->
-    <g transform="translate(256, 38)">
-      <rect x="0" y="0" width="106" height="96" rx="5" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.2"/>
-      <text x="8" y="18" fill="#D97706" font-size="9" font-weight="bold">TASK-101</text>
-      <text x="8" y="34" fill="#0F172A" font-size="9" font-weight="600">Voucher Tests</text>
-      <text x="8" y="50" fill="#047857" font-size="8" font-weight="bold">✓ 8/8 passing</text>
-      <line x1="8" y1="64" x2="98" y2="64" stroke="#FFFBEB"/>
-      <text x="8" y="80" fill="#047857" font-size="8" font-weight="bold">Viktor ⚡ 1.8k</text>
-    </g>
-
-    <!-- COL 4: HOÀN TẤT (116px) -->
-    <rect x="376" y="0" width="116" height="520" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/>
-    <rect x="382" y="6" width="104" height="24" rx="4" fill="#D1FAE5"/>
-    <text x="388" y="22" fill="#065F46" font-size="10" font-weight="bold">HOÀN TẤT (3)</text>
-
-    <!-- Done Cards -->
-    <g transform="translate(382, 38)">
-      <rect x="0" y="0" width="104" height="60" rx="5" fill="#FFFFFF" stroke="#A7F3D0"/>
-      <text x="8" y="16" fill="#047857" font-size="8" font-weight="bold">TASK-098 ✓</text>
-      <text x="8" y="30" fill="#334155" font-size="8">DB Schema DDL</text>
-      <text x="8" y="46" fill="#64748B" font-size="7">Maya • 🪙 1.4k</text>
-    </g>
-    <g transform="translate(382, 106)">
-      <rect x="0" y="0" width="104" height="60" rx="5" fill="#FFFFFF" stroke="#A7F3D0"/>
-      <text x="8" y="16" fill="#047857" font-size="8" font-weight="bold">TASK-099 ✓</text>
-      <text x="8" y="30" fill="#334155" font-size="8">User Stories</text>
-      <text x="8" y="46" fill="#64748B" font-size="7">Marcus • 🪙 2.1k</text>
-    </g>
-  </g>
-
-  <!-- ================= BOTTOM TOOLS DOCK: GIT DIFF & AVD RUNNER (SIDE-BY-SIDE AT THE VERY BOTTOM) ================= -->
-  <line x1="920" y1="655" x2="1440" y2="655" stroke="#E2E8F0" stroke-width="1.5"/>
-
-  <!-- Left Tool Box: Git Staging Diff (Width 236px, Y=668) -->
-  <g transform="translate(936, 668)">
-    <rect x="0" y="0" width="236" height="216" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
-    <text x="12" y="24" fill="#0F172A" font-size="11" font-weight="bold">🌿 GIT STAGING</text>
-    <text x="145" y="24" fill="#047857" font-size="10" font-weight="bold">+45</text>
-    <text x="175" y="24" fill="#DC2626" font-size="10" font-weight="bold">-12</text>
-    <text x="12" y="44" fill="#64748B" font-size="9">feature/cart-voucher</text>
-
-    <!-- File 1 -->
-    <rect x="10" y="56" width="216" height="34" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
-    <text x="18" y="72" fill="#334155" font-size="8" font-family="'JetBrains Mono', monospace">lib/.../cart_bloc.dart</text>
-    <text x="18" y="84" fill="#047857" font-size="8" font-weight="bold">+28 lines</text>
-
-    <!-- File 2 -->
-    <rect x="10" y="96" width="216" height="34" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
-    <text x="18" y="112" fill="#334155" font-size="8" font-family="'JetBrains Mono', monospace">src/.../cart.controller.ts</text>
-    <text x="18" y="124" fill="#047857" font-size="8" font-weight="bold">+17 lines</text>
-
-    <!-- File 3 -->
-    <rect x="10" y="136" width="216" height="34" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
-    <text x="18" y="152" fill="#334155" font-size="8" font-family="'JetBrains Mono', monospace">test/.../cart_test.dart</text>
-    <text x="18" y="164" fill="#047857" font-size="8" font-weight="bold">+12 lines</text>
-
-    <!-- Git status pill -->
-    <rect x="10" y="178" width="216" height="26" rx="4" fill="#ECFDF5" stroke="#A7F3D0"/>
-    <text x="118" y="195" text-anchor="middle" fill="#047857" font-size="9" font-weight="bold">✓ Sẵn sàng commit &amp; merge</text>
-  </g>
-
-  <!-- Right Tool Box: AVD Emulator Controller (Width 236px, Y=668) -->
-  <g transform="translate(1188, 668)">
-    <rect x="0" y="0" width="236" height="216" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
-    <text x="12" y="24" fill="#0F172A" font-size="11" font-weight="bold">📱 MÁY ẢO AVD</text>
-    <circle cx="160" cy="20" r="3.5" fill="#10B981"/>
-    <text x="168" y="24" fill="#047857" font-size="9" font-weight="bold">5554 Live</text>
-    <text x="12" y="44" fill="#64748B" font-size="9">Google Pixel 8 Pro (API 34)</text>
-
-    <!-- AVD mini screen preview -->
-    <rect x="10" y="56" width="216" height="80" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
-    <rect x="18" y="64" width="200" height="18" rx="3" fill="#0D9488"/>
-    <text x="118" y="77" text-anchor="middle" fill="#FFFFFF" font-size="8" font-weight="bold">Food Delivery Cart</text>
-    <text x="24" y="96" fill="#334155" font-size="8">1x Phở Bò Tái Nạm (65k)</text>
-    <text x="24" y="112" fill="#047857" font-size="8" font-weight="bold">Voucher: GIAM20K (-20k)</text>
-    <text x="24" y="126" fill="#0D9488" font-size="8" font-weight="bold">Tổng: 45.000đ</text>
-
-    <!-- AVD Quick Action Buttons -->
-    <g transform="translate(10, 144)">
-      <rect x="0" y="0" width="104" height="28" rx="4" fill="#FFFFFF" stroke="#CBD5E1" cursor="pointer"/>
-      <text x="52" y="18" text-anchor="middle" fill="#0F766E" font-size="9" font-weight="bold">🔄 Reload (r)</text>
-
-      <rect x="112" y="0" width="104" height="28" rx="4" fill="#FFFFFF" stroke="#CBD5E1" cursor="pointer"/>
-      <text x="164" y="18" text-anchor="middle" fill="#0F766E" font-size="9" font-weight="bold">📸 Chụp UI</text>
-
-      <rect x="0" y="34" width="216" height="28" rx="4" fill="#F0FDFA" stroke="#CCFBF1" cursor="pointer"/>
-      <text x="108" y="52" text-anchor="middle" fill="#0D9488" font-size="9" font-weight="bold">🔍 Mở DevTools</text>
+      <rect x="136" y="130" width="104" height="28" rx="4" fill="#F1F5F9" stroke="#E2E8F0"/>
+      <text x="188" y="148" fill="#334155" class="text-title" font-size="9" text-anchor="middle">📸 Chụp Màn Hình</text>
     </g>
   </g>
 </svg>

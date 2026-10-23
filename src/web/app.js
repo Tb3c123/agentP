@@ -89,15 +89,23 @@ async function loadWorkspace() {
 function renderSwarmRoles(roles) {
   const container = document.getElementById('swarmListContainer');
   if (!container || !roles) return;
-  container.innerHTML = roles.map(r => `
-    <div class="swarm-item">
-      <div style="display:flex; align-items:center; gap:6px;">
-        <span style="width:6px; height:6px; border-radius:50%; background:${r.status === 'connected' ? '#10B981' : '#94A3B8'};"></span>
-        <span class="role-name">${r.display_name.split('(')[0].trim()}</span>
+  
+  // Filter out Alex PM since Alex has his own executive desk pill
+  const swarmOnly = roles.filter(r => r.role_id !== 'lead_pm');
+
+  container.innerHTML = swarmOnly.map(r => {
+    const shortName = r.display_name.split('(')[0].trim();
+    const initials = shortName.substring(0, 2).toUpperCase();
+    const isOnline = r.status === 'connected';
+    return `
+      <div class="swarm-chip" title="${r.persona || shortName} • ${r.model || 'Claude/DeepSeek'}">
+        <span class="chip-avatar">${initials}</span>
+        <span class="chip-name">${shortName}</span>
+        <span class="chip-dot ${isOnline ? 'online' : ''}"></span>
+        <span class="chip-token">🪙 ${r.tokens_spent || '1.2k'}</span>
       </div>
-      <span class="token-stat">🪙 ${r.tokens_spent || '1.2k'}</span>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function renderMiniKanban(cols) {

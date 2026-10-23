@@ -480,3 +480,39 @@ Hệ thống đã kết xuất toàn bộ 10 màn hình riêng biệt thành cá
   👉 [**docs/assets/screen_9_visual_ui_studio.svg**](file:///Users/tb3c/Documents/antigravity/fearless-einstein/docs/assets/screen_9_visual_ui_studio.svg)
 * 📐 **Trang 10: Unified Agentic Kanban System (Hệ thống Kanban 3 Chế Độ Hợp Nhất)**:
   👉 [**docs/assets/screen_10_unified_kanban_system.svg**](file:///Users/tb3c/Documents/antigravity/fearless-einstein/docs/assets/screen_10_unified_kanban_system.svg)
+
+
+---
+
+## 13. KIẾN TRÚC GIAO DIỆN MỚI: ANTIGRAVITY ACTIVITY RAIL & HORIZONTAL SWARM TOP RIBBON
+
+Cập nhật chính thức bởi **Elena (Lead UI/UX)** và phê duyệt bởi **Alex (Lead/PM)** theo phản hồi của Bạn:
+
+```
++-------------------------------------------------------------------------------------------------------+
+|  ANTIGRAVITY LEFT RAIL (72px)  |  TOP SWARM RIBBON (48px): Alex Desk | 13 Specialists Chips | Actions |
+|                                +----------------------------------------------------------------------+
+|  [Fedora Logo]                 |                                  |                                   |
+|  [🧑‍💼 Chat/Alex (Active)]       |  CENTER CHAT WORKSPACE (Flex 1)  |  EXPANDED LIVE KANBAN (580px)     |
+|  [💻 Code Explorer]            |  - Luồng chat với Alex           |  - Chờ Làm (1)                    |
+|  [📋 Kanban Studio]            |  - <thinking> box                |  - Đang Làm ⚡ (1)                 |
+|  [🎨 Visual Studio]            |  - Checkpoint Gate #04           |  - Kiểm Thử 🛑 (1)                 |
+|  [🌱 Launchpad]                |  - Thanh nhập lệnh               |  - Hoàn Tất ✓ (4)                 |
+|                                |                                  +-----------------------------------+
+|  [● Host]                      |                                  |  BOTTOM TOOLS DOCK                |
+|  [⚙️ Settings / Danger Zone]   |                                  |  [Git Staging]  |  [AVD Runner]   |
++--------------------------------+----------------------------------+-----------------------------------+
+```
+
+### Điểm Cải Tiến Cốt Lõi:
+1. **Thanh Ray Điều Hướng Antigravity (Left Rail)**:
+   - Thay thế toàn bộ thanh navbar ngang trên đỉnh bằng thanh ray dọc chuyên nghiệp.
+   - Mỗi tab là một nút bấm vector có vạch chỉ báo xanh Alpine Teal (`#0D9488`) ở mép trái khi active.
+   - Từng tab mở ra một trang độc lập, cách ly tuyệt đối 100%, không bị lỗi nối đuôi.
+2. **Ban Kỹ Thuật Đẩy Lên Ngang Phía Trên (Horizontal Swarm Top Ribbon)**:
+   - Xóa bỏ hoàn toàn thanh bên trái 240px cũ làm dồn lệch giao diện.
+   - Trải 13 chuyên gia (Marcus, Elena, David, Carlos, Lucas, Maya, Viktor, Liam, Sophia...) thành dải chip ngang mượt mà, kèm avatar, status dot và đồng hồ token `⚡`.
+   - Alex PM có riêng khối Desk Pill sang trọng bên trái ruy-băng.
+   - Nút `⏹️ DỪNG ĐỘT NGỘT (ESC)` và các chỉ báo hệ thống `🩺 7/7 OK`, `🔗 14 Live` được neo gọn gàng bên góc phải ruy-băng.
+3. **Không Gian Chat Thoáng Đãng**:
+   - Khung hội thoại được giải phóng toàn bộ không gian, cân bằng hoàn hảo với bảng Live Kanban 580px bên phải.

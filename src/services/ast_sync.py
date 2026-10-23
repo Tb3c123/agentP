@@ -84,7 +84,7 @@ export const {component_tag} = () => {{
     @staticmethod
     def save_tldraw_snapshot(project_id: str, title: str, canvas_data: dict, task_id: str = None):
         os.makedirs(DESIGNS_DIR, exist_ok=True)
-        file_name = f"concept_board_{int(time.time())}.tldr"
+        file_name = "concept_board.tldr"
         file_path = os.path.join(DESIGNS_DIR, file_name)
 
         with open(file_path, 'w', encoding='utf-8') as f:
