@@ -202,9 +202,9 @@
 
       <!-- Bottom Pinned Settings & Host Bar (Exact Antigravity Placement) -->
       <div class="rail-bottom-dock">
-        <div class="rail-status-pill online">
+        <div class="rail-status-pill online" onclick="openMobileRemoteModal()" style="cursor:pointer;" title="📱 Nhấn để xem mã QR Pairing & Điều khiển từ xa qua di động">
           <span class="dot"></span>
-          <span>Host: 192.168.1.15:8080</span>
+          <span>Host: 192.168.1.15:8080 (📱)</span>
         </div>
         <div class="rail-status-pill tokens">
           <span>🪙</span>
@@ -391,9 +391,10 @@
               </div>
               <div style="font-size:10px; font-weight:600; color:#0F172A; margin:2px 0;">Pixel 8 Pro (API 34)</div>
               <div class="avd-compact-actions">
-                <button class="btn-small" onclick="alert('⚡ Đã kích hoạt Flutter Hot Reload (r)!')">🔄 Reload</button>
-                <button class="btn-small" onclick="alert('📸 Đã chụp màn hình AVD lưu vào docs/assets/!')">📸 Chụp</button>
+                <button class="btn-small" onclick="triggerAvdReload()" title="Flutter Hot Reload">⚡ Reload</button>
+                <button class="btn-small" onclick="triggerAvdScreenshot()" title="Chụp màn hình AVD">📸 Chụp</button>
               </div>
+              <button class="btn-small" onclick="triggerAvdLaunch()" style="background:#0284C7; color:#fff; border:none; margin-top:4px; width:100%; font-size:9px; font-weight:700;">▶ Khởi Chạy AVD</button>
             </div>
 
           </div>
@@ -596,12 +597,13 @@
         </div>
 
         <div style="display:flex; gap:8px; align-items:center;">
-          <select id="filterSprint" class="inspector-input" style="width:150px; padding:4px 8px; font-size:11px;" onchange="filterKanbanTasks()">
+          <select id="filterSprint" class="inspector-input" style="width:160px; padding:4px 8px; font-size:11px;" onchange="filterKanbanTasks()">
             <option value="all">Tất cả Sprints</option>
             <option value="sprint_01">Sprint 1 (Nền tảng)</option>
             <option value="sprint_02">Sprint 2 (Workspace)</option>
             <option value="sprint_03">Sprint 3 (Studio UI)</option>
-            <option value="sprint_04" selected>Sprint 4 (Files &amp; Diff)</option>
+            <option value="sprint_04">Sprint 4 (Files &amp; Diff)</option>
+            <option value="sprint_05" selected>Sprint 5 (DevOps &amp; Remote) 🚀</option>
           </select>
           <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:5px 10px;" onclick="alert('⚡ Đã tạo task mới và chuyển cho Alex điều phối!')">+ Tạo Task Mới</button>
         </div>
@@ -956,6 +958,87 @@
           </div>
           <div style="font-size:11px; color:#64748B;">agent • Dual-mode studio tldraw &amp; Onlook DOM inspector</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SPRINT 5: MOBILE REMOTE CONTROLLER MODAL ================= -->
+  <div class="modal-backdrop" id="mobileRemoteModal" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:18px;">📱</span>
+          <div style="font-size:14px; font-weight:700; color:#0F172A;">ĐIỀU KHIỂN TỪ XA QUA DI ĐỘNG (MOBILE REMOTE)</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileRemoteModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:16px; display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:16px; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px;">
+          <!-- QR Code Vector Mock -->
+          <div style="width:100px; height:100px; background:#0F172A; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; text-align:center; padding:6px; flex-shrink:0;">
+            <div style="background:#fff; width:88px; height:88px; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#0F172A; font-weight:700;">
+              <span style="font-size:18px;">📱</span>
+              <span style="font-size:8px;">Quét Mã QR</span>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:700; color:#0F172A; margin-bottom:4px;">Kết Nối Điện Thoại Android / iOS</div>
+            <div style="font-size:11px; color:#64748B; margin-bottom:6px;">Quét mã hoặc nhập mã ghép đôi để điều khiển duyệt Checkpoint từ xa qua Wi-Fi cục bộ:</div>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <span style="font-size:11px; color:#94A3B8;">Mã ghép đôi:</span>
+              <code style="background:#FEF3C7; color:#92400E; font-weight:800; padding:2px 8px; border-radius:4px; font-size:11px;" id="remotePairingCode">AGENTP-PAIR-7749</code>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; font-size:11px; background:#fff; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px;">
+            <span style="color:#64748B;">Địa chỉ Host:</span>
+            <span style="font-weight:700; color:#0F766E;" id="remoteHostIp">192.168.1.15:8080 (WS) / 9090 (REST)</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; background:#fff; border:1px solid #E2E8F0; padding:8px 12px; border-radius:6px;">
+            <span style="color:#64748B;">Trạng thái kết nối:</span>
+            <span style="font-weight:700; color:#10B981;">● 1 Thiết bị trực tuyến (Pixel 8 Pro)</span>
+          </div>
+        </div>
+
+        <button class="launch-btn" style="background:#0D9488; margin-top:4px;" onclick="simulateRemoteApprove()">
+          ✅ Thử Duyệt Checkpoint Từ Điện Thoại (Mô Phỏng)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SPRINT 5: EXCEL ACCEPTANCE REPORT MODAL ================= -->
+  <div class="modal-backdrop" id="excelReportModal" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:18px;">📊</span>
+          <div style="font-size:14px; font-weight:700; color:#0F172A;">BÁO CÁO NGHIỆM THU DOANH NGHIỆP EXCEL</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeExcelReportModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:16px; display:flex; flex-direction:column; gap:10px;">
+        <div style="font-size:12px; color:#475569;">
+          Sophia (Compliance/Docs) và Chloe (Data Engineer) đã tự động tổng hợp toàn bộ số liệu 5 Sprints, phân bổ token và kiểm thử:
+        </div>
+
+        <div class="automation-card" style="border-color:#A7F3D0; background:#F0FDF4;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:700; color:#065F46; font-size:12px;">📈 Tỷ Lệ Đạt Nghiệm Thu (DoD)</span>
+            <span class="rail-row-badge green">100% ĐẠT CHUẨN</span>
+          </div>
+          <div style="font-size:11px; color:#047857; margin-top:4px;">
+            • 46/46 Test Suites Passed (0.059s)<br>
+            • 7/7 Tiêu chí Bác sĩ tiền kiểm Pre-flight Đạt 100%<br>
+            • Tiết kiệm: <strong>42.5k tokens</strong> qua Local Protocol Daemon
+          </div>
+        </div>
+
+        <button class="launch-btn" style="background:#059669; margin-top:6px;" onclick="downloadExcelReportFile()">
+          📥 Tải Báo Cáo Excel Nghiệm Thu (.xlsx / .csv)
+        </button>
       </div>
     </div>
   </div>

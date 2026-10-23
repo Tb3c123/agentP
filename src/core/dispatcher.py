@@ -19,6 +19,8 @@ from code_controller import CodeController
 from project_controller import ProjectController
 from skills_controller import SkillsController
 from static_controller import StaticController
+from studio_controller import StudioController
+from devops_controller import DevOpsController
 from ast_sync import AstSyncEngine
 
 class RequestDispatcher:
@@ -67,12 +69,19 @@ class RequestDispatcher:
         if path == '/api/project/settings':
             return ProjectController.get_settings()
 
-        # 7. UI Studio AST Snapshots
-        if path == '/api/studio/snapshots':
-            snaps = AstSyncEngine.get_snapshots()
-            headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
-            import json
-            return 200, headers, json.dumps({"snapshots": snaps}).encode('utf-8')
+        # 7. UI Studio AST Snapshots & Concept Board
+        if path in ('/api/studio/snapshots', '/api/studio/snapshots/'):
+            return StudioController.get_snapshots()
+        if path == '/api/studio/concept-board':
+            return StudioController.get_concept_board()
+
+        # 8. Sprint 5: DevOps, AVD & Mobile Remote Controller
+        if path == '/api/devops/avd/status':
+            return DevOpsController.get_avd_status()
+        if path == '/api/remote/pairing-info':
+            return DevOpsController.get_remote_pairing()
+        if path in ('/api/reports/excel/export', '/api/reports/excel'):
+            return DevOpsController.export_excel_report()
 
         # Fallback: Static web files
         return StaticController.serve_file(path)
@@ -88,6 +97,16 @@ class RequestDispatcher:
             return WorkspaceController.respond_checkpoint(body_data)
         if path == '/api/kanban/move-task':
             return KanbanController.move_task(body_data)
+        if path == '/api/studio/sync-onlook':
+            return StudioController.sync_onlook(body_data)
+        if path == '/api/studio/save-tldraw':
+            return StudioController.save_tldraw(body_data)
+        if path == '/api/devops/avd/launch':
+            return DevOpsController.launch_avd(body_data)
+        if path == '/api/devops/avd/reload':
+            return DevOpsController.reload_avd()
+        if path == '/api/devops/avd/screenshot':
+            return DevOpsController.screenshot_avd()
         if path == '/api/files/delete':
             return CodeController.delete_file(body_data)
         if path == '/api/auto-name':

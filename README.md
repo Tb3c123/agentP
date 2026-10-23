@@ -107,10 +107,12 @@ agentP/
 │   │   ├── base_controller.py             <-- BaseController & JSON responders
 │   │   ├── workspace_controller.py        <-- Chat Bạn ⇄ Alex, Checkpoint Gate
 │   │   ├── kanban_controller.py           <-- 6 cột Kanban & Move task
+│   │   ├── studio_controller.py           <-- Dual-Mode UI Studio & AST Sync
 │   │   ├── code_controller.py             <-- File Tree, Monaco Split Diff, Trash
 │   │   ├── project_controller.py          <-- Auto-Naming, Settings, Danger Zone
 │   │   ├── skills_controller.py           <-- 30 Universal Skills API
 │   │   ├── protocol_controller.py         <-- Health, Sessions 1:1, Thinking Stream
+│   │   ├── devops_controller.py           <-- AVD Pixel 8 Pro, Remote Pairing, Excel Export
 │   │   └── static_controller.py           <-- Phục vụ tệp tĩnh Web & Assets
 │   ├── repositories/                      <-- REPOSITORY PATTERN (Data Layer)
 │   │   ├── base_repo.py                   <-- SQLite WAL Connection Manager
@@ -125,6 +127,9 @@ agentP/
 │   │   ├── ast_sync.py                    <-- AST Sync Engine 2 chiều (<50ms)
 │   │   ├── diff_strategy.py               <-- Monaco Split Diff Strategy
 │   │   ├── project_manager.py             <-- File Explorer, Safe Trash, Danger Zone
+│   │   ├── avd_controller.py              <-- AVD Pixel 8 Pro, Hot Reload & Screenshot
+│   │   ├── remote_controller.py           <-- Mobile Remote Pairing & WebSocket Host
+│   │   ├── excel_reporter.py              <-- Corporate Acceptance Excel/CSV Reporter
 │   │   └── command_workspace.py           <-- Workspace Facade
 │   ├── daemon/
 │   │   └── router.py                      <-- agentP Core Local Daemon (<95 lines)
@@ -136,9 +141,12 @@ agentP/
 │   ├── db.sqlite                          <-- CSDL Cục Bộ SQLite WAL Mode
 │   ├── skills/                            <-- 30 Bộ Kỹ Năng Độc Lập (.agents/skills/*/SKILL.md)
 │   └── trash/                             <-- Thùng rác nội bộ an toàn (Safe Trash)
+├── reports/                               <-- BÁO CÁO NGHIỆM THU DOANH NGHIỆP
+│   └── agentp_acceptance_report.csv       <-- Báo cáo số liệu kỹ thuật, token & chi phí
 ├── scripts/
 │   └── preflight.py                       <-- Bác Sĩ Tiền Kiểm 7 Tiêu Chí (Pre-flight Doctor)
-└── test/                                  <-- TOÀN BỘ BỘ TEST TỰ ĐỘNG (37/37 PASS)
+└── test/                                  <-- TOÀN BỘ BỘ TEST TỰ ĐỘNG (46/46 PASS)
+    ├── test_sprint5_devops_reports.py     <-- Test AVD, Remote Pairing & Excel Report
     ├── test_modular_controllers.py        <-- Test Dispatcher, Repositories & Controllers
     ├── test_design_patterns.py            <-- Test Mediator, Hexagonal & State Machine
     ├── test_agentp_protocol.py            <-- Test Health, Sessions 1:1, Thinking Log
@@ -173,11 +181,11 @@ python3 scripts/preflight.py
 ```
 *Kết quả chuẩn: 7/7 tiêu chí hoàn toàn sẵn sàng (100%).*
 
-### Bước 2: Chạy Toàn Bộ Test Suites Tự Động (37 tests)
+### Bước 2: Chạy Toàn Bộ Test Suites Tự Động (46 tests)
 ```bash
 python3 -m unittest discover -s test
 ```
-*Kết quả chuẩn: 37/37 tests PASS trong <0.06s.*
+*Kết quả chuẩn: 46/46 tests PASS trong <0.09s.*
 
 ### Bước 3: Khởi Chạy agentP Core Daemon
 ```bash

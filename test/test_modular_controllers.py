@@ -92,6 +92,40 @@ class TestModularControllers(unittest.TestCase):
         sessions = SessionsRepository.get_sessions()
         self.assertEqual(len(sessions), 14)
 
+    def test_09_dispatcher_studio_sync_onlook(self):
+        payload = {
+            "file_path": "lib/features/cart/cart_button.tsx",
+            "component_tag": "CartCheckoutButton",
+            "new_classes": "bg-teal-600 text-white font-bold py-3 px-6 rounded-lg shadow-md"
+        }
+        status, headers, body = RequestDispatcher.dispatch_post('/api/studio/sync-onlook', payload)
+        self.assertEqual(status, 200)
+        data = json.loads(body.decode('utf-8'))
+        self.assertEqual(data["status"], "synced")
+        self.assertEqual(data["component_tag"], "CartCheckoutButton")
+        self.assertLess(data["latency_ms"], 100) # DoD latency requirement
+
+    def test_10_dispatcher_studio_save_tldraw(self):
+        payload = {
+            "title": "Cart Screen Wireframe & User Flow",
+            "canvas_data": {
+                "version": 1,
+                "elements": [{"id": "wireframe_1", "type": "box", "x": 100, "y": 100}]
+            }
+        }
+        status, headers, body = RequestDispatcher.dispatch_post('/api/studio/save-tldraw', payload)
+        self.assertEqual(status, 200)
+        data = json.loads(body.decode('utf-8'))
+        self.assertIn("snapshot_id", data)
+        self.assertIn("concept_board.tldr", data["file_path"])
+
+    def test_11_dispatcher_studio_snapshots(self):
+        status, headers, body = RequestDispatcher.dispatch_get('/api/studio/snapshots')
+        self.assertEqual(status, 200)
+        data = json.loads(body.decode('utf-8'))
+        self.assertIn("snapshots", data)
+        self.assertGreaterEqual(len(data["snapshots"]), 1)
+
 
 if __name__ == '__main__':
     unittest.main()

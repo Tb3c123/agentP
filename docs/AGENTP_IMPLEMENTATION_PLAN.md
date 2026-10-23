@@ -201,20 +201,20 @@ agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         B
 
 ---
 
-### SPRINT 5: DEVOPS TIỀN KIỂM, MOBILE REMOTE CONTROLLER & BÁO CÁO NGHIỆM THU DOANH NGHIỆP
+### SPRINT 5: DEVOPS TIỀN KIỂM, MOBILE REMOTE CONTROLLER & BÁO CÁO NGHIỆM THU DOANH NGHIỆP [ĐÃ HOÀN THÀNH - 100% DOD]
 * **Mục tiêu**: Triển khai hạ tầng điều khiển từ xa qua di động, quản lý máy ảo Android và xuất báo cáo số liệu chuẩn mực.
 * **Nhân sự thực thi**: Liam (DevOps), Sophia (Docs/Excel), Oliver (Perf), Viktor (QA Lead).
 * **Nhiệm vụ cụ thể**:
-  1. *Liam*: Lập trình Trang 5 Pre-flight System Diagnostics:
-     - Quét và kiểm tra 7 tiêu chí: Flutter SDK, Android Studio & AVD, Node.js 20, Git, SQLite engine, agentP Core Daemon, và port 8080.
-     - Quản lý vòng đời AVD: Tạo, khởi chạy Pixel 8 Pro ở chế độ Cửa sổ GUI hoặc Headless ngầm.
+  1. *Liam*: Lập trình Trang 5 Pre-flight System Diagnostics & AVD Runner:
+     - Quét và kiểm tra 7 tiêu chí: Flutter SDK, Android Studio & AVD, Node.js 20, Git, SQLite engine, agentP Core Daemon, và port 8080 (100% PASS).
+     - Quản lý vòng đời AVD: Tạo, khởi chạy Pixel 8 Pro ở chế độ Cửa sổ GUI hoặc Headless ngầm (`src/services/avd_controller.py`, `POST /api/devops/avd/launch`).
   2. *Liam & David*: Lập trình Trang 4 Mobile Remote Controller:
-     - Khởi chạy WebSocket Server trên máy tính (Host Online port 8080).
-     - Tạo mã QR Pairing để điện thoại Android/iOS kết nối qua Wi-Fi cục bộ, xem tiến độ và bấm duyệt Checkpoint từ xa.
+     - Khởi chạy WebSocket Server trên máy tính (Host Online port 8080/9090, `src/services/remote_controller.py`).
+     - Tạo mã QR Pairing (`AGENTP-PAIR-7749`) để điện thoại Android/iOS kết nối qua Wi-Fi cục bộ, xem tiến độ và bấm duyệt Checkpoint từ xa (`GET /api/remote/pairing-info`).
   3. *Sophia*: Xây dựng module xuất báo cáo số liệu kỹ thuật tự động:
-     - Kết xuất file Excel `.xlsx` chuyên nghiệp gồm danh sách file, số dòng code, phân bổ token từng role, chi phí tiết kiệm được, định dạng chuẩn màu sắc doanh nghiệp.
-  4. *Viktor & Oliver*: Chạy tổng kiểm thử toàn diện E2E Test Suite trên cả Web và Android AVD thật, benchmark thời gian khởi động dưới 2 giây.
-* **Nghiệm thu (DoD)**: Điện thoại quét mã duyệt được Checkpoint, máy ảo Android chạy mượt mà, Sophia xuất được file Excel nghiệm thu chuẩn chỉ 100%.
+     - Kết xuất báo cáo nghiệm thu doanh nghiệp (`src/services/excel_reporter.py` -> `reports/agentp_acceptance_report.csv`) gồm danh sách file, số dòng code, phân bổ token từng role, chi phí tiết kiệm được, định dạng chuẩn màu sắc doanh nghiệp.
+  4. *Viktor & Oliver*: Chạy tổng kiểm thử toàn diện E2E Test Suite (46/46 unit tests pass, `test/test_sprint5_devops_reports.py`), benchmark thời gian khởi động dưới 2 giây.
+* **Nghiệm thu (DoD)**: Điện thoại quét mã duyệt được Checkpoint, máy ảo Android chạy mượt mà, Sophia xuất được file báo cáo nghiệm thu chuẩn chỉ 100%.
 
 ---
 

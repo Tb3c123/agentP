@@ -841,3 +841,84 @@ function openConvHistoryModal() {
 function closeConvHistoryModal() {
   document.getElementById('convHistoryModal').style.display = 'none';
 }
+
+// ================= SPRINT 5: DEVOPS, AVD RUNNER, REMOTE & EXCEL REPORT =================
+
+async function triggerAvdReload() {
+  try {
+    const res = await fetch('/api/devops/avd/reload', { method: 'POST' });
+    const data = await res.json();
+    alert(`⚡ ${data.message}\nĐộ trễ: ${data.latency_ms}ms (Đạt chuẩn 60fps).`);
+  } catch (e) {
+    console.error('AVD Reload error:', e);
+  }
+}
+
+async function triggerAvdScreenshot() {
+  try {
+    const res = await fetch('/api/devops/avd/screenshot', { method: 'POST' });
+    const data = await res.json();
+    alert(`📸 ${data.message}\nĐộ phân giải: ${data.resolution}`);
+  } catch (e) {
+    console.error('AVD Screenshot error:', e);
+  }
+}
+
+async function triggerAvdLaunch() {
+  try {
+    const res = await fetch('/api/devops/avd/launch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode: 'gui' })
+    });
+    const data = await res.json();
+    alert(`🚀 ${data.message}\nCổng ADB: localhost:${data.port}`);
+  } catch (e) {
+    console.error('AVD Launch error:', e);
+  }
+}
+
+async function openMobileRemoteModal() {
+  try {
+    const res = await fetch('/api/remote/pairing-info');
+    const data = await res.json();
+    document.getElementById('remotePairingCode').innerText = data.pairing_code;
+    document.getElementById('remoteHostIp').innerText = `${data.ip_address}:${data.websocket_port} (WS) / ${data.http_port} (REST)`;
+  } catch (e) {
+    console.warn('Failed to fetch remote info:', e);
+  }
+  document.getElementById('mobileRemoteModal').style.display = 'flex';
+}
+
+function closeMobileRemoteModal() {
+  document.getElementById('mobileRemoteModal').style.display = 'none';
+}
+
+async function simulateRemoteApprove() {
+  closeMobileRemoteModal();
+  alert('📱 ĐIỀU KHIỂN TỪ XA: Bạn đã bấm [Duyệt Checkpoint] từ điện thoại Pixel 8 Pro qua Wi-Fi!\nTiến trình Git Merge & AVD Hot Reload tự động kích hoạt.');
+  handleCheckpointAction('CHK-04', 'approved');
+}
+
+function openExcelReportModal() {
+  document.getElementById('excelReportModal').style.display = 'flex';
+}
+
+function closeExcelReportModal() {
+  document.getElementById('excelReportModal').style.display = 'none';
+}
+
+async function exportAcceptanceExcel() {
+  openExcelReportModal();
+}
+
+async function downloadExcelReportFile() {
+  try {
+    const res = await fetch('/api/reports/excel/export');
+    const data = await res.json();
+    alert(`✓ ĐÃ KẾT XUẤT BÁO CÁO NGHIỆM THU DOANH NGHIỆP!\nTệp tin: ${data.report_path}\nTổng số tasks: ${data.total_tasks}\nTokens tiết kiệm: ${data.tokens_saved}\nĐộ ổn định hệ thống: ${data.kpi_metrics.system_stability}`);
+    closeExcelReportModal();
+  } catch (e) {
+    console.error('Excel report error:', e);
+  }
+}
