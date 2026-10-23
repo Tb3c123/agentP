@@ -75,7 +75,9 @@ class RequestDispatcher:
         if path == '/api/studio/concept-board':
             return StudioController.get_concept_board()
 
-        # 8. Sprint 5: DevOps, AVD & Mobile Remote Controller
+        # 8. Sprint 5: DevOps, AVD & Mobile Remote Controller & Preflight
+        if path in ('/api/preflight/status', '/api/preflight/run', '/api/devops/preflight'):
+            return DevOpsController.get_preflight()
         if path == '/api/devops/avd/status':
             return DevOpsController.get_avd_status()
         if path == '/api/remote/pairing-info':
@@ -107,6 +109,10 @@ class RequestDispatcher:
             return DevOpsController.reload_avd()
         if path == '/api/devops/avd/screenshot':
             return DevOpsController.screenshot_avd()
+        if path in ('/api/preflight/run', '/api/devops/preflight/run'):
+            return DevOpsController.get_preflight()
+        if path in ('/api/protocol/test-connection', '/api/protocol/test'):
+            return ProtocolController.test_connections()
         if path == '/api/files/delete':
             return CodeController.delete_file(body_data)
         if path == '/api/auto-name':

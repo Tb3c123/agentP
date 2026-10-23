@@ -16,9 +16,15 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from avd_controller import AvdControllerService
 from remote_controller import MobileRemoteService
 from excel_reporter import ExcelCorporateReporter
+from preflight_service import PreflightService
 
 class DevOpsController(BaseController):
-    """Manages DevOps lifecycle, AVD machine control, and Corporate KPI Reports."""
+    """Manages DevOps lifecycle, AVD machine control, Corporate KPI Reports, and Preflight."""
+
+    @staticmethod
+    def get_preflight() -> Tuple[int, Dict[str, str], bytes]:
+        res = PreflightService.run_all_checks()
+        return BaseController.json_response(res, 200)
 
     @staticmethod
     def get_avd_status() -> Tuple[int, Dict[str, str], bytes]:

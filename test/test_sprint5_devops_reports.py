@@ -69,6 +69,25 @@ class TestSprint5DevOpsReports(unittest.TestCase):
         self.assertIn("report_path", data)
         self.assertTrue(os.path.exists(os.path.join(BASE_DIR, data["report_path"])))
 
+    def test_07_preflight_diagnostics(self):
+        status, headers, body = RequestDispatcher.dispatch_get('/api/preflight/status')
+        self.assertEqual(status, 200)
+        data = json.loads(body.decode('utf-8'))
+        self.assertEqual(data["total_count"], 7)
+        self.assertEqual(data["passed_count"], 7)
+        self.assertEqual(data["percentage"], 100)
+        self.assertEqual(len(data["checks"]), 7)
+
+    def test_08_protocol_test_connections(self):
+        status, headers, body = RequestDispatcher.dispatch_post('/api/protocol/test-connection', {})
+        self.assertEqual(status, 200)
+        data = json.loads(body.decode('utf-8'))
+        self.assertEqual(data["status"], "success")
+        self.assertEqual(len(data["sessions"]), 14)
+        for s in data["sessions"]:
+            self.assertGreater(s["latency_ms"], 0)
+            self.assertEqual(s["status"], "connected")
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -129,12 +129,13 @@ agentP/
 │   │   ├── project_manager.py             <-- File Explorer, Safe Trash, Danger Zone
 │   │   ├── avd_controller.py              <-- AVD Pixel 8 Pro, Hot Reload & Screenshot
 │   │   ├── remote_controller.py           <-- Mobile Remote Pairing & WebSocket Host
+│   │   ├── preflight_service.py           <-- Pre-flight Diagnostics 7 Criteria Service
 │   │   ├── excel_reporter.py              <-- Corporate Acceptance Excel/CSV Reporter
 │   │   └── command_workspace.py           <-- Workspace Facade
 │   ├── daemon/
 │   │   └── router.py                      <-- agentP Core Local Daemon (<95 lines)
 │   └── web/                               <-- GIAO DIỆN FRONTEND
-│       ├── index.html                     <-- Antigravity 2.0 Sidebar & 5 Isolated Views
+│       ├── index.html                     <-- Antigravity 2.0 Sidebar & 8 Full Views (All 10 Screens)
 │       ├── style.css                      <-- Clean Light Mode CSS + Role Domain Colors
 │       └── app.js                         <-- Client SPA Script điều khiển tương tác
 ├── .agents/
@@ -145,8 +146,8 @@ agentP/
 │   └── agentp_acceptance_report.csv       <-- Báo cáo số liệu kỹ thuật, token & chi phí
 ├── scripts/
 │   └── preflight.py                       <-- Bác Sĩ Tiền Kiểm 7 Tiêu Chí (Pre-flight Doctor)
-└── test/                                  <-- TOÀN BỘ BỘ TEST TỰ ĐỘNG (46/46 PASS)
-    ├── test_sprint5_devops_reports.py     <-- Test AVD, Remote Pairing & Excel Report
+└── test/                                  <-- TOÀN BỘ BỘ TEST TỰ ĐỘNG (48/48 PASS)
+    ├── test_sprint5_devops_reports.py     <-- Test AVD, Remote Pairing, Preflight & Excel
     ├── test_modular_controllers.py        <-- Test Dispatcher, Repositories & Controllers
     ├── test_design_patterns.py            <-- Test Mediator, Hexagonal & State Machine
     ├── test_agentp_protocol.py            <-- Test Health, Sessions 1:1, Thinking Log
@@ -181,11 +182,11 @@ python3 scripts/preflight.py
 ```
 *Kết quả chuẩn: 7/7 tiêu chí hoàn toàn sẵn sàng (100%).*
 
-### Bước 2: Chạy Toàn Bộ Test Suites Tự Động (46 tests)
+### Bước 2: Chạy Toàn Bộ Test Suites Tự Động (48 tests)
 ```bash
 python3 -m unittest discover -s test
 ```
-*Kết quả chuẩn: 46/46 tests PASS trong <0.09s.*
+*Kết quả chuẩn: 48/48 tests PASS trong <0.10s.*
 
 ### Bước 3: Khởi Chạy agentP Core Daemon
 ```bash
