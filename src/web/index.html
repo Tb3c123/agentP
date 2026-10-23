@@ -30,6 +30,11 @@
       <button class="nav-tab active" id="tabWorkspace" onclick="switchView('workspace')">
         🧑‍💼 Bàn Làm Việc Cùng Alex
       </button>
+      <button class="nav-tab" id="tabStudio" onclick="switchView('studio')">
+        🎨 Xưởng Thiết Kế (UI/UX)
+      </button>
+        🧑‍💼 Bàn Làm Việc Cùng Alex
+      </button>
     </nav>
 
     <div class="header-status">
@@ -218,6 +223,189 @@
         </div>
 
       </aside>
+
+    </section>
+
+  
+    <!-- ================= VIEW 3: DUAL-MODE VISUAL UI STUDIO ================= -->
+    <section class="view-panel studio-view" id="viewStudio">
+      
+      <!-- Studio Subnav -->
+      <div class="studio-subnav">
+        <div class="studio-mode-tabs">
+          <button class="studio-mode-btn active" id="btnModeTldraw" onclick="switchStudioMode('tldraw')">
+            🎨 Chế độ 1: Tldraw Whiteboard
+          </button>
+          <button class="studio-mode-btn" id="btnModeOnlook" onclick="switchStudioMode('onlook')">
+            ⚡ Chế độ 2: Onlook DOM-to-Code
+          </button>
+        </div>
+
+        <div style="font-size:11px; color:#64748B;">
+          Elena (UI/UX) &amp; David (FE Dev) đồng bộ 2 chiều thời gian thực
+        </div>
+
+        <div style="display:flex; gap:8px;">
+          <button class="btn-small" style="color:#0F766E;" onclick="saveTldrawBoard()">💾 Lưu Bản Vẽ .tldr</button>
+          <button class="btn-small" style="background:#0D9488; color:#fff; border:none;" onclick="syncOnlookToSource()">🔄 Đồng Bộ Vào Code</button>
+        </div>
+      </div>
+
+      <div class="studio-content">
+        
+        <!-- SUB-PANEL 1: TLDRAW WHITEBOARD -->
+        <div class="studio-subpanel active" id="studioTldrawPanel">
+          <div class="tldraw-container">
+            <!-- Floating Toolbar -->
+            <div class="tldraw-toolbar">
+              <button class="tldraw-tool-btn active" title="Select">↖</button>
+              <button class="tldraw-tool-btn" title="Pencil">✏️</button>
+              <button class="tldraw-tool-btn" title="Rectangle">🔲</button>
+              <button class="tldraw-tool-btn" title="Circle">⭕</button>
+              <button class="tldraw-tool-btn" title="Arrow">➡️</button>
+              <button class="tldraw-tool-btn" title="Sticky Note" onclick="addStickyNote()">📝</button>
+              <button class="tldraw-tool-btn" title="Text">T</button>
+            </div>
+
+            <!-- Canvas Area -->
+            <div class="tldraw-canvas-area" id="tldrawCanvas">
+              
+              <!-- Wireframe 1: Cart Screen -->
+              <div style="width:280px; height:500px; background:#fff; border:2px solid #CBD5E1; border-radius:24px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:10px; position:relative;">
+                <div style="background:#0D9488; color:#fff; padding:8px; border-radius:6px; text-align:center; font-size:11px; font-weight:700;">
+                  Giỏ Hàng (3 món)
+                </div>
+
+                <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:8px; display:flex; gap:8px; align-items:center;">
+                  <div style="width:36px; height:36px; background:#CBD5E1; border-radius:4px;"></div>
+                  <div style="flex:1;">
+                    <div style="font-size:10px; font-weight:700;">Phở Bò Tái Nạm</div>
+                    <div style="font-size:10px; color:#0D9488; font-weight:700;">65.000đ</div>
+                  </div>
+                </div>
+
+                <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:6px; padding:8px;">
+                  <div style="font-size:9px; color:#92400E; font-weight:700;">Mã giảm giá đã chọn:</div>
+                  <div style="font-size:10px; color:#D97706; font-weight:800;">GIAM20K (-20.000đ)</div>
+                </div>
+
+                <div style="margin-top:auto; background:#10B981; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:11px; font-weight:700;">
+                  Thanh toán: 45.000đ
+                </div>
+
+                <!-- Sticky Note by Elena -->
+                <div style="position:absolute; right:-110px; top:60px; width:150px; background:#FEF08A; border:1px solid #FDE047; border-radius:4px; padding:10px; font-size:9px; color:#854D0E; box-shadow:0 4px 10px rgba(0,0,0,0.08); transform:rotate(2deg);" id="elenaSticky">
+                  <b>Elena (UI/UX):</b><br>
+                  Cần hiển thị rõ giá gốc và giá sau khi giảm voucher để tăng tỷ lệ chuyển đổi!
+                </div>
+              </div>
+
+              <!-- Connecting Flow Arrow -->
+              <div style="display:flex; align-items:center; font-size:24px; color:#0D9488; padding-top:200px;">
+                ➔
+              </div>
+
+              <!-- Wireframe 2: Checkout Modal -->
+              <div style="width:280px; height:500px; background:#fff; border:2px solid #CBD5E1; border-radius:24px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:10px;">
+                <div style="background:#0F766E; color:#fff; padding:8px; border-radius:6px; text-align:center; font-size:11px; font-weight:700;">
+                  Xác Nhận &amp; Quét QR
+                </div>
+                <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; height:180px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+                  <div style="width:100px; height:100px; background:#0F172A; border-radius:6px;"></div>
+                  <span style="font-size:9px; color:#64748B;">Mã VietQR tự động</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PANEL 2: ONLOOK DOM-TO-CODE -->
+        <div class="studio-subpanel" id="studioOnlookPanel">
+          <div class="onlook-container">
+            
+            <!-- Live Preview Phone -->
+            <div class="onlook-preview-canvas">
+              <div class="phone-mockup-frame">
+                <div class="phone-dynamic-notch"></div>
+                <div class="phone-app-content">
+                  
+                  <div class="interactive-dom-element" onclick="selectDomElement(this, 'HeaderNavbar')">
+                    <div style="background:#0D9488; color:#fff; padding:10px; border-radius:8px; font-size:11px; font-weight:700; text-align:center;">
+                      Food Delivery App
+                    </div>
+                  </div>
+
+                  <div class="interactive-dom-element" onclick="selectDomElement(this, 'CartItemList')">
+                    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:10px;">
+                      <b>1x Phở Bò Tái Nạm:</b> 65.000đ<br>
+                      <span style="color:#047857;">Mã voucher: GIAM20K (-20.000đ)</span>
+                    </div>
+                  </div>
+
+                  <div class="interactive-dom-element selected" id="inspectTargetBtn" onclick="selectDomElement(this, 'CartCheckoutButton')">
+                    <button id="liveButtonPreview" style="width:100%; padding:12px; border:none; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg shadow-sm">
+                      Thanh toán ngay: 45.000đ
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Visual Inspector -->
+            <div class="onlook-inspector-panel">
+              <div class="inspector-heading">⚡ ONLOOK STYLE INSPECTOR</div>
+
+              <div class="inspector-field">
+                <label>Phần tử đang chọn:</label>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#0F766E; font-weight:700;" id="inspectedElementName">
+                  &lt;CartCheckoutButton /&gt;
+                </div>
+              </div>
+
+              <div class="inspector-field">
+                <label>Tailwind CSS Classes:</label>
+                <input 
+                  type="text" 
+                  class="inspector-input" 
+                  id="tailwindInput" 
+                  value="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg shadow-sm"
+                  oninput="updateLiveClasses(this.value)"
+                />
+              </div>
+
+              <div class="inspector-field">
+                <label>Màu sắc (Color Tokens):</label>
+                <div class="color-swatches">
+                  <button class="color-swatch-btn" style="background:#0D9488;" title="Alpine Teal" onclick="applyColorToken('bg-teal-600')"></button>
+                  <button class="color-swatch-btn" style="background:#D97706;" title="Tuscan Amber" onclick="applyColorToken('bg-amber-600')"></button>
+                  <button class="color-swatch-btn" style="background:#10B981;" title="Emerald" onclick="applyColorToken('bg-emerald-600')"></button>
+                  <button class="color-swatch-btn" style="background:#EF4444;" title="Rose Red" onclick="applyColorToken('bg-red-600')"></button>
+                </div>
+              </div>
+
+              <div class="inspector-field">
+                <label>Xem trước mã nguồn (Direct Code Sync):</label>
+                <div style="background:#0F172A; border-radius:6px; padding:10px; font-family:'JetBrains Mono',monospace; font-size:10px; color:#F8FAFC; line-height:1.4;">
+                  <span style="color:#38BDF8;">// lib/features/cart/cart_button.tsx</span><br>
+                  <span style="color:#C084FC;">export const</span> CartCheckoutButton = () =&gt; (<br>
+                  &nbsp;&nbsp;&lt;button className="<span style="color:#A7F3D0;" id="codeClassPreview">bg-teal-600...</span>"&gt;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;Thanh toán ngay<br>
+                  &nbsp;&nbsp;&lt;/button&gt;<br>
+                  );
+                </div>
+              </div>
+
+              <button class="launch-btn" style="margin-top:auto;" onclick="syncOnlookToSource()">
+                🚀 ÁP DỤNG &amp; GHI VÀO MÃ NGUỒN
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
 
     </section>
 

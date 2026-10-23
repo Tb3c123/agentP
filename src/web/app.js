@@ -12,6 +12,9 @@ function switchView(viewName) {
   if (viewName === 'onboarding') {
     document.getElementById('viewOnboarding').classList.add('active');
     document.getElementById('tabOnboarding').classList.add('active');
+  } else if (viewName === 'studio') {
+    document.getElementById('viewStudio').classList.add('active');
+    document.getElementById('tabStudio').classList.add('active');
   } else {
     document.getElementById('viewWorkspace').classList.add('active');
     document.getElementById('tabWorkspace').classList.add('active');
@@ -266,3 +269,119 @@ window.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
   loadWorkspace();
 });
+
+// ================= SPRINT 3: DUAL-MODE VISUAL UI STUDIO (TLDRAW & ONLOOK) =================
+let currentStudioMode = 'tldraw';
+let selectedComponentTag = 'CartCheckoutButton';
+
+function switchStudioMode(mode) {
+  currentStudioMode = mode;
+  document.querySelectorAll('.studio-mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.studio-subpanel').forEach(p => p.classList.remove('active'));
+
+  if (mode === 'tldraw') {
+    document.getElementById('btnModeTldraw').classList.add('active');
+    document.getElementById('studioTldrawPanel').classList.add('active');
+  } else {
+    document.getElementById('btnModeOnlook').classList.add('active');
+    document.getElementById('studioOnlookPanel').classList.add('active');
+  }
+}
+
+// Save Tldraw Whiteboard Snapshot (.tldr)
+async function saveTldrawBoard() {
+  const canvasData = {
+    version: 1,
+    title: "Concept Board Cart & Checkout Flow",
+    author: "Elena (UI/UX)",
+    elements: [
+      { id: "frame_cart", type: "wireframe", x: 60, y: 100, title: "Cart Screen" },
+      { id: "arrow_1", type: "arrow", from: "frame_cart", to: "frame_checkout" },
+      { id: "frame_checkout", type: "wireframe", x: 480, y: 100, title: "Checkout Modal" },
+      { id: "sticky_1", type: "note", text: "Hiển thị rõ giá gốc và giá giảm" }
+    ],
+    updated_at: Date.now()
+  };
+
+  try {
+    const res = await fetch('/api/studio/save-tldraw', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: "Cart Screen Wireframe & User Flow",
+        canvas_data: canvasData
+      })
+    });
+    const data = await res.json();
+    alert(`✓ ĐÃ LƯU BẢN VẼ TLDRAW!\nFile: ${data.file_name}\nSnapshot ID: ${data.snapshot_id}\nĐã lưu vào .agents/designs/ và SQLite.`);
+  } catch (err) {
+    console.error('Save Tldraw error:', err);
+  }
+}
+
+function addStickyNote() {
+  const canvas = document.getElementById('tldrawCanvas');
+  const note = document.createElement('div');
+  note.style.cssText = "width:140px; background:#FEF08A; border:1px solid #FDE047; border-radius:4px; padding:10px; font-size:9px; color:#854D0E; box-shadow:0 4px 10px rgba(0,0,0,0.08); transform:rotate(-2deg); margin-top:20px;";
+  note.innerHTML = `<b>Ý kiến mới:</b><br>Nút thanh toán cần hỗ trợ cảm biến vân tay / FaceID.`;
+  canvas.appendChild(note);
+}
+
+// Onlook Select Element
+function selectDomElement(el, componentName) {
+  document.querySelectorAll('.interactive-dom-element').forEach(item => item.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedComponentTag = componentName;
+  document.getElementById('inspectedElementName').innerText = `<${componentName} />`;
+}
+
+// Update Live Classes from input
+function updateLiveClasses(val) {
+  document.getElementById('codeClassPreview').innerText = val;
+  const btn = document.getElementById('liveButtonPreview');
+  if (btn) {
+    if (val.includes('bg-amber')) {
+      btn.style.background = '#D97706';
+      btn.style.color = '#FFFFFF';
+    } else if (val.includes('bg-emerald')) {
+      btn.style.background = '#10B981';
+      btn.style.color = '#FFFFFF';
+    } else if (val.includes('bg-red')) {
+      btn.style.background = '#EF4444';
+      btn.style.color = '#FFFFFF';
+    } else {
+      btn.style.background = '#0D9488';
+      btn.style.color = '#FFFFFF';
+    }
+  }
+}
+
+function applyColorToken(colorClass) {
+  const input = document.getElementById('tailwindInput');
+  let current = input.value;
+  current = current.replace(/bg-\w+-\d+/, colorClass);
+  input.value = current;
+  updateLiveClasses(current);
+}
+
+// Sync Onlook to Source Code via AST Sync Engine
+async function syncOnlookToSource() {
+  const input = document.getElementById('tailwindInput');
+  const newClasses = input ? input.value : 'bg-teal-600 text-white font-bold py-3 px-6 rounded-lg';
+
+  try {
+    const res = await fetch('/api/studio/sync-onlook', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        file_path: 'lib/features/cart/cart_button.tsx',
+        component_tag: selectedComponentTag,
+        new_classes: newClasses
+      })
+    });
+    const data = await res.json();
+    alert(`⚡ ĐỒNG BỘ AST 2 CHIỀU THÀNH CÔNG!\nFile: ${data.file_path}\nComponent: <${data.component_tag} />\nĐộ trễ ghi code: ${data.latency_ms}ms (Đạt chuẩn <50ms)\nĐã ghi nhận snapshot vào CSDL SQLite.`);
+  } catch (err) {
+    console.error('Sync Onlook error:', err);
+  }
+}

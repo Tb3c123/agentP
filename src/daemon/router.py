@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'services'))
 from auto_namer import generate_project_names
 from command_workspace import CommandWorkspaceService
+from ast_sync import AstSyncEngine
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -222,6 +223,10 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
         elif path == '/kanban' or path == '/api/kanban':
             self._set_headers(200)
             self.wfile.write(json.dumps(NineRouterService.get_kanban()).encode('utf-8'))
+        elif path == '/api/studio/snapshots':
+            self._set_headers(200)
+            snaps = AstSyncEngine.get_snapshots()
+            self.wfile.write(json.dumps({"snapshots": snaps}).encode('utf-8'))
         elif path == '/api/workspace':
             self._set_headers(200)
             state = CommandWorkspaceService.get_workspace_state()
@@ -253,7 +258,22 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
         body = self.rfile.read(content_length).decode('utf-8')
         data = json.loads(body) if body else {}
 
-        if path == '/api/auto-name':
+        if path == '/api/studio/save-tldraw':
+            title = data.get('title', 'Cart Screen Wireframe')
+            canvas_data = data.get('canvas_data', {})
+            res = AstSyncEngine.save_tldraw_snapshot('proj_food_delivery_01', title, canvas_data)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+            return
+        elif path == '/api/studio/sync-onlook':
+            file_path = data.get('file_path', 'lib/features/cart/cart_button.tsx')
+            component_tag = data.get('component_tag', 'CartCheckoutButton')
+            new_classes = data.get('new_classes', 'bg-teal-600 text-white font-bold py-3 px-6 rounded-lg')
+            res = AstSyncEngine.sync_dom_to_code(file_path, component_tag, new_classes)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+            return
+        elif path == '/api/auto-name':
             desc = data.get('description', '')
             res = generate_project_names(desc)
             self._set_headers(200)
