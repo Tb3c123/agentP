@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="phoneShadow" x="-10%" y="-5%" width="120%" height="115%">
+      <feDropShadow dx="0" dy="12" stdDeviation="24" flood-color="#0F172A" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 4: Mobile Remote Controller (Web App)</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="40" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- Left Information Column -->
+  <g transform="translate(100, 150)">
+    <rect x="0" y="0" width="460" height="280" rx="10" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#phoneShadow)"/>
+    <text x="32" y="42" fill="#0F172A" font-size="18" font-weight="800">📱 ĐIỀU KHIỂN DỰ ÁN TỪ ĐIỆN THOẠI</text>
+    <text x="32" y="72" fill="#64748B" font-size="13">AgentP tự động mở Web Server cục bộ tại port 8080.</text>
+    <text x="32" y="92" fill="#64748B" font-size="13">Bạn có thể dùng điện thoại chung mạng Wi-Fi để theo dõi tiến độ,</text>
+    <text x="32" y="112" fill="#64748B" font-size="13">nhận thông báo Checkpoint và bấm Duyệt ngay tức thì.</text>
+
+    <!-- QR Code Mockup Frame -->
+    <g transform="translate(32, 140)">
+      <rect x="0" y="0" width="100" height="100" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+      <rect x="15" y="15" width="25" height="25" fill="#0D9488"/>
+      <rect x="60" y="15" width="25" height="25" fill="#0D9488"/>
+      <rect x="15" y="60" width="25" height="25" fill="#0D9488"/>
+      <circle cx="50" cy="50" r="8" fill="#78350F"/>
+      
+      <text x="120" y="35" fill="#0F172A" font-size="13" font-weight="bold">Quét mã QR để mở trên Phone:</text>
+      <text x="120" y="58" fill="#0D9488" font-size="13" font-weight="bold" font-family="'JetBrains Mono', monospace">http://192.168.1.15:8080</text>
+      <text x="120" y="80" fill="#94A3B8" font-size="11">PIN Ghép nối bảo mật: 884-291</text>
+    </g>
+  </g>
+
+  <!-- Mobile Device Simulation Frame Centered on Right -->
+  <g transform="translate(680, 80)">
+    <!-- Phone Outer Bezel -->
+    <rect x="0" y="0" width="375" height="760" rx="44" fill="#0F172A" filter="url(#phoneShadow)"/>
+    <!-- Phone Inner Screen -->
+    <rect x="12" y="12" width="351" height="736" rx="34" fill="#F8FAFC"/>
+    
+    <!-- Phone Dynamic Island -->
+    <rect x="125" y="20" width="100" height="24" rx="12" fill="#0F172A"/>
+
+    <!-- Mobile App Top Bar -->
+    <rect x="12" y="52" width="351" height="50" fill="#FFFFFF"/>
+    <line x1="12" y1="102" x2="363" y2="102" stroke="#E2E8F0"/>
+    <g transform="translate(32, 64)">
+      
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+      <text x="38" y="18" fill="#0F172A" font-size="13" font-weight="bold">agent</text>
+      <text x="74" y="18" fill="#0D9488" font-size="14" font-weight="bold">P Mobile</text>
+    </g>
+    <rect x="250" y="64" width="95" height="24" rx="12" fill="#ECFDF5"/>
+    <circle cx="262" cy="76" r="3.5" fill="#10B981"/>
+    <text x="272" y="80" fill="#047857" font-size="9" font-weight="bold">Connected</text>
+
+    <!-- Mobile Scroll Content -->
+    <!-- Project Card -->
+    <g transform="translate(24, 116)">
+      <rect x="0" y="0" width="327" height="60" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="16" y="25" fill="#64748B" font-size="10">Dự án đang chạy:</text>
+      <text x="16" y="44" fill="#0F172A" font-size="12" font-weight="bold">FoodDelivery-Loyalty-App</text>
+      <text x="235" y="36" fill="#0F766E" font-size="11" font-weight="bold">🪙 42.5k</text>
+    </g>
+
+    <!-- Chat Message on Mobile -->
+    <g transform="translate(24, 190)">
+      <circle cx="14" cy="14" r="12" fill="#0D9488"/>
+      <text x="14" y="18" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="bold">PM</text>
+      <text x="34" y="16" fill="#0F172A" font-size="11" font-weight="bold">Alex (Lead/PM)</text>
+      <rect x="28" y="26" width="299" height="64" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <text x="40" y="48" fill="#1E293B" font-size="11">Viktor đã pass 8/8 unit tests cho Giỏ hàng.</text>
+      <text x="40" y="66" fill="#1E293B" font-size="11">Cần bạn phê duyệt Checkpoint #03 để merge Git.</text>
+    </g>
+
+    <!-- Prominent Mobile Checkpoint Card -->
+    <g transform="translate(24, 290)">
+      <rect x="0" y="0" width="327" height="210" rx="12" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.5"/>
+      <circle cx="24" cy="24" r="10" fill="#D97706"/>
+      <text x="24" y="28" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="bold">🛑</text>
+      <text x="42" y="28" fill="#92400E" font-size="12" font-weight="bold">CHECKPOINT #03 PHÊ DUYỆT</text>
+      <text x="16" y="55" fill="#78350F" font-size="11">Module: Giỏ hàng &amp; Voucher giảm giá</text>
+      <text x="16" y="75" fill="#78350F" font-size="11">Thay đổi: 3 files (+45 lines, -12 lines)</text>
+      <text x="16" y="95" fill="#047857" font-size="11" font-weight="bold">✓ 8/8 tests tự động thành công</text>
+
+      <!-- Action Button 1: Big Green Approve -->
+      <rect x="16" y="115" width="295" height="42" rx="8" fill="#10B981"/>
+      <text x="163" y="141" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">✅ DUYỆT &amp; MERGE GIT NGAY</text>
+
+      <!-- Action Button 2: Stream AVD Screen -->
+      <rect x="16" y="165" width="295" height="34" rx="8" fill="#FFFFFF" stroke="#0D9488"/>
+      <text x="163" y="187" text-anchor="middle" fill="#0D9488" font-size="11" font-weight="bold">📱 Xem Live Stream AVD</text>
+    </g>
+
+    <!-- Mobile Bottom Input -->
+    <g transform="translate(24, 680)">
+      <rect x="0" y="0" width="327" height="42" rx="21" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="18" y="26" fill="#94A3B8" font-size="11">Nhắn lệnh cho Alex...</text>
+      <circle cx="295" cy="21" r="15" fill="#0D9488"/>
+      <text x="295" y="25" text-anchor="middle" fill="#FFFFFF" font-size="10">➔</text>
+    </g>
+  </g>
+</svg>

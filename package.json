@@ -1,0 +1,21 @@
+{
+  "name": "agentp",
+  "version": "1.0.0",
+  "description": "agentP — Developer Multi-Agent Desktop Suite",
+  "private": true,
+  "scripts": {
+    "init:db": "python3 scripts/init_db.py",
+    "preflight": "python3 scripts/preflight.py",
+    "test": "python3 -m unittest discover -s test/ -p 'test_*.py'",
+    "daemon": "python3 src/daemon/router.py"
+  },
+  "keywords": [
+    "multi-agent",
+    "tauri",
+    "kanban",
+    "sqlite",
+    "developer-tools"
+  ],
+  "author": "agentP Engineering Team",
+  "license": "MIT"
+}

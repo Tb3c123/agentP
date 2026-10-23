@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 5: Chẩn Đoán Pre-flight &amp; Môi Trường Kỹ Thuật</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="40" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- Central Diagnostics Container -->
+  <g transform="translate(320, 100)">
+    <rect x="0" y="0" width="800" height="720" rx="12" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    
+    <!-- Title -->
+    <text x="40" y="48" fill="#0F172A" font-size="20" font-weight="800">🩺 KIỂM TRA MÔI TRƯỜNG KỸ THUẬT TRƯỚC KHI CHẠY (PRE-FLIGHT)</text>
+    <text x="40" y="74" fill="#64748B" font-size="13">AgentP tự động kiểm tra tất cả công cụ bắt buộc trên máy bạn để đảm bảo không bị lỗi dở chừng.</text>
+
+    <!-- Overall Readiness Pill -->
+    <g transform="translate(40, 96)">
+      <rect x="0" y="0" width="720" height="54" rx="8" fill="#ECFDF5" stroke="#A7F3D0"/>
+      <circle cx="28" cy="27" r="10" fill="#10B981"/>
+      <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">✓</text>
+      <text x="48" y="26" fill="#065F46" font-size="13" font-weight="bold">MÔI TRƯỜNG SẴN SÀNG: 7/7 TIÊU CHÍ ĐẠT YÊU CẦU (100%)</text>
+      <text x="48" y="44" fill="#047857" font-size="11">Hệ thống đã kết nối SQLite, Flutter SDK, 9router daemon và AVD Pixel 8.</text>
+    </g>
+
+    <!-- Diagnostic Items List -->
+    <g transform="translate(40, 170)">
+      <!-- Item 1: Flutter SDK -->
+      <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <circle cx="28" cy="28" r="8" fill="#10B981"/>
+      <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
+      <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">Flutter SDK &amp; Dart Toolchain</text>
+      <text x="50" y="45" fill="#64748B" font-size="11">Phiên bản 3.24.3 • Kênh stable • ~/development/flutter/bin/flutter</text>
+      <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
+
+      <!-- Item 2: Android SDK & AVD -->
+      <g transform="translate(0, 68)">
+        <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <circle cx="28" cy="28" r="8" fill="#10B981"/>
+        <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
+        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">Android Studio, SDK Platform 34 &amp; Emulator</text>
+        <text x="50" y="45" fill="#64748B" font-size="11">Pixel_8_API_34 sẵn sàng khởi chạy trên cổng 5554</text>
+        <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
+      </g>
+
+      <!-- Item 3: Node.js & NestJS CLI -->
+      <g transform="translate(0, 136)">
+        <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <circle cx="28" cy="28" r="8" fill="#10B981"/>
+        <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
+        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">Node.js Runtime &amp; npm / pnpm</text>
+        <text x="50" y="45" fill="#64748B" font-size="11">v20.18.0 LTS • NestJS CLI v10.4.5 sẵn sàng</text>
+        <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
+      </g>
+
+      <!-- Item 4: Git Version Control -->
+      <g transform="translate(0, 204)">
+        <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <circle cx="28" cy="28" r="8" fill="#10B981"/>
+        <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
+        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">Git CLI &amp; Safe Commit Checkpoints</text>
+        <text x="50" y="45" fill="#64748B" font-size="11">git version 2.45.2 • Nhánh chính `main` đã thiết lập hook an toàn</text>
+        <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
+      </g>
+
+      <!-- Item 5: SQLite Database Engine -->
+      <g transform="translate(0, 272)">
+        <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <circle cx="28" cy="28" r="8" fill="#10B981"/>
+        <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
+        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">SQLite Engine (.agents/db.sqlite)</text>
+        <text x="50" y="45" fill="#64748B" font-size="11">WAL mode enabled • foreign_keys=ON • Trạng thái sẵn sàng lưu trữ</text>
+        <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
+      </g>
+
+      <!-- Item 6: 9router Daemon Local Service -->
+      <g transform="translate(0, 340)">
+        <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <circle cx="28" cy="28" r="8" fill="#10B981"/>
+        <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
+        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">9router Daemon (Multi-account Session Router)</text>
+        <text x="50" y="45" fill="#64748B" font-size="11">Port 9090 phản hồi trong 12ms • 14 role sessions đã đồng bộ</text>
+        <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
+      </g>
+
+      <!-- Item 7: Mobile Remote Host Port 8080 -->
+      <g transform="translate(0, 408)">
+        <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <circle cx="28" cy="28" r="8" fill="#10B981"/>
+        <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
+        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">Port 8080 Cục Bộ (Mobile Controller Host)</text>
+        <text x="50" y="45" fill="#64748B" font-size="11">Cổng trống, sẵn sàng cho phép điện thoại kết nối qua Wi-Fi</text>
+        <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
+      </g>
+    </g>
+
+    <!-- Action Button -->
+    <g transform="translate(40, 650)">
+      <rect x="0" y="0" width="720" height="48" rx="8" fill="url(#primaryTeal)" cursor="pointer"/>
+      <text x="360" y="30" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="bold">🚀 VÀO BÀN LÀM VIỆC VỚI ALEX (LEAD / PM) NGAY</text>
+    </g>
+  </g>
+</svg>

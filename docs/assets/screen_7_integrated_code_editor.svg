@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 7: So Sánh Diff Mã Nguồn &amp; Trình Soạn Thảo Monaco</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="40" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#CCFBF1"/>
+    <text x="317" y="16" text-anchor="middle" fill="#0F766E" font-size="11" font-weight="700">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- Workspace Sub-bar -->
+  <g transform="translate(30, 70)">
+    <rect x="0" y="0" width="1380" height="44" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="27" fill="#0F172A" font-size="13" font-weight="bold">🌿 Split Diff View: lib/features/cart/cart_bloc.dart</text>
+    <text x="400" y="27" fill="#047857" font-size="11" font-weight="bold">+28 lines</text>
+    <text x="470" y="27" fill="#DC2626" font-size="11" font-weight="bold">-6 lines</text>
+    
+    <!-- Action buttons -->
+    <rect x="1080" y="8" width="130" height="28" rx="5" fill="#FEE2E2" stroke="#FCA5A5" cursor="pointer"/>
+    <text x="1145" y="26" text-anchor="middle" fill="#DC2626" font-size="11" font-weight="bold">🗑️ Xóa file này</text>
+
+    <rect x="1225" y="8" width="140" height="28" rx="5" fill="#10B981" cursor="pointer"/>
+    <text x="1295" y="26" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">✅ Chấp nhận diff</text>
+  </g>
+
+  <!-- Side-by-Side Monaco Diff Split Panels -->
+  <g transform="translate(30, 126)">
+    <!-- LEFT PANEL: ORIGINAL FILE (Red deleted lines) -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="680" height="740" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+      <rect x="0" y="0" width="680" height="34" rx="8" fill="#FFF1F2"/>
+      <line x1="0" y1="34" x2="680" y2="34" stroke="#FECDD3"/>
+      <text x="20" y="22" fill="#BE123C" font-size="12" font-weight="bold">BẢN GỐC TRƯỚC SỬA ĐỔI (HEAD~1)</text>
+
+      <!-- Code lines -->
+      <g transform="translate(20, 50)" font-family="'JetBrains Mono', monospace" font-size="12">
+        <text x="0" y="20" fill="#94A3B8">08</text>
+        <text x="35" y="20" fill="#0F172A">on&lt;ApplyVoucherEvent&gt;((event, emit) &#123;</text>
+
+        <!-- Red deleted line -->
+        <rect x="25" y="28" width="620" height="22" fill="#FFE4E6"/>
+        <text x="0" y="44" fill="#BE123C">-09</text>
+        <text x="35" y="44" fill="#BE123C">  final discount = 0; // Chưa hỗ trợ mã voucher</text>
+
+        <rect x="25" y="52" width="620" height="22" fill="#FFE4E6"/>
+        <text x="0" y="68" fill="#BE123C">-10</text>
+        <text x="35" y="68" fill="#BE123C">  emit(CartError("Voucher không khả dụng"));</text>
+
+        <text x="0" y="92" fill="#94A3B8">11</text>
+        <text x="35" y="92" fill="#0F172A">&#125;);</text>
+      </g>
+    </g>
+
+    <!-- RIGHT PANEL: PROPOSED AGENT CHANGES (Green added lines) -->
+    <g transform="translate(700, 0)">
+      <rect x="0" y="0" width="680" height="740" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+      <rect x="0" y="0" width="680" height="34" rx="8" fill="#ECFDF5"/>
+      <line x1="0" y1="34" x2="680" y2="34" stroke="#A7F3D0"/>
+      <text x="20" y="22" fill="#047857" font-size="12" font-weight="bold">BẢN ĐỀ XUẤT MỚI BỞI DAVID (FE DEV)</text>
+
+      <!-- Code lines -->
+      <g transform="translate(20, 50)" font-family="'JetBrains Mono', monospace" font-size="12">
+        <text x="0" y="20" fill="#94A3B8">08</text>
+        <text x="35" y="20" fill="#0F172A">on&lt;ApplyVoucherEvent&gt;((event, emit) &#123;</text>
+
+        <!-- Green added lines -->
+        <rect x="25" y="28" width="620" height="22" fill="#D1FAE5"/>
+        <text x="0" y="44" fill="#047857">+09</text>
+        <text x="35" y="44" fill="#047857">  final discount = event.code == 'GIAM20K' ? 20000 : 0;</text>
+
+        <rect x="25" y="52" width="620" height="22" fill="#D1FAE5"/>
+        <text x="0" y="68" fill="#047857">+10</text>
+        <text x="35" y="68" fill="#047857">  final finalTotal = state.subtotal - discount;</text>
+
+        <rect x="25" y="76" width="620" height="22" fill="#D1FAE5"/>
+        <text x="0" y="92" fill="#047857">+11</text>
+        <text x="35" y="92" fill="#047857">  emit(CartUpdated(discount: discount, total: finalTotal));</text>
+
+        <text x="0" y="116" fill="#94A3B8">12</text>
+        <text x="35" y="116" fill="#0F172A">&#125;);</text>
+      </g>
+    </g>
+  </g>
+</svg>

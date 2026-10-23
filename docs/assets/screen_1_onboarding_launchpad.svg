@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 1: Onboarding Launchpad</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="40" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- Hero Title -->
+  <text x="720" y="150" text-anchor="middle" fill="#0F172A" font-size="28" font-weight="800" letter-spacing="-0.5">🌟 BẠN MUỐN TẠO PROJECT GÌ?</text>
+  <text x="720" y="185" text-anchor="middle" fill="#64748B" font-size="15">Chỉ cần nhập mô tả sơ lược bài toán, Trưởng dự án Alex (Lead/PM) sẽ tự động lập ban kỹ thuật và thực thi</text>
+
+  <!-- Main Input Card -->
+  <rect x="320" y="220" width="800" height="480" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="url(#cardShadow)"/>
+
+  <!-- Textarea Container -->
+  <rect x="350" y="250" width="740" height="150" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+  <text x="370" y="285" fill="#0F172A" font-size="14" font-weight="500">Tôi muốn làm ứng dụng đặt đồ ăn trên Android và Web bằng Flutter &amp; NestJS,</text>
+  <text x="370" y="310" fill="#0F172A" font-size="14" font-weight="500">có giỏ hàng, tích điểm voucher thành viên và thanh toán quét mã QR.</text>
+  <text x="370" y="380" fill="#94A3B8" font-size="12">Ví dụ: Hệ thống thương mại điện tử, ứng dụng IoT, hoặc Telegram bot tự động...</text>
+
+  <!-- Smart Auto-Name Suggestion Box -->
+  <rect x="350" y="420" width="740" height="60" rx="8" fill="#F0FDFA" stroke="#CCFBF1"/>
+  <text x="370" y="455" fill="#0F766E" font-size="13" font-weight="bold">✨ Tên project đề xuất:</text>
+  <rect x="520" y="437" width="230" height="28" rx="6" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.2"/>
+  <text x="532" y="456" fill="#0D9488" font-size="12" font-weight="bold" font-family="'JetBrains Mono', monospace">🏷️ FoodDelivery-Loyalty-App</text>
+  <text x="765" y="455" fill="#64748B" font-size="12">(Tự động đặt từ mô tả) [✏️ Đổi tên]</text>
+
+  <!-- Workspace Directory Path Selector -->
+  <rect x="350" y="495" width="740" height="46" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="370" y="524" fill="#64748B" font-size="13">📂 Thư mục dự án:</text>
+  <text x="495" y="524" fill="#0F172A" font-size="13" font-family="'JetBrains Mono', monospace">~/Projects/FoodDelivery-Loyalty-App</text>
+  <rect x="990" y="504" width="85" height="28" rx="5" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="1005" y="522" fill="#475569" font-size="11" font-weight="600">Chọn thư mục</text>
+
+  <!-- Big Launch Button -->
+  <rect x="350" y="565" width="740" height="52" rx="8" fill="url(#primaryTeal)" cursor="pointer"/>
+  <text x="720" y="597" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="bold">🚀 KHỞI TẠO DỰ ÁN VỚI ALEX (LEAD / PM) NGAY</text>
+
+  <!-- Quick Tag Suggestions -->
+  <text x="720" y="740" text-anchor="middle" fill="#94A3B8" font-size="13">Hoặc chọn nhanh các mẫu có sẵn:</text>
+  <g transform="translate(420, 760)">
+    <rect x="0" y="0" width="130" height="34" rx="17" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="65" y="21" text-anchor="middle" fill="#475569" font-size="12">🛒 E-Commerce</text>
+    <rect x="145" y="0" width="145" height="34" rx="17" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="217" y="21" text-anchor="middle" fill="#475569" font-size="12">📱 Mobile Flutter</text>
+    <rect x="305" y="0" width="135" height="34" rx="17" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="372" y="21" text-anchor="middle" fill="#475569" font-size="12">📊 SaaS Dashboard</text>
+    <rect x="455" y="0" width="140" height="34" rx="17" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="525" y="21" text-anchor="middle" fill="#475569" font-size="12">🤖 AI Agent API</text>
+  </g>
+</svg>

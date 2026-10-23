@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 6: Cây Thư Mục Dự Án &amp; Báo Cáo Kỹ Thuật</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="40" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- Left File Tree Column (360px) -->
+  <g transform="translate(30, 80)">
+    <rect x="0" y="0" width="360" height="790" rx="10" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    <text x="20" y="32" fill="#0F172A" font-size="14" font-weight="800">📂 CÂY THƯ MỤC SOURCE CODE</text>
+    <line x1="0" y1="48" x2="360" y2="48" stroke="#E2E8F0"/>
+
+    <!-- Tree items -->
+    <g transform="translate(20, 64)">
+      <!-- Root -->
+      <text x="0" y="16" fill="#0F172A" font-size="12" font-weight="bold">📦 FoodDelivery-Loyalty-App/</text>
+
+      <g transform="translate(16, 28)">
+        <text x="0" y="16" fill="#64748B" font-size="12">📁 .agents/ (SQLite DB &amp; Configs)</text>
+        <text x="16" y="38" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">db.sqlite [Maya]</text>
+        <text x="16" y="58" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">project.yaml [Alex]</text>
+
+        <text x="0" y="86" fill="#64748B" font-size="12">📁 lib/ (Frontend Flutter)</text>
+        <text x="16" y="106" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">main.dart [David]</text>
+        <text x="16" y="126" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">features/cart/cart_bloc.dart [David]</text>
+        <text x="16" y="146" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">features/cart/cart_view.dart [Elena]</text>
+
+        <text x="0" y="174" fill="#64748B" font-size="12">📁 src/ (Backend NestJS)</text>
+        <text x="16" y="194" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">cart/cart.controller.ts [Carlos]</text>
+        <text x="16" y="214" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">cart/cart.service.ts [Carlos]</text>
+
+        <text x="0" y="242" fill="#64748B" font-size="12">📁 test/ (Kiểm Thử Tự Động)</text>
+        <text x="16" y="262" fill="#047857" font-size="11" font-family="'JetBrains Mono', monospace">cart_bloc_test.dart [Viktor] ✓</text>
+        <text x="16" y="282" fill="#047857" font-size="11" font-family="'JetBrains Mono', monospace">cart_api_e2e_spec.ts [Viktor] ✓</text>
+
+        <text x="0" y="310" fill="#64748B" font-size="12">📁 docs/ (Tài Liệu Kỹ Thuật &amp; PRD)</text>
+        <text x="16" y="330" fill="#475569" font-size="11">MULTI_AGENT_APP_SPEC.md [Marcus]</text>
+        <text x="16" y="350" fill="#475569" font-size="11">DATABASE_SCHEMA_SPEC.md [Maya]</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Content: File Detail & Excel Export Banner (1000px) -->
+  <g transform="translate(410, 80)">
+    <!-- EXCEL REPORT BANNER -->
+    <rect x="0" y="0" width="1000" height="90" rx="10" fill="#F0FDFA" stroke="#CCFBF1" filter="url(#cardShadow)"/>
+    <circle cx="45" cy="45" r="22" fill="#0D9488"/>
+    <text x="45" y="52" text-anchor="middle" fill="#FFFFFF" font-size="18">📊</text>
+    <text x="85" y="38" fill="#0F172A" font-size="16" font-weight="800">XUẤT BÁO CÁO DỰ ÁN &amp; CHI TIẾT SOURCE CODE RA EXCEL / MARKDOWN</text>
+    <text x="85" y="60" fill="#0F766E" font-size="12">Hệ thống hỗ trợ xuất file Excel tổng hợp: danh sách file, số dòng code, agent đảm nhiệm, và số token tiêu thụ.</text>
+    
+    <rect x="800" y="25" width="175" height="40" rx="6" fill="#0D9488" cursor="pointer"/>
+    <text x="887" y="50" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">📥 Xuất file .xlsx ngay</text>
+
+    <!-- File Inspector & Preview Container -->
+    <g transform="translate(0, 110)">
+      <rect x="0" y="0" width="1000" height="680" rx="10" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+      
+      <!-- Top meta header -->
+      <rect x="0" y="0" width="1000" height="50" rx="10" fill="#F8FAFC"/>
+      <line x1="0" y1="50" x2="1000" y2="50" stroke="#E2E8F0"/>
+      <text x="24" y="31" fill="#0F172A" font-size="13" font-weight="bold" font-family="'JetBrains Mono', monospace">lib/features/cart/cart_bloc.dart</text>
+      <rect x="340" y="14" width="130" height="22" rx="4" fill="#F0FDFA" stroke="#CCFBF1"/>
+      <text x="405" y="29" text-anchor="middle" fill="#0F766E" font-size="10" font-weight="bold">Author: David (FE)</text>
+      <text x="500" y="30" fill="#64748B" font-size="11">Cập nhật: 3 phút trước • 128 dòng • 1.4k tokens</text>
+
+      <!-- Code Preview Lines -->
+      <g transform="translate(24, 70)" font-family="'JetBrains Mono', monospace" font-size="12">
+        <text x="0" y="20" fill="#94A3B8">01</text>
+        <text x="40" y="20" fill="#0D9488">import</text>
+        <text x="95" y="20" fill="#0F172A">'package:flutter_bloc/flutter_bloc.dart';</text>
+
+        <text x="0" y="44" fill="#94A3B8">02</text>
+        <text x="40" y="44" fill="#0D9488">import</text>
+        <text x="95" y="44" fill="#0F172A">'models/cart_item.dart';</text>
+
+        <text x="0" y="68" fill="#94A3B8">03</text>
+        
+        <text x="0" y="92" fill="#94A3B8">04</text>
+        <text x="40" y="92" fill="#0D9488">class</text>
+        <text x="85" y="92" fill="#0F172A">CartBloc</text>
+        <text x="155" y="92" fill="#0D9488">extends</text>
+        <text x="215" y="92" fill="#0F172A">Bloc&lt;CartEvent, CartState&gt; &#123;</text>
+
+        <text x="0" y="116" fill="#94A3B8">05</text>
+        <text x="60" y="116" fill="#0F172A">CartBloc() : super(CartInitial()) &#123;</text>
+
+        <text x="0" y="140" fill="#94A3B8">06</text>
+        <text x="80" y="140" fill="#0F172A">on&lt;ApplyVoucherEvent&gt;((event, emit) &#123;</text>
+
+        <text x="0" y="164" fill="#94A3B8">07</text>
+        <text x="100" y="164" fill="#64748B">// Tính toán mức chiết khấu voucher</text>
+
+        <text x="0" y="188" fill="#94A3B8">08</text>
+        <text x="100" y="188" fill="#0D9488">final</text>
+        <text x="145" y="188" fill="#0F172A">discount = event.code == 'GIAM20K' ? 20000 : 0;</text>
+
+        <text x="0" y="212" fill="#94A3B8">09</text>
+        <text x="100" y="212" fill="#0F172A">emit(CartUpdated(discount: discount));</text>
+
+        <text x="0" y="236" fill="#94A3B8">10</text>
+        <text x="80" y="236" fill="#0F172A">&#125;);</text>
+
+        <text x="0" y="260" fill="#94A3B8">11</text>
+        <text x="60" y="260" fill="#0F172A">&#125;</text>
+
+        <text x="0" y="284" fill="#94A3B8">12</text>
+        <text x="40" y="284" fill="#0F172A">&#125;</text>
+      </g>
+    </g>
+  </g>
+</svg>

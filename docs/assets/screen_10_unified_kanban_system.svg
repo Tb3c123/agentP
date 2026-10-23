@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 10: Hệ Thống Quản Lý Kanban Hợp Nhất (Tri-Modal System)</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="40" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#CCFBF1"/>
+    <text x="132" y="16" text-anchor="middle" fill="#0F766E" font-size="11" font-weight="700">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- Sub-header Mode Selector -->
+  <g transform="translate(30, 70)">
+    <rect x="0" y="0" width="1380" height="46" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="20" y="28" fill="#0F172A" font-size="13" font-weight="800">🎯 BẬT / TẮT 3 CHẾ ĐỘ KANBAN:</text>
+
+    <!-- Mode A Pill -->
+    <rect x="250" y="8" width="220" height="30" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="360" y="27" text-anchor="middle" fill="#0F766E" font-size="11" font-weight="bold">Mode A: Mini-Kanban Live</text>
+
+    <!-- Mode B Pill -->
+    <rect x="490" y="8" width="220" height="30" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="600" y="27" text-anchor="middle" fill="#64748B" font-size="11">Mode B: Slide Drawer (Cmd+B)</text>
+
+    <!-- Mode C Pill -->
+    <rect x="730" y="8" width="220" height="30" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+    <text x="840" y="27" text-anchor="middle" fill="#0F766E" font-size="11" font-weight="bold">Mode C: Full Studio (Active)</text>
+
+    <text x="980" y="28" fill="#64748B" font-size="11">Sprint 1: 18/24 Tasks Hoàn Thành (75%)</text>
+  </g>
+
+  <!-- MODE C: DEDICATED FULL-SCREEN STUDIO WITH 6 COLUMNS -->
+  <g transform="translate(30, 130)">
+    <!-- Column 1: Backlog (215px) -->
+    <rect x="0" y="0" width="215" height="730" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="8" y="8" width="199" height="32" rx="5" fill="#F1F5F9"/>
+    <text x="18" y="28" fill="#475569" font-size="11" font-weight="bold">1. BACKLOG (2)</text>
+    
+    <g transform="translate(8, 50)">
+      <rect x="0" y="0" width="199" height="80" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="10" y="20" fill="#0F172A" font-size="10" font-weight="bold">TASK-105: Push Notification</text>
+      <text x="10" y="36" fill="#64748B" font-size="9">Firebase FCM config</text>
+      <rect x="10" y="52" width="60" height="16" rx="3" fill="#F1F5F9"/>
+      <text x="16" y="64" fill="#64748B" font-size="8">DevOps Liam</text>
+    </g>
+
+    <!-- Column 2: Conception (215px) -->
+    <rect x="230" y="0" width="215" height="730" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="238" y="8" width="199" height="32" rx="5" fill="#F1F5F9"/>
+    <text x="248" y="28" fill="#475569" font-size="11" font-weight="bold">2. CONCEPTION (1)</text>
+
+    <g transform="translate(238, 50)">
+      <rect x="0" y="0" width="199" height="80" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="10" y="20" fill="#0F172A" font-size="10" font-weight="bold">TASK-106: Loyalty Points Spec</text>
+      <text x="10" y="36" fill="#64748B" font-size="9">Quy đổi 1.000đ = 1 điểm</text>
+      <rect x="10" y="52" width="55" height="16" rx="3" fill="#F0FDFA"/>
+      <text x="16" y="64" fill="#0F766E" font-size="8">BA Marcus</text>
+    </g>
+
+    <!-- Column 3: Architecture (215px) -->
+    <rect x="460" y="0" width="215" height="730" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="468" y="8" width="199" height="32" rx="5" fill="#F1F5F9"/>
+    <text x="478" y="28" fill="#475569" font-size="11" font-weight="bold">3. ARCHITECTURE (1)</text>
+
+    <g transform="translate(468, 50)">
+      <rect x="0" y="0" width="199" height="80" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="10" y="20" fill="#0F172A" font-size="10" font-weight="bold">TASK-107: Ledger Transaction</text>
+      <text x="10" y="36" fill="#64748B" font-size="9">ACID ledger table DDL</text>
+      <rect x="10" y="52" width="60" height="16" rx="3" fill="#F0FDFA"/>
+      <text x="16" y="64" fill="#0F766E" font-size="8">Arch Maya</text>
+    </g>
+
+    <!-- Column 4: Development (215px) -->
+    <rect x="690" y="0" width="215" height="730" rx="8" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <rect x="698" y="8" width="199" height="32" rx="5" fill="#CCFBF1"/>
+    <text x="708" y="28" fill="#0F766E" font-size="11" font-weight="bold">4. DEVELOPMENT (2) ⚡</text>
+
+    <g transform="translate(698, 50)">
+      <rect x="0" y="0" width="199" height="90" rx="6" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5"/>
+      <text x="10" y="20" fill="#0D9488" font-size="10" font-weight="bold">TASK-102: Cart Bloc State</text>
+      <text x="10" y="36" fill="#0F172A" font-size="9" font-weight="600">Flutter discount state</text>
+      <rect x="10" y="62" width="60" height="16" rx="3" fill="#F0FDFA"/>
+      <text x="16" y="74" fill="#0F766E" font-size="8" font-weight="bold">David ⚡</text>
+    </g>
+    <g transform="translate(698, 150)">
+      <rect x="0" y="0" width="199" height="90" rx="6" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.5"/>
+      <text x="10" y="20" fill="#0D9488" font-size="10" font-weight="bold">TASK-103: Nest Cart API</text>
+      <text x="10" y="36" fill="#0F172A" font-size="9" font-weight="600">POST /cart/apply-voucher</text>
+      <rect x="10" y="62" width="60" height="16" rx="3" fill="#F0FDFA"/>
+      <text x="16" y="74" fill="#0F766E" font-size="8" font-weight="bold">Carlos ⚡</text>
+    </g>
+
+    <!-- Column 5: Quality Gate (215px) -->
+    <rect x="920" y="0" width="215" height="730" rx="8" fill="#FFFBEB" stroke="#FDE68A"/>
+    <rect x="928" y="8" width="199" height="32" rx="5" fill="#FEF3C7"/>
+    <text x="938" y="28" fill="#92400E" font-size="11" font-weight="bold">5. QUALITY GATE (1) 🛑</text>
+
+    <g transform="translate(928, 50)">
+      <rect x="0" y="0" width="199" height="94" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5"/>
+      <text x="10" y="20" fill="#D97706" font-size="10" font-weight="bold">TASK-101: Voucher Test</text>
+      <text x="10" y="36" fill="#047857" font-size="9" font-weight="bold">✓ 8/8 unit test passed</text>
+      <text x="10" y="52" fill="#78350F" font-size="8">Chờ bạn duyệt Checkpoint #03</text>
+      <rect x="10" y="66" width="55" height="16" rx="3" fill="#ECFDF5"/>
+      <text x="16" y="78" fill="#047857" font-size="8" font-weight="bold">Viktor</text>
+    </g>
+
+    <!-- Column 6: Done (215px) -->
+    <rect x="1150" y="0" width="215" height="730" rx="8" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <rect x="1158" y="8" width="199" height="32" rx="5" fill="#D1FAE5"/>
+    <text x="1168" y="28" fill="#065F46" font-size="11" font-weight="bold">6. DONE (3)</text>
+
+    <g transform="translate(1158, 50)">
+      <rect x="0" y="0" width="199" height="64" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+      <text x="10" y="18" fill="#047857" font-size="9" font-weight="bold">TASK-098: DB Migration</text>
+      <text x="10" y="32" fill="#64748B" font-size="8">Merged commit e3a8b2</text>
+      <text x="10" y="48" fill="#94A3B8" font-size="8">Maya • 1.4k tokens</text>
+    </g>
+    <g transform="translate(1158, 122)">
+      <rect x="0" y="0" width="199" height="64" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+      <text x="10" y="18" fill="#047857" font-size="9" font-weight="bold">TASK-099: User Stories</text>
+      <text x="10" y="32" fill="#64748B" font-size="8">Merged commit 7c91f0</text>
+      <text x="10" y="48" fill="#94A3B8" font-size="8">Marcus • 2.1k tokens</text>
+    </g>
+    <g transform="translate(1158, 194)">
+      <rect x="0" y="0" width="199" height="64" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+      <text x="10" y="18" fill="#047857" font-size="9" font-weight="bold">TASK-100: App Icon Design</text>
+      <text x="10" y="32" fill="#64748B" font-size="8">Merged commit 9f12d4</text>
+      <text x="10" y="48" fill="#94A3B8" font-size="8">Elena • 8.5k tokens</text>
+    </g>
+  </g>
+</svg>

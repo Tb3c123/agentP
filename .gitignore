@@ -1,0 +1,68 @@
+# ==========================================
+# agentP Multi-Agent Platform - Git Ignore
+# ==========================================
+
+# 1. Local Runtime, Tokens & Transient Sessions
+.agents/sessions/
+.agents/tokens/
+.agents/cache/
+.agents/trash/
+.agents/db.sqlite
+.agents/db.sqlite-journal
+.agents/db.sqlite-wal
+.agents/db.sqlite-shm
+
+# 2. Environment Variables & Secret Credentials
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+credentials.json
+token.json
+
+# 3. Operating System Junk
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 4. Dependency Directories & Build Artifacts
+node_modules/
+dist/
+build/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 5. Rust / Tauri Build Artifacts
+src-tauri/target/
+src-tauri/WixTools/
+
+# 6. Flutter / Android SDK Artifacts
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+android/app/build/
+*.apk
+*.aab
+
+# 7. IDE & Editor Caches
+.idea/
+*.swp
+*.swo
+
+# ==========================================
+# Explicitly Track Project Agent Specs
+# ==========================================
+!.agents/project.yaml
+!.agents/roles/
+!.agents/designs/

@@ -1,0 +1,372 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 2: Bàn Làm Việc Chính &amp; Mini-Kanban Live</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#CCFBF1"/>
+    <text x="40" y="16" text-anchor="middle" fill="#0F766E" font-size="11" font-weight="700">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="227" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- ================= 1. LEFT SIDEBAR: SINGLE DESK & SWARM (240px) ================= -->
+  <rect x="0" y="56" width="240" height="844" fill="#FFFFFF"/>
+  <line x1="240" y1="56" x2="240" y2="900" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- Active Single Desk Pill -->
+  <g transform="translate(12, 68)">
+    <rect x="0" y="0" width="216" height="42" rx="8" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1.5"/>
+    <circle cx="22" cy="21" r="10" fill="#0D9488"/>
+    <text x="22" y="25" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">PM</text>
+    <text x="38" y="20" fill="#0F766E" font-size="12" font-weight="700">Alex (Lead/PM)</text>
+    <text x="38" y="33" fill="#0D9488" font-size="10" font-weight="600">● Đang trực tuyến</text>
+  </g>
+
+  <!-- Backstage Swarm Section -->
+  <text x="16" y="132" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.5">BACKSTAGE SWARM (14 ROLES)</text>
+
+  <!-- Roles Checklist with Token Icons -->
+  <g transform="translate(16, 142)">
+    <!-- Marcus BA -->
+    <rect x="0" y="0" width="208" height="24" rx="4" fill="#FFFFFF"/>
+    <circle cx="8" cy="12" r="3" fill="#10B981"/>
+    <text x="18" y="15" fill="#334155" font-size="11">Marcus (BA)</text>
+    <text x="175" y="15" fill="#0F766E" font-size="10" font-weight="bold">🪙 4.2k</text>
+
+    <!-- Elena UI/UX -->
+    <rect x="0" y="26" width="208" height="24" rx="4" fill="#FFFFFF"/>
+    <circle cx="8" cy="38" r="3" fill="#10B981"/>
+    <text x="18" y="39" fill="#334155" font-size="11">Elena (UI/UX)</text>
+    <text x="175" y="39" fill="#0F766E" font-size="10" font-weight="bold">🪙 8.5k</text>
+
+    <!-- Maya Architect -->
+    <rect x="0" y="52" width="208" height="24" rx="4" fill="#FFFFFF"/>
+    <circle cx="8" cy="64" r="3" fill="#10B981"/>
+    <text x="18" y="65" fill="#334155" font-size="11">Maya (Architect)</text>
+    <text x="175" y="65" fill="#0F766E" font-size="10" font-weight="bold">🪙 6.1k</text>
+
+    <!-- David FE Dev -->
+    <rect x="0" y="78" width="208" height="24" rx="4" fill="#F0FDFA"/>
+    <circle cx="8" cy="90" r="3" fill="#0D9488"/>
+    <text x="18" y="91" fill="#0F766E" font-size="11" font-weight="bold">David (FE Flutter)</text>
+    <text x="175" y="91" fill="#D97706" font-size="10" font-weight="bold">⚡ Busy</text>
+
+    <!-- Carlos BE Dev -->
+    <rect x="0" y="104" width="208" height="24" rx="4" fill="#F0FDFA"/>
+    <circle cx="8" cy="116" r="3" fill="#0D9488"/>
+    <text x="18" y="117" fill="#0F766E" font-size="11" font-weight="bold">Carlos (BE Nest)</text>
+    <text x="175" y="117" fill="#D97706" font-size="10" font-weight="bold">⚡ Busy</text>
+
+    <!-- Viktor QA -->
+    <rect x="0" y="130" width="208" height="24" rx="4" fill="#FFFFFF"/>
+    <circle cx="8" cy="142" r="3" fill="#10B981"/>
+    <text x="18" y="143" fill="#334155" font-size="11">Viktor (QA Lead)</text>
+    <text x="175" y="143" fill="#10B981" font-size="10" font-weight="bold">✓ 8 pass</text>
+
+    <!-- Liam DevOps -->
+    <rect x="0" y="156" width="208" height="24" rx="4" fill="#FFFFFF"/>
+    <circle cx="8" cy="168" r="3" fill="#94A3B8"/>
+    <text x="18" y="169" fill="#64748B" font-size="11">Liam (DevOps)</text>
+    <text x="175" y="169" fill="#64748B" font-size="10">Idle</text>
+  </g>
+
+  <!-- Preflight & Tools Quick Links -->
+  <g transform="translate(16, 350)">
+    <text x="0" y="0" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.5">CÔNG CỤ HỆ THỐNG</text>
+    <rect x="0" y="10" width="208" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="10" y="29" fill="#334155" font-size="11">🩺 Chẩn đoán Pre-flight</text>
+    <text x="180" y="29" fill="#10B981" font-size="11">100%</text>
+
+    <rect x="0" y="46" width="208" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="10" y="65" fill="#334155" font-size="11">🔗 9router 1:1 Sessions</text>
+    <text x="180" y="65" fill="#0D9488" font-size="11">✓</text>
+
+    <rect x="0" y="82" width="208" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="10" y="101" fill="#334155" font-size="11">📱 Mobile Remote Host</text>
+    <text x="180" y="101" fill="#10B981" font-size="11">Live</text>
+  </g>
+
+  <!-- Emergency Stop Button at bottom of sidebar -->
+  <g transform="translate(16, 836)">
+    <rect x="0" y="0" width="208" height="42" rx="8" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.2" cursor="pointer"/>
+    <text x="104" y="26" text-anchor="middle" fill="#DC2626" font-size="12" font-weight="bold">⏹️ DỪNG ĐỘT NGỘT (ESC)</text>
+  </g>
+
+  <!-- ================= 2. CENTER: CHAT STREAM & CHECKPOINT GATE (680px) ================= -->
+  <!-- User Message -->
+  <g transform="translate(260, 76)">
+    <rect x="180" y="0" width="480" height="60" rx="8" fill="#0D9488"/>
+    <text x="200" y="24" fill="#FFFFFF" font-size="13" font-weight="600">Bạn (Chủ dự án):</text>
+    <text x="200" y="45" fill="#F0FDFA" font-size="13">Hãy triển khai module Giỏ hàng (Cart) và áp dụng mã Voucher giảm giá.</text>
+  </g>
+
+  <!-- PM Message with Thinking and Swarm Progress -->
+  <g transform="translate(260, 150)">
+    <!-- Avatar & Title -->
+    <circle cx="16" cy="16" r="14" fill="#0D9488"/>
+    <text x="16" y="21" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">PM</text>
+    <text x="40" y="16" fill="#0F172A" font-size="14" font-weight="700">Alex (Lead/PM)</text>
+    <text x="155" y="16" fill="#64748B" font-size="11">vừa xong • Claude 3.5 Sonnet</text>
+
+    <!-- Message Bubble -->
+    <rect x="36" y="26" width="624" height="68" rx="8" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    <text x="52" y="50" fill="#1E293B" font-size="13">Chào bạn! Tôi đã phân bổ nhiệm vụ: Marcus (BA) viết specs, Maya dựng schema SQLite,</text>
+    <text x="52" y="72" fill="#1E293B" font-size="13">David (FE) viết CartBloc, Carlos (BE) viết NestJS endpoint, và Viktor (QA) viết unit test.</text>
+
+    <!-- RAW MODEL THINKING BOX -->
+    <g transform="translate(36, 102)">
+      <rect x="0" y="0" width="624" height="74" rx="6" fill="#F1F5F9" stroke="#CBD5E1"/>
+      <text x="12" y="20" fill="#475569" font-size="11" font-weight="bold" font-family="'JetBrains Mono', monospace">💭 RAW MODEL THINKING LOG: Thought for 8.4s (1,248 tokens)</text>
+      <text x="12" y="38" fill="#64748B" font-size="10" font-family="'JetBrains Mono', monospace">&lt;thinking&gt; Plan: 1. Validate voucher discount rules 2. Trigger SQLite state migration</text>
+      <text x="12" y="54" fill="#64748B" font-size="10" font-family="'JetBrains Mono', monospace">3. Dispatch tasks to David &amp; Carlos 4. Run Jest + Flutter test suite &lt;/thinking&gt;</text>
+    </g>
+
+    <!-- BACKSTAGE LIVE TASK BADGES -->
+    <g transform="translate(36, 186)">
+      <rect x="0" y="0" width="624" height="42" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+      <circle cx="16" cy="21" r="5" fill="#10B981"/>
+      <text x="28" y="25" fill="#0F766E" font-size="11" font-weight="bold">Swarm Update:</text>
+      <rect x="120" y="10" width="130" height="22" rx="4" fill="#FFFFFF" stroke="#CCFBF1"/>
+      <text x="126" y="25" fill="#0F766E" font-size="10">TASK-102: David (FE) ✓</text>
+      <rect x="260" y="10" width="130" height="22" rx="4" fill="#FFFFFF" stroke="#CCFBF1"/>
+      <text x="266" y="25" fill="#0F766E" font-size="10">TASK-103: Carlos (BE) ✓</text>
+      <rect x="400" y="10" width="140" height="22" rx="4" fill="#FFFFFF" stroke="#A7F3D0"/>
+      <text x="406" y="25" fill="#047857" font-size="10">TASK-101: 8/8 test pass ✓</text>
+    </g>
+
+    <!-- ================= USER CHECKPOINT GATE #03 ================= -->
+    <g transform="translate(36, 240)">
+      <rect x="0" y="0" width="624" height="150" rx="10" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.8" filter="url(#cardShadow)"/>
+      <circle cx="28" cy="28" r="12" fill="#D97706"/>
+      <text x="28" y="33" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">🛑</text>
+      
+      <text x="48" y="32" fill="#92400E" font-size="14" font-weight="800">CHECKPOINT #03: YÊU CẦU PHÊ DUYỆT CỦA BẠN</text>
+      <text x="48" y="54" fill="#78350F" font-size="12">Module Giỏ hàng &amp; Voucher đã vượt qua 8/8 test tự động của Viktor (QA Lead).</text>
+      <text x="48" y="70" fill="#78350F" font-size="12">Thay đổi: 3 files (+45 lines, -12 lines). Bạn muốn thực hiện hành động nào tiếp theo?</text>
+
+      <!-- Action Buttons -->
+      <g transform="translate(48, 88)">
+        <!-- Green Approve & Merge Git -->
+        <rect x="0" y="0" width="170" height="38" rx="6" fill="#10B981" cursor="pointer"/>
+        <text x="85" y="24" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">✅ Duyệt &amp; Merge Git</text>
+
+        <!-- Blue/Teal Test on AVD -->
+        <rect x="180" y="0" width="170" height="38" rx="6" fill="#0D9488" cursor="pointer"/>
+        <text x="265" y="24" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">📱 Chạy thử trên AVD</text>
+
+        <!-- Neutral Request Changes -->
+        <rect x="360" y="0" width="150" height="38" rx="6" fill="#FFFFFF" stroke="#CBD5E1" cursor="pointer"/>
+        <text x="435" y="24" text-anchor="middle" fill="#475569" font-size="12" font-weight="bold">✍️ Yêu cầu sửa</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Chat Input Bar -->
+  <g transform="translate(260, 824)">
+    <rect x="0" y="0" width="660" height="54" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+    <text x="18" y="32" fill="#94A3B8" font-size="13">Nhập chỉ thị tiếp theo cho Alex (Lead/PM) hoặc gõ /help...</text>
+    <rect x="530" y="10" width="118" height="34" rx="6" fill="url(#primaryTeal)" cursor="pointer"/>
+    <text x="589" y="32" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">Gửi lệnh ➔</text>
+  </g>
+
+  <!-- ================= 3. RIGHT PANEL: MODE A EMBEDDED MINI-KANBAN LIVE WIDGET (500px) ================= -->
+  <rect x="940" y="56" width="500" height="844" fill="#FFFFFF"/>
+  <line x1="940" y1="56" x2="940" y2="900" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- Mini-Kanban Header -->
+  <g transform="translate(956, 72)">
+    <rect x="0" y="0" width="468" height="36" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <circle cx="18" cy="18" r="4" fill="#0D9488"/>
+    <text x="30" y="22" fill="#0F172A" font-size="12" font-weight="800">📋 LIVE KANBAN WIDGET (Sprint 1)</text>
+    <rect x="360" y="6" width="98" height="24" rx="4" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="409" y="22" text-anchor="middle" fill="#0F766E" font-size="10" font-weight="bold">⛶ Mở Studio</text>
+  </g>
+
+  <!-- 4 Mini Kanban Columns Grid -->
+  <g transform="translate(956, 118)">
+    <!-- COL 1: TO DO (108px) -->
+    <rect x="0" y="0" width="110" height="380" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="6" y="6" width="98" height="22" rx="4" fill="#F1F5F9"/>
+    <text x="12" y="21" fill="#475569" font-size="10" font-weight="bold">TO DO (1)</text>
+    
+    <!-- Card in To Do -->
+    <g transform="translate(6, 36)">
+      <rect x="0" y="0" width="98" height="74" rx="5" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="6" y="16" fill="#0F172A" font-size="9" font-weight="bold">TASK-104</text>
+      <text x="6" y="30" fill="#475569" font-size="8">QR Payment</text>
+      <text x="6" y="42" fill="#475569" font-size="8">VNPay API</text>
+      <rect x="6" y="52" width="42" height="14" rx="3" fill="#F1F5F9"/>
+      <text x="12" y="62" fill="#64748B" font-size="7">Liam</text>
+    </g>
+
+    <!-- COL 2: CODING (110px) -->
+    <rect x="118" y="0" width="114" height="380" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <rect x="124" y="6" width="102" height="22" rx="4" fill="#CCFBF1"/>
+    <text x="130" y="21" fill="#0F766E" font-size="10" font-weight="bold">CODING (2)</text>
+
+    <!-- Card 1 in Coding -->
+    <g transform="translate(124, 36)">
+      <rect x="0" y="0" width="102" height="78" rx="5" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.2"/>
+      <text x="6" y="16" fill="#0D9488" font-size="9" font-weight="bold">TASK-102</text>
+      <text x="6" y="30" fill="#0F172A" font-size="8" font-weight="600">Cart Bloc State</text>
+      <text x="6" y="42" fill="#64748B" font-size="8">Flutter state</text>
+      <rect x="6" y="56" width="46" height="14" rx="3" fill="#F0FDFA"/>
+      <text x="10" y="66" fill="#0F766E" font-size="7" font-weight="bold">David ⚡</text>
+    </g>
+
+    <!-- Card 2 in Coding -->
+    <g transform="translate(124, 122)">
+      <rect x="0" y="0" width="102" height="78" rx="5" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.2"/>
+      <text x="6" y="16" fill="#0D9488" font-size="9" font-weight="bold">TASK-103</text>
+      <text x="6" y="30" fill="#0F172A" font-size="8" font-weight="600">Nest Cart API</text>
+      <text x="6" y="42" fill="#64748B" font-size="8">REST + DTO</text>
+      <rect x="6" y="56" width="48" height="14" rx="3" fill="#F0FDFA"/>
+      <text x="10" y="66" fill="#0F766E" font-size="7" font-weight="bold">Carlos ⚡</text>
+    </g>
+
+    <!-- COL 3: QA / REVIEW (110px) -->
+    <rect x="240" y="0" width="110" height="380" rx="6" fill="#FFFBEB" stroke="#FDE68A"/>
+    <rect x="246" y="6" width="98" height="22" rx="4" fill="#FEF3C7"/>
+    <text x="252" y="21" fill="#92400E" font-size="10" font-weight="bold">QA GATE (1)</text>
+
+    <!-- Card in QA -->
+    <g transform="translate(246, 36)">
+      <rect x="0" y="0" width="98" height="84" rx="5" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.2"/>
+      <text x="6" y="16" fill="#D97706" font-size="9" font-weight="bold">TASK-101</text>
+      <text x="6" y="30" fill="#0F172A" font-size="8" font-weight="600">Voucher Tests</text>
+      <text x="6" y="44" fill="#047857" font-size="8" font-weight="bold">✓ 8/8 passing</text>
+      <rect x="6" y="60" width="44" height="14" rx="3" fill="#ECFDF5"/>
+      <text x="10" y="70" fill="#047857" font-size="7" font-weight="bold">Viktor</text>
+    </g>
+
+    <!-- COL 4: DONE (110px) -->
+    <rect x="358" y="0" width="110" height="380" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <rect x="364" y="6" width="98" height="22" rx="4" fill="#D1FAE5"/>
+    <text x="370" y="21" fill="#065F46" font-size="10" font-weight="bold">DONE (3)</text>
+
+    <!-- Done Cards -->
+    <g transform="translate(364, 36)">
+      <rect x="0" y="0" width="98" height="52" rx="5" fill="#FFFFFF" stroke="#A7F3D0"/>
+      <text x="6" y="14" fill="#047857" font-size="8" font-weight="bold">TASK-098</text>
+      <text x="6" y="26" fill="#334155" font-size="8">DB Schema DDL</text>
+      <text x="6" y="40" fill="#94A3B8" font-size="7">Maya • 1.4k</text>
+    </g>
+    <g transform="translate(364, 96)">
+      <rect x="0" y="0" width="98" height="52" rx="5" fill="#FFFFFF" stroke="#A7F3D0"/>
+      <text x="6" y="14" fill="#047857" font-size="8" font-weight="bold">TASK-099</text>
+      <text x="6" y="26" fill="#334155" font-size="8">User Stories</text>
+      <text x="6" y="40" fill="#94A3B8" font-size="7">Marcus • 2.1k</text>
+    </g>
+  </g>
+
+  <!-- ================= SUB-PANEL: GIT DIFF SUMMARY ================= -->
+  <g transform="translate(956, 516)">
+    <rect x="0" y="0" width="468" height="144" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="14" y="22" fill="#0F172A" font-size="11" font-weight="bold">🌿 GIT STAGING DIFF: feature/cart-voucher</text>
+    <text x="340" y="22" fill="#047857" font-size="10" font-weight="bold">+45</text>
+    <text x="370" y="22" fill="#DC2626" font-size="10" font-weight="bold">-12 lines</text>
+
+    <!-- File 1 -->
+    <rect x="14" y="34" width="440" height="30" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="24" y="53" fill="#334155" font-size="10" font-family="'JetBrains Mono', monospace">lib/features/cart/cart_bloc.dart</text>
+    <text x="380" y="53" fill="#047857" font-size="9" font-weight="bold">+28 lines</text>
+
+    <!-- File 2 -->
+    <rect x="14" y="68" width="440" height="30" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="24" y="87" fill="#334155" font-size="10" font-family="'JetBrains Mono', monospace">src/modules/cart/cart.controller.ts</text>
+    <text x="380" y="87" fill="#047857" font-size="9" font-weight="bold">+17 lines</text>
+
+    <!-- File 3 -->
+    <rect x="14" y="102" width="440" height="30" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="24" y="121" fill="#334155" font-size="10" font-family="'JetBrains Mono', monospace">test/cart/cart_bloc_test.dart</text>
+    <text x="380" y="121" fill="#047857" font-size="9" font-weight="bold">+12 lines</text>
+  </g>
+
+  <!-- ================= SUB-PANEL: AVD EMULATOR CONTROLLER ================= -->
+  <g transform="translate(956, 672)">
+    <rect x="0" y="0" width="468" height="206" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="14" y="22" fill="#0F172A" font-size="11" font-weight="bold">📱 AVD RUNNER: Google Pixel 8 Pro (API 34)</text>
+    <circle cx="340" cy="18" r="4" fill="#10B981"/>
+    <text x="350" y="22" fill="#047857" font-size="10" font-weight="bold">Port 5554 Online</text>
+
+    <!-- Phone Screen Mockup Frame Inside Panel -->
+    <rect x="14" y="34" width="220" height="158" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <rect x="24" y="44" width="200" height="22" rx="4" fill="#0D9488"/>
+    <text x="124" y="59" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="bold">Food Delivery Cart</text>
+    
+    <!-- Cart Items Mockup inside AVD -->
+    <rect x="24" y="72" width="200" height="24" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="30" y="87" fill="#334155" font-size="8">1x Phở Bò Tái Nạm (65.000đ)</text>
+    <rect x="24" y="100" width="200" height="24" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="30" y="115" fill="#334155" font-size="8">Voucher: GIAM20K (-20.000đ)</text>
+    
+    <rect x="24" y="132" width="200" height="24" rx="4" fill="#10B981"/>
+    <text x="124" y="148" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="bold">Thanh Toán: 45.000đ</text>
+
+    <!-- Controller Actions -->
+    <g transform="translate(250, 44)">
+      <rect x="0" y="0" width="204" height="32" rx="5" fill="#FFFFFF" stroke="#CBD5E1" cursor="pointer"/>
+      <text x="102" y="20" text-anchor="middle" fill="#0F766E" font-size="10" font-weight="bold">🔄 Hot Reload (r)</text>
+
+      <rect x="0" y="40" width="204" height="32" rx="5" fill="#FFFFFF" stroke="#CBD5E1" cursor="pointer"/>
+      <text x="102" y="60" text-anchor="middle" fill="#0F766E" font-size="10" font-weight="bold">📸 Chụp màn hình UI</text>
+
+      <rect x="0" y="80" width="204" height="32" rx="5" fill="#F0FDFA" stroke="#CCFBF1" cursor="pointer"/>
+      <text x="102" y="100" text-anchor="middle" fill="#0D9488" font-size="10" font-weight="bold">🔍 Mở Flutter DevTools</text>
+
+      <rect x="0" y="120" width="204" height="32" rx="5" fill="#FEE2E2" stroke="#FCA5A5" cursor="pointer"/>
+      <text x="102" y="140" text-anchor="middle" fill="#DC2626" font-size="10" font-weight="bold">⏹️ Tắt Emulator</text>
+    </g>
+  </g>
+</svg>

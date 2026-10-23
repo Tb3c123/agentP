@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Alpine Teal Canvas Gradient -->
+    <linearGradient id="stealthTealBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="50%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+
+    <!-- Authentic Fedora Brown Gradient (Nâu da mộc sang trọng) -->
+    <linearGradient id="authenticFedora" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8B4513"/>
+      <stop offset="50%" stop-color="#78350F"/>
+      <stop offset="100%" stop-color="#552207"/>
+    </linearGradient>
+
+    <!-- Obsidian Band -->
+    <linearGradient id="bandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <filter id="fedoraDrop" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.30"/>
+    </filter>
+
+    <filter id="badgeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#042F2E" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Squircle Body -->
+  <rect x="32" y="32" width="448" height="448" rx="116" fill="url(#stealthTealBg)" filter="url(#badgeShadow)"/>
+  
+  <!-- Subtle Internal Hairline Inset -->
+  <rect x="36" y="36" width="440" height="440" rx="112" fill="none" stroke="#CCFBF1" stroke-width="2" stroke-opacity="0.3"/>
+
+  <!-- CENTRAL COMPOSITION: MYSTERIOUS NOIR AGENT MONOGRAM -->
+  <g transform="translate(256, 270)">
+    
+    <!-- AUTHENTIC BROWN FEDORA HAT (Được cách điệu tối giản, góc nghiêng huyền bí, không có mắt/mỏ hoạt hình) -->
+    <g transform="translate(0, -118) rotate(-7)" filter="url(#fedoraDrop)">
+      <!-- Hat Brim (Vành nón uốn cong thanh lịch) -->
+      <path d="M -105 18 
+               C -105 4, -50 -10, 8 -10 
+               C 68 -10, 118 4, 118 18 
+               C 118 28, 68 34, 8 34 
+               C -50 34, -105 28, -105 18 Z" 
+            fill="url(#authenticFedora)"/>
+      <path d="M -105 18 C -65 27, 70 27, 118 18 C 95 31, -75 31, -105 18 Z" fill="#3B1703" opacity="0.45"/>
+
+      <!-- Hat Crown (Chóp nón phớt tạo khối góc cạnh sang trọng) -->
+      <path d="M -54 12 
+               L -48 -58 
+               C -48 -70, -25 -78, 8 -78 
+               C 42 -78, 65 -70, 65 -58 
+               L 71 12 
+               Z" 
+            fill="url(#authenticFedora)"/>
+
+      <!-- Crown Pinch (Nếp gấp lõm đặc trưng của mũ phớt cổ điển) -->
+      <path d="M -30 -66 C 0 -56, 18 -56, 48 -66 C 36 -78, -18 -78, -30 -66 Z" fill="#3B1703" opacity="0.6"/>
+
+      <!-- Obsidian Ribbon Band (Dải ruy băng đen sang trọng) -->
+      <path d="M -55 8 
+               L -53 -10 
+               C -16 -6, 38 -6, 72 -10 
+               L 73 8 
+               Z" 
+            fill="url(#bandGrad)"/>
+      
+      <!-- Subtle Gold Pin / Hardware on Band (Điểm xuyết khuy vàng nhỏ bí ẩn) -->
+      <circle cx="-38" cy="-1" r="3.5" fill="#F59E0B"/>
+    </g>
+
+    <!-- ARCHITECTURAL LETTER 'P' (Hình khối vững chắc màu trắng ngà) -->
+    <!-- Stem of P -->
+    <rect x="-80" y="-70" width="44" height="200" rx="14" fill="#FFFFFF"/>
+
+    <!-- Loop of P -->
+    <path d="M -80 -70 
+             H -6 
+             C 48 -70, 82 -38, 82 10 
+             C 82 58, 48 90, -6 90 
+             H -80 
+             Z" 
+          fill="#FFFFFF"/>
+
+    <!-- Inner Hollow of P -->
+    <path d="M -36 -30 
+             H -6 
+             C 22 -30, 38 -12, 38 10 
+             C 38 32, 22 50, -6 50 
+             H -36 
+             Z" 
+          fill="url(#stealthTealBg)"/>
+  </g>
+
+  <!-- Typography at bottom -->
+  <text x="256" y="445" text-anchor="middle" fill="#CCFBF1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="800" letter-spacing="8">AGENT P</text>
+</svg>

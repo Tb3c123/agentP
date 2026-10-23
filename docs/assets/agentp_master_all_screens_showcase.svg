@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="thumbShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Top Showcase Banner -->
+  <rect x="0" y="0" width="1920" height="90" fill="#FFFFFF"/>
+  <line x1="0" y1="90" x2="1920" y2="90" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Logo Suite & Header Title -->
+  <g transform="translate(40, 20)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="44" y="24" fill="#0F172A" font-size="24" font-weight="900" letter-spacing="-0.8">agent</text>
+    <text x="110" y="24" fill="#0D9488" font-size="28" font-weight="900">P</text>
+    <text x="150" y="24" fill="#64748B" font-size="16" font-weight="600">• BỘ GIAO DIỆN HỢP NHẤT TOÀN DIỆN (10 MÀN HÌNH CHÍNH THỨC)</text>
+  </g>
+
+  <!-- Theme Badges at top right -->
+  <g transform="translate(1380, 28)">
+    <rect x="0" y="0" width="160" height="34" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="80" y="22" text-anchor="middle" fill="#0F766E" font-size="12" font-weight="bold">Alpine Teal #0D9488</text>
+
+    <rect x="175" y="0" width="160" height="34" rx="6" fill="#FFFBEB" stroke="#FDE68A"/>
+    <text x="255" y="22" text-anchor="middle" fill="#D97706" font-size="12" font-weight="bold">Tuscan Amber #D97706</text>
+
+    <rect x="350" y="0" width="140" height="34" rx="6" fill="#FEF3C7" stroke="#FCD34D"/>
+    <text x="420" y="22" text-anchor="middle" fill="#78350F" font-size="12" font-weight="bold">Fedora #78350F</text>
+  </g>
+
+  <!-- 10 Screens Grid (5 columns x 2 rows) -->
+  <!-- ROW 1 (Screens 1 to 5) -->
+  <!-- Screen 1 -->
+  <g transform="translate(40, 120)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="12" y="20" fill="#0F172A" font-size="11" font-weight="bold">01. Onboarding Launchpad</text>
+    <!-- Screen 1 Mockup miniature -->
+    <rect x="20" y="45" width="310" height="155" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="175" y="85" text-anchor="middle" fill="#0F172A" font-size="11" font-weight="bold">Bạn muốn tạo project gì?</text>
+    <rect x="40" y="105" width="270" height="26" rx="4" fill="#FFFFFF" stroke="#0D9488"/>
+    <text x="175" y="122" text-anchor="middle" fill="#0D9488" font-size="9" font-weight="bold">FoodDelivery-Loyalty-App</text>
+    <rect x="40" y="145" width="270" height="34" rx="4" fill="url(#headerGrad)"/>
+    <text x="175" y="166" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="bold">Khởi tạo với Alex (PM)</text>
+  </g>
+
+  <!-- Screen 2 -->
+  <g transform="translate(415, 120)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.8" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F0FDFA"/>
+    <text x="12" y="20" fill="#0F766E" font-size="11" font-weight="bold">02. Command Workspace + Mini-Kanban</text>
+    <!-- Screen 2 Mockup miniature -->
+    <rect x="10" y="40" width="55" height="165" rx="4" fill="#F8FAFC"/>
+    <rect x="70" y="40" width="165" height="165" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <rect x="75" y="90" width="155" height="45" rx="4" fill="#FFFBEB" stroke="#FDE68A"/>
+    <text x="152" y="115" text-anchor="middle" fill="#92400E" font-size="8" font-weight="bold">🛑 Checkpoint #03</text>
+    <!-- Mode A Mini-Kanban -->
+    <rect x="240" y="40" width="100" height="165" rx="4" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="290" y="55" text-anchor="middle" fill="#0F766E" font-size="8" font-weight="bold">📋 Mini-Kanban</text>
+    <rect x="245" y="65" width="90" height="30" rx="3" fill="#FFFFFF" stroke="#0D9488"/>
+    <text x="250" y="82" fill="#0D9488" font-size="7" font-weight="bold">TASK-102 ⚡</text>
+  </g>
+
+  <!-- Screen 3 -->
+  <g transform="translate(790, 120)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="12" y="20" fill="#0F172A" font-size="11" font-weight="bold">03. Provider &amp; 1:1 Sessions</text>
+    <rect x="20" y="45" width="310" height="155" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="30" y="55" width="290" height="22" rx="3" fill="#ECFDF5"/>
+    <text x="40" y="70" fill="#047857" font-size="8" font-weight="bold">9router Daemon: Port 9090 Online</text>
+    <rect x="30" y="85" width="290" height="22" rx="3" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="40" y="100" fill="#0F172A" font-size="8">Alex (PM) ➔ Claude 3.5 Sonnet</text>
+    <rect x="30" y="115" width="290" height="22" rx="3" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="40" y="130" fill="#0F172A" font-size="8">David (FE) ➔ Gemini 2.5 Flash</text>
+    <rect x="30" y="145" width="290" height="22" rx="3" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="40" y="160" fill="#0F172A" font-size="8">Viktor (QA) ➔ DeepSeek R1</text>
+  </g>
+
+  <!-- Screen 4 -->
+  <g transform="translate(1165, 120)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="12" y="20" fill="#0F172A" font-size="11" font-weight="bold">04. Mobile Remote Controller</text>
+    <!-- Centered phone -->
+    <rect x="125" y="42" width="100" height="165" rx="14" fill="#0F172A"/>
+    <rect x="128" y="45" width="94" height="159" rx="12" fill="#F8FAFC"/>
+    <rect x="135" y="70" width="80" height="45" rx="4" fill="#FFFBEB" stroke="#FDE68A"/>
+    <text x="175" y="90" text-anchor="middle" fill="#92400E" font-size="7" font-weight="bold">🛑 Checkpoint</text>
+    <rect x="140" y="100" width="70" height="12" rx="3" fill="#10B981"/>
+    <text x="175" y="109" text-anchor="middle" fill="#FFFFFF" font-size="6" font-weight="bold">Duyệt &amp; Merge</text>
+  </g>
+
+  <!-- Screen 5 -->
+  <g transform="translate(1540, 120)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="12" y="20" fill="#0F172A" font-size="11" font-weight="bold">05. Pre-flight Diagnostics</text>
+    <rect x="20" y="45" width="310" height="155" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="30" y="55" width="290" height="24" rx="4" fill="#ECFDF5"/>
+    <text x="175" y="71" text-anchor="middle" fill="#047857" font-size="9" font-weight="bold">✓ 7/7 Tiêu chí đạt chuẩn 100%</text>
+    <text x="35" y="100" fill="#0F172A" font-size="8">✓ Flutter SDK 3.24.3</text>
+    <text x="35" y="120" fill="#0F172A" font-size="8">✓ Android Studio &amp; AVD Pixel 8</text>
+    <text x="35" y="140" fill="#0F172A" font-size="8">✓ SQLite Engine (.agents/db.sqlite)</text>
+    <text x="35" y="160" fill="#0F172A" font-size="8">✓ 9router Local Daemon Port 9090</text>
+  </g>
+
+  <!-- ROW 2 (Screens 6 to 10) -->
+  <!-- Screen 6 -->
+  <g transform="translate(40, 370)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="12" y="20" fill="#0F172A" font-size="11" font-weight="bold">06. File Explorer &amp; Excel Export</text>
+    <rect x="20" y="45" width="310" height="35" rx="5" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="30" y="66" fill="#0F766E" font-size="8" font-weight="bold">📊 Xuất Báo Cáo Kỹ Thuật (Excel / PDF)</text>
+    <rect x="20" y="90" width="100" height="115" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="26" y="110" fill="#0F172A" font-size="7">📁 lib/cart_bloc.dart</text>
+    <text x="26" y="130" fill="#0F172A" font-size="7">📁 src/cart.service.ts</text>
+    <text x="26" y="150" fill="#0F172A" font-size="7">📁 test/cart_test.dart</text>
+    <rect x="130" y="90" width="200" height="115" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="140" y="110" fill="#0D9488" font-size="7" font-weight="bold">Author: David (FE Dev)</text>
+  </g>
+
+  <!-- Screen 7 -->
+  <g transform="translate(415, 370)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="12" y="20" fill="#0F172A" font-size="11" font-weight="bold">07. Monaco Side-by-Side Diff</text>
+    <!-- Split diff mini -->
+    <rect x="20" y="45" width="150" height="155" rx="4" fill="#FFF1F2" stroke="#FECDD3"/>
+    <text x="30" y="65" fill="#BE123C" font-size="8" font-weight="bold">Original (-6 lines)</text>
+    <rect x="180" y="45" width="150" height="155" rx="4" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <text x="190" y="65" fill="#047857" font-size="8" font-weight="bold">Proposed (+28 lines)</text>
+  </g>
+
+  <!-- Screen 8 -->
+  <g transform="translate(790, 370)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="12" y="20" fill="#0F172A" font-size="11" font-weight="bold">08. Project Hub &amp; Danger Gate</text>
+    <rect x="20" y="45" width="310" height="60" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="30" y="70" fill="#0F172A" font-size="8">Cài đặt: FoodDelivery-Loyalty-App</text>
+    <!-- Danger red box -->
+    <rect x="20" y="115" width="310" height="85" rx="6" fill="#FFF1F2" stroke="#FECDD3"/>
+    <text x="30" y="135" fill="#9F1239" font-size="8" font-weight="bold">⚠️ Vùng nguy hiểm: Xóa dự án</text>
+    <text x="30" y="152" fill="#881337" font-size="7">Gõ chính xác tên để xác nhận</text>
+    <rect x="30" y="162" width="290" height="24" rx="3" fill="#DC2626"/>
+    <text x="175" y="177" text-anchor="middle" fill="#FFFFFF" font-size="8" font-weight="bold">Xóa vĩnh viễn dự án</text>
+  </g>
+
+  <!-- Screen 9 -->
+  <g transform="translate(1165, 370)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.8" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F0FDFA"/>
+    <text x="12" y="20" fill="#0F766E" font-size="11" font-weight="bold">09. Visual UI Studio (Tldraw + Onlook)</text>
+    <!-- Left Tldraw -->
+    <rect x="20" y="45" width="150" height="155" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="30" y="65" fill="#0F172A" font-size="8" font-weight="bold">🎨 Tldraw Whiteboard</text>
+    <rect x="30" y="75" width="60" height="90" rx="4" fill="#F8FAFC" stroke="#94A3B8"/>
+    <!-- Sticky note -->
+    <rect x="100" y="75" width="60" height="40" rx="2" fill="#FEF08A"/>
+    <text x="105" y="90" fill="#854D0E" font-size="6">Elena UI/UX</text>
+    <!-- Right Onlook -->
+    <rect x="180" y="45" width="150" height="155" rx="6" fill="#FFFFFF" stroke="#0D9488"/>
+    <text x="190" y="65" fill="#0D9488" font-size="8" font-weight="bold">⚡ Onlook DOM Inspector</text>
+    <rect x="190" y="80" width="130" height="22" rx="3" fill="#F0FDFA"/>
+    <text x="195" y="94" fill="#0F766E" font-size="7">bg-teal-600 rounded-lg</text>
+  </g>
+
+  <!-- Screen 10 -->
+  <g transform="translate(1540, 370)">
+    <rect x="0" y="0" width="350" height="220" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="1.8" filter="url(#thumbShadow)"/>
+    <rect x="0" y="0" width="350" height="30" rx="8" fill="#F0FDFA"/>
+    <text x="12" y="20" fill="#0F766E" font-size="11" font-weight="bold">10. Tri-Modal Unified Kanban Studio</text>
+    <!-- 6 Columns miniature -->
+    <rect x="20" y="45" width="48" height="155" rx="3" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="44" y="60" text-anchor="middle" fill="#475569" font-size="6">Backlog</text>
+    <rect x="72" y="45" width="48" height="155" rx="3" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="96" y="60" text-anchor="middle" fill="#475569" font-size="6">Concept</text>
+    <rect x="124" y="45" width="48" height="155" rx="3" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="148" y="60" text-anchor="middle" fill="#475569" font-size="6">Arch</text>
+    <rect x="176" y="45" width="48" height="155" rx="3" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="200" y="60" text-anchor="middle" fill="#0F766E" font-size="6" font-weight="bold">Dev ⚡</text>
+    <rect x="228" y="45" width="48" height="155" rx="3" fill="#FFFBEB" stroke="#FDE68A"/>
+    <text x="252" y="60" text-anchor="middle" fill="#92400E" font-size="6" font-weight="bold">QA 🛑</text>
+    <rect x="280" y="45" width="50" height="155" rx="3" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <text x="305" y="60" text-anchor="middle" fill="#065F46" font-size="6" font-weight="bold">Done ✓</text>
+  </g>
+</svg>

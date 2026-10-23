@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="primaryTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  
+  <!-- Top Navigation Header -->
+  <rect x="0" y="0" width="1440" height="56" fill="#FFFFFF"/>
+  <line x1="0" y1="56" x2="1440" y2="56" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- AgentP Brand with Fedora Accent -->
+  <g transform="translate(28, 14)">
+    
+    <path d="M4 20 C4 18, 8 16, 18 16 C28 16, 32 18, 32 20 L35 22 C35 23, 33 24, 18 24 C3 24, 1 23, 1 22 Z" fill="#78350F"/>
+    <path d="M8 16 L10 6 C10 4.5, 14 3, 18 3 C22 3, 26 4.5, 26 6 L28 16 Z" fill="#78350F"/>
+    <rect x="9.5" y="13" width="17" height="2.5" fill="#0D9488" rx="0.8"/>
+
+    <text x="42" y="20" fill="#0F172A" font-size="16" font-weight="800" letter-spacing="-0.5">agent</text>
+    <text x="86" y="20" fill="#0D9488" font-size="18" font-weight="900">P</text>
+  </g>
+
+  <!-- Breadcrumb / Active Page Indicator -->
+  <rect x="160" y="15" width="220" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+  <circle cx="174" cy="28" r="3.5" fill="#0D9488"/>
+  <text x="185" y="32" fill="#0F766E" font-size="11" font-weight="700">Trang 9: Studio Thiết Kế UI/UX Hai Chế Độ: Tldraw &amp; Onlook</text>
+
+  <!-- Project Selector Pill -->
+  <rect x="395" y="15" width="220" height="26" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="408" y="32" fill="#64748B" font-size="11">Dự án: <tspan fill="#0F172A" font-weight="700" font-family="'JetBrains Mono', monospace">FoodDelivery-Loyalty</tspan></text>
+
+  <!-- Quick Nav Tabs -->
+  <g transform="translate(635, 16)">
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="40" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Bàn làm việc</text>
+
+    <rect x="90" y="0" width="85" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="132" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Kanban Studio</text>
+
+    <rect x="185" y="0" width="85" height="24" rx="4" fill="#CCFBF1"/>
+    <text x="227" y="16" text-anchor="middle" fill="#0F766E" font-size="11" font-weight="700">UI/UX Studio</text>
+
+    <rect x="280" y="0" width="75" height="24" rx="4" fill="#FFFFFF"/>
+    <text x="317" y="16" text-anchor="middle" fill="#64748B" font-size="11" font-weight="500">Code &amp; Diff</text>
+  </g>
+
+  <!-- Host Status & Token Meter -->
+  <g transform="translate(1120, 15)">
+    <rect x="0" y="0" width="145" height="26" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10B981"/>
+    <text x="22" y="17" fill="#047857" font-size="11" font-weight="600">Host: 192.168.1.15</text>
+    
+    <rect x="155" y="0" width="135" height="26" rx="6" fill="#F0FDFA" stroke="#CCFBF1" stroke-width="1"/>
+    <text x="165" y="17" fill="#0F766E" font-size="11" font-weight="600">🪙 42.5k saved</text>
+  </g>
+
+
+  <!-- Studio Sub-Navigation Tabs -->
+  <g transform="translate(30, 70)">
+    <rect x="0" y="0" width="1380" height="46" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    
+    <!-- Tab 1: Tldraw Whiteboard -->
+    <rect x="12" y="8" width="230" height="30" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+    <text x="127" y="27" text-anchor="middle" fill="#0F766E" font-size="12" font-weight="bold">🎨 Chế độ 1: Tldraw Whiteboard</text>
+
+    <!-- Tab 2: Onlook DOM-to-Code -->
+    <rect x="250" y="8" width="250" height="30" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="375" y="27" text-anchor="middle" fill="#64748B" font-size="12" font-weight="500">⚡ Chế độ 2: Onlook DOM-to-Code</text>
+
+    <text x="530" y="28" fill="#94A3B8" font-size="11">Elena (UI/UX) và David (FE Dev) đồng bộ thiết kế và code 2 chiều thời gian thực</text>
+    
+    <!-- Sync Button -->
+    <rect x="1230" y="8" width="138" height="30" rx="5" fill="url(#primaryTeal)" cursor="pointer"/>
+    <text x="1299" y="27" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">🔄 Đồng bộ vào Code</text>
+  </g>
+
+  <!-- Left: Tldraw Interactive Canvas (880px) -->
+  <g transform="translate(30, 130)">
+    <rect x="0" y="0" width="880" height="730" rx="10" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    
+    <!-- Canvas Grid Pattern (subtle dots) -->
+    <g fill="#E2E8F0">
+      <circle cx="50" cy="50" r="1.5"/><circle cx="100" cy="50" r="1.5"/><circle cx="150" cy="50" r="1.5"/><circle cx="200" cy="50" r="1.5"/>
+      <circle cx="50" cy="100" r="1.5"/><circle cx="100" cy="100" r="1.5"/><circle cx="150" cy="100" r="1.5"/><circle cx="200" cy="100" r="1.5"/>
+      <circle cx="50" cy="150" r="1.5"/><circle cx="100" cy="150" r="1.5"/><circle cx="150" cy="150" r="1.5"/><circle cx="200" cy="150" r="1.5"/>
+    </g>
+
+    <!-- Tldraw Floating Toolbar at Top of Canvas -->
+    <g transform="translate(260, 20)">
+      <rect x="0" y="0" width="360" height="40" rx="8" fill="#FFFFFF" stroke="#CBD5E1" filter="url(#cardShadow)"/>
+      <text x="24" y="25" fill="#0D9488" font-size="14">↖</text>
+      <text x="64" y="25" fill="#475569" font-size="14">✏️</text>
+      <text x="104" y="25" fill="#475569" font-size="14">🔲</text>
+      <text x="144" y="25" fill="#475569" font-size="14">⭕</text>
+      <text x="184" y="25" fill="#475569" font-size="14">➡️</text>
+      <text x="224" y="25" fill="#475569" font-size="14">📝</text>
+      <text x="264" y="25" fill="#475569" font-size="14">🖼️</text>
+      <text x="304" y="25" fill="#475569" font-size="14">🔍</text>
+    </g>
+
+    <!-- Wireframe 1: Cart Screen Wireframe on Canvas -->
+    <g transform="translate(60, 100)">
+      <rect x="0" y="0" width="280" height="500" rx="20" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.8"/>
+      <rect x="20" y="30" width="240" height="30" rx="6" fill="#0D9488"/>
+      <text x="140" y="50" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">Giỏ Hàng (3 món)</text>
+
+      <!-- Cart Item Card -->
+      <rect x="20" y="80" width="240" height="60" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="30" y="90" width="40" height="40" rx="4" fill="#E2E8F0"/>
+      <text x="80" y="105" fill="#0F172A" font-size="10" font-weight="bold">Phở Bò Tái Nạm</text>
+      <text x="80" y="125" fill="#0D9488" font-size="10" font-weight="bold">65.000đ</text>
+
+      <!-- Sticky Note by Elena -->
+      <g transform="translate(180, 20)">
+        <rect x="0" y="0" width="160" height="90" rx="4" fill="#FEF08A" stroke="#FDE047" transform="rotate(-3)"/>
+        <text x="10" y="22" fill="#854D0E" font-size="10" font-weight="bold">Elena (UI/UX):</text>
+        <text x="10" y="38" fill="#854D0E" font-size="9">Cần hiển thị rõ giá gốc</text>
+        <text x="10" y="52" fill="#854D0E" font-size="9">và giá sau khi giảm voucher</text>
+        <text x="10" y="66" fill="#854D0E" font-size="9">để tăng tỷ lệ chuyển đổi!</text>
+      </g>
+    </g>
+
+    <!-- Arrow Connecting to Flow -->
+    <path d="M 360 260 L 460 260" stroke="#0D9488" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="410" y="250" text-anchor="middle" fill="#0F766E" font-size="10" font-weight="bold">User taps Checkout</text>
+
+    <!-- Wireframe 2: Checkout Modal Wireframe -->
+    <g transform="translate(480, 100)">
+      <rect x="0" y="0" width="280" height="500" rx="20" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.8"/>
+      <rect x="20" y="30" width="240" height="30" rx="6" fill="#10B981"/>
+      <text x="140" y="50" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">Xác Nhận &amp; Quét QR</text>
+
+      <rect x="20" y="80" width="240" height="180" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <text x="140" y="110" text-anchor="middle" fill="#0F172A" font-size="11" font-weight="bold">Mã QR VietQR</text>
+      <rect x="85" y="125" width="110" height="110" fill="#0F172A"/>
+    </g>
+  </g>
+
+  <!-- Right: Onlook Visual Property Inspector (480px) -->
+  <g transform="translate(930, 130)">
+    <rect x="0" y="0" width="480" height="730" rx="10" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    
+    <rect x="0" y="0" width="480" height="44" rx="10" fill="#F8FAFC"/>
+    <line x1="0" y1="44" x2="480" y2="44" stroke="#E2E8F0"/>
+    <text x="20" y="27" fill="#0F172A" font-size="13" font-weight="800">⚡ ONLOOK TAILWIND &amp; STYLE INSPECTOR</text>
+
+    <!-- Active Component Selection -->
+    <g transform="translate(20, 60)">
+      <text x="0" y="16" fill="#64748B" font-size="11">Phần tử đang chọn:</text>
+      <rect x="0" y="24" width="440" height="34" rx="6" fill="#F0FDFA" stroke="#CCFBF1"/>
+      <text x="16" y="46" fill="#0F766E" font-size="12" font-weight="bold" font-family="'JetBrains Mono', monospace">&lt;CartCheckoutButton /&gt;</text>
+
+      <!-- Tailwind Classes Editor -->
+      <text x="0" y="84" fill="#0F172A" font-size="12" font-weight="bold">Tailwind CSS Classes:</text>
+      <rect x="0" y="94" width="440" height="60" rx="6" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <text x="12" y="118" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">bg-teal-600 hover:bg-teal-700 text-white</text>
+      <text x="12" y="136" fill="#0D9488" font-size="11" font-family="'JetBrains Mono', monospace">font-bold py-3 px-6 rounded-lg shadow-sm</text>
+
+      <!-- Visual Color Picker -->
+      <text x="0" y="180" fill="#0F172A" font-size="12" font-weight="bold">Màu sắc (Color Tokens):</text>
+      <rect x="0" y="192" width="40" height="40" rx="6" fill="#0D9488" stroke="#0F766E" stroke-width="2"/>
+      <text x="50" y="217" fill="#0F172A" font-size="11">Alpine Teal (#0D9488)</text>
+
+      <rect x="220" y="192" width="40" height="40" rx="6" fill="#D97706" stroke="#B45309"/>
+      <text x="270" y="217" fill="#0F172A" font-size="11">Tuscan Amber (#D97706)</text>
+
+      <!-- Two-way Sync Code Snippet -->
+      <text x="0" y="260" fill="#0F172A" font-size="12" font-weight="bold">Đồng bộ hai chiều với Code:</text>
+      <rect x="0" y="272" width="440" height="140" rx="6" fill="#0F172A"/>
+      <text x="16" y="296" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">// Tự động cập nhật vào file source:</text>
+      <text x="16" y="318" fill="#F8FAFC" font-size="11" font-family="'JetBrains Mono', monospace">export const CartButton = () =&gt; (</text>
+      <text x="16" y="340" fill="#A7F3D0" font-size="11" font-family="'JetBrains Mono', monospace">  &lt;button className="bg-teal-600..."&gt;</text>
+      <text x="16" y="362" fill="#F8FAFC" font-size="11" font-family="'JetBrains Mono', monospace">    Thanh toán ngay</text>
+      <text x="16" y="384" fill="#F8FAFC" font-size="11" font-family="'JetBrains Mono', monospace">  &lt;/button&gt;</text>
+      <text x="16" y="402" fill="#F8FAFC" font-size="11" font-family="'JetBrains Mono', monospace">);</text>
+    </g>
+  </g>
+</svg>
