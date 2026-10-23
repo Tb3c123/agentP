@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
+  <!-- Top Navigation Header with Elena's Friendly Tab Names -->
   <header class="top-header">
     <div class="brand-suite" onclick="switchView('workspace')">
       <div class="fedora-badge">
@@ -22,9 +22,14 @@
       <div class="brand-text">agent<span>P</span></div>
     </div>
 
+    <!-- Friendly Tab Names by Elena -->
     <nav class="nav-tabs">
-      <button class="nav-tab" id="tabOnboarding" onclick="switchView('onboarding')">1. Onboarding</button>
-      <button class="nav-tab active" id="tabWorkspace" onclick="switchView('workspace')">2. Bàn Làm Việc &amp; Mini-Kanban</button>
+      <button class="nav-tab" id="tabOnboarding" onclick="switchView('onboarding')">
+        🌱 Bắt Đầu Ý Tưởng
+      </button>
+      <button class="nav-tab active" id="tabWorkspace" onclick="switchView('workspace')">
+        🧑‍💼 Bàn Làm Việc Cùng Alex
+      </button>
     </nav>
 
     <div class="header-status">
@@ -42,7 +47,7 @@
     <!-- ================= VIEW 1: ONBOARDING LAUNCHPAD ================= -->
     <section class="view-panel onboarding-view" id="viewOnboarding">
       <div class="onboarding-card">
-        <h1 class="onboarding-title">🌟 BẠN MUỐN TẠO PROJECT GÌ?</h1>
+        <h1 class="onboarding-title">🌱 BẠN MUỐN TẠO PROJECT GÌ?</h1>
         <p class="onboarding-subtitle">Chỉ cần nhập mô tả sơ lược bài toán, Trưởng dự án Alex (Lead/PM) sẽ tự động lập ban kỹ thuật và thực thi</p>
 
         <textarea 
@@ -53,24 +58,24 @@
 
         <!-- Smart Auto-Name Box -->
         <div class="auto-name-box">
-          <div style="font-size: 13px; font-weight: 700; color: #0F766E;">✨ Tên project đề xuất:</div>
+          <div style="font-size: 13px; font-weight: 700; color: #0F766E;">✨ Tên dự án đề xuất:</div>
           <div class="auto-name-tag" id="suggestedNameTag">🏷️ FoodDelivery-Loyalty-App</div>
         </div>
 
         <!-- Workspace Path -->
         <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #CBD5E1; border-radius: 8px; padding: 10px 14px; margin-bottom: 20px;">
-          <span style="font-size: 12px; color: #64748B;">📂 Thư mục dự án:</span>
+          <span style="font-size: 12px; color: #64748B;">📂 Thư mục làm việc:</span>
           <span style="font-size: 12px; font-family: monospace; font-weight: 600;" id="suggestedPathText">~/Projects/FoodDelivery-Loyalty-App</span>
         </div>
 
         <!-- Launch Button -->
         <button class="launch-btn" onclick="launchProjectFromOnboarding()">
-          🚀 KHỞI TẠO DỰ ÁN VỚI ALEX (LEAD / PM) NGAY
+          🚀 BẮT ĐẦU CÙNG ALEX (LEAD / PM)
         </button>
 
         <!-- Quick Tags -->
         <div style="display: flex; gap: 8px; justify-content: center; margin-top: 24px;">
-          <span style="font-size: 12px; color: #94A3B8;">Mẫu có sẵn:</span>
+          <span style="font-size: 12px; color: #94A3B8;">Mẫu gợi ý:</span>
           <button class="btn-small" onclick="applyTemplate('E-Commerce')">🛒 E-Commerce</button>
           <button class="btn-small" onclick="applyTemplate('Mobile Flutter')">📱 Mobile Flutter</button>
           <button class="btn-small" onclick="applyTemplate('SaaS Dashboard')">📊 SaaS Dashboard</button>
@@ -92,7 +97,7 @@
           </div>
         </div>
 
-        <div class="sidebar-heading">BACKSTAGE SWARM (14 ROLES)</div>
+        <div class="sidebar-heading">BAN KỸ THUẬT (14 NHÂN SỰ)</div>
         <div class="swarm-list" id="swarmListContainer">
           <!-- Dynamically populated -->
         </div>
@@ -134,38 +139,42 @@
         </div>
       </section>
 
-      <!-- RIGHT PANEL: MODE A EMBEDDED MINI-KANBAN LIVE WIDGET -->
+      <!-- ================= RIGHT PANEL: FIXED HIERARCHY (480px) ================= -->
       <aside class="right-panel">
-        <div class="panel-header">
-          <span>📋 LIVE KANBAN (Sprint 2)</span>
-          <button class="btn-small" style="color: #0F766E; font-weight: 700;">⛶ Mở Studio</button>
+        
+        <!-- SECTION 1: LIVE KANBAN WIDGET -->
+        <div class="kanban-section">
+          <div class="panel-header">
+            <span>📋 TIẾN ĐỘ LIVE KANBAN</span>
+            <button class="btn-small" style="color: #0F766E; font-weight: 700;">⛶ Mở Studio</button>
+          </div>
+
+          <!-- 4 Mini-Kanban Columns with Internal Scroll -->
+          <div class="mini-kanban-grid">
+            <!-- TO DO -->
+            <div class="kanban-col todo">
+              <div class="col-header">Chờ Làm (<span id="countTodo">0</span>)</div>
+              <div class="col-cards" id="colCardsTodo"></div>
+            </div>
+            <!-- CODING -->
+            <div class="kanban-col coding">
+              <div class="col-header">Đang Làm (<span id="countCoding">0</span>)</div>
+              <div class="col-cards" id="colCardsCoding"></div>
+            </div>
+            <!-- QA -->
+            <div class="kanban-col qa">
+              <div class="col-header">Kiểm Thử (<span id="countQA">0</span>)</div>
+              <div class="col-cards" id="colCardsQA"></div>
+            </div>
+            <!-- DONE -->
+            <div class="kanban-col done">
+              <div class="col-header">Hoàn Tất (<span id="countDone">0</span>)</div>
+              <div class="col-cards" id="colCardsDone"></div>
+            </div>
+          </div>
         </div>
 
-        <!-- 4 Mini-Kanban Columns -->
-        <div class="mini-kanban-grid">
-          <!-- TO DO -->
-          <div class="kanban-col todo">
-            <div class="col-header">To Do (<span id="countTodo">0</span>)</div>
-            <div class="col-cards" id="colCardsTodo"></div>
-          </div>
-          <!-- CODING -->
-          <div class="kanban-col coding">
-            <div class="col-header">Coding (<span id="countCoding">0</span>)</div>
-            <div class="col-cards" id="colCardsCoding"></div>
-          </div>
-          <!-- QA -->
-          <div class="kanban-col qa">
-            <div class="col-header">QA (<span id="countQA">0</span>)</div>
-            <div class="col-cards" id="colCardsQA"></div>
-          </div>
-          <!-- DONE -->
-          <div class="kanban-col done">
-            <div class="col-header">Done (<span id="countDone">0</span>)</div>
-            <div class="col-cards" id="colCardsDone"></div>
-          </div>
-        </div>
-
-        <!-- Sub-panel: Git Diff Summary -->
+        <!-- SECTION 2: GIT DIFF SUMMARY -->
         <div class="sub-panel">
           <div class="sub-panel-title">
             <span>🌿 GIT STAGING: feature/cart-voucher</span>
@@ -185,23 +194,25 @@
           </div>
         </div>
 
-        <!-- Sub-panel: Android AVD Runner -->
-        <div class="sub-panel">
+        <!-- SECTION 3: ANDROID AVD RUNNER (Explicitly Boxed & Separated) -->
+        <div class="avd-section">
           <div class="sub-panel-title">
-            <span>📱 AVD RUNNER: Google Pixel 8 Pro</span>
-            <span style="color: #047857; font-weight: 700;">Port 5554 Online</span>
+            <span>📱 MÁY ẢO AVD: Google Pixel 8 Pro</span>
+            <span style="color: #047857; font-weight: 700;">● Port 5554 Online</span>
           </div>
           <div class="avd-box">
-            <div style="font-size: 11px;">
-              <div style="font-weight: 700;">FoodDelivery-Loyalty-App</div>
-              <div style="color: #64748B;">Flutter Hot Reload Sẵn Sàng</div>
+            <div class="avd-meta-row">
+              <div style="font-size: 11px; font-weight: 700; color: #0F172A;">FoodDelivery-Loyalty-App</div>
+              <div style="font-size: 10px; color: #0D9488; font-weight: 600;">Flutter Hot Reload Sẵn Sàng</div>
             </div>
             <div class="avd-actions">
-              <button class="btn-small" onclick="alert('Hot Reload triggered!')">🔄 Reload (r)</button>
-              <button class="btn-small" onclick="alert('Screenshot captured to docs/assets/')">📸 Chụp</button>
+              <button class="btn-small" onclick="alert('⚡ Đã kích hoạt Hot Reload Flutter!')">🔄 Hot Reload (r)</button>
+              <button class="btn-small" onclick="alert('📸 Đã chụp màn hình AVD lưu vào docs/assets/')">📸 Chụp Màn Hình</button>
+              <button class="btn-small" style="color: #0F766E;" onclick="alert('🔍 Mở Flutter DevTools...')">🔍 DevTools</button>
             </div>
           </div>
         </div>
+
       </aside>
 
     </section>
