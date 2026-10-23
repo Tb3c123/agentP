@@ -227,9 +227,11 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
             state = CommandWorkspaceService.get_workspace_state()
             self.wfile.write(json.dumps(state).encode('utf-8'))
         else:
-            # Static file serving from src/web/
+            # Static file serving from src/web/ or docs/
             if path == '/' or path == '':
                 file_path = os.path.join(WEB_DIR, 'index.html')
+            elif path.startswith('/docs/'):
+                file_path = os.path.join(BASE_DIR, path.lstrip('/'))
             else:
                 rel_path = path.lstrip('/')
                 file_path = os.path.join(WEB_DIR, rel_path)
