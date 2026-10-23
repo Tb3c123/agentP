@@ -5,7 +5,7 @@ tier: "Coding Squad"
 recommended_model: "deepseek-r1"
 token_meter_icon: "⚡"
 system_prompt: >-
-  Bạn là Victor, lập trình viên Backend. Bạn xây dựng Local Reverse Proxy Daemon theo cơ chế 9router, xử lý hàng đợi token, trích xuất raw thinking logs và bảo mật API endpoints.
+  Bạn là Victor, lập trình viên Backend. Bạn xây dựng agentP Core Local Daemon, xử lý hàng đợi token, trích xuất raw thinking logs và bảo mật API endpoints.
 mcp_tools:
   - "file_editor"
   - "sql_runner"

@@ -20,7 +20,7 @@ architecture:
   command_model: "Single-Desk SPOC (Bạn ⇄ Alex)"
   backstage_swarm: 14_roles
   local_daemon:
-    name: "9router-proxy"
+    name: "agentp-core-daemon"
     host: "127.0.0.1"
     port: 51730
     session_reuse: true # Tái sử dụng claude login, gh auth, cursor tokens

@@ -267,7 +267,7 @@ def init_database():
          "Lập trình Flutter BloC, giao diện reactive và Onlook DOM sync.",
          "Bạn là David, Frontend Dev...", "#3B82F6"),
         ("backend_dev", "Carlos (Kỹ Sư Backend NestJS)", "Carlos", "engineering", "claude-3-5-sonnet",
-         "Xây dựng REST API, DTO, TypeORM, 9router daemon integration.",
+         "Xây dựng REST API, DTO, TypeORM, agentP Core daemon integration.",
          "Bạn là Carlos, Backend Dev...", "#6366F1"),
         ("qa_lead", "Viktor (Trưởng Nhóm Kiểm Thử QA)", "Viktor", "qa", "deepseek-r1",
          "Soạn test Jest & Flutter, logic suy luận sâu, thẩm định Checkpoint.",
@@ -328,7 +328,7 @@ def init_database():
     ) VALUES (?, ?, ?, ?, ?, ?, DATE('now'), DATE('now', '+14 days'))
     """, (
         sprint_id, project_id, 1,
-        "Sprint 1: Nền Tảng Hạ Tầng & Lõi 9router Local Proxy Daemon",
+        "Sprint 1: Nền Tảng Hạ Tầng & Lõi agentP Core Local Proxy Daemon",
         "Xây dựng khung ứng dụng, CSDL SQLite cục bộ, Proxy Daemon 1:1 sessions và bộ test tự động",
         "active"
     ))
@@ -337,7 +337,7 @@ def init_database():
     tasks = [
         ("TASK-101", project_id, sprint_id, "Thiết kế & Khởi tạo CSDL SQLite .agents/db.sqlite",
          "Tạo 12 bảng, indexes, foreign keys và triggers tự động hóa", "architecture", "done", "urgent", "system_architect", 1400),
-        ("TASK-102", project_id, sprint_id, "Xây dựng 9router Local Daemon (Port 9090)",
+        ("TASK-102", project_id, sprint_id, "Xây dựng agentP Core Local Daemon (Port 9090)",
          "Hỗ trợ 1:1 session isolation, streaming raw thinking log và fallback failover", "backend", "development", "high", "backend_dev", 2100),
         ("TASK-103", project_id, sprint_id, "Bộ Test Tự Động Hóa (Unit & Integration Tests)",
          "Viết test xác thực WAL mode, foreign keys cascade, và thinking log parser", "qa", "development", "high", "qa_lead", 1850),
@@ -367,7 +367,7 @@ def init_database():
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         "msg_init_01", chat_sess_id, "pm_agent", "lead_pm", "Alex (Trưởng Dự Án / Lead PM)",
-        "Chào bạn! Tôi là Alex. Toàn bộ ban kỹ thuật 14 nhân sự đã sẵn sàng. Chúng tôi đã chính thức khởi động Sprint 1 với CSDL SQLite và 9router Daemon.",
+        "Chào bạn! Tôi là Alex. Toàn bộ ban kỹ thuật 14 nhân sự đã sẵn sàng. Chúng tôi đã chính thức khởi động Sprint 1 với CSDL SQLite và agentP Core Daemon.",
         "<thinking> Initializing AgentP swarm architecture. Database and proxy ready. </thinking>",
         1250, 420
     ))

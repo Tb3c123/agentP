@@ -7,7 +7,7 @@
 > **Kiến trúc trưởng & CSDL**: Maya (Kiến Trúc Sư Hệ Thống) & Viktor (Lead QA)  
 > **Chủ nhiệm thiết kế UI/UX**: Elena (Chuyên Gia UI/UX)  
 > **Phiên bản kế hoạch**: v2.5.0 (Chính thức phê duyệt — Chuẩn hóa Tri-Modal Kanban & 10 Màn Hình Hợp Nhất)  
-> **Mục tiêu cốt lõi**: Xây dựng ứng dụng hoàn chỉnh cho macOS, Windows, Android và Web theo đúng chuẩn 10 Màn hình, CSDL SQLite cục bộ `.agents/db.sqlite`, cơ chế cô lập session 1:1 qua 9router daemon, và luồng làm việc duy nhất qua thanh chat với Alex.
+> **Mục tiêu cốt lõi**: Xây dựng ứng dụng hoàn chỉnh cho macOS, Windows, Android và Web theo đúng chuẩn 10 Màn hình, CSDL SQLite cục bộ `.agents/db.sqlite`, cơ chế cô lập session 1:1 qua agentP Core Daemon, và luồng làm việc duy nhất qua thanh chat với Alex.
 
 ---
 
@@ -18,7 +18,7 @@
 | **Desktop Shell** | **Tauri v2 (Rust)** | Khởi động tức thì, dung lượng <30MB, RAM cực nhẹ (<40MB so với Electron >250MB), an toàn, native APIs đa nền tảng. | **Liam** (DevOps) & **Lucas** (Senior Dev) |
 | **Frontend UI** | **React 19 + TypeScript + Tailwind CSS** | Render hiệu năng cao, tích hợp mượt mà Monaco Editor, Tldraw và Onlook. | **David** (Frontend) & **Elena** (UI/UX) |
 | **Bảng Màu Chính** | **Alpine Teal (`#0D9488`), Tuscan Amber (`#D97706`), Fedora Brown (`#78350F`)** | Chuẩn Clean Light Mode 100%, không neon, mang sắc thái đặc trưng của Agent P tinh tế, trang nhã. | **Elena** (UI/UX) |
-| **Local Proxy Lõi** | **Rust / Go Local Daemon (9router Protocol)** | Chạy tại `localhost:9090`, cô lập session 1:1 cho từng agent, tái sử dụng phiên đăng nhập CLI (`claude login`, `gh auth`), tối ưu chi phí. | **Carlos** (Backend) & **Liam** (DevOps) |
+| **Local Proxy Lõi** | **Rust / Python Local Daemon (agentP Core Daemon)** | Chạy tại `localhost:9090`, cô lập session 1:1 cho từng agent, tái sử dụng phiên đăng nhập CLI (`claude login`, `gh auth`), tối ưu chi phí. | **Carlos** (Backend) & **Liam** (DevOps) |
 | **Whiteboard Engine** | **@tldraw/tldraw (Canvas Vector)** | Nhẹ, 0 setup, chạy offline 100%, hỗ trợ vẽ wireframe, sticky notes, sơ đồ luồng dữ liệu. | **Elena** (UI/UX) & **David** (Frontend) |
 | **DOM-to-Code Engine**| **Onlook Core (Babel/PostCSS AST Sync)** | Nhúng trực tiếp dev server đang chạy, visual Tailwind inspector và ghi đè trực tiếp vào file `.tsx`/`.dart`. | **Lucas** (Senior Dev) & **David** (Frontend) |
 | **Code Editor** | **Monaco Editor (VS Code core)** | Syntax highlighting đa ngôn ngữ, Side-by-Side Split Diff (Đỏ xóa / Xanh thêm), nút xóa file an toàn. | **Sam** (Fullstack) |
@@ -48,7 +48,7 @@ Người dùng (Chủ dự án) **CHỈ CẦN TƯƠNG TÁC QUA THANH CHAT VỚI 
 │ • Theo dõi tiến độ Kanban, tổng hợp kết quả test từ Viktor                                  │
 │ • Trình Checkpoint Gate lên chat stream cho Bạn duyệt                                       │
 └───────────────────────────────────────────────┬─────────────────────────────────────────────┘
-                                                │ 2. Dispatch Task (Session 1:1 qua 9router)
+                                                │ 2. Dispatch Task (Session 1:1 qua agentP Core Daemon)
                                                 ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────┐
 │ 🐝 ĐỘI NGŨ CHUYÊN VIÊN HẬU TRƯỜNG (BACKSTAGE SWARM - 13 ROLES)                              │
@@ -84,7 +84,7 @@ Người dùng (Chủ dự án) **CHỈ CẦN TƯƠNG TÁC QUA THANH CHAT VỚI 
    - `TASK-102`: David code Flutter BloC.
    - `TASK-103`: Carlos code NestJS controller.
    - `TASK-101`: Viktor viết bộ test tự động.
-3. **Bước 3 — Điều Động Độc Lập**: Alex gọi các agent thực hiện nhiệm vụ qua các session 1:1 của 9router daemon. Thẻ Mini-Kanban trên cột phải tự động chuyển từ **To Do** sang **Coding**.
+3. **Bước 3 — Điều Động Độc Lập**: Alex gọi các agent thực hiện nhiệm vụ qua các session 1:1 của agentP Core Daemon. Thẻ Mini-Kanban trên cột phải tự động chuyển từ **To Do** sang **Coding**.
 4. **Bước 4 — Kiểm Thử Tự Động Gắt Gao**: Viktor (QA Lead) chạy test suites. Nếu fail, tự động yêu cầu David hoặc Carlos sửa lại cho đến khi pass 100%. Task chuyển sang cột **QA Gate**.
 5. **Bước 5 — Trình Checkpoint Gate**: Alex gửi thông báo chốt chặn màu hổ phách (`#FFFBEB`) ngay trên luồng chat kèm tóm tắt diff (+45 / -12 lines) và kết quả 8/8 test pass.
 6. **Bước 6 — Phê Duyệt An Toàn**: Bạn bấm **"✅ Duyệt & Merge Git"** (hoặc duyệt từ xa qua điện thoại). Task tự động nhảy sang **Done**, Git commit được ghi nhận an toàn vào SQLite và repo.
@@ -100,7 +100,7 @@ Người dùng (Chủ dự án) **CHỈ CẦN TƯƠNG TÁC QUA THANH CHAT VỚI 
 | 3 | `ui_ux_designer` | 🎨 **Elena** | **Chuyên Gia UI/UX**: Thiết kế Light Mode chuẩn Alpine Teal & Amber, vẽ Tldraw & style Onlook. | Claude 3.5 Sonnet |
 | 4 | `system_architect`| 🏛️ **Maya** | **Kiến Trúc Sư Hệ Thống**: Thiết kế mô hình SQLite, quan hệ bảng, API contract và module flow. | Claude 3.5 Sonnet |
 | 5 | `frontend_dev` | 💻 **David** | **Kỹ Sư Frontend Flutter**: Lập trình giao diện, BloC state, tích hợp visual DOM sync qua Onlook. | Gemini 2.5 Flash |
-| 6 | `backend_dev` | ⚙️ **Carlos** | **Kỹ Sư Backend NestJS**: Lập trình REST API, TypeORM, logic nghiệp vụ, đồng bộ 9router. | Claude 3.5 Sonnet |
+| 6 | `backend_dev` | ⚙️ **Carlos** | **Kỹ Sư Backend NestJS**: Lập trình REST API, TypeORM, logic nghiệp vụ, đồng bộ agentP Core Daemon. | Claude 3.5 Sonnet |
 | 7 | `qa_lead` | 🔍 **Viktor** | **Trưởng Nhóm Kiểm Thử QA**: Soạn test Jest/Flutter, logic suy luận sâu, bảo đảm 100% Pass trước Checkpoint. | DeepSeek R1 |
 | 8 | `devops_lead` | 🛡️ **Liam** | **Kỹ Sư DevOps & CI/CD**: Chạy Pre-flight diagnostics, điều khiển máy ảo AVD Pixel 8, WebSocket port 8080. | Gemini 2.5 Flash |
 | 9 | `tech_lead` | 🔬 **Lucas** | **Senior Code Reviewer**: Rà soát AST parser, tối ưu thuật toán, đảm bảo Clean Architecture. | Claude 3.5 Sonnet |
@@ -122,7 +122,7 @@ Mọi màn hình đều đã được hoàn thiện dạng SVG chuẩn mực t�
  ├────────────────────────────────────────────────────────────────────────┤
  │ 1. screen_1_onboarding_launchpad.svg        (Khởi tạo ý tưởng ban đầu) │
  │ 2. screen_2_main_command_workspace.svg      (Chat + Mode A Mini-Kanban)│
- │ 3. screen_3_provider_connection_modal.svg   (Quản lý 1:1 sessions 9router)│
+ │ 3. screen_3_provider_connection_modal.svg   (Quản lý 1:1 sessions agentP Daemon)│
  │ 4. screen_4_mobile_remote_controller.svg    (Điều khiển từ xa Web/Phone)│
  │ 5. screen_5_preflight_diagnostics.svg       (Tiền kiểm 7 tiêu chí 100%)│
  │ 6. screen_6_project_file_explorer.svg       (Cây thư mục & Xuất Excel) │
@@ -141,12 +141,12 @@ Mọi màn hình đều đã được hoàn thiện dạng SVG chuẩn mực t�
 ```
 [ SPRINT 1 ] ───► [ SPRINT 2 ] ───► [ SPRINT 3 ] ───► [ SPRINT 4 ] ───► [ SPRINT 5 ]
 Lõi Hạ Tầng &      Onboarding &        Studio Kép UI/UX    Editor, File &      DevOps, Remote &
-9router Proxy      Workspace + Kanban  Tldraw + Onlook     Project Hub         Báo Cáo Nghiệm Thu
+agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         Báo Cáo Nghiệm Thu
 (Liam, Carlos)     (David, Alex)       (Elena, David)      (Sam, Lucas)        (Liam, Sophia, Viktor)
 ```
 
 ### SPRINT 1: NỀN TẢNG HẠ TẦNG & LÕI 9ROUTER LOCAL PROXY DAEMON
-* **Mục tiêu**: Thiết lập khung dự án Tauri v2, cơ sở dữ liệu SQLite cục bộ `.agents/db.sqlite` và daemon proxy 9router cô lập session 1:1.
+* **Mục tiêu**: Thiết lập khung dự án Tauri v2, cơ sở dữ liệu SQLite cục bộ `.agents/db.sqlite` và daemon proxy agentP Core Daemon cô lập session 1:1.
 * **Nhân sự thực thi**: Liam (DevOps), Carlos (Backend), Maya (Architect), Lucas (Senior Dev).
 * **Nhiệm vụ cụ thể**:
   1. *Maya & Carlos*: Khởi tạo file `.agents/db.sqlite` theo đúng đặc tả `docs/DATABASE_SCHEMA_SPEC.md` với đầy đủ 12 bảng, index và trigger đồng bộ Kanban khi duyệt Checkpoint.
@@ -206,7 +206,7 @@ Lõi Hạ Tầng &      Onboarding &        Studio Kép UI/UX    Editor, File & 
 * **Nhân sự thực thi**: Liam (DevOps), Sophia (Docs/Excel), Oliver (Perf), Viktor (QA Lead).
 * **Nhiệm vụ cụ thể**:
   1. *Liam*: Lập trình Trang 5 Pre-flight System Diagnostics:
-     - Quét và kiểm tra 7 tiêu chí: Flutter SDK, Android Studio & AVD, Node.js 20, Git, SQLite engine, 9router daemon, và port 8080.
+     - Quét và kiểm tra 7 tiêu chí: Flutter SDK, Android Studio & AVD, Node.js 20, Git, SQLite engine, agentP Core Daemon, và port 8080.
      - Quản lý vòng đời AVD: Tạo, khởi chạy Pixel 8 Pro ở chế độ Cửa sổ GUI hoặc Headless ngầm.
   2. *Liam & David*: Lập trình Trang 4 Mobile Remote Controller:
      - Khởi chạy WebSocket Server trên máy tính (Host Online port 8080).

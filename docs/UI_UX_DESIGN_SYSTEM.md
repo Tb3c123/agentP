@@ -434,7 +434,7 @@ Hợp nhất hoàn hảo **Phương án 1 (Embedded Mini-Kanban)**, **Phương �
 │ │  🪙 Liam     │ │ │  ⚡ Victor   │ │ │  ⚡ Chloe    │ │ │  🪙 Oliver   │ │ │  Chờ Boss ký │ │ │    Launchpad │ │
 │ └──────────────┘ │ └──────────────┘ │ └──────────────┘ │ └──────────────┘ │ └──────────────┘ │ └──────────────┘ │
 │ ┌──────────────┐ │                  │ ┌──────────────┐ │                  │                  │ ┌──────────────┐ │
-│ │#14 Excel Rep │ │                  │ │#09 Diff View │ │                  │                  │ │#02 9router   │ │
+│ │#14 Excel Rep │ │                  │ │#09 Diff View │ │                  │                  │ │#02 CoreDaemon│ │
 │ │  🪙 Sophia   │ │                  │ │  🪙 Sam      │ │                  │                  │ │    Daemon OK │ │
 │ └──────────────┘ │                  │ └──────────────┘ │                  │                  │ └──────────────┘ │
 └──────────────────┴──────────────────┴──────────────────┴──────────────────┴──────────────────┴──────────────────┘
@@ -464,7 +464,7 @@ Hệ thống đã kết xuất toàn bộ 10 màn hình riêng biệt thành cá
   👉 [**docs/assets/screen_1_onboarding_launchpad.svg**](file:///Users/tb3c/Documents/antigravity/fearless-einstein/docs/assets/screen_1_onboarding_launchpad.svg)
 * 📐 **Trang 2: Unified Main Command Workspace (Bàn làm việc Bạn ⇄ Lead/PM)**:
   👉 [**docs/assets/screen_2_main_command_workspace.svg**](file:///Users/tb3c/Documents/antigravity/fearless-einstein/docs/assets/screen_2_main_command_workspace.svg)
-* 📐 **Trang 3: Provider Setup & Manual Role Binding (Cơ chế 1:1 9router)**:
+* 📐 **Trang 3: Provider Setup & Manual Role Binding (Cơ chế 1:1 agentP Core Daemon)**:
   👉 [**docs/assets/screen_3_provider_connection_modal.svg**](file:///Users/tb3c/Documents/antigravity/fearless-einstein/docs/assets/screen_3_provider_connection_modal.svg)
 * 📐 **Trang 4: Remote Mobile Controller (Giao diện điều khiển qua Android)**:
   👉 [**docs/assets/screen_4_mobile_remote_controller.svg**](file:///Users/tb3c/Documents/antigravity/fearless-einstein/docs/assets/screen_4_mobile_remote_controller.svg)

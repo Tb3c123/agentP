@@ -40,7 +40,7 @@ def check_git():
     ver = subprocess.check_output([git, "--version"]).decode().strip()
     return True, ver
 
-def check_9router():
+def check_agentp_daemon():
     router_file = os.path.join(os.path.dirname(__file__), '..', 'src', 'daemon', 'router.py')
     if os.path.exists(router_file):
         return True, "Daemon source và 14 sessions sẵn sàng"
@@ -74,7 +74,7 @@ def main():
         ("1. SQLite Embedded DB (.agents/db.sqlite)", check_sqlite),
         ("2. Node.js & npm Runtime Toolchain", check_node),
         ("3. Git Safe Version Control", check_git),
-        ("4. 9router Local Protocol Daemon", check_9router),
+        ("4. agentP Core Local Protocol Daemon", check_agentp_daemon),
         ("5. Flutter SDK Platform Support", check_flutter),
         ("6. Android Toolchain & AVD Bridge", check_android),
         ("7. Ban Kỹ Thuật 14 Agent Roles (Swarm)", check_roles),

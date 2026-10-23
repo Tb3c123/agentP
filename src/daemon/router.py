@@ -26,8 +26,8 @@ def get_db():
     conn.execute("PRAGMA journal_mode = WAL;")
     return conn
 
-class NineRouterService:
-    """Core 9router protocol and session isolation logic"""
+class AgentPCoreDaemonService:
+    """Core agentP protocol and session isolation logic (Built-in Daemon)"""
     
     @staticmethod
     def get_health():
@@ -39,7 +39,7 @@ class NineRouterService:
 
         return {
             "status": "healthy",
-            "service": "9router-daemon",
+            "service": "agentp-core-daemon",
             "version": "1.0.0",
             "port": PORT,
             "db_status": "connected",
@@ -195,7 +195,7 @@ class NineRouterService:
         }
 
 
-class NineRouterHandler(http.server.BaseHTTPRequestHandler):
+class AgentPDaemonHandler(http.server.BaseHTTPRequestHandler):
     def _set_headers(self, status=200, content_type='application/json'):
         self.send_response(status)
         self.send_header('Content-Type', content_type)
@@ -214,16 +214,16 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
         # API Endpoints
         if path == '/health' or path == '/api/health':
             self._set_headers(200)
-            self.wfile.write(json.dumps(NineRouterService.get_health()).encode('utf-8'))
+            self.wfile.write(json.dumps(AgentPCoreDaemonService.get_health()).encode('utf-8'))
         elif path == '/sessions' or path == '/api/sessions':
             self._set_headers(200)
-            self.wfile.write(json.dumps(NineRouterService.get_sessions()).encode('utf-8'))
+            self.wfile.write(json.dumps(AgentPCoreDaemonService.get_sessions()).encode('utf-8'))
         elif path == '/tokens' or path == '/api/tokens':
             self._set_headers(200)
-            self.wfile.write(json.dumps(NineRouterService.get_tokens()).encode('utf-8'))
+            self.wfile.write(json.dumps(AgentPCoreDaemonService.get_tokens()).encode('utf-8'))
         elif path == '/kanban' or path == '/api/kanban':
             self._set_headers(200)
-            self.wfile.write(json.dumps(NineRouterService.get_kanban()).encode('utf-8'))
+            self.wfile.write(json.dumps(AgentPCoreDaemonService.get_kanban()).encode('utf-8'))
         elif path == '/api/studio/snapshots':
             self._set_headers(200)
             snaps = AstSyncEngine.get_snapshots()
@@ -375,7 +375,7 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
             prompt = data.get('prompt', '')
             task_id = data.get('task_id', None)
             try:
-                res = NineRouterService.chat_completions(role_id, prompt, task_id)
+                res = AgentPCoreDaemonService.chat_completions(role_id, prompt, task_id)
                 self._set_headers(200)
                 self.wfile.write(json.dumps(res).encode('utf-8'))
             except ValueError as e:
@@ -387,7 +387,7 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
             action = data.get('action')
             feedback = data.get('feedback', '')
             try:
-                res = NineRouterService.resolve_checkpoint(checkpoint_id, action, feedback)
+                res = AgentPCoreDaemonService.resolve_checkpoint(checkpoint_id, action, feedback)
                 self._set_headers(200)
                 self.wfile.write(json.dumps(res).encode('utf-8'))
             except ValueError as e:
@@ -399,13 +399,13 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
 
 def run_server():
     server_address = ('127.0.0.1', PORT)
-    httpd = socketserver.TCPServer(server_address, NineRouterHandler)
+    httpd = socketserver.TCPServer(server_address, AgentPDaemonHandler)
     httpd.allow_reuse_address = True
-    print(f"✓ 9router Local Daemon running at http://127.0.0.1:{PORT}")
+    print(f"✓ agentP Core Daemon running at http://127.0.0.1:{PORT}")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\nShutting down 9router daemon.")
+        print("\nShutting down agentP core daemon.")
         httpd.server_close()
 
 if __name__ == '__main__':

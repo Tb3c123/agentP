@@ -13,7 +13,7 @@
 
 1. [Tầm Nhìn & 8 Trụ Cột Cốt Lõi](#1-tầm-nhìn--8-trụ-cột-cốt-lõi)
 2. [Hệ Thống 14 Vai Trò Chuyên Biệt (Roles & Skill Matrix)](#2-hệ-thống-14-vai-trò-chuyên-biệt-roles--skill-matrix)
-3. [Lõi Provider 1:1 Theo 9router & Gán Model Thủ Công](#3-lõi-provider-11-theo-9router--gán-model-thủ-công)
+3. [Lõi Provider 1:1 agentP Core Daemon & Gán Model Thủ Công](#3-lõi-provider-11-agentp-core-daemon--gán-model-thủ-công)
 4. [Mô Hình Phối Hợp: Bàn Làm Việc Duy Nhất & Đội Ngũ Kỹ Thuật Ngầm](#4-mô-hình-phối-hợp-bàn-làm-việc-duy-nhất--đội-ngũ-kỹ-thuật-ngầm)
 5. [Thu Thập Luồng Suy Nghĩ Nguyên Bản (Raw Model Thinking Log)](#5-thu-thập-luồng-suy-nghĩ-nguyên-bản-raw-model-thinking-log)
 6. [Hệ Thống Đo Lường Token Theo Role (Token Load Icons & Live Meter)](#6-hệ-thống-đo-lường-token-theo-role-token-load-icons--live-meter)
@@ -34,7 +34,7 @@ Dự án xây dựng một **Nền tảng Điều phối Đa Trí Tuệ Nhân T�
 
 ### 8 Trụ Cột Kiến Trúc Vững Chắc:
 1. **Trang Khởi Tạo Thông Minh (Smart Onboarding Launchpad)**: Bắt đầu bằng câu hỏi tối giản *"Bạn muốn tạo project gì?"*, phân tích mô tả sơ bộ để tự động sinh tên project chuẩn (kebab-case), khởi tạo workspace và đưa người dùng vào việc ngay lập tức.
-2. **Lõi Provider 1:1 Theo Cơ Chế 9router**: Đóng vai trò Local Reverse Proxy Daemon. Ưu tiên tối đa việc tái sử dụng tài khoản/phiên đăng nhập có sẵn trên máy (như `claude login`, `cursor`, `gh auth/copilot`, session tokens) thay vì bắt buộc dùng API key trả phí.
+2. **Lõi Provider 1:1 agentP Core Daemon**: Đóng vai trò Local Reverse Proxy Daemon nội bộ. Ưu tiên tối đa việc tái sử dụng tài khoản/phiên đăng nhập có sẵn trên máy (như `claude login`, `cursor`, `gh auth/copilot`, session tokens) thay vì bắt buộc dùng API key trả phí.
 3. **Gán Model Thủ Công Sau Khi Kết Nối (Dynamic Model Binding)**: Quét danh sách model khả dụng từ các profile đã kết nối thành công, cho phép người dùng tự tay chỉ định model tối ưu cho từng Role.
 4. **Bàn Làm Việc Điều Hành Duy Nhất (Single Point of Contact - SPOC)**: Người dùng chỉ trao đổi trực tiếp với **Trưởng dự án (Lead/PM)**. Toàn bộ 13 role kỹ thuật còn lại (BA, UI/UX, Architect, Dev, QA, DevOps, Docs/Excel Specialist) hoạt động dưới dạng **Đội ngũ Kỹ thuật Ngầm (Backstage Swarm)**, triệt tiêu hoàn toàn gánh nặng phải vào từng phòng chat.
 5. **Nhật Ký Suy Nghĩ Nguyên Bản (Raw Model Thinking Log)**: Trích xuất 100% token suy nghĩ thực tế từ payload của các model thế hệ mới (`<thinking>`, `reasoning_content`, `thought`), không giả lập hay biên soạn lại.
@@ -94,10 +94,10 @@ Hệ thống phân tách rạch ròi 14 chuyên môn, mỗi role được nạp 
 
 ---
 
-## 3. LÕI PROVIDER 1:1 THEO 9ROUTER & GÁN MODEL THỦ CÔNG
+## 3. LÕI PROVIDER 1:1 AGENTP CORE DAEMON & GÁN MODEL THỦ CÔNG
 
 ### 3.1. Cơ Chế Reverse Proxy Cục Bộ (Tái Sử Dụng Phiên Đăng Nhập):
-Kế thừa triết lý từ `9router`: Đại đa số người dùng đã có gói thuê bao (Claude Pro/Team, Cursor Pro, ChatGPT Plus, GitHub Copilot). Bắt người dùng trả thêm tiền API là rào cản lớn.
+Lõi daemon nội bộ `agentp-core-daemon`: Đại đa số người dùng đã có gói thuê bao (Claude Pro/Team, Cursor Pro, ChatGPT Plus, GitHub Copilot). Bắt người dùng trả thêm tiền API là rào cản lớn. Do đó agentP tự động nhận diện và tái sử dụng các phiên đăng nhập sẵn có.
 * Hệ thống khởi chạy một **Local Daemon** (`localhost:PORT`).
 * Hỗ trợ trích xuất phiên đăng nhập trực tiếp từ:
   * `claude login` (Claude CLI Session).

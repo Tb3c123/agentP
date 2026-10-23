@@ -187,7 +187,7 @@ class CommandWorkspaceService:
 1. User input received: "{user_text[:80]}..."
 2. Context: FoodDelivery-Loyalty-App with 14 swarm roles.
 3. Strategy: Assign Marcus (BA) to define specs, Maya to design schema, David (FE) to build UI, and Viktor (QA) to test.
-4. Update Kanban columns & sync state via 9router daemon.
+4. Update Kanban columns & sync state via agentP Core Daemon.
 </thinking>"""
         thought_duration_ms = int((time.time() - thought_start) * 1000) + 1450
 

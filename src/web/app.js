@@ -62,7 +62,7 @@ function applyTemplate(name) {
     'E-Commerce': 'Tôi muốn xây dựng nền tảng sàn thương mại điện tử mua sắm trực tuyến, có giỏ hàng, mã giảm giá và thanh toán online.',
     'Mobile Flutter': 'Ứng dụng di động đa nền tảng bằng Flutter, tích hợp push notification và xác thực Firebase Auth.',
     'SaaS Dashboard': 'Hệ thống SaaS Dashboard quản lý số liệu doanh thu thời gian thực, xuất báo cáo Excel và biểu đồ phân tích.',
-    'AI Agent API': 'Hệ thống AI Agent API tự động điều phối đa mô hình qua 9router daemon và lưu trữ lịch sử SQLite.'
+    'AI Agent API': 'Hệ thống AI Agent API tự động điều phối đa mô hình qua agentP Core Daemon và lưu trữ lịch sử SQLite.'
   };
   descInput.value = templates[name] || descInput.value;
   fetchAutoName(descInput.value);

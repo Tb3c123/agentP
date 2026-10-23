@@ -11,7 +11,7 @@
 
 ## 1. Tổng Quan Kiến Trúc Lưu Trữ (Storage Architecture)
 
-agentP sử dụng kiến trúc lưu trữ **Local-First Embedded SQLite** (`.agents/db.sqlite`) nằm ngay trong thư mục gốc của mỗi dự án. Toàn bộ thông tin từ cấu hình dự án, 14 vai trò agent, session 1:1 của 9router daemon, lịch sử hội thoại có `<thinking>`, hệ thống Kanban Tri-Modal, các cổng phê duyệt Checkpoint và snapshot thiết kế Tldraw/Onlook đều được bảo toàn 100% trên máy tính của người dùng mà không phụ thuộc vào bất kỳ dịch vụ Cloud DB trả phí nào.
+agentP sử dụng kiến trúc lưu trữ **Local-First Embedded SQLite** (`.agents/db.sqlite`) nằm ngay trong thư mục gốc của mỗi dự án. Toàn bộ thông tin từ cấu hình dự án, 14 vai trò agent, session 1:1 của agentP Core Daemon, lịch sử hội thoại có `<thinking>`, hệ thống Kanban Tri-Modal, các cổng phê duyệt Checkpoint và snapshot thiết kế Tldraw/Onlook đều được bảo toàn 100% trên máy tính của người dùng mà không phụ thuộc vào bất kỳ dịch vụ Cloud DB trả phí nào.
 
 ```
 📁 Thư mục dự án (~/Projects/FoodDelivery-Loyalty-App/)
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS agent_roles (
 
 ---
 
-### 3.4. Bảng `provider_sessions` (Phiên 1:1 Cô Lập Qua 9router Daemon)
+### 3.4. Bảng `provider_sessions` (Phiên 1:1 Cô Lập Qua agentP Core Daemon)
 Quản lý trạng thái kết nối độc lập giữa từng vai trò kỹ thuật với các Provider qua cổng local 9090.
 
 ```sql
