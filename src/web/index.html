@@ -51,24 +51,6 @@
         </button>
       </div>
 
-      <!-- Upper Antigravity Links -->
-      <div class="rail-upper-nav">
-        <button class="rail-nav-row" onclick="openConvHistoryModal()">
-          <span class="rail-row-icon">🕒</span>
-          <span class="rail-row-label">Conversation History</span>
-        </button>
-        <button class="rail-nav-row" onclick="openAutomationsModal()">
-          <span class="rail-row-icon">⏱️</span>
-          <span class="rail-row-label">Automations</span>
-          <span class="rail-row-badge green">3 Active</span>
-        </button>
-        <button class="rail-nav-row" onclick="openCustomizationsModal()">
-          <span class="rail-row-icon">🧰</span>
-          <span class="rail-row-label">Customizations</span>
-          <span class="rail-row-badge teal">30 Skills</span>
-        </button>
-      </div>
-
       <!-- Projects Section Header -->
       <div class="rail-projects-header">
         <span class="projects-title">Projects</span>
@@ -1051,7 +1033,7 @@
       <div class="remote-header-bar">
         <div>
           <div class="remote-main-title">🔗 CẤU HÌNH AI PROVIDERS &amp; CÔ LẬP SESSION 1:1 (TRANG 3)</div>
-          <div class="remote-sub-title">Mỗi vai trò (role) được gán model và session độc lập, bảo mật, tránh xung đột context giữa 14 AI Specialists</div>
+          <div class="remote-sub-title">Quản lý kết nối các nhà cung cấp AI (OAuth, Free, API Key) &amp; Phân bổ linh hoạt model cho 14 chuyên viên kỹ thuật</div>
         </div>
         <div class="remote-header-actions">
           <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:6px 14px; font-weight:700;" onclick="testAllProviderSessions()">
@@ -1063,223 +1045,313 @@
         </div>
       </div>
 
-      <!-- Daemon Status Banner -->
-      <div class="daemon-info-banner">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div class="daemon-live-indicator"></div>
-          <div>
-            <div style="font-size:13px; font-weight:800; color:#065F46;">agentP Core Daemon đang chạy: http://127.0.0.1:9090</div>
-            <div style="font-size:11px; color:#047857; margin-top:2px;">Tự động điều phối API keys, rate-limit, fallback failover và đồng bộ session CLI cục bộ</div>
+      <!-- Elena Clean Light Sub-navigation Tabs -->
+      <div class="providers-subnav-bar">
+        <button class="prov-subnav-btn active" id="btnSubtabRoleBinding" onclick="switchProviderSubtab('role_binding')">
+          👥 Gán 14 Chuyên Viên AI (Role-to-Model)
+        </button>
+        <button class="prov-subnav-btn" id="btnSubtabProvidersHub" onclick="switchProviderSubtab('providers_hub')">
+          🔌 Hub Nhà Cung Cấp AI (9router Connections)
+        </button>
+      </div>
+
+      <!-- SUBTAB 1: ROLE BINDING (14 AI SPECIALISTS) -->
+      <div class="provider-subtab-pane active" id="paneRoleBinding">
+        <!-- Daemon Status Banner -->
+        <div class="daemon-info-banner">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="daemon-live-indicator"></div>
+            <div>
+              <div style="font-size:13px; font-weight:800; color:#065F46;">agentP Core Daemon đang chạy: http://127.0.0.1:9090</div>
+              <div style="font-size:11px; color:#047857; margin-top:2px;">Tự động điều phối API keys, rate-limit, fallback failover và đồng bộ session CLI cục bộ</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span style="font-size:11px; background:#FFFFFF; color:#0F766E; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
+              🪙 42.5k tokens saved
+            </span>
+            <span style="font-size:11px; background:#FFFFFF; color:#047857; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
+              14/14 Sessions Live
+            </span>
           </div>
         </div>
-        <div style="display:flex; gap:8px; align-items:center;">
-          <span style="font-size:11px; background:#FFFFFF; color:#0F766E; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
-            🪙 42.5k tokens saved
-          </span>
-          <span style="font-size:11px; background:#FFFFFF; color:#047857; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
-            14/14 Sessions Live
-          </span>
+
+        <!-- 14 Sessions Table Card with Dynamic Selectable AI Models -->
+        <div class="providers-table-card">
+          <table class="providers-table">
+            <thead>
+              <tr>
+                <th style="width:260px;">ROLE / CHUYÊN VIÊN</th>
+                <th style="width:240px;">TUỲ CHỌN AI MODEL</th>
+                <th style="width:190px;">SESSION ID 1:1</th>
+                <th style="width:110px;">LATENCY</th>
+                <th style="width:130px;">TRẠNG THÁI</th>
+                <th style="width:90px;">THAO TÁC</th>
+              </tr>
+            </thead>
+            <tbody id="providersTableBody">
+              <!-- Populated dynamically by renderProvidersTable -->
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- 14 Sessions Table Card -->
-      <div class="providers-table-card">
-        <table class="providers-table">
-          <thead>
-            <tr>
-              <th style="width:260px;">ROLE / CHUYÊN VIÊN</th>
-              <th style="width:220px;">MODEL ĐƯỢC GÁN</th>
-              <th style="width:200px;">SESSION ID 1:1</th>
-              <th style="width:120px;">LATENCY</th>
-              <th style="width:130px;">TRẠNG THÁI</th>
-              <th style="width:100px;">THAO TÁC</th>
-            </tr>
-          </thead>
-          <tbody id="providersTableBody">
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#FEF3C7; color:#92400E; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">PM</span>
-                  <b>Alex (Trưởng Dự Án / Lead PM)</b>
-                </div>
-              </td>
-              <td><span class="model-badge claude">Claude 3.5 Sonnet</span></td>
-              <td><code>sess_alex_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_alex_01">142ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_alex_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#FEF3C7; color:#92400E; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">BA</span>
-                  <b>Marcus (Lead Business Analyst)</b>
-                </div>
-              </td>
-              <td><span class="model-badge gpt">GPT-4o (OpenAI)</span></td>
-              <td><code>sess_marcus_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_marcus_01">198ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_marcus_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#FCE7F3; color:#9D174D; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">UI</span>
-                  <b>Elena (Chuyên Gia UI/UX)</b>
-                </div>
-              </td>
-              <td><span class="model-badge claude">Claude 3.5 Sonnet</span></td>
-              <td><code>sess_elena_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_elena_01">110ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_elena_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#CFFAFE; color:#155E75; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">ARCH</span>
-                  <b>Maya (Kiến Trúc Sư Hệ Thống)</b>
-                </div>
-              </td>
-              <td><span class="model-badge claude">Claude 3.5 Sonnet</span></td>
-              <td><code>sess_maya_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_maya_01">155ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_maya_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#E0F2FE; color:#0369A1; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">FE</span>
-                  <b>David (Kỹ Sư Frontend Flutter)</b>
-                </div>
-              </td>
-              <td><span class="model-badge gemini">Gemini 2.5 Flash</span></td>
-              <td><code>sess_david_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_david_01">88ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_david_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#E0E7FF; color:#4338CA; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">DEV</span>
-                  <b>Lucas (Senior Developer)</b>
-                </div>
-              </td>
-              <td><span class="model-badge claude">Claude 3.5 Sonnet</span></td>
-              <td><code>sess_lucas_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_lucas_01">138ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_lucas_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#D1FAE5; color:#065F46; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">BE</span>
-                  <b>Zoe (Kỹ Sư Backend)</b>
-                </div>
-              </td>
-              <td><span class="model-badge gpt">GPT-4o (OpenAI)</span></td>
-              <td><code>sess_zoe_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_zoe_01">180ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_zoe_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#FFE4E6; color:#9F1239; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">QA</span>
-                  <b>Viktor (QA Lead &amp; Tester)</b>
-                </div>
-              </td>
-              <td><span class="model-badge gpt">GPT-4o (OpenAI)</span></td>
-              <td><code>sess_viktor_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_viktor_01">172ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_viktor_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#FFEDD5; color:#9A3412; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">OPS</span>
-                  <b>Liam (DevOps Lead)</b>
-                </div>
-              </td>
-              <td><span class="model-badge claude">Claude 3.5 Sonnet</span></td>
-              <td><code>sess_liam_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_liam_01">140ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_liam_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#F3E8FF; color:#6B21A8; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">SRE</span>
-                  <b>Chloe (Kỹ Sư SRE &amp; Resilience)</b>
-                </div>
-              </td>
-              <td><span class="model-badge gemini">Gemini 2.5 Flash</span></td>
-              <td><code>sess_chloe_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_chloe_01">85ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_chloe_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#FEF9C3; color:#854D0E; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">SEC</span>
-                  <b>Nora (Chuyên Gia An Ninh Bảo Mật)</b>
-                </div>
-              </td>
-              <td><span class="model-badge claude">Claude 3.5 Sonnet</span></td>
-              <td><code>sess_nora_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_nora_01">145ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_nora_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#D1FAE5; color:#047857; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">DATA</span>
-                  <b>Sophia (Kỹ Sư Dữ Liệu &amp; Excel)</b>
-                </div>
-              </td>
-              <td><span class="model-badge gpt">GPT-4o (OpenAI)</span></td>
-              <td><code>sess_sophia_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_sophia_01">190ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_sophia_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#DBEAFE; color:#1E40AF; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">PERF</span>
-                  <b>Oliver (Kỹ Sư Tối Ưu Hiệu Năng)</b>
-                </div>
-              </td>
-              <td><span class="model-badge gemini">Gemini 2.5 Flash</span></td>
-              <td><code>sess_oliver_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_oliver_01">82ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_oliver_01')">Ping</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <span style="background:#F1F5F9; color:#334155; font-weight:800; padding:2px 6px; border-radius:4px; font-size:10px;">DOC</span>
-                  <b>Mia (Kỹ Sư Tài Liệu Kỹ Thuật)</b>
-                </div>
-              </td>
-              <td><span class="model-badge claude">Claude 3.5 Sonnet</span></td>
-              <td><code>sess_mia_01</code></td>
-              <td><span class="latency-pill" id="lat_sess_mia_01">135ms</span></td>
-              <td><span class="badge-online">✓ Connected</span></td>
-              <td><button class="btn-table-action" onclick="pingSingleSession('sess_mia_01')">Ping</button></td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- SUBTAB 2: PROVIDERS HUB (MATCHING 9ROUTER IMAGE 2) -->
+      <div class="provider-subtab-pane" id="paneProvidersHub">
+        
+        <!-- Category 1: OAuth Providers -->
+        <div class="provider-section-box">
+          <div class="prov-sec-header">
+            <span class="prov-sec-title">OAuth Providers</span>
+            <button class="btn-small prov-test-all" onclick="testCategoryProviders('oauth')">▶ Test All</button>
+          </div>
+          <div class="prov-cards-grid">
+            <div class="prov-card" onclick="openProviderModal('Claude Code', 'oauth', 'claude_code')">
+              <span class="prov-icon">✳️</span>
+              <div class="prov-info">
+                <div class="prov-name">Claude Code</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Antigravity', 'oauth', 'antigravity')">
+              <span class="prov-icon">🚀</span>
+              <div class="prov-info">
+                <div class="prov-name">Antigravity</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('OpenAI Codex', 'oauth', 'openai_codex')">
+              <span class="prov-icon">🤖</span>
+              <div class="prov-info">
+                <div class="prov-name">OpenAI Codex</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('GitHub Copilot', 'oauth', 'github_copilot')">
+              <span class="prov-icon">🐙</span>
+              <div class="prov-info">
+                <div class="prov-name">GitHub Copilot</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Cursor IDE', 'oauth', 'cursor_ide')">
+              <span class="prov-icon">🖥️</span>
+              <div class="prov-info">
+                <div class="prov-name">Cursor IDE</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Kilo Code', 'oauth', 'kilo_code')">
+              <span class="prov-icon">⚡</span>
+              <div class="prov-info">
+                <div class="prov-name">Kilo Code</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Cline', 'oauth', 'cline')">
+              <span class="prov-icon">👾</span>
+              <div class="prov-info">
+                <div class="prov-name">Cline</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Free Providers -->
+        <div class="provider-section-box">
+          <div class="prov-sec-header">
+            <span class="prov-sec-title">Free Providers</span>
+            <button class="btn-small prov-test-all" onclick="testCategoryProviders('free')">▶ Test All</button>
+          </div>
+          <div class="prov-cards-grid">
+            <div class="prov-card" onclick="openProviderModal('iFlow AI', 'free', 'iflow')">
+              <span class="prov-icon">🔄</span>
+              <div class="prov-info">
+                <div class="prov-name">iFlow AI</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Qwen Code', 'free', 'qwen_code')">
+              <span class="prov-icon">✨</span>
+              <div class="prov-info">
+                <div class="prov-name">Qwen Code</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Gemini CLI', 'free', 'gemini_cli')">
+              <span class="prov-icon">🔷</span>
+              <div class="prov-info">
+                <div class="prov-name">Gemini CLI</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Kiro AI', 'free', 'kiro_ai')">
+              <span class="prov-icon">👻</span>
+              <div class="prov-info">
+                <div class="prov-name">Kiro AI</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: API Key Providers -->
+        <div class="provider-section-box">
+          <div class="prov-sec-header">
+            <span class="prov-sec-title">API Key Providers</span>
+            <button class="btn-small prov-test-all" onclick="testCategoryProviders('apikey')">▶ Test All</button>
+          </div>
+          <div class="prov-cards-grid">
+            <div class="prov-card" onclick="openProviderModal('OpenRouter', 'api', 'openrouter')">
+              <span class="prov-icon">🌐</span>
+              <div class="prov-info">
+                <div class="prov-name">OpenRouter</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('GLM Coding', 'api', 'glm_coding')">
+              <span class="prov-icon">🔲</span>
+              <div class="prov-info">
+                <div class="prov-name">GLM Coding</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Minimax Coding', 'api', 'minimax')">
+              <span class="prov-icon">📊</span>
+              <div class="prov-info">
+                <div class="prov-name">Minimax Coding</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Alibaba Intl', 'api', 'alibaba_intl')">
+              <span class="prov-icon">🟠</span>
+              <div class="prov-info">
+                <div class="prov-name">Alibaba Intl</div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Anthropic', 'api', 'anthropic')">
+              <span class="prov-icon">🔺</span>
+              <div class="prov-info">
+                <div class="prov-name">Anthropic</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('OpenAI', 'api', 'openai')">
+              <span class="prov-icon">🟢</span>
+              <div class="prov-info">
+                <div class="prov-name">OpenAI</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Gemini', 'api', 'gemini')">
+              <span class="prov-icon">💎</span>
+              <div class="prov-info">
+                <div class="prov-name">Gemini</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('DeepSeek', 'api', 'deepseek')">
+              <span class="prov-icon">🐳</span>
+              <div class="prov-info">
+                <div class="prov-name">DeepSeek</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Groq', 'api', 'groq')">
+              <span class="prov-icon">⚡</span>
+              <div class="prov-info">
+                <div class="prov-name">Groq</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('xAI (Grok)', 'api', 'xai')">
+              <span class="prov-icon">✖️</span>
+              <div class="prov-info">
+                <div class="prov-name">xAI (Grok)</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Mistral', 'api', 'mistral')">
+              <span class="prov-icon">🌊</span>
+              <div class="prov-info">
+                <div class="prov-name">Mistral</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Perplexity', 'api', 'perplexity')">
+              <span class="prov-icon">🔍</span>
+              <div class="prov-info">
+                <div class="prov-name">Perplexity</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Together AI', 'api', 'together')">
+              <span class="prov-icon">🤝</span>
+              <div class="prov-info">
+                <div class="prov-name">Together AI</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Fireworks AI', 'api', 'fireworks')">
+              <span class="prov-icon">🎆</span>
+              <div class="prov-info">
+                <div class="prov-name">Fireworks AI</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Cerebras', 'api', 'cerebras')">
+              <span class="prov-icon">🧠</span>
+              <div class="prov-info">
+                <div class="prov-name">Cerebras</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('Cohere', 'api', 'cohere')">
+              <span class="prov-icon">🔗</span>
+              <div class="prov-info">
+                <div class="prov-name">Cohere</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('NVIDIA NIM', 'api', 'nvidia')">
+              <span class="prov-icon">🟩</span>
+              <div class="prov-info">
+                <div class="prov-name">NVIDIA NIM</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+            <div class="prov-card" onclick="openProviderModal('SiliconFlow', 'api', 'siliconflow')">
+              <span class="prov-icon">🌊</span>
+              <div class="prov-info">
+                <div class="prov-name">SiliconFlow</div>
+                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 4: API Key Compatible Providers -->
+        <div class="provider-section-box">
+          <div class="prov-sec-header">
+            <span class="prov-sec-title">API Key Compatible Providers</span>
+            <div style="display:flex; gap:8px;">
+              <button class="btn-small btn-add-compat" onclick="openCustomCompatModal('Anthropic')">+ Add Anthropic Compatible</button>
+              <button class="btn-small btn-add-compat" onclick="openCustomCompatModal('OpenAI')">+ Add OpenAI Compatible</button>
+            </div>
+          </div>
+          <div class="prov-cards-grid">
+            <div class="prov-card" onclick="openProviderModal('Alibaba Custom', 'compat', 'alibaba_compat')">
+              <span class="prov-icon">🈹</span>
+              <div class="prov-info">
+                <div class="prov-name">Alibaba <span class="badge-chat-tag">Chat</span></div>
+                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1671,6 +1743,47 @@
         <button class="launch-btn" style="background:#059669; margin-top:6px;" onclick="downloadExcelReportFile()">
           📥 Tải Báo Cáo Excel Nghiệm Thu (.xlsx / .csv)
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 9ROUTER PROVIDER CONFIG MODAL ================= -->
+  <div class="modal-backdrop" id="providerConfigModal" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:18px;" id="modalProvIcon">⚙️</span>
+          <div style="font-size:14px; font-weight:700; color:#0F172A;" id="modalProvTitle">Cấu Hình AI Provider</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeProviderModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:16px; display:flex; flex-direction:column; gap:12px;">
+        <div style="font-size:12px; color:#64748B;">
+          Kết nối nhà cung cấp AI này với agentP Core Daemon để tự động ủy quyền phân bổ cho 14 chuyên viên kỹ thuật.
+        </div>
+        <div class="setting-row">
+          <label style="font-size:11px; font-weight:700; color:#334155;">API Key / Secret Token:</label>
+          <input type="password" class="inspector-input" id="modalProvApiKey" placeholder="Nhập sk-... hoặc token xác thực" style="width:100%; padding:8px; border:1px solid #CBD5E1; border-radius:6px; font-size:12px;">
+        </div>
+        <div class="setting-row">
+          <label style="font-size:11px; font-weight:700; color:#334155;">Base URL / Endpoint:</label>
+          <input type="text" class="inspector-input" id="modalProvBaseUrl" placeholder="https://api.openai.com/v1" style="width:100%; padding:8px; border:1px solid #CBD5E1; border-radius:6px; font-size:12px;">
+        </div>
+        <div class="setting-row">
+          <label style="font-size:11px; font-weight:700; color:#334155;">Model tùy chỉnh (phân cách bằng dấu phẩy):</label>
+          <input type="text" class="inspector-input" id="modalProvModels" placeholder="claude-3-7-sonnet, gpt-4o, deepseek-chat" style="width:100%; padding:8px; border:1px solid #CBD5E1; border-radius:6px; font-size:12px;">
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <button class="btn-small" style="background:#F1F5F9; border:1px solid #CBD5E1; color:#0F172A; padding:8px 14px;" onclick="testSingleProviderConnection()">
+            ⚡ Test Kết Nối
+          </button>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-small" style="background:#FFFFFF; border:1px solid #CBD5E1; color:#64748B; padding:8px 14px;" onclick="closeProviderModal()">Hủy</button>
+            <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:8px 16px; font-weight:700;" onclick="saveSingleProviderConfig()">
+              Lưu Cấu Hình
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -113,6 +113,8 @@ class RequestDispatcher:
             return DevOpsController.get_preflight()
         if path in ('/api/protocol/test-connection', '/api/protocol/test'):
             return ProtocolController.test_connections()
+        if path == '/api/protocol/update-model':
+            return ProtocolController.update_model(body_data)
         if path == '/api/files/delete':
             return CodeController.delete_file(body_data)
         if path == '/api/auto-name':

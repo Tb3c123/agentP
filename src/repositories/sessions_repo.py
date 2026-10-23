@@ -61,6 +61,16 @@ class SessionsRepository:
         return sessions
 
     @staticmethod
+    def update_model(session_id: str, new_model: str) -> bool:
+        conn = BaseRepository.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE provider_sessions SET assigned_model = ? WHERE session_id = ?", (new_model, session_id))
+        conn.commit()
+        updated = cursor.rowcount > 0
+        conn.close()
+        return updated
+
+    @staticmethod
     def get_token_metrics() -> Dict[str, Any]:
         conn = BaseRepository.get_connection()
         cursor = conn.cursor()

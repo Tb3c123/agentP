@@ -44,6 +44,20 @@ class ProtocolController(BaseController):
         }, 200)
 
     @staticmethod
+    def update_model(data: Dict[str, Any]) -> Tuple[int, Dict[str, str], bytes]:
+        session_id = data.get('session_id')
+        new_model = data.get('assigned_model')
+        if not session_id or not new_model:
+            return BaseController.error_response("Missing session_id or assigned_model", 400)
+        ok = SessionsRepository.update_model(session_id, new_model)
+        return BaseController.json_response({
+            "success": ok,
+            "session_id": session_id,
+            "assigned_model": new_model,
+            "message": f"Đã cập nhật model cho session {session_id} sang {new_model}"
+        }, 200)
+
+    @staticmethod
     def get_tokens() -> Tuple[int, Dict[str, str], bytes]:
         tokens = SessionsRepository.get_token_metrics()
         return BaseController.json_response(tokens, 200)

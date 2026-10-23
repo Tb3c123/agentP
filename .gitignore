@@ -48,6 +48,9 @@ src-tauri/WixTools/
 
 # 6. Flutter / Android SDK Artifacts
 .dart_tool/
+
+# 7. Cloned References & Upstream Studies
+references/
 .packages
 .flutter-plugins
 .flutter-plugins-dependencies
