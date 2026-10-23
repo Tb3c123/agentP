@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agentP — Developer Multi-Agent Desktop Suite</title>
+  <link rel="icon" type="image/svg+xml" href="/docs/assets/agentp_logo_favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="top-header">
+    <div class="brand-suite" onclick="switchView('workspace')">
+      <div class="fedora-badge">
+        <svg width="34" height="26" viewBox="0 0 34 26" fill="none">
+          <path d="M2 19 C2 17, 6 15, 17 15 C28 15, 32 17, 32 19 L34 21 C34 22, 32 23, 17 23 C2 23, 0 22, 0 21 Z" fill="#78350F"/>
+          <path d="M6 15 L8 5 C8 3.5, 12 2, 17 2 C22 2, 26 3.5, 26 5 L28 15 Z" fill="#78350F"/>
+          <rect x="7.5" y="12" width="19" height="2.5" fill="#0D9488" rx="0.8"/>
+        </svg>
+      </div>
+      <div class="brand-text">agent<span>P</span></div>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-tab" id="tabOnboarding" onclick="switchView('onboarding')">1. Onboarding</button>
+      <button class="nav-tab active" id="tabWorkspace" onclick="switchView('workspace')">2. Bàn Làm Việc &amp; Mini-Kanban</button>
+    </nav>
+
+    <div class="header-status">
+      <div class="status-pill online">
+        <span class="dot"></span> Host: 192.168.1.15:8080
+      </div>
+      <div class="status-pill tokens">
+        🪙 <span id="headerTokensSaved">42.5k saved</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-container">
+
+    <!-- ================= VIEW 1: ONBOARDING LAUNCHPAD ================= -->
+    <section class="view-panel onboarding-view" id="viewOnboarding">
+      <div class="onboarding-card">
+        <h1 class="onboarding-title">🌟 BẠN MUỐN TẠO PROJECT GÌ?</h1>
+        <p class="onboarding-subtitle">Chỉ cần nhập mô tả sơ lược bài toán, Trưởng dự án Alex (Lead/PM) sẽ tự động lập ban kỹ thuật và thực thi</p>
+
+        <textarea 
+          class="desc-textarea" 
+          id="projectDescInput" 
+          placeholder="Ví dụ: Tôi muốn làm ứng dụng đặt đồ ăn trên Android và Web bằng Flutter & NestJS, có giỏ hàng, tích điểm voucher thành viên và thanh toán quét mã QR..."
+        >Tôi muốn làm ứng dụng đặt đồ ăn trên Android và Web bằng Flutter &amp; NestJS, có giỏ hàng, tích điểm voucher thành viên và thanh toán quét mã QR.</textarea>
+
+        <!-- Smart Auto-Name Box -->
+        <div class="auto-name-box">
+          <div style="font-size: 13px; font-weight: 700; color: #0F766E;">✨ Tên project đề xuất:</div>
+          <div class="auto-name-tag" id="suggestedNameTag">🏷️ FoodDelivery-Loyalty-App</div>
+        </div>
+
+        <!-- Workspace Path -->
+        <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #CBD5E1; border-radius: 8px; padding: 10px 14px; margin-bottom: 20px;">
+          <span style="font-size: 12px; color: #64748B;">📂 Thư mục dự án:</span>
+          <span style="font-size: 12px; font-family: monospace; font-weight: 600;" id="suggestedPathText">~/Projects/FoodDelivery-Loyalty-App</span>
+        </div>
+
+        <!-- Launch Button -->
+        <button class="launch-btn" onclick="launchProjectFromOnboarding()">
+          🚀 KHỞI TẠO DỰ ÁN VỚI ALEX (LEAD / PM) NGAY
+        </button>
+
+        <!-- Quick Tags -->
+        <div style="display: flex; gap: 8px; justify-content: center; margin-top: 24px;">
+          <span style="font-size: 12px; color: #94A3B8;">Mẫu có sẵn:</span>
+          <button class="btn-small" onclick="applyTemplate('E-Commerce')">🛒 E-Commerce</button>
+          <button class="btn-small" onclick="applyTemplate('Mobile Flutter')">📱 Mobile Flutter</button>
+          <button class="btn-small" onclick="applyTemplate('SaaS Dashboard')">📊 SaaS Dashboard</button>
+          <button class="btn-small" onclick="applyTemplate('AI Agent API')">🤖 AI Agent API</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 2: MAIN COMMAND WORKSPACE ================= -->
+    <section class="view-panel workspace-view active" id="viewWorkspace">
+
+      <!-- LEFT SIDEBAR: SINGLE DESK & SWARM (240px) -->
+      <aside class="left-sidebar">
+        <div class="active-desk-card">
+          <div class="avatar-circle">PM</div>
+          <div class="desk-info">
+            <div class="name">Alex (Lead/PM)</div>
+            <div class="status">● Đang trực tuyến</div>
+          </div>
+        </div>
+
+        <div class="sidebar-heading">BACKSTAGE SWARM (14 ROLES)</div>
+        <div class="swarm-list" id="swarmListContainer">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div style="margin-top: 14px; border-top: 1px solid #E2E8F0; padding-top: 12px;">
+          <div class="sidebar-heading">CÔNG CỤ HỆ THỐNG</div>
+          <div style="font-size: 11px; display: flex; justify-content: space-between; padding: 4px 0; color: #334155;">
+            <span>🩺 Pre-flight Check:</span>
+            <span style="color: #047857; font-weight: 700;">100% OK</span>
+          </div>
+          <div style="font-size: 11px; display: flex; justify-content: space-between; padding: 4px 0; color: #334155;">
+            <span>🔗 9router 1:1 Sessions:</span>
+            <span style="color: #0D9488; font-weight: 700;">14 Live</span>
+          </div>
+        </div>
+
+        <!-- Emergency Stop Button -->
+        <button class="emergency-stop-btn" onclick="triggerEmergencyStop()">
+          ⏹️ DỪNG ĐỘT NGỘT (ESC)
+        </button>
+      </aside>
+
+      <!-- CENTER: CHAT STREAM & CHECKPOINT GATE -->
+      <section class="center-chat-workspace">
+        <div class="chat-stream" id="chatStream">
+          <!-- Dynamically rendered -->
+        </div>
+
+        <!-- Bottom Chat Input Bar -->
+        <div class="chat-input-bar">
+          <input 
+            type="text" 
+            class="chat-input" 
+            id="chatInputBox" 
+            placeholder="Nhập chỉ thị tiếp theo cho Alex (Lead/PM)..."
+            onkeydown="if(event.key === 'Enter') handleSendMessage()"
+          />
+          <button class="send-btn" onclick="handleSendMessage()">Gửi lệnh ➔</button>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: MODE A EMBEDDED MINI-KANBAN LIVE WIDGET -->
+      <aside class="right-panel">
+        <div class="panel-header">
+          <span>📋 LIVE KANBAN (Sprint 2)</span>
+          <button class="btn-small" style="color: #0F766E; font-weight: 700;">⛶ Mở Studio</button>
+        </div>
+
+        <!-- 4 Mini-Kanban Columns -->
+        <div class="mini-kanban-grid">
+          <!-- TO DO -->
+          <div class="kanban-col todo">
+            <div class="col-header">To Do (<span id="countTodo">0</span>)</div>
+            <div class="col-cards" id="colCardsTodo"></div>
+          </div>
+          <!-- CODING -->
+          <div class="kanban-col coding">
+            <div class="col-header">Coding (<span id="countCoding">0</span>)</div>
+            <div class="col-cards" id="colCardsCoding"></div>
+          </div>
+          <!-- QA -->
+          <div class="kanban-col qa">
+            <div class="col-header">QA (<span id="countQA">0</span>)</div>
+            <div class="col-cards" id="colCardsQA"></div>
+          </div>
+          <!-- DONE -->
+          <div class="kanban-col done">
+            <div class="col-header">Done (<span id="countDone">0</span>)</div>
+            <div class="col-cards" id="colCardsDone"></div>
+          </div>
+        </div>
+
+        <!-- Sub-panel: Git Diff Summary -->
+        <div class="sub-panel">
+          <div class="sub-panel-title">
+            <span>🌿 GIT STAGING: feature/cart-voucher</span>
+            <span><span class="lines-added">+45</span> / <span style="color: #DC2626; font-weight: 700;">-12</span></span>
+          </div>
+          <div class="git-file-row">
+            <span>lib/features/cart/cart_bloc.dart</span>
+            <span class="lines-added">+28 lines</span>
+          </div>
+          <div class="git-file-row">
+            <span>src/modules/cart/cart.controller.ts</span>
+            <span class="lines-added">+17 lines</span>
+          </div>
+          <div class="git-file-row">
+            <span>test/cart/cart_bloc_test.dart</span>
+            <span class="lines-added">+12 lines</span>
+          </div>
+        </div>
+
+        <!-- Sub-panel: Android AVD Runner -->
+        <div class="sub-panel">
+          <div class="sub-panel-title">
+            <span>📱 AVD RUNNER: Google Pixel 8 Pro</span>
+            <span style="color: #047857; font-weight: 700;">Port 5554 Online</span>
+          </div>
+          <div class="avd-box">
+            <div style="font-size: 11px;">
+              <div style="font-weight: 700;">FoodDelivery-Loyalty-App</div>
+              <div style="color: #64748B;">Flutter Hot Reload Sẵn Sàng</div>
+            </div>
+            <div class="avd-actions">
+              <button class="btn-small" onclick="alert('Hot Reload triggered!')">🔄 Reload (r)</button>
+              <button class="btn-small" onclick="alert('Screenshot captured to docs/assets/')">📸 Chụp</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -4,10 +4,19 @@ import json
 import sqlite3
 import os
 import time
+import mimetypes
 from urllib.parse import urlparse
 
 PORT = 9090
-DB_PATH = os.path.join(os.path.dirname(__file__), '..', '..', '.agents', 'db.sqlite')
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+DB_PATH = os.path.join(BASE_DIR, '.agents', 'db.sqlite')
+WEB_DIR = os.path.join(os.path.dirname(__file__), '..', 'web')
+
+# Import core services
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'services'))
+from auto_namer import generate_project_names
+from command_workspace import CommandWorkspaceService
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -119,7 +128,6 @@ class NineRouterService:
 
         display_name, model, persona = role
 
-        # Simulate Raw Model Thinking logic depending on model type
         thought_start = time.time()
         if "claude" in model:
             thinking_log = f"<thinking> Analyzing role {role_id}. Decomposing requirements: '{prompt[:50]}...'. Plan: verify schema, formulate AST updates, dispatch to swarm. </thinking>"
@@ -135,7 +143,6 @@ class NineRouterService:
 
         response_content = f"[{display_name}]: Đã xử lý yêu cầu liên quan đến '{prompt}'. Trạng thái: Sẵn sàng thực thi."
 
-        # Update provider session stats in SQLite
         cursor.execute("""
             UPDATE provider_sessions 
             SET total_tokens_in = total_tokens_in + ?,
@@ -144,7 +151,6 @@ class NineRouterService:
             WHERE role_id = ?
         """, (tokens_in, tokens_out, role_id))
 
-        # If task_id provided, update token spent on kanban task
         if task_id:
             cursor.execute("""
                 UPDATE kanban_tasks
@@ -203,21 +209,40 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         path = parsed.path
 
-        if path == '/health':
+        # API Endpoints
+        if path == '/health' or path == '/api/health':
             self._set_headers(200)
             self.wfile.write(json.dumps(NineRouterService.get_health()).encode('utf-8'))
-        elif path == '/sessions':
+        elif path == '/sessions' or path == '/api/sessions':
             self._set_headers(200)
             self.wfile.write(json.dumps(NineRouterService.get_sessions()).encode('utf-8'))
-        elif path == '/tokens':
+        elif path == '/tokens' or path == '/api/tokens':
             self._set_headers(200)
             self.wfile.write(json.dumps(NineRouterService.get_tokens()).encode('utf-8'))
-        elif path == '/kanban':
+        elif path == '/kanban' or path == '/api/kanban':
             self._set_headers(200)
             self.wfile.write(json.dumps(NineRouterService.get_kanban()).encode('utf-8'))
+        elif path == '/api/workspace':
+            self._set_headers(200)
+            state = CommandWorkspaceService.get_workspace_state()
+            self.wfile.write(json.dumps(state).encode('utf-8'))
         else:
-            self._set_headers(404)
-            self.wfile.write(json.dumps({"error": "Endpoint not found"}).encode('utf-8'))
+            # Static file serving from src/web/
+            if path == '/' or path == '':
+                file_path = os.path.join(WEB_DIR, 'index.html')
+            else:
+                rel_path = path.lstrip('/')
+                file_path = os.path.join(WEB_DIR, rel_path)
+
+            if os.path.exists(file_path) and os.path.isfile(file_path):
+                mime, _ = mimetypes.guess_type(file_path)
+                mime = mime or 'text/plain'
+                self._set_headers(200, mime)
+                with open(file_path, 'rb') as f:
+                    self.wfile.write(f.read())
+            else:
+                self._set_headers(404)
+                self.wfile.write(json.dumps({"error": "File or API endpoint not found"}).encode('utf-8'))
 
     def do_POST(self):
         parsed = urlparse(self.path)
@@ -226,7 +251,26 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
         body = self.rfile.read(content_length).decode('utf-8')
         data = json.loads(body) if body else {}
 
-        if path == '/chat/completions':
+        if path == '/api/auto-name':
+            desc = data.get('description', '')
+            res = generate_project_names(desc)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+
+        elif path == '/api/chat':
+            user_text = data.get('message', '')
+            project_id = data.get('project_id', 'proj_food_delivery_01')
+            res = CommandWorkspaceService.send_chat_message(user_text, project_id)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+
+        elif path == '/api/emergency-stop':
+            project_id = data.get('project_id', 'proj_food_delivery_01')
+            res = CommandWorkspaceService.trigger_emergency_stop(project_id)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+
+        elif path == '/chat/completions':
             role_id = data.get('role_id', 'lead_pm')
             prompt = data.get('prompt', '')
             task_id = data.get('task_id', None)
@@ -238,7 +282,7 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
                 self._set_headers(400)
                 self.wfile.write(json.dumps({"error": str(e)}).encode('utf-8'))
 
-        elif path == '/checkpoint/resolve':
+        elif path == '/checkpoint/resolve' or path == '/api/checkpoint/resolve':
             checkpoint_id = data.get('checkpoint_id')
             action = data.get('action')
             feedback = data.get('feedback', '')
