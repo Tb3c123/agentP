@@ -145,7 +145,7 @@ agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         B
 (Liam, Carlos)     (David, Alex)       (Elena, David)      (Sam, Lucas)        (Liam, Sophia, Viktor)
 ```
 
-### SPRINT 1: NỀN TẢNG HẠ TẦNG & LÕI 9ROUTER LOCAL PROXY DAEMON
+### SPRINT 1: NỀN TẢNG HẠ TẦNG & LÕI AGENTP CORE LOCAL DAEMON PROTOCOL
 * **Mục tiêu**: Thiết lập khung dự án Tauri v2, cơ sở dữ liệu SQLite cục bộ `.agents/db.sqlite` và daemon proxy agentP Core Daemon cô lập session 1:1.
 * **Nhân sự thực thi**: Liam (DevOps), Carlos (Backend), Maya (Architect), Lucas (Senior Dev).
 * **Nhiệm vụ cụ thể**:

@@ -122,13 +122,13 @@ Màn hình xuất hiện khi người dùng mở ứng dụng lần đầu hoặ
 
 ---
 
-## 4. TRANG 3: KẾT NỐI TÀI KHOẢN & GÁN MODEL 1:1 THEO 9ROUTER (PROVIDER SETUP)
+## 4. TRANG 3: KẾT NỐI TÀI KHOẢN & GÁN MODEL 1:1 THEO AGENTP CORE DAEMON (PROVIDER SETUP)
 
 Màn hình cấu hình giúp tận dụng tài khoản có sẵn (CLI / OAuth Sessions) thay vì phụ thuộc API trả phí:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ 🔌 KẾT NỐI TÀI KHOẢN & GÁN MODEL THỦ CÔNG (PROVIDER SESSIONS 1:1 9ROUTER)                          [X]│
+│ 🔌 KẾT NỐI TÀI KHOẢN & GÁN MODEL THỦ CÔNG (PROVIDER SESSIONS 1:1 AGENTP CORE DAEMON)               [X]│
 ├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ 1. KẾT NỐI TÀI KHOẢN HIỆN CÓ TRÊN MÁY (ACCOUNT SESSIONS & CLI LOGIN):                                  │
 │                                                                                                        │

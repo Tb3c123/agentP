@@ -72,7 +72,7 @@
     <line x1="0" y1="64" x2="960" y2="64" stroke="#E2E8F0"/>
     <circle cx="36" cy="32" r="14" fill="#F0FDFA"/>
     <text x="36" y="37" text-anchor="middle" fill="#0D9488" font-size="14" font-weight="bold">🔗</text>
-    <text x="64" y="32" fill="#0F172A" font-size="16" font-weight="800">Cấu Hình Provider &amp; Cô Lập Session 1:1 Qua 9router Daemon</text>
+    <text x="64" y="32" fill="#0F172A" font-size="16" font-weight="800">Cấu Hình Provider &amp; Cô Lập Session 1:1 Qua agentP Core Daemon</text>
     <text x="64" y="49" fill="#64748B" font-size="12">Mỗi vai trò (role) được gán model và session độc lập, bảo mật, tránh xung đột context</text>
     <text x="910" y="38" fill="#94A3B8" font-size="18" font-weight="bold" cursor="pointer">✕</text>
 
@@ -80,7 +80,7 @@
     <g transform="translate(36, 80)">
       <rect x="0" y="0" width="888" height="50" rx="8" fill="#ECFDF5" stroke="#A7F3D0"/>
       <circle cx="24" cy="25" r="5" fill="#10B981"/>
-      <text x="38" y="24" fill="#065F46" font-size="12" font-weight="bold">9router Daemon đang chạy: http://127.0.0.1:9090</text>
+      <text x="38" y="24" fill="#065F46" font-size="12" font-weight="bold">agentP Core Daemon đang chạy: http://127.0.0.1:9090</text>
       <text x="38" y="39" fill="#047857" font-size="11">Tự động điều phối API keys, rate-limit, fallback failover và đồng bộ session CLI</text>
       <rect x="730" y="10" width="140" height="30" rx="5" fill="#FFFFFF" stroke="#A7F3D0" cursor="pointer"/>
       <text x="800" y="29" text-anchor="middle" fill="#047857" font-size="11" font-weight="bold">🔄 Kiểm tra kết nối</text>

@@ -786,13 +786,105 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
   transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
 }
 
 .swarm-chip:hover {
-  background: var(--teal-50);
-  border-color: var(--teal-300);
   transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08);
 }
+
+/* Visual Diversity: Color-coded Domains for Swarm Specialists */
+/* 1. BA & Product: Warm Amber */
+.swarm-chip.role-ba { background: #FFFBEB; border-color: #FDE68A; }
+.swarm-chip.role-ba:hover { background: #FEF3C7; border-color: #F59E0B; }
+.swarm-chip.role-ba .chip-avatar { background: #F59E0B; color: #FFFFFF; }
+.swarm-chip.role-ba .chip-name { color: #92400E; }
+.swarm-chip.role-ba .chip-token { color: #B45309; }
+
+/* 2. UI/UX Design: Rose Pink */
+.swarm-chip.role-ui { background: #FFF1F2; border-color: #FECDD3; }
+.swarm-chip.role-ui:hover { background: #FFE4E6; border-color: #F43F5E; }
+.swarm-chip.role-ui .chip-avatar { background: #F43F5E; color: #FFFFFF; }
+.swarm-chip.role-ui .chip-name { color: #9F1239; }
+.swarm-chip.role-ui .chip-token { color: #BE123C; }
+
+/* 3. Frontend: Ocean Sky Blue */
+.swarm-chip.role-fe { background: #F0F9FF; border-color: #BAE6FD; }
+.swarm-chip.role-fe:hover { background: #E0F2FE; border-color: #0284C7; }
+.swarm-chip.role-fe .chip-avatar { background: #0284C7; color: #FFFFFF; }
+.swarm-chip.role-fe .chip-name { color: #0369A1; }
+.swarm-chip.role-fe .chip-token { color: #0284C7; }
+
+/* 4. Backend: Emerald Green */
+.swarm-chip.role-be { background: #ECFDF5; border-color: #A7F3D0; }
+.swarm-chip.role-be:hover { background: #D1FAE5; border-color: #10B981; }
+.swarm-chip.role-be .chip-avatar { background: #059669; color: #FFFFFF; }
+.swarm-chip.role-be .chip-name { color: #065F46; }
+.swarm-chip.role-be .chip-token { color: #059669; }
+
+/* 5. Senior Fullstack: Royal Indigo */
+.swarm-chip.role-sr { background: #EEF2FF; border-color: #C7D2FE; }
+.swarm-chip.role-sr:hover { background: #E0E7FF; border-color: #6366F1; }
+.swarm-chip.role-sr .chip-avatar { background: #4F46E5; color: #FFFFFF; }
+.swarm-chip.role-sr .chip-name { color: #3730A3; }
+.swarm-chip.role-sr .chip-token { color: #4F46E5; }
+
+/* 6. System Architect: Cyan */
+.swarm-chip.role-ar { background: #ECFEFF; border-color: #A5F3FC; }
+.swarm-chip.role-ar:hover { background: #CFFAFE; border-color: #06B6D4; }
+.swarm-chip.role-ar .chip-avatar { background: #0891B2; color: #FFFFFF; }
+.swarm-chip.role-ar .chip-name { color: #0E7490; }
+.swarm-chip.role-ar .chip-token { color: #0891B2; }
+
+/* 7. QA & Testing: Ruby Crimson */
+.swarm-chip.role-qa { background: #FEF2F2; border-color: #FECACA; }
+.swarm-chip.role-qa:hover { background: #FEE2E2; border-color: #EF4444; }
+.swarm-chip.role-qa .chip-avatar { background: #DC2626; color: #FFFFFF; }
+.swarm-chip.role-qa .chip-name { color: #991B1B; }
+.swarm-chip.role-qa .chip-token { color: #DC2626; }
+
+/* 8. DevOps: Tangerine Orange */
+.swarm-chip.role-do { background: #FFF7ED; border-color: #FED7AA; }
+.swarm-chip.role-do:hover { background: #FFEDD5; border-color: #F97316; }
+.swarm-chip.role-do .chip-avatar { background: #EA580C; color: #FFFFFF; }
+.swarm-chip.role-do .chip-name { color: #9A3412; }
+.swarm-chip.role-do .chip-token { color: #EA580C; }
+
+/* 9. SRE: Deep Purple */
+.swarm-chip.role-sre { background: #FAF5FF; border-color: #E9D5FF; }
+.swarm-chip.role-sre:hover { background: #F3E8FF; border-color: #A855F7; }
+.swarm-chip.role-sre .chip-avatar { background: #9333EA; color: #FFFFFF; }
+.swarm-chip.role-sre .chip-name { color: #6B21A8; }
+.swarm-chip.role-sre .chip-token { color: #9333EA; }
+
+/* 10. Security: Bronze Gold */
+.swarm-chip.role-sec { background: #FEFCE8; border-color: #FEF08A; }
+.swarm-chip.role-sec:hover { background: #FEF9C3; border-color: #EAB308; }
+.swarm-chip.role-sec .chip-avatar { background: #CA8A04; color: #FFFFFF; }
+.swarm-chip.role-sec .chip-name { color: #854D0E; }
+.swarm-chip.role-sec .chip-token { color: #CA8A04; }
+
+/* 11. Data & Analytics: Mint Teal */
+.swarm-chip.role-data { background: #F0FDF4; border-color: #BBF7D0; }
+.swarm-chip.role-data:hover { background: #DCFCE7; border-color: #10B981; }
+.swarm-chip.role-data .chip-avatar { background: #0D9488; color: #FFFFFF; }
+.swarm-chip.role-data .chip-name { color: #166534; }
+.swarm-chip.role-data .chip-token { color: #0D9488; }
+
+/* 12. Tech Writer: Slate Gray */
+.swarm-chip.role-docs { background: #F8FAFC; border-color: #CBD5E1; }
+.swarm-chip.role-docs:hover { background: #F1F5F9; border-color: #64748B; }
+.swarm-chip.role-docs .chip-avatar { background: #475569; color: #FFFFFF; }
+.swarm-chip.role-docs .chip-name { color: #1E293B; }
+.swarm-chip.role-docs .chip-token { color: #475569; }
+
+/* 13. Performance: Cobalt Blue */
+.swarm-chip.role-perf { background: #EFF6FF; border-color: #BFDBFE; }
+.swarm-chip.role-perf:hover { background: #DBEAFE; border-color: #3B82F6; }
+.swarm-chip.role-perf .chip-avatar { background: #2563EB; color: #FFFFFF; }
+.swarm-chip.role-perf .chip-name { color: #1E40AF; }
+.swarm-chip.role-perf .chip-token { color: #2563EB; }
 
 .chip-avatar {
   width: 20px;

@@ -91,6 +91,22 @@ async function loadWorkspace() {
   }
 }
 
+const roleClassMap = {
+  'business_analyst': { cls: 'role-ba', domain: 'Yêu Cầu & BA', icon: '📝' },
+  'uiux_designer': { cls: 'role-ui', domain: 'Thiết Kế UI/UX', icon: '🎨' },
+  'frontend_dev': { cls: 'role-fe', domain: 'Lập Trình Frontend', icon: '💻' },
+  'backend_dev': { cls: 'role-be', domain: 'Lập Trình Backend', icon: '⚙️' },
+  'senior_dev': { cls: 'role-sr', domain: 'Senior Fullstack', icon: '🚀' },
+  'system_architect': { cls: 'role-ar', domain: 'Kiến Trúc Hệ Thống', icon: '🏛️' },
+  'qa_lead': { cls: 'role-qa', domain: 'Kiểm Thử & QA', icon: '🧪' },
+  'devops_lead': { cls: 'role-do', domain: 'Hạ Tầng DevOps', icon: '☁️' },
+  'sre_lead': { cls: 'role-sre', domain: 'Độ Tin Cậy SRE', icon: '🛡️' },
+  'security_officer': { cls: 'role-sec', domain: 'Bảo Mật & An Ninh', icon: '🔒' },
+  'data_engineer': { cls: 'role-data', domain: 'Kỹ Sư Dữ Liệu', icon: '📊' },
+  'technical_writer': { cls: 'role-docs', domain: 'Tài Liệu & Docs', icon: '📚' },
+  'performance_engineer': { cls: 'role-perf', domain: 'Hiệu Năng & Tối Ưu', icon: '⚡' }
+};
+
 function renderSwarmRoles(roles) {
   const container = document.getElementById('swarmListContainer');
   if (!container || !roles) return;
@@ -102,12 +118,14 @@ function renderSwarmRoles(roles) {
     const shortName = r.display_name.split('(')[0].trim();
     const initials = shortName.substring(0, 2).toUpperCase();
     const isOnline = r.status === 'connected';
+    const meta = roleClassMap[r.role_id] || { cls: 'role-be', domain: 'Kỹ Thuật', icon: '⚡' };
+    
     return `
-      <div class="swarm-chip" title="${r.persona || shortName} • ${r.model || 'Claude/DeepSeek'}">
+      <div class="swarm-chip ${meta.cls}" title="[Nhóm ${meta.domain}] ${r.persona || shortName} • Mô hình: ${r.model || 'Claude/DeepSeek'}">
         <span class="chip-avatar">${initials}</span>
         <span class="chip-name">${shortName}</span>
         <span class="chip-dot ${isOnline ? 'online' : ''}"></span>
-        <span class="chip-token">🪙 ${r.tokens_spent || '1.2k'}</span>
+        <span class="chip-token">⚡ ${r.tokens_spent || '1.2k'}</span>
       </div>
     `;
   }).join('');

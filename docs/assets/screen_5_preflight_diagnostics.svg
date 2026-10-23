@@ -74,7 +74,7 @@
       <circle cx="28" cy="27" r="10" fill="#10B981"/>
       <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">✓</text>
       <text x="48" y="26" fill="#065F46" font-size="13" font-weight="bold">MÔI TRƯỜNG SẴN SÀNG: 7/7 TIÊU CHÍ ĐẠT YÊU CẦU (100%)</text>
-      <text x="48" y="44" fill="#047857" font-size="11">Hệ thống đã kết nối SQLite, Flutter SDK, 9router daemon và AVD Pixel 8.</text>
+      <text x="48" y="44" fill="#047857" font-size="11">Hệ thống đã kết nối SQLite, Flutter SDK, agentP Core daemon và AVD Pixel 8.</text>
     </g>
 
     <!-- Diagnostic Items List -->
@@ -127,12 +127,12 @@
         <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
       </g>
 
-      <!-- Item 6: 9router Daemon Local Service -->
+      <!-- Item 6: agentP Core Daemon Local Service -->
       <g transform="translate(0, 340)">
         <rect x="0" y="0" width="720" height="56" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
         <circle cx="28" cy="28" r="8" fill="#10B981"/>
         <text x="28" y="32" text-anchor="middle" fill="#FFFFFF" font-size="10">✓</text>
-        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">9router Daemon (Multi-account Session Router)</text>
+        <text x="50" y="27" fill="#0F172A" font-size="13" font-weight="bold">agentP Core Daemon (Multi-account Session Router)</text>
         <text x="50" y="45" fill="#64748B" font-size="11">Port 9090 phản hồi trong 12ms • 14 role sessions đã đồng bộ</text>
         <text x="630" y="34" fill="#047857" font-size="11" font-weight="bold">ĐẠT CHUẨN</text>
       </g>
