@@ -3,7 +3,7 @@
 let currentView = 'workspace';
 let autoNameTimeout = null;
 
-// Switch between Onboarding and Workspace
+// Switch between all 5 views
 function switchView(viewName) {
   currentView = viewName;
   document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
@@ -15,6 +15,15 @@ function switchView(viewName) {
   } else if (viewName === 'studio') {
     document.getElementById('viewStudio').classList.add('active');
     document.getElementById('tabStudio').classList.add('active');
+  } else if (viewName === 'kanban') {
+    document.getElementById('viewKanban').classList.add('active');
+    document.getElementById('tabKanban').classList.add('active');
+    loadFullKanban();
+  } else if (viewName === 'code') {
+    document.getElementById('viewCode').classList.add('active');
+    document.getElementById('tabCode').classList.add('active');
+    loadFileTree();
+    openFileInEditor('lib/features/cart/cart_button.tsx');
   } else {
     document.getElementById('viewWorkspace').classList.add('active');
     document.getElementById('tabWorkspace').classList.add('active');
@@ -383,5 +392,298 @@ async function syncOnlookToSource() {
     alert(`⚡ ĐỒNG BỘ AST 2 CHIỀU THÀNH CÔNG!\nFile: ${data.file_path}\nComponent: <${data.component_tag} />\nĐộ trễ ghi code: ${data.latency_ms}ms (Đạt chuẩn <50ms)\nĐã ghi nhận snapshot vào CSDL SQLite.`);
   } catch (err) {
     console.error('Sync Onlook error:', err);
+  }
+}
+
+/* ==========================================================================
+   SPRINT 4 CLIENT LOGIC: KANBAN STUDIO, FILE EXPLORER, SPLIT DIFF & MODAL
+   ========================================================================== */
+
+let allKanbanData = null;
+let currentActiveFilePath = 'lib/features/cart/cart_button.tsx';
+let rawFileTree = null;
+
+// 1. Full Studio Kanban (6 Columns)
+async function loadFullKanban() {
+  try {
+    const res = await fetch('/api/kanban/all');
+    const data = await res.json();
+    allKanbanData = data.columns || {};
+    renderFullKanbanColumns(allKanbanData);
+  } catch (err) {
+    console.error('Error loading full kanban:', err);
+  }
+}
+
+function renderFullKanbanColumns(cols) {
+  const mapping = [
+    { key: 'backlog', countId: 'countBacklog', containerId: 'fullCardsBacklog' },
+    { key: 'spec_design', countId: 'countSpecDesign', containerId: 'fullCardsSpecDesign' },
+    { key: 'development', countId: 'countDevelopment', containerId: 'fullCardsDevelopment' },
+    { key: 'review', countId: 'countReview', containerId: 'fullCardsReview' },
+    { key: 'quality_gate', countId: 'countQualityGate', containerId: 'fullCardsQualityGate' },
+    { key: 'done', countId: 'countDoneStudio', containerId: 'fullCardsDoneStudio' }
+  ];
+
+  mapping.forEach(m => {
+    const items = cols[m.key] || [];
+    const countEl = document.getElementById(m.countId);
+    if (countEl) countEl.innerText = items.length;
+
+    const cont = document.getElementById(m.containerId);
+    if (cont) {
+      cont.innerHTML = items.map(task => `
+        <div class="full-card" onclick="alert('Task: ${task.title}\\nVai trò: ${task.assigned_role_id}\\nTokens: ${task.tokens_spent || 0}')">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="card-role-badge" style="background:#F1F5F9; color:#0F172A;">${task.assigned_role_id || 'alex_pm'}</span>
+            <span style="font-size:9px; font-weight:700; color:${task.priority === 'urgent' ? '#DC2626' : '#D97706'};">${task.priority ? task.priority.toUpperCase() : 'MEDIUM'}</span>
+          </div>
+          <div style="font-weight:700; font-size:11px; color:#1E293B; margin-bottom:4px;">${task.title}</div>
+          <div style="display:flex; justify-content:space-between; font-size:9px; color:#64748B;">
+            <span>ID: ${task.task_id}</span>
+            <span>🪙 ${task.tokens_spent || 0} tokens</span>
+          </div>
+        </div>
+      `).join('') || '<div style="font-size:10px; color:#94A3B8; text-align:center; padding:15px;">(Trống)</div>';
+    }
+  });
+}
+
+function filterKanbanTasks() {
+  const sprintVal = document.getElementById('filterSprint').value;
+  if (!allKanbanData) return;
+
+  if (sprintVal === 'all') {
+    renderFullKanbanColumns(allKanbanData);
+    return;
+  }
+
+  const filtered = {};
+  for (const [col, tasks] of Object.entries(allKanbanData)) {
+    filtered[col] = tasks.filter(t => t.sprint_id === sprintVal || !t.sprint_id);
+  }
+  renderFullKanbanColumns(filtered);
+}
+
+// 2. File Explorer & Tree Rendering
+async function loadFileTree() {
+  try {
+    const res = await fetch('/api/files/tree');
+    const tree = await res.json();
+    rawFileTree = tree;
+    renderFileTreeNodes(tree);
+  } catch (err) {
+    console.error('Error loading file tree:', err);
+  }
+}
+
+function renderFileTreeNodes(tree) {
+  const container = document.getElementById('fileTreeContainer');
+  if (!container || !tree) return;
+
+  function _buildHtml(node, depth = 0) {
+    const pad = depth * 14;
+    if (node.is_dir) {
+      let subHtml = (node.children || []).map(child => _buildHtml(child, depth + 1)).join('');
+      return `
+        <div>
+          <div class="tree-item" style="padding-left:${pad + 6}px; font-weight:700;">
+            <span>📁</span>
+            <span>${node.name}</span>
+          </div>
+          <div>${subHtml}</div>
+        </div>
+      `;
+    } else {
+      const agent = node.agent || { name: 'Alex', color: '#0D9488' };
+      const isActive = (node.path === currentActiveFilePath) ? 'active' : '';
+      return `
+        <div class="tree-item ${isActive}" style="padding-left:${pad + 6}px;" onclick="openFileInEditor('${node.path}')">
+          <span>📄</span>
+          <span>${node.name}</span>
+          <span class="tree-agent-pill" style="background:${agent.color};">${agent.name}</span>
+        </div>
+      `;
+    }
+  }
+
+  container.innerHTML = _buildHtml(tree, 0);
+}
+
+function filterFileTree(query) {
+  if (!rawFileTree) return;
+  const q = query.toLowerCase().trim();
+  const items = document.querySelectorAll('.tree-item');
+  items.forEach(el => {
+    if (el.innerText.toLowerCase().includes(q)) {
+      el.style.display = 'flex';
+    } else {
+      el.style.display = 'none';
+    }
+  });
+}
+
+// 3. Integrated Monaco Editor & Split Diff
+async function openFileInEditor(filePath) {
+  currentActiveFilePath = filePath;
+  const pathEl = document.getElementById('activeEditorFilePath');
+  if (pathEl) pathEl.innerText = filePath;
+
+  // Language pill
+  const langPill = document.getElementById('activeFileLanguage');
+  if (langPill) {
+    if (filePath.endsWith('.tsx') || filePath.endsWith('.jsx')) langPill.innerText = 'TypeScript (TSX)';
+    else if (filePath.endsWith('.py')) langPill.innerText = 'Python 3';
+    else if (filePath.endsWith('.dart')) langPill.innerText = 'Dart / Flutter';
+    else if (filePath.endsWith('.sql')) langPill.innerText = 'SQL (SQLite)';
+    else if (filePath.endsWith('.md')) langPill.innerText = 'Markdown';
+    else langPill.innerText = 'Text / Source';
+  }
+
+  // Update active state in tree
+  document.querySelectorAll('.tree-item').forEach(el => el.classList.remove('active'));
+
+  try {
+    const res = await fetch(`/api/code/diff?path=${encodeURIComponent(filePath)}`);
+    const diff = await res.json();
+    renderMonacoDiff(diff);
+  } catch (err) {
+    console.error('Error fetching diff:', err);
+  }
+}
+
+function renderMonacoDiff(diff) {
+  const oldCont = document.getElementById('diffOldContent');
+  const newCont = document.getElementById('diffNewContent');
+
+  if (oldCont && diff.old_content) {
+    const lines = diff.old_content.split('\n');
+    oldCont.innerHTML = lines.map((l, i) => `
+      <div class="diff-line removed">
+        <span class="line-num">${i + 1}</span>
+        <span class="line-text">${escapeHtml(l)}</span>
+      </div>
+    `).join('');
+  }
+
+  if (newCont && diff.new_content) {
+    const lines = diff.new_content.split('\n');
+    newCont.innerHTML = lines.map((l, i) => `
+      <div class="diff-line added">
+        <span class="line-num">${i + 1}</span>
+        <span class="line-text">${escapeHtml(l)}</span>
+      </div>
+    `).join('');
+  }
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+async function handleSafeDeleteActiveFile() {
+  if (!confirm(`Bạn có chắc muốn chuyển file '${currentActiveFilePath}' vào thùng rác an toàn (.agents/trash/)?`)) {
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/files/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: currentActiveFilePath })
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert(`🗑️ THÀNH CÔNG: ${data.message}\nFile đã được bảo lưu an toàn.`);
+      loadFileTree();
+    } else {
+      alert(`Lỗi: ${data.error}`);
+    }
+  } catch (err) {
+    console.error('Error deleting file:', err);
+  }
+}
+
+function handleAcceptDiff() {
+  alert(`✅ ĐÃ CHẤP NHẬN THAY ĐỔI & STAGE GIT!\nFile: ${currentActiveFilePath}\nNhánh: feature/cart-voucher\nTrạng thái: Sẵn sàng commit vào CSDL.`);
+}
+
+function exportProjectReport() {
+  alert('📊 SOPHIA (DOCS/BA LEAD) BÁO CÁO:\nĐã xuất bản bảng tính Excel phân bổ 14 vai trò, số dòng code và 42.5k tokens tiết kiệm được vào docs/EXCEL_REPORT.xlsx!');
+}
+
+function openTrashModal() {
+  alert('🗑️ THÙNG RÁC AN TOÀN (.agents/trash/):\nMọi file bị xóa đều lưu trữ kèm metadata và có thể khôi phục 100% bất kỳ lúc nào.');
+}
+
+// 4. Project Hub & Antigravity Danger Zone Modal
+function openProjectSettingsModal() {
+  const modal = document.getElementById('projectSettingsModal');
+  if (modal) modal.style.display = 'flex';
+}
+
+function closeProjectSettingsModal() {
+  const modal = document.getElementById('projectSettingsModal');
+  if (modal) modal.style.display = 'none';
+}
+
+function switchSettingsTab(tabName) {
+  document.querySelectorAll('.settings-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('settingsTabGeneral').style.display = 'none';
+  document.getElementById('settingsTabEnv').style.display = 'none';
+  document.getElementById('settingsTabDanger').style.display = 'none';
+
+  if (tabName === 'env') {
+    document.getElementById('btnTabEnv').classList.add('active');
+    document.getElementById('settingsTabEnv').style.display = 'block';
+  } else if (tabName === 'danger') {
+    document.getElementById('btnTabDanger').classList.add('active');
+    document.getElementById('settingsTabDanger').style.display = 'block';
+  } else {
+    document.getElementById('btnTabGeneral').classList.add('active');
+    document.getElementById('settingsTabGeneral').style.display = 'block';
+  }
+}
+
+function handleDangerInputChange(val) {
+  const btn = document.getElementById('btnDangerDeleteProject');
+  const expected = 'FoodDelivery-Loyalty-App';
+
+  if (val.trim() === expected) {
+    btn.classList.remove('locked');
+    btn.classList.add('unlocked');
+    btn.disabled = false;
+    btn.innerText = '🚨 XÓA VĨNH VIỄN DỰ ÁN (SẴN SÀNG)';
+  } else {
+    btn.classList.remove('unlocked');
+    btn.classList.add('locked');
+    btn.disabled = true;
+    btn.innerText = '🔒 BỊ KHÓA — GÕ TÊN DỰ ÁN ĐỂ MỞ';
+  }
+}
+
+async function executeAntigravityProjectDelete() {
+  const input = document.getElementById('dangerConfirmInput').value;
+  try {
+    const res = await fetch('/api/project/verify-delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        project_id: 'proj_food_delivery',
+        confirmation: input
+      })
+    });
+    const data = await res.json();
+    if (data.allowed) {
+      if (confirm('🚨 CẢNH BÁO CUỐI CÙNG (Cơ chế 2 lớp Antigravity):\nBạn có thực sự muốn xóa sạch dự án FoodDelivery-Loyalty-App?')) {
+        alert('Dự án đã được thanh lý an toàn theo quy chuẩn Antigravity.');
+        closeProjectSettingsModal();
+        switchView('onboarding');
+      }
+    } else {
+      alert(`Từ chối: ${data.error}`);
+    }
+  } catch (err) {
+    console.error('Delete error:', err);
   }
 }

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "title": "Test Wireframe Board",
+  "elements": [
+    {
+      "id": "box_1",
+      "type": "wireframe",
+      "title": "Cart View"
+    },
+    {
+      "id": "note_1",
+      "type": "note",
+      "text": "Elena UI note"
+    }
+  ]
+}

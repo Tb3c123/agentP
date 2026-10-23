@@ -5,7 +5,7 @@ import sqlite3
 import os
 import time
 import mimetypes
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 PORT = 9090
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'services'))
 from auto_namer import generate_project_names
 from command_workspace import CommandWorkspaceService
 from ast_sync import AstSyncEngine
+import project_manager as pm
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -231,6 +232,64 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
             self._set_headers(200)
             state = CommandWorkspaceService.get_workspace_state()
             self.wfile.write(json.dumps(state).encode('utf-8'))
+        elif path == '/api/files/tree':
+            self._set_headers(200)
+            tree = pm.build_file_tree()
+            self.wfile.write(json.dumps(tree).encode('utf-8'))
+        elif path == '/api/files/content':
+            query = parse_qs(parsed.query)
+            filepath = query.get('path', [''])[0]
+            res = pm.read_file_content(filepath)
+            self._set_headers(200 if res.get('success') else 400)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+        elif path == '/api/files/trash':
+            self._set_headers(200)
+            trash_items = pm.list_trash_files()
+            self.wfile.write(json.dumps({"trash": trash_items}).encode('utf-8'))
+        elif path == '/api/code/diff':
+            query = parse_qs(parsed.query)
+            filepath = query.get('path', ['lib/features/cart/cart_button.tsx'])[0]
+            diff_data = pm.compute_monaco_split_diff(filepath)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(diff_data).encode('utf-8'))
+        elif path == '/api/project/settings':
+            self._set_headers(200)
+            settings = pm.get_project_settings()
+            self.wfile.write(json.dumps(settings).encode('utf-8'))
+        elif path == '/api/kanban/all':
+            conn = get_db()
+            cursor = conn.cursor()
+            tasks = cursor.execute("""
+                SELECT task_id, sprint_id, title, description, category, column_status, priority, assigned_role_id, tokens_spent
+                FROM kanban_tasks
+                ORDER BY order_index ASC
+            """).fetchall()
+            conn.close()
+            columns = {
+                "backlog": [],
+                "spec_design": [],
+                "development": [],
+                "review": [],
+                "quality_gate": [],
+                "done": []
+            }
+            for t in tasks:
+                col = t[5]
+                if col not in columns:
+                    col = "development"
+                columns[col].append({
+                    "task_id": t[0],
+                    "sprint_id": t[1],
+                    "title": t[2],
+                    "description": t[3],
+                    "category": t[4],
+                    "column_status": t[5],
+                    "priority": t[6],
+                    "assigned_role_id": t[7],
+                    "tokens_spent": t[8]
+                })
+            self._set_headers(200)
+            self.wfile.write(json.dumps({"columns": columns}).encode('utf-8'))
         else:
             # Static file serving from src/web/ or docs/
             if path == '/' or path == '':
@@ -289,6 +348,25 @@ class NineRouterHandler(http.server.BaseHTTPRequestHandler):
         elif path == '/api/emergency-stop':
             project_id = data.get('project_id', 'proj_food_delivery_01')
             res = CommandWorkspaceService.trigger_emergency_stop(project_id)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+
+        elif path == '/api/files/delete':
+            target = data.get('path', '')
+            res = pm.safe_delete_file(target)
+            self._set_headers(200 if res.get('success') else 400)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+
+        elif path == '/api/files/restore':
+            trash_id = data.get('trash_id', '')
+            res = pm.restore_trash_file(trash_id)
+            self._set_headers(200 if res.get('success') else 400)
+            self.wfile.write(json.dumps(res).encode('utf-8'))
+
+        elif path == '/api/project/verify-delete':
+            proj_id = data.get('project_id', 'proj_food_delivery')
+            conf = data.get('confirmation', '')
+            res = pm.verify_antigravity_danger_zone(proj_id, conf)
             self._set_headers(200)
             self.wfile.write(json.dumps(res).encode('utf-8'))
 

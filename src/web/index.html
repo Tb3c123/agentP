@@ -33,7 +33,11 @@
       <button class="nav-tab" id="tabStudio" onclick="switchView('studio')">
         🎨 Xưởng Thiết Kế (UI/UX)
       </button>
-        🧑‍💼 Bàn Làm Việc Cùng Alex
+      <button class="nav-tab" id="tabKanban" onclick="switchView('kanban')">
+        📋 Bảng Tiến Độ (Kanban)
+      </button>
+      <button class="nav-tab" id="tabCode" onclick="switchView('code')">
+        💻 Mã Nguồn &amp; So Sánh
       </button>
     </nav>
 
@@ -44,6 +48,9 @@
       <div class="status-pill tokens">
         🪙 <span id="headerTokensSaved">42.5k saved</span>
       </div>
+      <button class="btn-small" style="background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; font-weight:600; padding:4px 8px;" onclick="openProjectSettingsModal()">
+        ⚙️ Cài Đặt Dự Án
+      </button>
     </div>
   </header>
 
@@ -409,7 +416,278 @@
 
     </section>
 
+    <!-- ================= VIEW 4: FULL STUDIO KANBAN (6 COLUMNS) ================= -->
+    <section class="view-panel kanban-studio-view" id="viewKanban">
+      <div class="studio-subnav">
+        <div>
+          <h2 style="font-size:15px; font-weight:700; color:#0F172A; margin:0 0 2px 0;">📋 BẢNG TIẾN ĐỘ FULL STUDIO (6 CỘT KANBAN)</h2>
+          <div style="font-size:11px; color:#64748B;">Hệ thống phân luồng trực tiếp với 14 chuyên gia Swarm &amp; CSDL SQLite WAL</div>
+        </div>
+
+        <div style="display:flex; gap:8px; align-items:center;">
+          <select id="filterSprint" class="inspector-input" style="width:150px; padding:4px 8px; font-size:11px;" onchange="filterKanbanTasks()">
+            <option value="all">Tất cả Sprints</option>
+            <option value="sprint_01">Sprint 1 (Nền tảng)</option>
+            <option value="sprint_02">Sprint 2 (Workspace)</option>
+            <option value="sprint_03">Sprint 3 (Studio UI)</option>
+            <option value="sprint_04" selected>Sprint 4 (Files &amp; Diff)</option>
+          </select>
+          <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:5px 10px;" onclick="alert('⚡ Đã tạo task mới và chuyển cho Alex điều phối!')">+ Tạo Task Mới</button>
+        </div>
+      </div>
+
+      <!-- 6-Column Kanban Grid -->
+      <div class="full-kanban-grid">
+        <!-- 1. Backlog -->
+        <div class="full-kanban-col">
+          <div class="full-col-header" style="border-top-color:#94A3B8;">
+            <span>Chờ Làm (Backlog)</span>
+            <span class="badge-count" id="countBacklog">0</span>
+          </div>
+          <div class="full-col-cards" id="fullCardsBacklog"></div>
+        </div>
+
+        <!-- 2. Spec & Design -->
+        <div class="full-kanban-col">
+          <div class="full-col-header" style="border-top-color:#D97706;">
+            <span>Đặc Tả &amp; Thiết Kế</span>
+            <span class="badge-count" id="countSpecDesign">0</span>
+          </div>
+          <div class="full-col-cards" id="fullCardsSpecDesign"></div>
+        </div>
+
+        <!-- 3. Development -->
+        <div class="full-kanban-col">
+          <div class="full-col-header" style="border-top-color:#0D9488;">
+            <span>Đang Lập Trình ⚡</span>
+            <span class="badge-count" id="countDevelopment">0</span>
+          </div>
+          <div class="full-col-cards" id="fullCardsDevelopment"></div>
+        </div>
+
+        <!-- 4. Review -->
+        <div class="full-kanban-col">
+          <div class="full-col-header" style="border-top-color:#6366F1;">
+            <span>Code Review</span>
+            <span class="badge-count" id="countReview">0</span>
+          </div>
+          <div class="full-col-cards" id="fullCardsReview"></div>
+        </div>
+
+        <!-- 5. Quality Gate -->
+        <div class="full-kanban-col">
+          <div class="full-col-header" style="border-top-color:#DC2626;">
+            <span>Kiểm Thử QA 🛑</span>
+            <span class="badge-count" id="countQualityGate">0</span>
+          </div>
+          <div class="full-col-cards" id="fullCardsQualityGate"></div>
+        </div>
+
+        <!-- 6. Done -->
+        <div class="full-kanban-col">
+          <div class="full-col-header" style="border-top-color:#059669;">
+            <span>Hoàn Tất Nghiệm Thu ✓</span>
+            <span class="badge-count" id="countDoneStudio">0</span>
+          </div>
+          <div class="full-col-cards" id="fullCardsDoneStudio"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 5: FILE EXPLORER & MONACO SPLIT DIFF ================= -->
+    <section class="view-panel code-diff-view" id="viewCode">
+      <!-- Left Pane: File Explorer -->
+      <aside class="code-files-sidebar">
+        <div class="panel-header">
+          <span>📁 CÂY THƯ MỤC DỰ ÁN</span>
+          <span style="font-size:10px; color:#64748B;">Workspace</span>
+        </div>
+
+        <div style="padding:8px 12px; border-bottom:1px solid #E2E8F0;">
+          <input 
+            type="text" 
+            placeholder="🔍 Tìm tệp tin trong dự án..." 
+            class="inspector-input" 
+            style="width:100%; box-sizing:border-box; font-size:11px;"
+            oninput="filterFileTree(this.value)"
+          />
+        </div>
+
+        <!-- File Tree Container -->
+        <div class="file-tree-container" id="fileTreeContainer">
+          <div style="padding:15px; text-align:center; color:#94A3B8; font-size:11px;">Đang quét cấu trúc thư mục...</div>
+        </div>
+
+        <!-- Bottom Action Cards -->
+        <div class="files-bottom-actions">
+          <div class="excel-banner-card" onclick="exportProjectReport()">
+            <div style="font-weight:700; color:#0F766E; font-size:11px; margin-bottom:2px;">📊 BÁO CÁO KỸ THUẬT EXCEL</div>
+            <div style="font-size:10px; color:#334155;">Sophia (BA/Docs) tự động xuất bảng số liệu dòng code &amp; phân bổ tokens</div>
+            <button class="btn-small" style="margin-top:6px; background:#0D9488; color:#fff; border:none; width:100%;">Tải file .xlsx</button>
+          </div>
+
+          <div class="trash-card" onclick="openTrashModal()">
+            <span>🗑️ Thùng rác an toàn (.agents/trash/)</span>
+            <span id="trashCountBadge" style="background:#E2E8F0; padding:1px 6px; border-radius:10px; font-size:10px;">0</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Pane: Integrated Monaco Editor & Split Diff -->
+      <main class="code-editor-main">
+        <!-- Editor Header Bar -->
+        <div class="code-editor-header">
+          <div class="code-file-info">
+            <span class="file-icon">📄</span>
+            <span class="file-path" id="activeEditorFilePath">lib/features/cart/cart_button.tsx</span>
+            <span class="branch-pill">🌿 feature/cart-voucher</span>
+            <span class="lang-pill" id="activeFileLanguage">TypeScript (TSX)</span>
+          </div>
+
+          <div class="code-actions">
+            <button class="btn-small" style="color:#DC2626; border-color:#FECACA;" onclick="handleSafeDeleteActiveFile()">
+              🗑️ Xóa Vào Thùng Rác
+            </button>
+            <button class="btn-small" onclick="alert('↩️ Đã khôi phục về phiên bản commit gần nhất!')">
+              ↩️ Khôi Phục Commit
+            </button>
+            <button class="btn-small" style="background:#0D9488; color:#fff; border:none;" onclick="handleAcceptDiff()">
+              ✅ Chấp Nhận Thay Đổi (Stage Git)
+            </button>
+          </div>
+        </div>
+
+        <!-- Monaco Split Diff Presentation -->
+        <div class="monaco-diff-container">
+          <!-- Diff Column Left: Old Version -->
+          <div class="diff-pane diff-left">
+            <div class="diff-pane-header old">
+              <span>🔴 Bản Cũ (HEAD~1)</span>
+              <span style="font-size:10px; color:#991B1B;">Xóa / Thay thế</span>
+            </div>
+            <div class="diff-code-body" id="diffOldContent">
+              <div class="diff-line removed"><span class="line-num">1</span><span class="line-text">export const CartCheckoutButton = () => {</span></div>
+              <div class="diff-line removed"><span class="line-num">2</span><span class="line-text">  return (</span></div>
+              <div class="diff-line removed"><span class="line-num">3</span><span class="line-text">    &lt;button className="bg-gray-400 text-black py-2 px-4 rounded"&gt;</span></div>
+              <div class="diff-line removed"><span class="line-num">4</span><span class="line-text">      Thanh toán</span></div>
+              <div class="diff-line removed"><span class="line-num">5</span><span class="line-text">    &lt;/button&gt;</span></div>
+              <div class="diff-line removed"><span class="line-num">6</span><span class="line-text">  );</span></div>
+              <div class="diff-line removed"><span class="line-num">7</span><span class="line-text">};</span></div>
+            </div>
+          </div>
+
+          <!-- Diff Column Right: New Version -->
+          <div class="diff-pane diff-right">
+            <div class="diff-pane-header new">
+              <span>🟢 Bản Mới Đề Xuất (Elena UI/UX &amp; Lucas Senior Dev)</span>
+              <span style="font-size:10px; color:#166534;">Thêm / Cải tiến</span>
+            </div>
+            <div class="diff-code-body" id="diffNewContent">
+              <div class="diff-line added"><span class="line-num">1</span><span class="line-text">export const CartCheckoutButton = () => {</span></div>
+              <div class="diff-line added"><span class="line-num">2</span><span class="line-text">  // Nâng cấp phong cách Alpine Teal &amp; Tuscan Amber</span></div>
+              <div class="diff-line added"><span class="line-num">3</span><span class="line-text">  return (</span></div>
+              <div class="diff-line added"><span class="line-num">4</span><span class="line-text">    &lt;button className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg shadow-sm transition-all"&gt;</span></div>
+              <div class="diff-line added"><span class="line-num">5</span><span class="line-text">      Thanh toán ngay &amp; Nhận Xu 🪙</span></div>
+              <div class="diff-line added"><span class="line-num">6</span><span class="line-text">    &lt;/button&gt;</span></div>
+              <div class="diff-line added"><span class="line-num">7</span><span class="line-text">  );</span></div>
+              <div class="diff-line added"><span class="line-num">8</span><span class="line-text">};</span></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+
   </main>
+
+  <!-- ================= TRANG 8: PROJECT HUB & ANTIGRAVITY DANGER ZONE MODAL ================= -->
+  <div class="modal-overlay" id="projectSettingsModal" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div style="font-weight:700; color:#0F172A; font-size:14px;">⚙️ CÀI ĐẶT DỰ ÁN &amp; VÙNG NGUY HIỂM (PROJECT HUB)</div>
+        <button class="modal-close-btn" onclick="closeProjectSettingsModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Tabs within Modal -->
+        <div class="settings-tabs">
+          <button class="settings-tab-btn active" id="btnTabGeneral" onclick="switchSettingsTab('general')">Thông Tin Chung</button>
+          <button class="settings-tab-btn" id="btnTabEnv" onclick="switchSettingsTab('env')">Biến Môi Trường</button>
+          <button class="settings-tab-btn danger" id="btnTabDanger" onclick="switchSettingsTab('danger')">🚨 Vùng Nguy Hiểm</button>
+        </div>
+
+        <!-- Settings Tab 1: General Info -->
+        <div class="settings-content" id="settingsTabGeneral">
+          <div class="setting-row">
+            <label>Tên Dự Án:</label>
+            <input type="text" class="inspector-input" id="settingProjectName" value="FoodDelivery-Loyalty-App" readonly>
+          </div>
+          <div class="setting-row">
+            <label>Mã Định Danh (Project ID):</label>
+            <input type="text" class="inspector-input" id="settingProjectId" value="proj_food_delivery" readonly>
+          </div>
+          <div class="setting-row">
+            <label>Kho Git Từ Xa (Remote):</label>
+            <input type="text" class="inspector-input" id="settingGitUrl" value="https://github.com/Tb3c123/agentP.git">
+          </div>
+          <div class="setting-row">
+            <label>Nhánh Mặc Định:</label>
+            <input type="text" class="inspector-input" id="settingGitBranch" value="main">
+          </div>
+        </div>
+
+        <!-- Settings Tab 2: Environment Variables -->
+        <div class="settings-content" id="settingsTabEnv" style="display:none;">
+          <div style="font-size:11px; color:#64748B; margin-bottom:8px;">Các biến môi trường được lưu an toàn trong bảng <code>project_env_vars</code> SQLite:</div>
+          <div class="env-var-list" id="envVarList">
+            <div class="env-var-item">
+              <span class="env-key">PORT</span>
+              <span class="env-val">9090</span>
+            </div>
+            <div class="env-var-item">
+              <span class="env-key">AVD_DEVICE_NAME</span>
+              <span class="env-val">Pixel_8_Pro_API_34</span>
+            </div>
+            <div class="env-var-item">
+              <span class="env-key">LLM_PROXY_URL</span>
+              <span class="env-val">http://127.0.0.1:9090</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Tab 3: Antigravity Danger Zone -->
+        <div class="settings-content" id="settingsTabDanger" style="display:none;">
+          <div class="danger-zone-box">
+            <div class="danger-zone-title">🚨 VÙNG NGUY HIỂM: XÓA VĨNH VIỄN DỰ ÁN</div>
+            <p class="danger-zone-desc">
+              Hành động này sẽ <strong>xóa vĩnh viễn</strong> toàn bộ mã nguồn, cấu hình CSDL SQLite <code>.agents/db.sqlite</code> và toàn bộ lịch sử git. Thao tác này <strong>không thể hoàn tác</strong>.
+            </p>
+
+            <div style="margin-top:12px;">
+              <label style="font-size:11px; font-weight:600; color:#991B1B; display:block; margin-bottom:4px;">
+                Nhập chính xác tên dự án <code style="background:#FEE2E2; padding:2px 5px; border-radius:4px;">FoodDelivery-Loyalty-App</code> để mở khóa nút xóa:
+              </label>
+              <input 
+                type="text" 
+                id="dangerConfirmInput" 
+                class="danger-input"
+                placeholder="Gõ chính xác FoodDelivery-Loyalty-App"
+                oninput="handleDangerInputChange(this.value)"
+              />
+            </div>
+
+            <button 
+              id="btnDangerDeleteProject" 
+              class="danger-delete-btn locked" 
+              disabled 
+              onclick="executeAntigravityProjectDelete()"
+            >
+              🔒 BỊ KHÓA — GÕ TÊN DỰ ÁN ĐỂ MỞ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="/app.js"></script>
 </body>
