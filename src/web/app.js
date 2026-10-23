@@ -28,11 +28,37 @@ function switchView(viewName) {
     if (tab) tab.classList.add('active');
     loadFileTree();
     openFileInEditor('lib/features/cart/cart_button.tsx');
+  } else if (viewName === 'remote') {
+    document.getElementById('viewRemote').classList.add('active');
+    const tab = document.getElementById('tabRemote');
+    if (tab) tab.classList.add('active');
+    loadMobileRemoteView();
   } else {
     document.getElementById('viewWorkspace').classList.add('active');
     const tab = document.getElementById('tabWorkspace');
     if (tab) tab.classList.add('active');
     loadWorkspace();
+  }
+}
+
+async function loadMobileRemoteView() {
+  try {
+    const res = await fetch('/api/remote/pairing-info');
+    const data = await res.json();
+    const codeEl = document.getElementById('viewPairingCode');
+    if (codeEl) codeEl.innerText = data.pairing_code;
+    const ipEl = document.getElementById('viewHostIp');
+    if (ipEl) ipEl.innerText = `${data.ip_address}:${data.websocket_port} (WS) / ${data.http_port} (REST)`;
+  } catch (e) {
+    console.warn('Failed to load remote info:', e);
+  }
+}
+
+function copyPairingCode() {
+  const codeEl = document.getElementById('viewPairingCode');
+  if (codeEl) {
+    navigator.clipboard.writeText(codeEl.innerText);
+    alert(`✓ Đã sao chép mã ghép đôi: ${codeEl.innerText}`);
   }
 }
 

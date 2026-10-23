@@ -111,6 +111,11 @@
               <span class="item-title">Mã Nguồn &amp; Monaco Diff</span>
               <span class="item-time">3h</span>
             </button>
+            <button class="tree-sub-item" id="tabRemote" onclick="switchView('remote')">
+              <span class="item-icon">📱</span>
+              <span class="item-title">Mobile Pairing &amp; AVD</span>
+              <span class="item-time" style="background:#CCFBF1; color:#0F766E; font-weight:700; padding:1px 6px; border-radius:10px;">Live</span>
+            </button>
             <button class="tree-sub-item conv-session" onclick="switchView('workspace')">
               <span class="item-icon">💬</span>
               <span class="item-title">Multi-Agent App Project...</span>
@@ -202,9 +207,9 @@
 
       <!-- Bottom Pinned Settings & Host Bar (Exact Antigravity Placement) -->
       <div class="rail-bottom-dock">
-        <div class="rail-status-pill online" onclick="openMobileRemoteModal()" style="cursor:pointer;" title="📱 Nhấn để xem mã QR Pairing & Điều khiển từ xa qua di động">
+        <div class="rail-status-pill online" onclick="switchView('remote')" style="cursor:pointer;" title="📱 Nhấn để xem mã QR Pairing & Điều khiển từ xa qua di động">
           <span class="dot"></span>
-          <span>Host: 192.168.1.15:8080 (📱)</span>
+          <span>Host: 192.168.1.15 (📱 Mobile Pairing)</span>
         </div>
         <div class="rail-status-pill tokens">
           <span>🪙</span>
@@ -286,6 +291,11 @@
 
         <!-- System Status & Emergency Stop -->
         <div class="workspace-ribbon-actions">
+          <button class="ribbon-mobile-btn" onclick="switchView('remote')" title="Mở Trung Tâm Điều Khiển Di Động &amp; Ghép Đôi QR">
+            <span>📱</span>
+            <span style="font-weight:700;">Mobile Pairing</span>
+            <span class="mobile-live-badge">Online</span>
+          </button>
           <div class="ribbon-indicator" title="Pre-flight System Diagnostics">
             <span>🩺 7/7 OK</span>
           </div>
@@ -395,6 +405,7 @@
                 <button class="btn-small" onclick="triggerAvdScreenshot()" title="Chụp màn hình AVD">📸 Chụp</button>
               </div>
               <button class="btn-small" onclick="triggerAvdLaunch()" style="background:#0284C7; color:#fff; border:none; margin-top:4px; width:100%; font-size:9px; font-weight:700;">▶ Khởi Chạy AVD</button>
+              <button class="btn-small" onclick="switchView('remote')" style="background:#CCFBF1; color:#0F766E; border:1px solid #14B8A6; margin-top:4px; width:100%; font-size:9px; font-weight:700;">📱 Quét Mã Mobile Pairing</button>
             </div>
 
           </div>
@@ -768,6 +779,261 @@
           </div>
         </div>
       </main>
+    </section>
+
+    <!-- ================= VIEW 6: MOBILE REMOTE CONTROLLER & AVD CONTROL CENTER (SPRINT 5) ================= -->
+    <section class="view-panel remote-view" id="viewRemote">
+      <div class="remote-header-bar">
+        <div>
+          <div class="remote-main-title">📱 ĐIỀU KHIỂN TỪ XA QUA DI ĐỘNG &amp; MÁY ẢO AVD (MOBILE PAIRING)</div>
+          <div class="remote-sub-title">Ghép đôi điện thoại qua Wi-Fi nội bộ để xem tiến độ thời gian thực, duyệt Checkpoint từ xa và quản lý máy ảo Pixel 8 Pro</div>
+        </div>
+        <div class="remote-header-actions">
+          <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:6px 12px; font-weight:700;" onclick="downloadExcelReportFile()">
+            📥 Xuất Báo Cáo Excel (Sophia)
+          </button>
+          <button class="btn-small" onclick="loadMobileRemoteView()" style="background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; padding:6px 12px;">
+            🔄 Làm Mới Trạng Thái
+          </button>
+        </div>
+      </div>
+
+      <!-- 3-Column Spatial Grid -->
+      <div class="remote-spatial-grid">
+        
+        <!-- COLUMN 1: QR CODE PAIRING CARD -->
+        <div class="remote-card">
+          <div class="remote-card-header">
+            <span class="card-icon">📶</span>
+            <span class="card-title">QUÉT MÃ QR GHÉP ĐÔI</span>
+            <span class="badge-online">● Host Online</span>
+          </div>
+          
+          <div class="qr-visual-box">
+            <!-- Stylized Crisp QR Code SVG -->
+            <svg class="qr-svg-mock" width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="160" height="160" rx="12" fill="#0F172A"/>
+              <rect x="10" y="10" width="140" height="140" rx="8" fill="#FFFFFF"/>
+              <!-- Finder pattern top-left -->
+              <rect x="20" y="20" width="36" height="36" rx="4" fill="#0F172A"/>
+              <rect x="26" y="26" width="24" height="24" rx="2" fill="#FFFFFF"/>
+              <rect x="32" y="32" width="12" height="12" fill="#0D9488"/>
+              <!-- Finder pattern top-right -->
+              <rect x="104" y="20" width="36" height="36" rx="4" fill="#0F172A"/>
+              <rect x="110" y="26" width="24" height="24" rx="2" fill="#FFFFFF"/>
+              <rect x="116" y="32" width="12" height="12" fill="#0D9488"/>
+              <!-- Finder pattern bottom-left -->
+              <rect x="20" y="104" width="36" height="36" rx="4" fill="#0F172A"/>
+              <rect x="26" y="110" width="24" height="24" rx="2" fill="#FFFFFF"/>
+              <rect x="32" y="116" width="12" height="12" fill="#0D9488"/>
+              <!-- Data modules mock -->
+              <rect x="64" y="24" width="8" height="8" fill="#0F172A"/>
+              <rect x="80" y="24" width="8" height="8" fill="#0F172A"/>
+              <rect x="64" y="40" width="8" height="8" fill="#0F172A"/>
+              <rect x="80" y="48" width="8" height="8" fill="#0F172A"/>
+              <rect x="24" y="68" width="8" height="8" fill="#0F172A"/>
+              <rect x="44" y="68" width="8" height="8" fill="#0F172A"/>
+              <rect x="64" y="68" width="32" height="24" rx="4" fill="#FEF3C7"/>
+              <text x="80" y="84" font-family="sans-serif" font-size="10" font-weight="900" fill="#92400E" text-anchor="middle">agentP</text>
+              <rect x="104" y="68" width="8" height="8" fill="#0F172A"/>
+              <rect x="124" y="68" width="8" height="8" fill="#0F172A"/>
+              <rect x="64" y="104" width="8" height="8" fill="#0F172A"/>
+              <rect x="80" y="104" width="8" height="8" fill="#0F172A"/>
+              <rect x="104" y="104" width="8" height="8" fill="#0F172A"/>
+              <rect x="124" y="104" width="8" height="8" fill="#0F172A"/>
+              <rect x="64" y="124" width="8" height="8" fill="#0F172A"/>
+              <rect x="88" y="124" width="8" height="8" fill="#0F172A"/>
+              <rect x="112" y="124" width="8" height="8" fill="#0F172A"/>
+            </svg>
+            <div class="qr-caption">Mở Camera điện thoại hoặc app agentP để quét</div>
+          </div>
+
+          <!-- Pairing Metadata -->
+          <div class="pairing-info-list">
+            <div class="info-row">
+              <span class="info-label">Mã Ghép Đôi:</span>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <code class="pairing-code-badge" id="viewPairingCode">AGENTP-PAIR-7749</code>
+                <button class="btn-copy" onclick="copyPairingCode()" title="Sao chép mã">📋</button>
+              </div>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Host Trực Tuyến:</span>
+              <span class="info-val-highlight" id="viewHostIp">192.168.1.15:8080 (WS) / 9090 (REST)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Kênh Mạng:</span>
+              <span class="info-val">Wi-Fi Cục Bộ (Độ trễ &lt;4ms)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Thiết Bị Đã Ghép Đôi:</span>
+              <span class="info-val" style="color:#047857; font-weight:700;">Pixel 8 Pro (192.168.1.42)</span>
+            </div>
+          </div>
+
+          <button class="btn-simulate-mobile" onclick="simulateRemoteApprove()">
+            📱 Thử Nghiệm: Giả Lập Duyệt Từ Điện Thoại
+          </button>
+        </div>
+
+        <!-- COLUMN 2: INTERACTIVE MOBILE PHONE SIMULATOR -->
+        <div class="remote-card phone-col">
+          <div class="remote-card-header">
+            <span class="card-icon">📲</span>
+            <span class="card-title">MÀN HÌNH ĐIỆN THOẠI DI ĐỘNG (PIXEL 8 PRO)</span>
+            <span class="badge-synced">Đồng bộ Wi-Fi</span>
+          </div>
+
+          <!-- Realistic Phone Bezel -->
+          <div class="mobile-phone-frame">
+            <div class="phone-speaker-notch"></div>
+            
+            <div class="phone-screen-content">
+              <!-- Phone Status Bar -->
+              <div class="phone-status-bar">
+                <span>09:41</span>
+                <span>📶 5G &nbsp; 🔋 100%</span>
+              </div>
+
+              <!-- Phone App Header -->
+              <div class="phone-app-header">
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <span style="font-weight:900; color:#0F766E;">agentP</span>
+                  <span style="font-size:10px; color:#64748B;">Remote</span>
+                </div>
+                <div class="phone-conn-pill">● Trực Tuyến</div>
+              </div>
+
+              <!-- Phone Body -->
+              <div class="phone-app-body">
+                <div class="phone-project-banner">
+                  <div style="font-size:10px; color:#64748B;">DỰ ÁN HIỆN TẠI</div>
+                  <div style="font-size:12px; font-weight:700; color:#0F172A;">FoodDelivery-Loyalty-App</div>
+                  <div style="font-size:10px; color:#0F766E; margin-top:2px;">Sprint 5 • 46/46 Tests Pass</div>
+                </div>
+
+                <!-- Phone Checkpoint Gate Card -->
+                <div class="phone-checkpoint-card">
+                  <div class="phone-chk-badge">🛑 CỔNG DUYỆT CHECKPOINT #04</div>
+                  <div class="phone-chk-title">Chờ Bạn Phê Duyệt</div>
+                  <div class="phone-chk-desc">Merge nhánh <code>feature/cart-voucher</code> và chạy thử nghiệm trên máy ảo Android Pixel 8 Pro.</div>
+                  
+                  <button class="phone-approve-btn" onclick="simulateRemoteApprove()">
+                    ✅ DUYỆT TỪ ĐIỆN THOẠI NGAY
+                  </button>
+                  <button class="phone-reject-btn" onclick="alert('Đã gửi yêu cầu hiệu chỉnh từ điện thoại!')">
+                    ✍️ Yêu Cầu Sửa Thêm
+                  </button>
+                </div>
+
+                <!-- Phone Quick Remote Controls -->
+                <div class="phone-remote-grid">
+                  <button class="phone-cmd-btn" onclick="triggerAvdReload()">
+                    ⚡ Flutter Hot Reload
+                  </button>
+                  <button class="phone-cmd-btn" onclick="triggerAvdScreenshot()">
+                    📸 Chụp Màn Hình AVD
+                  </button>
+                  <button class="phone-cmd-btn danger" onclick="triggerEmergencyStop()">
+                    ⏹️ Dừng Khẩn Cấp (ESC)
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMN 3: AVD RUNNER & CORPORATE REPORTING -->
+        <div class="remote-card">
+          <div class="remote-card-header">
+            <span class="card-icon">🤖</span>
+            <span class="card-title">MÁY ẢO ANDROID AVD &amp; BÁO CÁO</span>
+            <span class="badge-online">Port 5554</span>
+          </div>
+
+          <!-- AVD Status Box -->
+          <div class="avd-status-panel">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-weight:700; color:#0F172A; font-size:12px;">Pixel 8 Pro (API 34)</span>
+              <span style="font-size:10px; background:#CCFBF1; color:#0F766E; font-weight:700; padding:2px 8px; border-radius:10px;">Connected</span>
+            </div>
+            
+            <div class="avd-metrics-row">
+              <div class="metric-col">
+                <span class="metric-val">14ms</span>
+                <span class="metric-lbl">Render Latency</span>
+              </div>
+              <div class="metric-col">
+                <span class="metric-val">60 FPS</span>
+                <span class="metric-lbl">Frame Rate</span>
+              </div>
+              <div class="metric-col">
+                <span class="metric-val">5554</span>
+                <span class="metric-lbl">ADB Port</span>
+              </div>
+            </div>
+
+            <div class="avd-actions-row">
+              <button class="btn-avd-action primary" onclick="triggerAvdReload()">⚡ Hot Reload (&lt;35ms)</button>
+              <button class="btn-avd-action" onclick="triggerAvdScreenshot()">📸 Chụp Màn Hình</button>
+              <button class="btn-avd-action" onclick="triggerAvdLaunch()">▶ Khởi Chạy GUI</button>
+            </div>
+          </div>
+
+          <!-- Live AVD Visual Preview Box -->
+          <div class="avd-preview-card">
+            <div class="preview-header">
+              <span>🖼️ AVD SCREENSHOT PREVIEW (LIVE UI)</span>
+              <span style="font-size:9px; color:#10B981;">● Đồng bộ AST</span>
+            </div>
+            <div class="preview-screen-body">
+              <div class="mock-cart-preview">
+                <div style="font-size:11px; font-weight:700; color:#0F172A; margin-bottom:4px;">Giỏ Hàng Voucher (App Khách Hàng)</div>
+                <div style="font-size:10px; color:#64748B; margin-bottom:8px;">1x Cà phê Muối • 1x Bánh Mì Chảo</div>
+                <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:700; margin-bottom:8px;">
+                  <span>Tổng tiền:</span>
+                  <span style="color:#0F766E;">75.000đ (-15k Voucher)</span>
+                </div>
+                <button style="width:100%; background:#0D9488; color:#fff; font-weight:700; font-size:11px; padding:8px; border-radius:6px; border:none; box-shadow:0 2px 4px rgba(13,148,136,0.3); cursor:pointer;">
+                  Thanh toán ngay &amp; Nhận Xu 🪙
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Corporate Excel Report Card -->
+          <div class="report-box-card">
+            <div class="report-box-header">
+              <span>📊 BÁO CÁO NGHIỆM THU DOANH NGHIỆP</span>
+              <span style="font-size:9px; background:#FEF3C7; color:#92400E; font-weight:700; padding:1px 6px; border-radius:8px;">Sophia (Data)</span>
+            </div>
+            <div class="report-box-content">
+              <div class="report-stat-row">
+                <span>Dự án:</span>
+                <b>FoodDelivery-Loyalty-App</b>
+              </div>
+              <div class="report-stat-row">
+                <span>Số tiêu chí Sprint:</span>
+                <b style="color:#047857;">5/5 Sprint Hoàn Tất (100%)</b>
+              </div>
+              <div class="report-stat-row">
+                <span>Token tiết kiệm:</span>
+                <b style="color:#0F766E;">42.500 tokens (SQLite WAL)</b>
+              </div>
+              <div class="report-stat-row">
+                <span>Bộ Test Coverage:</span>
+                <b style="color:#047857;">46/46 Tests Pass (100%)</b>
+              </div>
+            </div>
+            <button class="btn-download-excel" onclick="downloadExcelReportFile()">
+              📥 Tải File Báo Cáo Nghiệm Thu (.csv / .xlsx)
+            </button>
+          </div>
+
+        </div>
+
+      </div>
     </section>
 
       </main>
