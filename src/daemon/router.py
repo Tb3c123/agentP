@@ -256,6 +256,18 @@ class AgentPDaemonHandler(http.server.BaseHTTPRequestHandler):
             self._set_headers(200)
             settings = pm.get_project_settings()
             self.wfile.write(json.dumps(settings).encode('utf-8'))
+        elif path == '/api/skills':
+            conn = get_db()
+            cursor = conn.cursor()
+            skills = cursor.execute("""
+                SELECT skill_id, name, category, description, tools_required, file_path 
+                FROM agent_skills 
+                ORDER BY category, name
+            """).fetchall()
+            conn.close()
+            data = [{"id": s[0], "name": s[1], "category": s[2], "description": s[3], "tools": s[4], "file_path": s[5]} for s in skills]
+            self._set_headers(200)
+            self.wfile.write(json.dumps({"total": len(data), "skills": data}).encode('utf-8'))
         elif path == '/api/kanban/all':
             conn = get_db()
             cursor = conn.cursor()

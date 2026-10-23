@@ -192,7 +192,7 @@ class CommandWorkspaceService:
         thought_duration_ms = int((time.time() - thought_start) * 1000) + 1450
 
         # Create new task in Kanban if applicable
-        task_id = f"TASK-{int(time.time()) % 1000}"
+        task_id = f"TASK-{uuid.uuid4().hex[:6].upper()}"
         cursor.execute("""
             INSERT INTO kanban_tasks (
                 task_id, project_id, title, category, column_status, priority, assigned_role_id, tokens_spent

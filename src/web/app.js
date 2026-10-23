@@ -7,7 +7,7 @@ let autoNameTimeout = null;
 function switchView(viewName) {
   currentView = viewName;
   document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab, .rail-nav-tab').forEach(el => el.classList.remove('active'));
 
   if (viewName === 'onboarding') {
     document.getElementById('viewOnboarding').classList.add('active');

@@ -9,52 +9,86 @@
 </head>
 <body>
 
-  <!-- Top Navigation Header with Elena's Friendly Tab Names -->
-  <header class="top-header">
-    <div class="brand-suite" onclick="switchView('workspace')">
-      <div class="fedora-badge">
-        <svg width="34" height="26" viewBox="0 0 34 26" fill="none">
-          <path d="M2 19 C2 17, 6 15, 17 15 C28 15, 32 17, 32 19 L34 21 C34 22, 32 23, 17 23 C2 23, 0 22, 0 21 Z" fill="#78350F"/>
-          <path d="M6 15 L8 5 C8 3.5, 12 2, 17 2 C22 2, 26 3.5, 26 5 L28 15 Z" fill="#78350F"/>
-          <rect x="7.5" y="12" width="19" height="2.5" fill="#0D9488" rx="0.8"/>
-        </svg>
+  <!-- Antigravity-Style App Shell: Left Navigation Rail & Main Stage -->
+  <div class="app-shell">
+    
+    <!-- ANTIGRAVITY VERTICAL LEFT RAIL (220px) -->
+    <aside class="antigravity-left-rail">
+      
+      <!-- Logo & Fedora Badge -->
+      <div class="rail-brand" onclick="switchView('workspace')">
+        <div class="fedora-badge">
+          <svg width="30" height="24" viewBox="0 0 34 26" fill="none">
+            <path d="M2 19 C2 17, 6 15, 17 15 C28 15, 32 17, 32 19 L34 21 C34 22, 32 23, 17 23 C2 23, 0 22, 0 21 Z" fill="#78350F"/>
+            <path d="M6 15 L8 5 C8 3.5, 12 2, 17 2 C22 2, 26 3.5, 26 5 L28 15 Z" fill="#78350F"/>
+            <rect x="7.5" y="12" width="19" height="2.5" fill="#0D9488" rx="0.8"/>
+          </svg>
+        </div>
+        <div class="rail-brand-text">agent<span>P</span></div>
       </div>
-      <div class="brand-text">agent<span>P</span></div>
-    </div>
 
-    <!-- Friendly Tab Names by Elena -->
-    <nav class="nav-tabs">
-      <button class="nav-tab" id="tabOnboarding" onclick="switchView('onboarding')">
-        🌱 Bắt Đầu Ý Tưởng
-      </button>
-      <button class="nav-tab active" id="tabWorkspace" onclick="switchView('workspace')">
-        🧑‍💼 Bàn Làm Việc Cùng Alex
-      </button>
-      <button class="nav-tab" id="tabStudio" onclick="switchView('studio')">
-        🎨 Xưởng Thiết Kế (UI/UX)
-      </button>
-      <button class="nav-tab" id="tabKanban" onclick="switchView('kanban')">
-        📋 Bảng Tiến Độ (Kanban)
-      </button>
-      <button class="nav-tab" id="tabCode" onclick="switchView('code')">
-        💻 Mã Nguồn &amp; So Sánh
-      </button>
-    </nav>
-
-    <div class="header-status">
-      <div class="status-pill online">
-        <span class="dot"></span> Host: 192.168.1.15:8080
+      <!-- Current Active Project Pill (Click to open Settings) -->
+      <div class="rail-project-card" onclick="openProjectSettingsModal()">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="project-indicator-dot"></span>
+          <div style="overflow:hidden;">
+            <div class="rail-project-label">DỰ ÁN HIỆN HÀNH</div>
+            <div class="rail-project-name" id="railProjectTitle">FoodDelivery-Loyalty-App</div>
+          </div>
+        </div>
+        <span style="font-size:11px; color:#94A3B8;">⚙️</span>
       </div>
-      <div class="status-pill tokens">
-        🪙 <span id="headerTokensSaved">42.5k saved</span>
-      </div>
-      <button class="btn-small" style="background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; font-weight:600; padding:4px 8px;" onclick="openProjectSettingsModal()">
-        ⚙️ Cài Đặt Dự Án
-      </button>
-    </div>
-  </header>
 
-  <main class="app-container">
+      <!-- Section Title -->
+      <div class="rail-section-title">ĐIỀU HƯỚNG DỰ ÁN</div>
+
+      <!-- Antigravity Vertical Tab Rail -->
+      <nav class="rail-nav-tabs">
+        <button class="rail-nav-tab" id="tabOnboarding" onclick="switchView('onboarding')">
+          <span class="rail-tab-icon">🌱</span>
+          <span class="rail-tab-label">Bắt Đầu Ý Tưởng</span>
+        </button>
+        <button class="rail-nav-tab active" id="tabWorkspace" onclick="switchView('workspace')">
+          <span class="rail-tab-icon">🧑‍💼</span>
+          <span class="rail-tab-label">Bàn Làm Việc Alex</span>
+          <span class="rail-badge">SPOC</span>
+        </button>
+        <button class="rail-nav-tab" id="tabStudio" onclick="switchView('studio')">
+          <span class="rail-tab-icon">🎨</span>
+          <span class="rail-tab-label">Xưởng Thiết Kế (UI)</span>
+          <span class="rail-badge-sub">Dual</span>
+        </button>
+        <button class="rail-nav-tab" id="tabKanban" onclick="switchView('kanban')">
+          <span class="rail-tab-icon">📋</span>
+          <span class="rail-tab-label">Bảng Tiến Độ (Kanban)</span>
+          <span class="rail-badge-sub">6 Cột</span>
+        </button>
+        <button class="rail-nav-tab" id="tabCode" onclick="switchView('code')">
+          <span class="rail-tab-icon">💻</span>
+          <span class="rail-tab-label">Mã Nguồn &amp; Tệp Tin</span>
+          <span class="rail-badge-sub">Diff</span>
+        </button>
+      </nav>
+
+      <!-- Bottom Dock: Host, Token & Danger Settings -->
+      <div class="rail-bottom-dock">
+        <div class="rail-status-pill online">
+          <span class="dot"></span>
+          <span>Host: 192.168.1.15:8080</span>
+        </div>
+        <div class="rail-status-pill tokens">
+          <span>🪙</span>
+          <span id="headerTokensSaved">42.5k saved</span>
+        </div>
+        <button class="rail-settings-btn" onclick="openProjectSettingsModal()">
+          <span>⚙️ Cài Đặt &amp; Vùng Nguy Hiểm</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN STAGE -->
+    <div class="stage-container">
+      <main class="app-container">
 
     <!-- ================= VIEW 1: ONBOARDING LAUNCHPAD ================= -->
     <section class="view-panel onboarding-view" id="viewOnboarding">
@@ -597,7 +631,9 @@
       </main>
     </section>
 
-  </main>
+      </main>
+    </div> <!-- .stage-container -->
+  </div> <!-- .app-shell -->
 
   <!-- ================= TRANG 8: PROJECT HUB & ANTIGRAVITY DANGER ZONE MODAL ================= -->
   <div class="modal-overlay" id="projectSettingsModal" style="display:none;">
