@@ -139,78 +139,82 @@
         </div>
       </section>
 
-      <!-- ================= RIGHT PANEL: FIXED HIERARCHY (480px) ================= -->
+      <!-- ================= RIGHT PANEL: EXPANDED SPATIAL LIVE KANBAN (580px) ================= -->
       <aside class="right-panel">
         
-        <!-- SECTION 1: LIVE KANBAN WIDGET -->
-        <div class="kanban-section">
-          <div class="panel-header">
-            <span>📋 TIẾN ĐỘ LIVE KANBAN</span>
-            <button class="btn-small" style="color: #0F766E; font-weight: 700;">⛶ Mở Studio</button>
-          </div>
+        <!-- HEADER -->
+        <div class="panel-header">
+          <span>📋 TIẾN ĐỘ LIVE KANBAN (TOÀN CẢNH)</span>
+          <button class="btn-small" style="color: #0F766E; font-weight: 700;" onclick="alert('Đang mở Kanban Studio 6 cột toàn màn hình...')">⛶ Mở Studio</button>
+        </div>
 
-          <!-- 4 Mini-Kanban Columns with Internal Scroll -->
+        <!-- SECTION 1: LIVE KANBAN WIDGET (MAXIMUM EXPANDED SPACE) -->
+        <div class="kanban-section">
           <div class="mini-kanban-grid">
             <!-- TO DO -->
             <div class="kanban-col todo">
-              <div class="col-header">Chờ Làm (<span id="countTodo">0</span>)</div>
+              <div class="col-header">
+                <span>Chờ Làm</span>
+                <span id="countTodo" style="background:#E2E8F0; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+              </div>
               <div class="col-cards" id="colCardsTodo"></div>
             </div>
             <!-- CODING -->
             <div class="kanban-col coding">
-              <div class="col-header">Đang Làm (<span id="countCoding">0</span>)</div>
+              <div class="col-header">
+                <span>Đang Làm ⚡</span>
+                <span id="countCoding" style="background:#CCFBF1; color:#0F766E; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+              </div>
               <div class="col-cards" id="colCardsCoding"></div>
             </div>
             <!-- QA -->
             <div class="kanban-col qa">
-              <div class="col-header">Kiểm Thử (<span id="countQA">0</span>)</div>
+              <div class="col-header">
+                <span>Kiểm Thử 🛑</span>
+                <span id="countQA" style="background:#FEF3C7; color:#92400E; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+              </div>
               <div class="col-cards" id="colCardsQA"></div>
             </div>
             <!-- DONE -->
             <div class="kanban-col done">
-              <div class="col-header">Hoàn Tất (<span id="countDone">0</span>)</div>
+              <div class="col-header">
+                <span>Hoàn Tất ✓</span>
+                <span id="countDone" style="background:#D1FAE5; color:#065F46; padding:1px 5px; border-radius:10px; font-size:9px;">0</span>
+              </div>
               <div class="col-cards" id="colCardsDone"></div>
             </div>
           </div>
         </div>
 
-        <!-- SECTION 2: GIT DIFF SUMMARY -->
-        <div class="sub-panel">
-          <div class="sub-panel-title">
-            <span>🌿 GIT STAGING: feature/cart-voucher</span>
-            <span><span class="lines-added">+45</span> / <span style="color: #DC2626; font-weight: 700;">-12</span></span>
+        <!-- SECTION 2: BOTTOM TOOLS DOCK (GIT STAGING & AVD RUNNER AT THE VERY BOTTOM) -->
+        <div class="bottom-tools-dock">
+          
+          <!-- Box 1: Git Staging Diff -->
+          <div class="tool-box">
+            <div class="tool-box-header">
+              <span>🌿 GIT STAGING</span>
+              <span style="font-size:10px;"><span class="lines-added">+45</span> / <span class="lines-deleted">-12</span></span>
+            </div>
+            <div class="git-compact-diff">
+              <div>• cart_bloc.dart <span class="lines-added">+28</span></div>
+              <div>• cart.controller.ts <span class="lines-added">+17</span></div>
+            </div>
+            <div style="font-size:9px; color:#94A3B8; margin-top:2px;">Nhánh: feature/cart-voucher</div>
           </div>
-          <div class="git-file-row">
-            <span>lib/features/cart/cart_bloc.dart</span>
-            <span class="lines-added">+28 lines</span>
-          </div>
-          <div class="git-file-row">
-            <span>src/modules/cart/cart.controller.ts</span>
-            <span class="lines-added">+17 lines</span>
-          </div>
-          <div class="git-file-row">
-            <span>test/cart/cart_bloc_test.dart</span>
-            <span class="lines-added">+12 lines</span>
-          </div>
-        </div>
 
-        <!-- SECTION 3: ANDROID AVD RUNNER (Explicitly Boxed & Separated) -->
-        <div class="avd-section">
-          <div class="sub-panel-title">
-            <span>📱 MÁY ẢO AVD: Google Pixel 8 Pro</span>
-            <span style="color: #047857; font-weight: 700;">● Port 5554 Online</span>
-          </div>
-          <div class="avd-box">
-            <div class="avd-meta-row">
-              <div style="font-size: 11px; font-weight: 700; color: #0F172A;">FoodDelivery-Loyalty-App</div>
-              <div style="font-size: 10px; color: #0D9488; font-weight: 600;">Flutter Hot Reload Sẵn Sàng</div>
+          <!-- Box 2: Android AVD Runner -->
+          <div class="tool-box">
+            <div class="tool-box-header">
+              <span>📱 MÁY ẢO AVD</span>
+              <span style="color:#047857; font-size:9px; font-weight:700;">● Port 5554</span>
             </div>
-            <div class="avd-actions">
-              <button class="btn-small" onclick="alert('⚡ Đã kích hoạt Hot Reload Flutter!')">🔄 Hot Reload (r)</button>
-              <button class="btn-small" onclick="alert('📸 Đã chụp màn hình AVD lưu vào docs/assets/')">📸 Chụp Màn Hình</button>
-              <button class="btn-small" style="color: #0F766E;" onclick="alert('🔍 Mở Flutter DevTools...')">🔍 DevTools</button>
+            <div style="font-size:10px; font-weight:600; color:#0F172A; margin:2px 0;">Pixel 8 Pro (API 34)</div>
+            <div class="avd-compact-actions">
+              <button class="btn-small" onclick="alert('⚡ Đã kích hoạt Flutter Hot Reload (r)!')">🔄 Reload</button>
+              <button class="btn-small" onclick="alert('📸 Đã chụp màn hình AVD lưu vào docs/assets/!')">📸 Chụp</button>
             </div>
           </div>
+
         </div>
 
       </aside>

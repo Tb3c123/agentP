@@ -1,4 +1,4 @@
-// agentP Desktop Suite Client App (Sprint 2)
+// agentP Desktop Suite Client App (Sprint 2 - Expanded Live Kanban)
 
 let currentView = 'workspace';
 let autoNameTimeout = null;
@@ -58,8 +58,6 @@ function applyTemplate(name) {
 
 function launchProjectFromOnboarding() {
   switchView('workspace');
-  const chatStream = document.getElementById('chatStream');
-  // Add initial command message
   handleSendMessage(`Bắt đầu khởi tạo dự án: ${descInput.value}`);
 }
 
@@ -94,12 +92,28 @@ function renderMiniKanban(cols) {
   if (!cols) return;
   
   const mapCol = (containerId, countId, items) => {
-    document.getElementById(countId).innerText = items.length;
-    document.getElementById(containerId).innerHTML = items.map(t => `
+    const countEl = document.getElementById(countId);
+    if (countEl) countEl.innerText = items.length;
+    
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    if (items.length === 0) {
+      container.innerHTML = '<div style="text-align:center; padding:20px 4px; color:#94A3B8; font-size:10px; font-style:italic;">Trống</div>';
+      return;
+    }
+
+    container.innerHTML = items.map(t => `
       <div class="task-card">
-        <div class="task-id">${t.task_id}</div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="task-id">${t.task_id}</span>
+          <span style="font-size:8px; font-weight:700; color:${t.priority === 'urgent' ? '#DC2626' : (t.priority === 'high' ? '#D97706' : '#64748B')}; text-transform:uppercase;">${t.priority}</span>
+        </div>
         <div class="task-title">${t.title}</div>
-        <div class="task-assignee">${t.assigned_role_id} • ⚡ ${t.tokens_spent}</div>
+        <div class="task-assignee">
+          <span>${t.assigned_role_id}</span>
+          <span style="font-weight:700; color:#0F766E;">⚡ ${t.tokens_spent}</span>
+        </div>
       </div>
     `).join('');
   };
@@ -156,7 +170,7 @@ function renderChatMessages(messages, activeCheckpoint) {
       <div class="checkpoint-gate-card">
         <div class="checkpoint-header">
           <span>🛑</span>
-          <span>CHECKPOINT #01: YÊU CẦU PHÊ DUYỆT CỦA BẠN</span>
+          <span>CHECKPOINT #02: YÊU CẦU PHÊ DUYỆT CỦA BẠN</span>
         </div>
         <div class="checkpoint-body">
           ${activeCheckpoint.summary}<br>
@@ -184,7 +198,6 @@ async function handleSendMessage(overrideText) {
   if (!overrideText && input) input.value = '';
 
   const stream = document.getElementById('chatStream');
-  // Immediately render user bubble
   stream.innerHTML += `
     <div class="chat-bubble user">
       <div style="font-size:11px; font-weight:700; margin-bottom:2px; opacity:0.9;">Bạn (Chủ dự án):</div>
@@ -229,7 +242,7 @@ async function resolveCheckpoint(action) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        checkpoint_id: 'CHK-01',
+        checkpoint_id: 'CHK-02',
         action: action,
         feedback: action === 'approved' ? 'Phê duyệt từ giao diện web' : 'Yêu cầu kiểm tra lại'
       })
