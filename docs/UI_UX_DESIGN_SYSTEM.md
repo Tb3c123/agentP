@@ -489,30 +489,61 @@ Hệ thống đã kết xuất toàn bộ 10 màn hình riêng biệt thành cá
 Cập nhật chính thức bởi **Elena (Lead UI/UX)** và phê duyệt bởi **Alex (Lead/PM)** theo phản hồi của Bạn:
 
 ```
-+-------------------------------------------------------------------------------------------------------+
-|  ANTIGRAVITY LEFT RAIL (72px)  |  TOP SWARM RIBBON (48px): Alex Desk | 13 Specialists Chips | Actions |
-|                                +----------------------------------------------------------------------+
-|  [Fedora Logo]                 |                                  |                                   |
-|  [🧑‍💼 Chat/Alex (Active)]       |  CENTER CHAT WORKSPACE (Flex 1)  |  EXPANDED LIVE KANBAN (580px)     |
-|  [💻 Code Explorer]            |  - Luồng chat với Alex           |  - Chờ Làm (1)                    |
-|  [📋 Kanban Studio]            |  - <thinking> box                |  - Đang Làm ⚡ (1)                 |
-|  [🎨 Visual Studio]            |  - Checkpoint Gate #04           |  - Kiểm Thử 🛑 (1)                 |
-|  [🌱 Launchpad]                |  - Thanh nhập lệnh               |  - Hoàn Tất ✓ (4)                 |
-|                                |                                  +-----------------------------------+
-|  [● Host]                      |                                  |  BOTTOM TOOLS DOCK                |
-|  [⚙️ Settings / Danger Zone]   |                                  |  [Git Staging]  |  [AVD Runner]   |
-+--------------------------------+----------------------------------+-----------------------------------+
++---------------------------------------------------------------------------------------------------------------+
+|  ANTIGRAVITY LEFT SIDEBAR (260px)  |  TOP SWARM RIBBON (52px): Alex Desk | 13 Specialists Chips | Actions    |
+|                                    +--------------------------------------------------------------------------+
+|  [🔴🟡🟢] [◫] [←] [→] [🔍]          |                                      |                                   |
+|  [Fedora Logo] agentP v2.0         |  CENTER CHAT WORKSPACE (Flex 1)      |  EXPANDED LIVE KANBAN (560px)     |
+|  [+ New Conversation]              |  - Luồng chat với Alex [SPOC]        |  - Chờ Làm (1)                    |
+|  [🕒 Conversation History]         |  - <thinking> reasoning box          |  - Đang Làm ⚡ (1)                 |
+|  [⏱️ Automations (3 Active)]        |  - Checkpoint Gate #04 (Amber)       |  - Kiểm Thử 🛑 (1)                 |
+|  [🧰 Customizations (30 Skills)]   |  - Thanh nhập lệnh                   |  - Hoàn Tất ✓ (4)                 |
+|  --------------------------------- |                                      +-----------------------------------+
+|  PROJECTS             [≡] [📁⁺]    |                                      |  BOTTOM TOOLS DOCK                |
+|  ▼ 📁 FoodDelivery-Loyalty-App     |                                      |  [Git Staging]  |  [AVD Runner]   |
+|    - 🧑‍💼 Bàn Làm Việc Alex (6m)    |                                      |  (+45/-12 lines)|  (Pixel 8 Pro)  |
+|    - 🎨 Xưởng Thiết Kế (15m)       |                                      |                                   |
+|    - 📋 Bảng Tiến Độ (1h)          |                                      |                                   |
+|    - 💻 Mã Nguồn & Diff (3h)       |                                      |                                   |
+|    - 💬 Multi-Agent CLI App (6m)   |                                      |                                   |
+|  ▶ 📁 vietlot (9h)                 |                                      |                                   |
+|  ▶ 📁 TV (22d)                     |                                      |                                   |
+|  ▶ 📁 agent (2d)                   |                                      |                                   |
+|  --------------------------------- |                                      |                                   |
+|  [● Host: 192.168.1.15:8080]       |                                      |                                   |
+|  [🪙 42.5k tokens saved via Daemon]|                                      |                                   |
+|  [⚙️ Settings & Danger Zone Lock]  |                                      |                                   |
++------------------------------------+--------------------------------------+-----------------------------------+
 ```
 
 ### Điểm Cải Tiến Cốt Lõi:
-1. **Thanh Ray Điều Hướng Antigravity (Left Rail)**:
-   - Thay thế toàn bộ thanh navbar ngang trên đỉnh bằng thanh ray dọc chuyên nghiệp.
-   - Mỗi tab là một nút bấm vector có vạch chỉ báo xanh Alpine Teal (`#0D9488`) ở mép trái khi active.
-   - Từng tab mở ra một trang độc lập, cách ly tuyệt đối 100%, không bị lỗi nối đuôi.
+1. **Thanh Điều Hướng Cánh Trái Chuẩn Google Antigravity 2.0 (Width 260px)**:
+   - **Thanh tiêu đề macOS**: Bộ 3 đèn tín hiệu giao thông (🔴 Đỏ `#FF5F56`, 🟡 Vàng `#FFBD2E`, 🟢 Xanh `#27C93F`) kết hợp bộ điều khiển: Thu gọn Sidebar `◫`, Quay lui `←`, Tiến tới `→`, và Tìm kiếm nhanh `🔍`.
+   - **Nhận diện thương hiệu agentP**: Nón Fedora Monogram và vạch xanh Alpine Teal (`#0D9488`), huy hiệu `v2.0`.
+   - **Nút hành động chính**: Thẻ nút bo tròn toàn chiều rộng `+ New Conversation` (`+ Tạo Cuộc Hội Thoại Mới`).
+   - **Bộ liên kết hệ thống cấp cao (Upper Navigation)**:
+     - `🕒 Conversation History`: Xem lại lịch sử các phiên thảo luận.
+     - `⏱️ Automations`: Lịch trình tự động (Pre-flight Doctor, SQLite WAL sync, Token Guard).
+     - `🧰 Customizations`: Mở thư viện 30 Universal Skills & Rules độc lập cho 14 vai trò AI.
+   - **Khu vực Quản lý Dự án (Projects Tree)**:
+     - Tiêu đề mục `Projects` kèm nút Lọc dự án `≡` và Thêm thư mục `📁⁺`.
+     - Cây thư mục lồng nhau (Collapsible Accordion) hiển thị các dự án: `📁 FoodDelivery-Loyalty-App`, `📁 vietlot`, `📁 TV`, `📁 agent`, `📁 Remix Xuân Ý & Hoà...`.
+     - Dưới dự án đang hoạt động (`FoodDelivery-Loyalty-App`), hiển thị 4 không gian làm việc cốt lõi kèm mốc thời gian:
+       - `🧑‍💼 Bàn Làm Việc Alex (SPOC)` (`6m` trước - Active với dải nền xanh Alpine Teal nhạt `#F0FDFA` và thanh viền `#0D9488`).
+       - `🎨 Xưởng Thiết Kế UI/UX` (`15m` trước).
+       - `📋 Bảng Tiến Độ Kanban [6 Cột]` (`1h` trước).
+       - `💻 Mã Nguồn & Monaco Diff` (`3h` trước).
+       - Các phiên hội thoại chi tiết: `💬 Multi-Agent App Project...` (`6m` trước).
+   - **Đáy thanh điều hướng (Bottom Fixed Dock)**:
+     - Thẻ trạng thái Host: `● Host: 192.168.1.15:8080`.
+     - Đồng hồ tiết kiệm Token: `🪙 42.5k saved via Daemon`.
+     - Nút `⚙️ Settings`: Kích hoạt Cài đặt Dự án và Khóa An Toàn 2 Lớp (Antigravity Danger Zone Lock).
 2. **Ban Kỹ Thuật Đẩy Lên Ngang Phía Trên (Horizontal Swarm Top Ribbon)**:
-   - Xóa bỏ hoàn toàn thanh bên trái 240px cũ làm dồn lệch giao diện.
+   - Xóa bỏ hoàn toàn thanh bên trái cũ làm dồn lệch giao diện.
    - Trải 13 chuyên gia (Marcus, Elena, David, Carlos, Lucas, Maya, Viktor, Liam, Sophia...) thành dải chip ngang mượt mà, kèm avatar, status dot và đồng hồ token `⚡`.
    - Alex PM có riêng khối Desk Pill sang trọng bên trái ruy-băng.
    - Nút `⏹️ DỪNG ĐỘT NGỘT (ESC)` và các chỉ báo hệ thống `🩺 7/7 OK`, `🔗 14 Live` được neo gọn gàng bên góc phải ruy-băng.
-3. **Không Gian Chat Thoáng Đãng**:
-   - Khung hội thoại được giải phóng toàn bộ không gian, cân bằng hoàn hảo với bảng Live Kanban 580px bên phải.
+3. **Phối Màu Giữ Nguyên Clean Light Mode Tuyệt Đối (Theo Yêu Cầu Của Người Dùng)**:
+   - Nền sứ Porcelain White (`#FFFFFF` & `#F8FAFC`), đường kẻ viền tinh tế `#E2E8F0`.
+   - Màu nhận diện Alpine Teal (`#0D9488`), Tuscan Amber (`#D97706`), nhấn Fedora Brown (`#78350F`).
+   - Tuyệt đối không dùng chế độ tối (Dark Mode) hay dải màu neon gây mỏi mắt.

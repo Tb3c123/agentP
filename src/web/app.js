@@ -7,26 +7,31 @@ let autoNameTimeout = null;
 function switchView(viewName) {
   currentView = viewName;
   document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-tab, .rail-nav-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab, .rail-nav-tab, .tree-sub-item').forEach(el => el.classList.remove('active'));
 
   if (viewName === 'onboarding') {
     document.getElementById('viewOnboarding').classList.add('active');
-    document.getElementById('tabOnboarding').classList.add('active');
+    const tab = document.getElementById('tabOnboarding');
+    if (tab) tab.classList.add('active');
   } else if (viewName === 'studio') {
     document.getElementById('viewStudio').classList.add('active');
-    document.getElementById('tabStudio').classList.add('active');
+    const tab = document.getElementById('tabStudio');
+    if (tab) tab.classList.add('active');
   } else if (viewName === 'kanban') {
     document.getElementById('viewKanban').classList.add('active');
-    document.getElementById('tabKanban').classList.add('active');
+    const tab = document.getElementById('tabKanban');
+    if (tab) tab.classList.add('active');
     loadFullKanban();
   } else if (viewName === 'code') {
     document.getElementById('viewCode').classList.add('active');
-    document.getElementById('tabCode').classList.add('active');
+    const tab = document.getElementById('tabCode');
+    if (tab) tab.classList.add('active');
     loadFileTree();
     openFileInEditor('lib/features/cart/cart_button.tsx');
   } else {
     document.getElementById('viewWorkspace').classList.add('active');
-    document.getElementById('tabWorkspace').classList.add('active');
+    const tab = document.getElementById('tabWorkspace');
+    if (tab) tab.classList.add('active');
     loadWorkspace();
   }
 }
@@ -694,4 +699,127 @@ async function executeAntigravityProjectDelete() {
   } catch (err) {
     console.error('Delete error:', err);
   }
+}
+
+// ================= ANTIGRAVITY 2.0 SIDEBAR & MODAL CONTROLS =================
+
+function toggleFolder(el) {
+  const group = el.closest('.tree-folder-group');
+  if (!group) return;
+  const children = group.querySelector('.tree-folder-children');
+  const caret = el.querySelector('.folder-caret');
+  if (!children || !caret) return;
+  
+  if (children.classList.contains('collapsed')) {
+    children.classList.remove('collapsed');
+    caret.textContent = '▼';
+    group.classList.add('expanded');
+  } else {
+    children.classList.add('collapsed');
+    caret.textContent = '▶';
+    group.classList.remove('expanded');
+  }
+}
+
+function toggleSidebar() {
+  const rail = document.querySelector('.antigravity-left-rail');
+  if (rail) {
+    rail.classList.toggle('collapsed-rail');
+  }
+}
+
+function historyBack() {
+  switchView('onboarding');
+}
+
+function historyForward() {
+  switchView('workspace');
+}
+
+function openQuickSearch() {
+  const term = prompt('🔍 Tìm kiếm nhanh trong agentP (dự án, nhiệm vụ, kỹ năng):');
+  if (term && term.trim()) {
+    openCustomizationsModal();
+    const searchInput = document.getElementById('skillSearchInput');
+    if (searchInput) {
+      searchInput.value = term.trim();
+      filterSkills(term.trim());
+    }
+  }
+}
+
+function toggleProjectFilter() {
+  alert('📂 Bộ lọc dự án: Đang hiển thị dự án hoạt động chính FoodDelivery-Loyalty-App (14 roles kết nối live).');
+}
+
+let allSkillsData = [];
+
+async function openCustomizationsModal() {
+  document.getElementById('customizationsModal').style.display = 'flex';
+  if (allSkillsData.length === 0) {
+    try {
+      const res = await fetch('/api/skills');
+      const data = await res.json();
+      allSkillsData = data.skills || [];
+    } catch (e) {
+      console.warn('Lỗi tải kỹ năng:', e);
+    }
+  }
+  renderSkillsModal(allSkillsData);
+}
+
+function closeCustomizationsModal() {
+  document.getElementById('customizationsModal').style.display = 'none';
+}
+
+function renderSkillsModal(skills) {
+  const grid = document.getElementById('skillsModalGrid');
+  if (!grid) return;
+  if (!skills || skills.length === 0) {
+    grid.innerHTML = '<div style="color:#94A3B8; font-size:12px; grid-column: 1 / -1; text-align:center; padding:20px;">Không tìm thấy kỹ năng phù hợp</div>';
+    return;
+  }
+  grid.innerHTML = skills.map(s => `
+    <div class="skill-card-item">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:4px;">
+        <span class="skill-title">${escapeHtml(s.name)}</span>
+        <span class="skill-category">${escapeHtml(s.category)}</span>
+      </div>
+      <div class="skill-desc">${escapeHtml(s.description || '')}</div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+        <span style="font-size:10px; color:#94A3B8; font-family:monospace;">${escapeHtml(s.id)}</span>
+        <span style="font-size:10px; color:#0D9488; font-weight:700;">✓ Sẵn sàng</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterSkills(query) {
+  const q = (query || '').toLowerCase().trim();
+  if (!q) {
+    renderSkillsModal(allSkillsData);
+    return;
+  }
+  const filtered = allSkillsData.filter(s => 
+    (s.name && s.name.toLowerCase().includes(q)) || 
+    (s.category && s.category.toLowerCase().includes(q)) || 
+    (s.description && s.description.toLowerCase().includes(q))
+  );
+  renderSkillsModal(filtered);
+}
+
+function openAutomationsModal() {
+  document.getElementById('automationsModal').style.display = 'flex';
+}
+
+function closeAutomationsModal() {
+  document.getElementById('automationsModal').style.display = 'none';
+}
+
+function openConvHistoryModal() {
+  document.getElementById('convHistoryModal').style.display = 'flex';
+}
+
+function closeConvHistoryModal() {
+  document.getElementById('convHistoryModal').style.display = 'none';
 }
