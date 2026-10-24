@@ -21,6 +21,7 @@ from skills_controller import SkillsController
 from static_controller import StaticController
 from studio_controller import StudioController
 from devops_controller import DevOpsController
+from provider_controller import ProviderController
 from ast_sync import AstSyncEngine
 
 class RequestDispatcher:
@@ -85,6 +86,12 @@ class RequestDispatcher:
         if path in ('/api/reports/excel/export', '/api/reports/excel'):
             return DevOpsController.export_excel_report()
 
+        # 9. Sprint 6: Global Providers Hub & CLI Bridge Status
+        if path in ('/api/providers/hub', '/api/providers/all'):
+            return ProviderController.get_providers_hub()
+        if path in ('/api/cli-bridge/status', '/api/cli-bridge'):
+            return ProviderController.get_cli_status()
+
         # Fallback: Static web files
         return StaticController.serve_file(path)
 
@@ -121,8 +128,18 @@ class RequestDispatcher:
             return ProjectController.auto_name(body_data)
         if path == '/api/project/verify-delete':
             return ProjectController.verify_delete(body_data)
-        if path == '/v1/chat/completions':
-            return ProtocolController.chat_completions(body_data)
+
+        # Sprint 6: 9router Dynamic Proxy & Bridge Endpoints
+        if path in ('/v1/chat/completions', '/chat/completions'):
+            return ProviderController.openai_chat_completions(body_data)
+        if path in ('/v1/messages', '/messages'):
+            return ProviderController.anthropic_messages(body_data)
+        if path in ('/api/providers/config', '/api/providers/update'):
+            return ProviderController.update_provider_config(body_data)
+        if path in ('/api/providers/test', '/api/providers/test-connection'):
+            return ProviderController.test_provider(body_data)
+        if path in ('/api/cli-bridge/generate-config', '/api/cli-bridge/generate'):
+            return ProviderController.generate_cli_scripts()
 
         headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
         import json

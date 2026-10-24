@@ -139,10 +139,10 @@ Mọi màn hình đều đã được hoàn thiện dạng SVG chuẩn mực t�
 ## 5. LỘ TRÌNH 5 SPRINT TRIỂN KHAI CHI TIẾT (SPRINT ROADMAP)
 
 ```
-[ SPRINT 1 ] ───► [ SPRINT 2 ] ───► [ SPRINT 3 ] ───► [ SPRINT 4 ] ───► [ SPRINT 5 ]
-Lõi Hạ Tầng &      Onboarding &        Studio Kép UI/UX    Editor, File &      DevOps, Remote &
-agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         Báo Cáo Nghiệm Thu
-(Liam, Carlos)     (David, Alex)       (Elena, David)      (Sam, Lucas)        (Liam, Sophia, Viktor)
+[ SPRINT 1 ] ───► [ SPRINT 2 ] ───► [ SPRINT 3 ] ───► [ SPRINT 4 ] ───► [ SPRINT 5 ] ───► [ SPRINT 6 ]
+Lõi Hạ Tầng &      Onboarding &        Studio Kép UI/UX    Editor, File &      DevOps, Remote &    9router CLI Bridge &
+agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         Báo Cáo Nghiệm Thu  Multi-Provider Proxy
+(Liam, Carlos)     (David, Alex)       (Elena, David)      (Sam, Lucas)        (Liam, Sophia)      (Lucas, Carlos, Elena)
 ```
 
 ### SPRINT 1: NỀN TẢNG HẠ TẦNG & LÕI AGENTP CORE LOCAL DAEMON PROTOCOL
@@ -215,6 +215,25 @@ agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         B
      - Kết xuất báo cáo nghiệm thu doanh nghiệp (`src/services/excel_reporter.py` -> `reports/agentp_acceptance_report.csv`) gồm danh sách file, số dòng code, phân bổ token từng role, chi phí tiết kiệm được, định dạng chuẩn màu sắc doanh nghiệp.
   4. *Viktor & Oliver*: Chạy tổng kiểm thử toàn diện E2E Test Suite (46/46 unit tests pass, `test/test_sprint5_devops_reports.py`), benchmark thời gian khởi động dưới 2 giây.
 * **Nghiệm thu (DoD)**: Điện thoại quét mã duyệt được Checkpoint, máy ảo Android chạy mượt mà, Sophia xuất được file báo cáo nghiệm thu chuẩn chỉ 100%.
+
+---
+
+### SPRINT 6: 9ROUTER CLI BRIDGE & MULTI-PROVIDER DYNAMIC PROXY (TỰ THÂN NỘI BỘ) [100% DOD]
+* **Mục tiêu**: Hiện thực hóa in-house toàn bộ năng lực routing, dynamic model proxy và bridge CLI developer tools kiểu 9router chạy trực tiếp trong agentP Core Daemon, tuyệt đối không phụ thuộc Node.js hay Docker 9router ngoài.
+* **Nhân sự thực thi**: Lucas (Senior Dev), Carlos (Backend), Elena (UI/UX), Viktor (QA Lead), Alex (Lead/PM).
+* **Nhiệm vụ cụ thể**:
+  1. *Elena & David*:
+     - Tách độc lập **Trang Kết Nối AI Providers** (Global `#viewProvidersHub` trên upper nav) hiển thị 4 nhóm providers: OAuth, Free, API Key, Compatible; có modal cấu hình và ping kiểm tra.
+     - Chuyển đổi tab cấp project thành **👥 Quản Lý Nhân Sự** (`#viewPersonnel`), hiển thị 14 chuyên viên AI của dự án, session 1:1, đo độ trễ thực tế và cho phép dropdown chọn linh hoạt 11 AI models cho từng role.
+     - Xoá 3 nút thừa bên rail trái, sửa triệt để lỗi cuộn flex (`overflow-y: auto`, `min-height: 0`).
+  2. *Carlos & Maya*:
+     - Thiết lập bảng SQLite `global_providers` lưu trữ API keys, base URLs, status, failover priority và độ trễ.
+     - Xây dựng kho lưu trữ `src/repositories/providers_repo.py` và controller `src/controllers/provider_controller.py`.
+  3. *Lucas & Carlos*:
+     - Xây dựng `src/services/cli_bridge.py`: Tự động nhận diện công cụ CLI (Claude Code CLI, Cursor IDE, Aider), sinh script kích hoạt môi trường `.agents/bin/activate_bridge.sh` và `cursor_config.json`.
+     - Xây dựng `src/services/provider_proxy.py`: Gateway chuyển đổi linh hoạt định dạng OpenAI (`/v1/chat/completions`) và Anthropic (`/v1/messages`), cơ chế tự động chuyển mạch dự phòng failover khi một provider mất kết nối.
+  4. *Viktor*: Viết bộ test kiểm thử tích hợp toàn diện (`test/test_sprint6_proxy_bridge.py` - 8 ca kiểm thử mới), nâng tổng số unit test toàn dự án lên 56/56 Tests PASS (100%).
+* **Nghiệm thu (DoD)**: Claude Code CLI và Cursor trỏ về `127.0.0.1:9090` hoạt động trơn tru; giao diện tách bạch cấp hệ thống và cấp dự án rõ ràng, không lỗi cuộn; 56/56 tests PASS.
 
 ---
 

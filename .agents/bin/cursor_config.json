@@ -1,0 +1,13 @@
+{
+  "openai_base_url": "http://127.0.0.1:9090/v1",
+  "api_key": "agentp-core-bridge-key",
+  "models": [
+    "claude-3-7-sonnet",
+    "claude-3-5-sonnet",
+    "deepseek-r1",
+    "deepseek-v3",
+    "gpt-4o",
+    "qwen-2-5-coder"
+  ],
+  "override_api": true
+}

@@ -33,11 +33,19 @@ function switchView(viewName) {
     const tab = document.getElementById('tabRemote');
     if (tab) tab.classList.add('active');
     loadMobileRemoteView();
-  } else if (viewName === 'providers') {
-    document.getElementById('viewProviders').classList.add('active');
-    const tab = document.getElementById('tabProviders');
+  } else if (viewName === 'personnel') {
+    const v = document.getElementById('viewPersonnel');
+    if (v) v.classList.add('active');
+    const tab = document.getElementById('tabPersonnel');
     if (tab) tab.classList.add('active');
-    loadProvidersView();
+    loadPersonnelView();
+  } else if (viewName === 'providers_hub') {
+    const v = document.getElementById('viewProvidersHub');
+    if (v) v.classList.add('active');
+    const tab = document.getElementById('tabGlobalProviders');
+    if (tab) tab.classList.add('active');
+  } else if (viewName === 'providers') {
+    switchView('personnel');
   } else if (viewName === 'preflight') {
     document.getElementById('viewPreflight').classList.add('active');
     const tab = document.getElementById('tabPreflight');
@@ -51,17 +59,18 @@ function switchView(viewName) {
   }
 }
 
-async function loadProvidersView() {
+async function loadPersonnelView() {
   try {
     const res = await fetch('/api/protocol/sessions');
     const data = await res.json();
     if (data.sessions && data.sessions.length > 0) {
-      renderProvidersTable(data.sessions);
+      renderPersonnelTable(data.sessions);
     }
   } catch (e) {
-    console.warn('Failed to load sessions:', e);
+    console.warn('Failed to load personnel sessions:', e);
   }
 }
+const loadProvidersView = loadPersonnelView;
 
 const AVAILABLE_AI_MODELS = [
   { id: 'claude-3-5-sonnet', label: 'Claude 3.5 Sonnet' },
@@ -106,8 +115,8 @@ async function changeRoleModel(sessionId, newModel) {
   }
 }
 
-function renderProvidersTable(sessions) {
-  const tbody = document.getElementById('providersTableBody');
+function renderPersonnelTable(sessions) {
+  const tbody = document.getElementById('personnelTableBody') || document.getElementById('providersTableBody');
   if (!tbody) return;
   tbody.innerHTML = sessions.map(s => {
     const optionsHtml = AVAILABLE_AI_MODELS.map(m => `
@@ -135,6 +144,7 @@ function renderProvidersTable(sessions) {
     `;
   }).join('');
 }
+const renderProvidersTable = renderPersonnelTable;
 
 let currentEditingProvider = null;
 

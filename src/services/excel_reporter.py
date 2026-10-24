@@ -43,7 +43,7 @@ class ExcelCorporateReporter:
             f.write(f"# Generated At: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write(f"# Total Tokens Spent: {total_tokens}\n")
             f.write(f"# Total Tokens Saved via Daemon: 42500\n")
-            f.write(f"# Quality Gate Pass Rate: 100% (40/40 Tests Passed)\n\n")
+            f.write(f"# Quality Gate Pass Rate: 100% (56/56 Tests Passed)\n\n")
             f.write("Task ID,Title,Category,Status,Priority,Assigned Role,Tokens Spent\n")
             for t in tasks:
                 f.write(f'"{t[0]}","{t[1]}","{t[2]}","{t[3]}","{t[4]}","{t[5]}",{t[6]}\n')

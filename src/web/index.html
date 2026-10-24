@@ -51,6 +51,15 @@
         </button>
       </div>
 
+      <!-- Global Activity Links (Trang Kết Nối AI Provider Riêng Biệt Cấp Hệ Thống) -->
+      <div class="rail-upper-nav">
+        <button class="rail-nav-row" id="tabGlobalProviders" onclick="switchView('providers_hub')" title="Mở Hub Kết Nối Tất Cả AI Providers (OAuth, Free CLI &amp; API Keys)">
+          <span class="rail-row-icon">🔌</span>
+          <span class="rail-row-label">Kết Nối AI Providers</span>
+          <span class="rail-row-badge teal">9router Core</span>
+        </button>
+      </div>
+
       <!-- Projects Section Header -->
       <div class="rail-projects-header">
         <span class="projects-title">Projects</span>
@@ -98,10 +107,10 @@
               <span class="item-title">Mobile Pairing &amp; AVD</span>
               <span class="item-time" style="background:#CCFBF1; color:#0F766E; font-weight:700; padding:1px 6px; border-radius:10px;">Live</span>
             </button>
-            <button class="tree-sub-item" id="tabProviders" onclick="switchView('providers')">
-              <span class="item-icon">🔗</span>
-              <span class="item-title">AI Providers &amp; Sessions</span>
-              <span class="item-time" style="background:#E0E7FF; color:#4338CA; font-weight:700; padding:1px 6px; border-radius:10px;">14 Live</span>
+            <button class="tree-sub-item" id="tabPersonnel" onclick="switchView('personnel')" title="Quản lý 14 chuyên viên kỹ thuật của dự án &amp; Phân bổ AI Model">
+              <span class="item-icon">👥</span>
+              <span class="item-title">Quản Lý Nhân Sự</span>
+              <span class="item-time" style="background:#E0E7FF; color:#4338CA; font-weight:700; padding:1px 6px; border-radius:10px;">14 Roles</span>
             </button>
             <button class="tree-sub-item" id="tabPreflight" onclick="switchView('preflight')">
               <span class="item-icon">🩺</span>
@@ -283,16 +292,21 @@
 
         <!-- System Status & Emergency Stop -->
         <div class="workspace-ribbon-actions">
+          <button class="ribbon-mobile-btn" onclick="switchView('providers_hub')" title="Mở Hub Kết Nối Tất Cả AI Providers (OAuth, Free CLI &amp; API Keys)" style="background:#F0FDF4; border-color:#86EFAC; color:#166534;">
+            <span>🔌</span>
+            <span style="font-weight:700;">AI Providers</span>
+            <span class="mobile-live-badge" style="background:#0D9488;">Hub</span>
+          </button>
           <button class="ribbon-mobile-btn" onclick="switchView('remote')" title="Mở Trung Tâm Điều Khiển Di Động &amp; Ghép Đôi QR">
             <span>📱</span>
             <span style="font-weight:700;">Mobile Pairing</span>
             <span class="mobile-live-badge">Online</span>
           </button>
-          <div class="ribbon-indicator clickable" onclick="switchView('preflight')" title="Mở Trang 5: Tiền Kiểm Hệ Thống (7 Tiêu Chí)" style="cursor:pointer;">
+          <div class="ribbon-indicator clickable" onclick="switchView('preflight')" title="Mở Trang Tiền Kiểm Hệ Thống (7 Tiêu Chí)" style="cursor:pointer;">
             <span>🩺 7/7 OK</span>
           </div>
-          <div class="ribbon-indicator clickable" onclick="switchView('providers')" title="Mở Trang 3: Quản Lý 14 AI Providers &amp; Sessions 1:1" style="cursor:pointer;">
-            <span>🔗 14 Live</span>
+          <div class="ribbon-indicator clickable" onclick="switchView('personnel')" title="Mở Quản Lý Nhân Sự Dự Án (14 Chuyên Viên AI)" style="cursor:pointer;">
+            <span>👥 14 Roles</span>
           </div>
           <button class="emergency-stop-btn-sm" onclick="triggerEmergencyStop()" title="Dừng đột ngột toàn bộ agent ngầm">
             ⏹️ DỪNG (ESC)
@@ -1028,331 +1042,350 @@
       </div>
     </section>
 
-    <!-- ================= VIEW 7 (TRANG 3): PROVIDER SETUP & 1:1 SESSION BINDING ================= -->
-    <section class="view-panel providers-view" id="viewProviders">
+    <!-- ================= VIEW 7: QUẢN LÝ NHÂN SỰ DỰ ÁN (PROJECT-LEVEL SWARM) ================= -->
+    <section class="view-panel personnel-view" id="viewPersonnel">
       <div class="remote-header-bar">
         <div>
-          <div class="remote-main-title">🔗 CẤU HÌNH AI PROVIDERS &amp; CÔ LẬP SESSION 1:1 (TRANG 3)</div>
-          <div class="remote-sub-title">Quản lý kết nối các nhà cung cấp AI (OAuth, Free, API Key) &amp; Phân bổ linh hoạt model cho 14 chuyên viên kỹ thuật</div>
+          <div class="remote-main-title">👥 QUẢN LÝ NHÂN SỰ DỰ ÁN &amp; PHÂN BỔ 14 AI SPECIALISTS</div>
+          <div class="remote-sub-title">Dự án: FoodDelivery-Loyalty-App • Điều phối 14 chuyên viên kỹ thuật, phân bổ AI Model linh hoạt, theo dõi năng suất và độ trễ</div>
         </div>
         <div class="remote-header-actions">
           <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:6px 14px; font-weight:700;" onclick="testAllProviderSessions()">
-            🔄 Kiểm Tra Kết Nối (Ping Latency)
+            🔄 Ping Kiểm Tra 14 Nhân Sự
           </button>
           <button class="btn-small" style="background:#0284C7; color:#fff; border:none; padding:6px 14px; font-weight:700;" onclick="saveModelBindings()">
-            💾 Lưu Cấu Hình Model
+            💾 Lưu Cấu Hình Nhân Sự
           </button>
         </div>
       </div>
 
-      <!-- Elena Clean Light Sub-navigation Tabs -->
-      <div class="providers-subnav-bar">
-        <button class="prov-subnav-btn active" id="btnSubtabRoleBinding" onclick="switchProviderSubtab('role_binding')">
-          👥 Gán 14 Chuyên Viên AI (Role-to-Model)
-        </button>
-        <button class="prov-subnav-btn" id="btnSubtabProvidersHub" onclick="switchProviderSubtab('providers_hub')">
-          🔌 Hub Nhà Cung Cấp AI (9router Connections)
-        </button>
-      </div>
-
-      <!-- SUBTAB 1: ROLE BINDING (14 AI SPECIALISTS) -->
-      <div class="provider-subtab-pane active" id="paneRoleBinding">
-        <!-- Daemon Status Banner -->
-        <div class="daemon-info-banner">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div class="daemon-live-indicator"></div>
-            <div>
-              <div style="font-size:13px; font-weight:800; color:#065F46;">agentP Core Daemon đang chạy: http://127.0.0.1:9090</div>
-              <div style="font-size:11px; color:#047857; margin-top:2px;">Tự động điều phối API keys, rate-limit, fallback failover và đồng bộ session CLI cục bộ</div>
-            </div>
-          </div>
-          <div style="display:flex; gap:8px; align-items:center;">
-            <span style="font-size:11px; background:#FFFFFF; color:#0F766E; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
-              🪙 42.5k tokens saved
-            </span>
-            <span style="font-size:11px; background:#FFFFFF; color:#047857; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
-              14/14 Sessions Live
-            </span>
+      <!-- Daemon Status Banner -->
+      <div class="daemon-info-banner">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="daemon-live-indicator"></div>
+          <div>
+            <div style="font-size:13px; font-weight:800; color:#065F46;">Ban Kỹ Thuật: 14/14 Chuyên Viên Đang Trực Tuyến (Port 9090)</div>
+            <div style="font-size:11px; color:#047857; margin-top:2px;">Mỗi chuyên viên được cô lập session 1:1, bóc tách luồng suy nghĩ &lt;thinking&gt; và ghi nhận token riêng biệt</div>
           </div>
         </div>
-
-        <!-- 14 Sessions Table Card with Dynamic Selectable AI Models -->
-        <div class="providers-table-card">
-          <table class="providers-table">
-            <thead>
-              <tr>
-                <th style="width:260px;">ROLE / CHUYÊN VIÊN</th>
-                <th style="width:240px;">TUỲ CHỌN AI MODEL</th>
-                <th style="width:190px;">SESSION ID 1:1</th>
-                <th style="width:110px;">LATENCY</th>
-                <th style="width:130px;">TRẠNG THÁI</th>
-                <th style="width:90px;">THAO TÁC</th>
-              </tr>
-            </thead>
-            <tbody id="providersTableBody">
-              <!-- Populated dynamically by renderProvidersTable -->
-            </tbody>
-          </table>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span style="font-size:11px; background:#FFFFFF; color:#0F766E; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
+            🪙 42.5k tokens saved
+          </span>
+          <span style="font-size:11px; background:#FFFFFF; color:#047857; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #A7F3D0;">
+            14 Roles Sẵn Sàng
+          </span>
         </div>
       </div>
 
-      <!-- SUBTAB 2: PROVIDERS HUB (MATCHING 9ROUTER IMAGE 2) -->
-      <div class="provider-subtab-pane" id="paneProvidersHub">
-        
-        <!-- Category 1: OAuth Providers -->
-        <div class="provider-section-box">
-          <div class="prov-sec-header">
-            <span class="prov-sec-title">OAuth Providers</span>
-            <button class="btn-small prov-test-all" onclick="testCategoryProviders('oauth')">▶ Test All</button>
-          </div>
-          <div class="prov-cards-grid">
-            <div class="prov-card" onclick="openProviderModal('Claude Code', 'oauth', 'claude_code')">
-              <span class="prov-icon">✳️</span>
-              <div class="prov-info">
-                <div class="prov-name">Claude Code</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Antigravity', 'oauth', 'antigravity')">
-              <span class="prov-icon">🚀</span>
-              <div class="prov-info">
-                <div class="prov-name">Antigravity</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('OpenAI Codex', 'oauth', 'openai_codex')">
-              <span class="prov-icon">🤖</span>
-              <div class="prov-info">
-                <div class="prov-name">OpenAI Codex</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('GitHub Copilot', 'oauth', 'github_copilot')">
-              <span class="prov-icon">🐙</span>
-              <div class="prov-info">
-                <div class="prov-name">GitHub Copilot</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Cursor IDE', 'oauth', 'cursor_ide')">
-              <span class="prov-icon">🖥️</span>
-              <div class="prov-info">
-                <div class="prov-name">Cursor IDE</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Kilo Code', 'oauth', 'kilo_code')">
-              <span class="prov-icon">⚡</span>
-              <div class="prov-info">
-                <div class="prov-name">Kilo Code</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Cline', 'oauth', 'cline')">
-              <span class="prov-icon">👾</span>
-              <div class="prov-info">
-                <div class="prov-name">Cline</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category 2: Free Providers -->
-        <div class="provider-section-box">
-          <div class="prov-sec-header">
-            <span class="prov-sec-title">Free Providers</span>
-            <button class="btn-small prov-test-all" onclick="testCategoryProviders('free')">▶ Test All</button>
-          </div>
-          <div class="prov-cards-grid">
-            <div class="prov-card" onclick="openProviderModal('iFlow AI', 'free', 'iflow')">
-              <span class="prov-icon">🔄</span>
-              <div class="prov-info">
-                <div class="prov-name">iFlow AI</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Qwen Code', 'free', 'qwen_code')">
-              <span class="prov-icon">✨</span>
-              <div class="prov-info">
-                <div class="prov-name">Qwen Code</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Gemini CLI', 'free', 'gemini_cli')">
-              <span class="prov-icon">🔷</span>
-              <div class="prov-info">
-                <div class="prov-name">Gemini CLI</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Kiro AI', 'free', 'kiro_ai')">
-              <span class="prov-icon">👻</span>
-              <div class="prov-info">
-                <div class="prov-name">Kiro AI</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category 3: API Key Providers -->
-        <div class="provider-section-box">
-          <div class="prov-sec-header">
-            <span class="prov-sec-title">API Key Providers</span>
-            <button class="btn-small prov-test-all" onclick="testCategoryProviders('apikey')">▶ Test All</button>
-          </div>
-          <div class="prov-cards-grid">
-            <div class="prov-card" onclick="openProviderModal('OpenRouter', 'api', 'openrouter')">
-              <span class="prov-icon">🌐</span>
-              <div class="prov-info">
-                <div class="prov-name">OpenRouter</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('GLM Coding', 'api', 'glm_coding')">
-              <span class="prov-icon">🔲</span>
-              <div class="prov-info">
-                <div class="prov-name">GLM Coding</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Minimax Coding', 'api', 'minimax')">
-              <span class="prov-icon">📊</span>
-              <div class="prov-info">
-                <div class="prov-name">Minimax Coding</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Alibaba Intl', 'api', 'alibaba_intl')">
-              <span class="prov-icon">🟠</span>
-              <div class="prov-info">
-                <div class="prov-name">Alibaba Intl</div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Anthropic', 'api', 'anthropic')">
-              <span class="prov-icon">🔺</span>
-              <div class="prov-info">
-                <div class="prov-name">Anthropic</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('OpenAI', 'api', 'openai')">
-              <span class="prov-icon">🟢</span>
-              <div class="prov-info">
-                <div class="prov-name">OpenAI</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Gemini', 'api', 'gemini')">
-              <span class="prov-icon">💎</span>
-              <div class="prov-info">
-                <div class="prov-name">Gemini</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('DeepSeek', 'api', 'deepseek')">
-              <span class="prov-icon">🐳</span>
-              <div class="prov-info">
-                <div class="prov-name">DeepSeek</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Groq', 'api', 'groq')">
-              <span class="prov-icon">⚡</span>
-              <div class="prov-info">
-                <div class="prov-name">Groq</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('xAI (Grok)', 'api', 'xai')">
-              <span class="prov-icon">✖️</span>
-              <div class="prov-info">
-                <div class="prov-name">xAI (Grok)</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Mistral', 'api', 'mistral')">
-              <span class="prov-icon">🌊</span>
-              <div class="prov-info">
-                <div class="prov-name">Mistral</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Perplexity', 'api', 'perplexity')">
-              <span class="prov-icon">🔍</span>
-              <div class="prov-info">
-                <div class="prov-name">Perplexity</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Together AI', 'api', 'together')">
-              <span class="prov-icon">🤝</span>
-              <div class="prov-info">
-                <div class="prov-name">Together AI</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Fireworks AI', 'api', 'fireworks')">
-              <span class="prov-icon">🎆</span>
-              <div class="prov-info">
-                <div class="prov-name">Fireworks AI</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Cerebras', 'api', 'cerebras')">
-              <span class="prov-icon">🧠</span>
-              <div class="prov-info">
-                <div class="prov-name">Cerebras</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('Cohere', 'api', 'cohere')">
-              <span class="prov-icon">🔗</span>
-              <div class="prov-info">
-                <div class="prov-name">Cohere</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('NVIDIA NIM', 'api', 'nvidia')">
-              <span class="prov-icon">🟩</span>
-              <div class="prov-info">
-                <div class="prov-name">NVIDIA NIM</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-            <div class="prov-card" onclick="openProviderModal('SiliconFlow', 'api', 'siliconflow')">
-              <span class="prov-icon">🌊</span>
-              <div class="prov-info">
-                <div class="prov-name">SiliconFlow</div>
-                <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category 4: API Key Compatible Providers -->
-        <div class="provider-section-box">
-          <div class="prov-sec-header">
-            <span class="prov-sec-title">API Key Compatible Providers</span>
-            <div style="display:flex; gap:8px;">
-              <button class="btn-small btn-add-compat" onclick="openCustomCompatModal('Anthropic')">+ Add Anthropic Compatible</button>
-              <button class="btn-small btn-add-compat" onclick="openCustomCompatModal('OpenAI')">+ Add OpenAI Compatible</button>
-            </div>
-          </div>
-          <div class="prov-cards-grid">
-            <div class="prov-card" onclick="openProviderModal('Alibaba Custom', 'compat', 'alibaba_compat')">
-              <span class="prov-icon">🈹</span>
-              <div class="prov-info">
-                <div class="prov-name">Alibaba <span class="badge-chat-tag">Chat</span></div>
-                <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <!-- 14 Sessions Table Card with Dynamic Selectable AI Models -->
+      <div class="providers-table-card">
+        <table class="providers-table">
+          <thead>
+            <tr>
+              <th style="width:260px;">CHUYÊN VIÊN / VAI TRÒ</th>
+              <th style="width:240px;">TUỲ CHỌN AI MODEL ĐƯỢC GÁN</th>
+              <th style="width:190px;">SESSION ID 1:1</th>
+              <th style="width:110px;">LATENCY</th>
+              <th style="width:130px;">TRẠNG THÁI</th>
+              <th style="width:90px;">THAO TÁC</th>
+            </tr>
+          </thead>
+          <tbody id="personnelTableBody">
+            <!-- Populated dynamically by renderPersonnelTable -->
+          </tbody>
+        </table>
       </div>
+    </section>
+
+    <!-- ================= VIEW 8: TRANG KẾT NỐI AI PROVIDERS RIÊNG BIỆT (9ROUTER HUB) ================= -->
+    <section class="view-panel providers-hub-view" id="viewProvidersHub">
+      <div class="remote-header-bar">
+        <div>
+          <div class="remote-main-title">🔌 KẾT NỐI AI PROVIDERS (GLOBAL ENDPOINT PROXY)</div>
+          <div class="remote-sub-title">Manage your AI provider connections • Hạ tầng kết nối đa nhà cung cấp (OAuth, Free CLI &amp; API Keys) kiểu 9router</div>
+        </div>
+        <div class="remote-header-actions">
+          <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:6px 14px; font-weight:700;" onclick="testCategoryProviders('all')">
+            ⚡ Test All Connections
+          </button>
+          <button class="btn-small btn-add-compat" onclick="openCustomCompatModal('Custom')">
+            + Thêm Custom Provider
+          </button>
+        </div>
+      </div>
+
+      <!-- CLI Connection Guide Banner -->
+      <div class="daemon-info-banner" style="background:#EFF6FF; border-color:#BFDBFE;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:20px;">🖥️</span>
+          <div>
+            <div style="font-size:13px; font-weight:800; color:#1E40AF;">agentP Built-in Endpoint Proxy: http://127.0.0.1:9090</div>
+            <div style="font-size:11px; color:#1D4ED8; margin-top:2px;">
+              Hỗ trợ kết nối trực tiếp Claude Code CLI (<code>export ANTHROPIC_BASE_URL=http://localhost:9090</code>) &amp; Cursor IDE (OpenAI Base URL).
+            </div>
+          </div>
+        </div>
+        <div>
+          <span style="font-size:11px; background:#FFFFFF; color:#1E40AF; font-weight:700; padding:4px 10px; border-radius:6px; border:1px solid #BFDBFE;">
+            Local Proxy Active
+          </span>
+        </div>
+      </div>
+
+      <!-- Category 1: OAuth Providers -->
+      <div class="provider-section-box">
+        <div class="prov-sec-header">
+          <span class="prov-sec-title">OAuth Providers</span>
+          <button class="btn-small prov-test-all" onclick="testCategoryProviders('oauth')">▶ Test All</button>
+        </div>
+        <div class="prov-cards-grid">
+          <div class="prov-card" onclick="openProviderModal('Claude Code', 'oauth', 'claude_code')">
+            <span class="prov-icon">✳️</span>
+            <div class="prov-info">
+              <div class="prov-name">Claude Code</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Antigravity', 'oauth', 'antigravity')">
+            <span class="prov-icon">🚀</span>
+            <div class="prov-info">
+              <div class="prov-name">Antigravity</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('OpenAI Codex', 'oauth', 'openai_codex')">
+            <span class="prov-icon">🤖</span>
+            <div class="prov-info">
+              <div class="prov-name">OpenAI Codex</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('GitHub Copilot', 'oauth', 'github_copilot')">
+            <span class="prov-icon">🐙</span>
+            <div class="prov-info">
+              <div class="prov-name">GitHub Copilot</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Cursor IDE', 'oauth', 'cursor_ide')">
+            <span class="prov-icon">🖥️</span>
+            <div class="prov-info">
+              <div class="prov-name">Cursor IDE</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Kilo Code', 'oauth', 'kilo_code')">
+            <span class="prov-icon">⚡</span>
+            <div class="prov-info">
+              <div class="prov-name">Kilo Code</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Cline', 'oauth', 'cline')">
+            <span class="prov-icon">👾</span>
+            <div class="prov-info">
+              <div class="prov-name">Cline</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: Free Providers -->
+      <div class="provider-section-box">
+        <div class="prov-sec-header">
+          <span class="prov-sec-title">Free Providers</span>
+          <button class="btn-small prov-test-all" onclick="testCategoryProviders('free')">▶ Test All</button>
+        </div>
+        <div class="prov-cards-grid">
+          <div class="prov-card" onclick="openProviderModal('iFlow AI', 'free', 'iflow')">
+            <span class="prov-icon">🔄</span>
+            <div class="prov-info">
+              <div class="prov-name">iFlow AI</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Qwen Code', 'free', 'qwen_code')">
+            <span class="prov-icon">✨</span>
+            <div class="prov-info">
+              <div class="prov-name">Qwen Code</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Gemini CLI', 'free', 'gemini_cli')">
+            <span class="prov-icon">🔷</span>
+            <div class="prov-info">
+              <div class="prov-name">Gemini CLI</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Kiro AI', 'free', 'kiro_ai')">
+            <span class="prov-icon">👻</span>
+            <div class="prov-info">
+              <div class="prov-name">Kiro AI</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: API Key Providers -->
+      <div class="provider-section-box">
+        <div class="prov-sec-header">
+          <span class="prov-sec-title">API Key Providers</span>
+          <button class="btn-small prov-test-all" onclick="testCategoryProviders('apikey')">▶ Test All</button>
+        </div>
+        <div class="prov-cards-grid">
+          <div class="prov-card" onclick="openProviderModal('OpenRouter', 'api', 'openrouter')">
+            <span class="prov-icon">🌐</span>
+            <div class="prov-info">
+              <div class="prov-name">OpenRouter</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('GLM Coding', 'api', 'glm_coding')">
+            <span class="prov-icon">🔲</span>
+            <div class="prov-info">
+              <div class="prov-name">GLM Coding</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Minimax Coding', 'api', 'minimax')">
+            <span class="prov-icon">📊</span>
+            <div class="prov-info">
+              <div class="prov-name">Minimax Coding</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Alibaba Intl', 'api', 'alibaba_intl')">
+            <span class="prov-icon">🟠</span>
+            <div class="prov-info">
+              <div class="prov-name">Alibaba Intl</div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Anthropic', 'api', 'anthropic')">
+            <span class="prov-icon">🔺</span>
+            <div class="prov-info">
+              <div class="prov-name">Anthropic</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('OpenAI', 'api', 'openai')">
+            <span class="prov-icon">🟢</span>
+            <div class="prov-info">
+              <div class="prov-name">OpenAI</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Gemini', 'api', 'gemini')">
+            <span class="prov-icon">💎</span>
+            <div class="prov-info">
+              <div class="prov-name">Gemini</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('DeepSeek', 'api', 'deepseek')">
+            <span class="prov-icon">🐳</span>
+            <div class="prov-info">
+              <div class="prov-name">DeepSeek</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Groq', 'api', 'groq')">
+            <span class="prov-icon">⚡</span>
+            <div class="prov-info">
+              <div class="prov-name">Groq</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('xAI (Grok)', 'api', 'xai')">
+            <span class="prov-icon">✖️</span>
+            <div class="prov-info">
+              <div class="prov-name">xAI (Grok)</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Mistral', 'api', 'mistral')">
+            <span class="prov-icon">🌊</span>
+            <div class="prov-info">
+              <div class="prov-name">Mistral</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Perplexity', 'api', 'perplexity')">
+            <span class="prov-icon">🔍</span>
+            <div class="prov-info">
+              <div class="prov-name">Perplexity</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Together AI', 'api', 'together')">
+            <span class="prov-icon">🤝</span>
+            <div class="prov-info">
+              <div class="prov-name">Together AI</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Fireworks AI', 'api', 'fireworks')">
+            <span class="prov-icon">🎆</span>
+            <div class="prov-info">
+              <div class="prov-name">Fireworks AI</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Cerebras', 'api', 'cerebras')">
+            <span class="prov-icon">🧠</span>
+            <div class="prov-info">
+              <div class="prov-name">Cerebras</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('Cohere', 'api', 'cohere')">
+            <span class="prov-icon">🔗</span>
+            <div class="prov-info">
+              <div class="prov-name">Cohere</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('NVIDIA NIM', 'api', 'nvidia')">
+            <span class="prov-icon">🟩</span>
+            <div class="prov-info">
+              <div class="prov-name">NVIDIA NIM</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+          <div class="prov-card" onclick="openProviderModal('SiliconFlow', 'api', 'siliconflow')">
+            <span class="prov-icon">🌊</span>
+            <div class="prov-info">
+              <div class="prov-name">SiliconFlow</div>
+              <div class="prov-status"><span class="dot-gray-xs"></span> Chưa kết nối</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: API Key Compatible Providers -->
+      <div class="provider-section-box">
+        <div class="prov-sec-header">
+          <span class="prov-sec-title">API Key Compatible Providers</span>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-small btn-add-compat" onclick="openCustomCompatModal('Anthropic')">+ Add Anthropic Compatible</button>
+            <button class="btn-small btn-add-compat" onclick="openCustomCompatModal('OpenAI')">+ Add OpenAI Compatible</button>
+          </div>
+        </div>
+        <div class="prov-cards-grid">
+          <div class="prov-card" onclick="openProviderModal('Alibaba Custom', 'compat', 'alibaba_compat')">
+            <span class="prov-icon">🈹</span>
+            <div class="prov-info">
+              <div class="prov-name">Alibaba <span class="badge-chat-tag">Chat</span></div>
+              <div class="prov-status connected"><span class="dot-online-xs"></span> 1 Connected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ================= VIEW 8 (TRANG 5): PRE-FLIGHT SYSTEM DIAGNOSTICS & ENVIRONMENT DOCTOR ================= -->

@@ -57,13 +57,13 @@ Giao diện được tái cấu trúc toàn diện theo chuẩn **Google Antigra
 - **Cánh Trái (Width 260px)**:
   - Bộ điều khiển macOS Traffic Lights (🔴 🟡 🟢) kèm các icon thu gọn `◫`, quay lui `←`, tiến tới `→`, và tìm kiếm nhanh `🔍`.
   - Nút bấm `+ New Conversation` (`+ Tạo Cuộc Hội Thoại Mới`).
-  - Liên kết cấp cao: `🕒 Conversation History`, `⏱️ Automations (3 Active)`, `🧰 Customizations (30 Skills)`.
-  - Cây thư mục dự án (Collapsible Projects Tree): Dưới dự án `📁 FoodDelivery-Loyalty-App` phân nhánh 4 không gian làm việc độc lập (`🧑‍💼 Bàn Làm Việc Alex`, `🎨 Xưởng Thiết Kế UI/UX`, `📋 Bảng Tiến Độ Kanban`, `💻 Mã Nguồn & Monaco Diff`) kèm mốc thời gian thực.
+  - Liên kết cấp cao (Global): `🔌 Kết Nối AI Providers` (Trang kết nối độc lập 9router Hub: OAuth CLI, Free, API Key, Compatible).
+  - Cây thư mục dự án (Collapsible Projects Tree): Dưới dự án `📁 FoodDelivery-Loyalty-App` phân nhánh các không gian làm việc chuyên biệt: `🧑‍💼 Bàn Làm Việc Alex`, `🎨 Xưởng Thiết Kế UI/UX`, `📋 Bảng Tiến Độ Kanban`, `💻 Mã Nguồn & Monaco Diff`, `📱 Mobile Pairing & AVD`, `👥 Quản Lý Nhân Sự` (14 AI Specialists & Phân bổ AI Models linh hoạt), `🩺 Tiền Kiểm Hệ Thống` kèm mốc thời gian thực.
   - Chân trang: Đèn mạng `● Host: 192.168.1.15:8080`, đồng hồ `🪙 42.5k saved` và nút `⚙️ Settings` (mở Khóa 2 lớp Antigravity Danger Zone).
 - **Ruy-Băng Trên Đỉnh (Top Swarm Ribbon - 52px)**:
-  - Xóa bỏ việc dồn ép bên trái, trải 13 chuyên viên kỹ thuật thành dải chip ngang phân màu theo nhóm chuyên môn (Amber, Pink, Blue, Green, Indigo, Red, Orange, Purple...).
+  - Xóa bỏ việc dồn ép bên trái, trải 14 chuyên viên kỹ thuật thành dải chip ngang phân màu theo nhóm chuyên môn (Amber, Pink, Blue, Green, Indigo, Red, Orange, Purple...).
   - Alex PM có Desk Pill riêng màu Alpine Teal `#F0FDFA`.
-  - Tích hợp chỉ số tiền kiểm `🩺 7/7 OK`, phiên làm việc `🔗 14 Live`, và nút khẩn cấp `⏹️ DỪNG ĐỘT NGỘT (ESC)`.
+  - Tích hợp nút mở nhanh `🔌 AI Providers Hub`, `📱 Mobile Pairing`, chỉ số tiền kiểm `🩺 7/7 OK`, nhân sự `👥 14 Roles`, và nút khẩn cấp `⏹️ DỪNG ĐỘT NGỘT (ESC)`.
 - **Hệ Màu Clean Light Mode 100%**:
   - Porcelain White (`#FFFFFF`), Slate Canvas (`#F8FAFC`).
   - Alpine Teal (`#0D9488`), Tuscan Amber (`#D97706`), Fedora Brown (`#78350F`).
@@ -182,11 +182,11 @@ python3 scripts/preflight.py
 ```
 *Kết quả chuẩn: 7/7 tiêu chí hoàn toàn sẵn sàng (100%).*
 
-### Bước 2: Chạy Toàn Bộ Test Suites Tự Động (48 tests)
+### Bước 2: Chạy Toàn Bộ Test Suites Tự Động (56 tests)
 ```bash
 python3 -m unittest discover -s test
 ```
-*Kết quả chuẩn: 48/48 tests PASS trong <0.10s.*
+*Kết quả chuẩn: 56/56 tests PASS trong <0.15s (Sprint 1 -> Sprint 6).*
 
 ### Bước 3: Khởi Chạy agentP Core Daemon
 ```bash
