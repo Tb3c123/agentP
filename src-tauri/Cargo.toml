@@ -1,0 +1,23 @@
+[package]
+name = "agentp-desktop"
+version = "2.9.0"
+description = "agentP — Developer Multi-Agent Desktop Suite"
+authors = ["agentP Engineering Team <team@agentp.dev>"]
+license = "Proprietary"
+repository = "https://github.com/Tb3c123/agentP.git"
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2.0.0", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0", features = ["tray-icon"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

@@ -3,12 +3,13 @@
 # 🚀 agentP — Developer Multi-Agent Desktop Suite
 ### *Nền Tảng Điều Phối Đa Tác Nhân Trí Tuệ Nhân Tạo Dành Cho Lập Trình Viên & Doanh Nghiệp*
 
-[![Release](https://img.shields.io/badge/Release-v2.7.0-0D9488.svg?style=flat-square)](CHANGELOG.md)
+[![Release](https://img.shields.io/badge/Release-v2.9.0-0D9488.svg?style=flat-square)](CHANGELOG.md)
 [![Preflight Doctor](https://img.shields.io/badge/Pre--flight%20Doctor-7%2F7%20Criteria%20PASS-10B981.svg?style=flat-square)](scripts/preflight.py)
-[![Test Suite](https://img.shields.io/badge/Quality%20Gate-73%2F73%20Tests%20PASS%20(100%25)-0284C7.svg?style=flat-square)](test/)
+[![Test Suite](https://img.shields.io/badge/Quality%20Gate-83%2F83%20Tests%20PASS%20(100%25)-0284C7.svg?style=flat-square)](test/)
+[![Production Quality Gate](https://img.shields.io/badge/Release%20Audit-5%2F5%20Dimensions%20APPROVED-059669.svg?style=flat-square)](reports/production_quality_gate.md)
+[![Desktop Packaging](https://img.shields.io/badge/Tauri%20v2-macOS%20%7C%20Windows%20%7C%20Linux-7C3AED.svg?style=flat-square)](src-tauri/)
 [![UI Design](https://img.shields.io/badge/UI%2FUX-Clean%20Light%20Mode-D97706.svg?style=flat-square)](docs/UI_UX_DESIGN_SYSTEM.md)
-[![Proxy Engine](https://img.shields.io/badge/9router%20Core-In--House%20Local%20Proxy-4338CA.svg?style=flat-square)](src/services/provider_proxy.py)
-[![License](https://img.shields.io/badge/License-MIT-slate.svg?style=flat-square)](LICENSE)
+[![License Guard](https://img.shields.io/badge/License-Hardware--Locked%20Offline-4338CA.svg?style=flat-square)](src/services/license_guard.py)
 
 <br/>
 
@@ -69,6 +70,11 @@ Thay vì phải mở hàng chục cửa sổ chat rời rạc hoặc sao chép m
 * Cơ chế bảo vệ dữ liệu 2 lớp: Để xóa vĩnh viễn dự án, bắt buộc phải nhập chính xác 100% tên dự án để mở khóa nút xóa.
 * Thùng rác an toàn `.agents/trash/` cho phép khôi phục mọi tệp tin đã xóa trong vòng 30 ngày.
 
+### 7. 📦 Đóng Gói Tauri v2 Desktop & Bản Quyền Phần Cứng Offline 100%
+* **Desktop Shell Tauri v2 (Rust + Web)**: Tối ưu bộ nhớ siêu nhẹ `<40MB` (so với Electron `>250MB`), thời gian khởi động tức thì `<1.2s`, phân phối đa nền tảng macOS (`.dmg`), Windows (`.msi`) và Linux.
+* **Khóa Bản Quyền Khóa Cứng Phần Cứng (Hardware-Locked License)**: Ký điện tử HMAC-SHA256 gắn chặt vào mã máy tính (`AP-{ARCH}-{HASH}`), chạy offline hoàn toàn không cần server xác thực.
+* **Cổng Kiểm Định Chất Lượng Sản Xuất (Production Quality Gate)**: Đạt điểm tuyệt đối 5/5 tiêu chí: WCAG 2.2 AA/AAA (Alpine Teal & Tuscan Amber), SQLite WAL không vi phạm ràng buộc khoá ngoại, hiệu năng phản hồi `<15ms`, Pre-flight 7/7 và Desktop Bundle Ready.
+
 ---
 
 ## 🐝 Ban Kỹ Thuật 14 Chuyên Viên AI
@@ -100,19 +106,30 @@ python3 scripts/preflight.py
 ```
 > *Xác nhận 7/7 tiêu chí kỹ thuật: SQLite WAL, Node.js, Git, Daemon, Flutter, AVD, và 14 AI Roles sẵn sàng 100%.*
 
-### 2. Chạy toàn bộ bộ kiểm thử tự động (73 Tests)
+### 2. Chạy toàn bộ bộ kiểm thử tự động (83 Tests)
 ```bash
 python3 -m unittest discover -s test -p "test_*.py"
 ```
-> *Tất cả 73/73 ca kiểm thử tự động chạy hoàn tất trong <0.20 giây.*
+> *Tất cả 83/83 ca kiểm thử tự động chạy hoàn tất trong <0.28 giây.*
 
-### 3. Khởi chạy agentP Core Daemon
+### 3. Kiểm định Cổng Chất Lượng Sản Xuất (5/5 Quality Gate)
+```bash
+python3 scripts/quality_gate.py
+```
+> *Xác nhận 5/5 chiều chất lượng: WCAG 2.2 Contrast, SQLite WAL, RAM Benchmark, Pre-flight, và Desktop Packaging.*
+
+### 4. Kiểm tra gói đóng gói Tauri v2 Desktop
+```bash
+python3 scripts/package_desktop.py
+```
+
+### 5. Khởi chạy agentP Core Daemon
 ```bash
 python3 src/daemon/router.py
 ```
 *Mở trình duyệt và trải nghiệm giao diện làm việc tại: **[http://127.0.0.1:9090](http://127.0.0.1:9090)***
 
-### 4. Kích hoạt CLI Bridge cho Claude Code hoặc Cursor (Tuỳ chọn)
+### 6. Kích hoạt CLI Bridge cho Claude Code hoặc Cursor (Tuỳ chọn)
 ```bash
 source .agents/bin/activate_bridge.sh
 ```

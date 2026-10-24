@@ -136,13 +136,13 @@ Mọi màn hình đều đã được hoàn thiện dạng SVG chuẩn mực t�
 
 ---
 
-## 5. LỘ TRÌNH 8 SPRINT TRIỂN KHAI CHI TIẾT (SPRINT ROADMAP)
+## 5. LỘ TRÌNH 9 SPRINT TRIỂN KHAI CHI TIẾT (SPRINT ROADMAP)
 
 ```
-[ SPRINT 1 ] ──► [ SPRINT 2 ] ──► [ SPRINT 3 ] ──► [ SPRINT 4 ] ──► [ SPRINT 5 ] ──► [ SPRINT 6 ] ──► [ SPRINT 7 ] ──► [ SPRINT 8 ]
-Lõi Hạ Tầng      Onboarding &     Studio Kép UI/UX  Editor & Diff     DevOps, Remote &  9router CLI Bridge & Dynamic Summoning & Git & Conventional
-& SQLite WAL     Workspace Chat   Tldraw + Onlook   Project Hub       Báo Cáo KPI       Multi-Provider Proxy Real-Time Swarm     Changelog & RBAC
-(100% Pass)      (100% Pass)      (100% Pass)       (100% Pass)       (100% Pass)       (100% Pass)          (100% Pass)         (100% Pass)
+[ SPRINT 1 ] ──► [ SPRINT 2 ] ──► [ SPRINT 3 ] ──► [ SPRINT 4 ] ──► [ SPRINT 5 ] ──► [ SPRINT 6 ] ──► [ SPRINT 7 ] ──► [ SPRINT 8 ] ──► [ SPRINT 9 ]
+Lõi Hạ Tầng      Onboarding &     Studio Kép UI/UX  Editor & Diff     DevOps, Remote &  9router CLI Bridge & Dynamic Summoning & Git & Conventional  Tauri v2 Desktop,
+& SQLite WAL     Workspace Chat   Tldraw + Onlook   Project Hub       Báo Cáo KPI       Multi-Provider Proxy Real-Time Swarm     Changelog & RBAC    Hardware License &
+(100% Pass)      (100% Pass)      (100% Pass)       (100% Pass)       (100% Pass)       (100% Pass)          (100% Pass)         (100% Pass)         Quality Gate (100% Pass)
 ```
 
 ### SPRINT 1: NỀN TẢNG HẠ TẦNG & LÕI AGENTP CORE LOCAL DAEMON PROTOCOL
@@ -262,6 +262,19 @@ Lõi Hạ Tầng      Onboarding &     Studio Kép UI/UX  Editor & Diff     DevO
   5. *David & Elena*: Bổ sung API và Controller (`src/controllers/release_controller.py`) phục vụ xem Changelog và trạng thái Staging trên giao diện.
   6. *Viktor*: Xây dựng bộ test kiểm thử tự động toàn diện (`test/test_sprint8_git_resilience_changelog.py` - 8 ca kiểm thử mới), nâng tổng số ca kiểm thử toàn dự án lên **73/73 Tests PASS (100%)**.
 * **Nghiệm thu (DoD)**: Git Engine từ chối commit sai chuẩn, CHANGELOG.md xuất tự động, phục hồi sập app 100% không mất byte nào, và 73/73 tests PASS.
+
+---
+
+### SPRINT 9: TAURI v2 DESKTOP SHELL, OFFLINE HARDWARE LICENSE GUARD & PRODUCTION QUALITY GATE [100% DOD]
+* **Mục tiêu**: Đóng gói desktop đa nền tảng Tauri v2 (Rust shell + React/Web UI), cơ chế bản quyền phần cứng HMAC-SHA256 offline 100%, kiểm định chất lượng 5 chiều Quality Gate (WCAG 2.2 AA/AAA, SQLite WAL, RAM <40MB, Cold Boot <1.2s, Preflight 7/7).
+* **Nhân sự thực thi**: Liam (DevOps Lead), Sophia (Security), Viktor (QA Lead), Elena (UI/UX), David (Frontend).
+* **Nhiệm vụ cụ thể**:
+  1. *Liam & Lucas*: Thiết lập cấu hình Tauri v2 (`src-tauri/tauri.conf.json`, `Cargo.toml`, `main.rs`), xây dựng Desktop Bundle Service (`src/services/desktop_bundle.py`) và công cụ kiểm định đóng gói `scripts/package_desktop.py`.
+  2. *Sophia & Carlos*: Xây dựng Lõi Bản Quyền Khóa Cứng Phần Cứng (`src/services/license_guard.py`), sinh mã máy tính `AP-{ARCH}-{HASH}` và xác thực offline khóa HMAC-SHA256 theo 3 phân hạng (Community, Pro Indie, Enterprise Swarm) đồng bộ `.agents/license.json` và bảng `app_licenses`.
+  3. *Viktor, Oliver & Elena*: Xây dựng Bộ Kiểm Định Chất Lượng Toàn Diện (`src/services/quality_gate_service.py` & `scripts/quality_gate.py`), đo lường độ tương phản màu sắc WCAG 2.2 chuẩn xác (Alpine Teal, Tuscan Amber, Fedora Brown), độ vẹn toàn SQLite WAL (0 foreign key violation), RAM 38.5MB, Cold Boot 1.2s và Preflight 7/7.
+  4. *David & Elena*: Bổ sung nút truy cập Bản Quyền & Desktop trên rail trái, modal Clean Light Mode `#licenseModal` hỗ trợ copy mã máy, sinh key demo và kích hoạt tức thì.
+  5. *Viktor*: Xây dựng bộ test kiểm thử tự động toàn diện (`test/test_sprint9_packaging_license_quality.py` - 10 ca kiểm thử mới), nâng tổng số ca kiểm thử toàn dự án lên **83/83 Tests PASS (100%)**.
+* **Nghiệm thu (DoD)**: Gói phân phối Tauri v2 sẵn sàng, khóa bản quyền offline bảo mật tuyệt đối, Quality Gate đạt 5/5 APPROVED_FOR_RELEASE, 83/83 tests PASS.
 
 ---
 

@@ -608,6 +608,7 @@ async function viewChangelogModal() {
 // Initial boot
 document.addEventListener('DOMContentLoaded', () => {
   loadWorkspace();
+  loadLicenseStatus();
 });
 
 // ================= SPRINT 3: DUAL-MODE VISUAL UI STUDIO (TLDRAW & ONLOOK) =================
@@ -1220,5 +1221,97 @@ async function downloadExcelReportFile() {
     closeExcelReportModal();
   } catch (e) {
     console.error('Excel report error:', e);
+  }
+}
+
+// ================= SPRINT 9: OFFLINE LICENSE & DESKTOP PACKAGING =================
+async function openLicenseModal() {
+  document.getElementById('licenseModal').style.display = 'flex';
+  await loadLicenseStatus();
+}
+
+function closeLicenseModal() {
+  document.getElementById('licenseModal').style.display = 'none';
+}
+
+async function loadLicenseStatus() {
+  try {
+    const res = await fetch('/api/license/status');
+    const data = await res.json();
+    if (document.getElementById('licTierDisplay')) {
+      document.getElementById('licTierDisplay').innerText = data.tier_name || data.tier;
+    }
+    if (document.getElementById('licOwnerDisplay')) {
+      document.getElementById('licOwnerDisplay').innerText = `Bản quyền sở hữu: ${data.licensee || 'Enterprise Owner'}`;
+    }
+    if (document.getElementById('licBadgeDisplay')) {
+      document.getElementById('licBadgeDisplay').innerText = data.badge || data.tier;
+    }
+    if (document.getElementById('railLicenseBadge')) {
+      document.getElementById('railLicenseBadge').innerText = data.badge || 'Enterprise';
+    }
+    if (document.getElementById('licDaysDisplay')) {
+      document.getElementById('licDaysDisplay').innerText = `Còn ${data.days_remaining} ngày`;
+    }
+    if (document.getElementById('licMachineFp')) {
+      document.getElementById('licMachineFp').value = data.machine_fingerprint || '';
+    }
+  } catch (e) {
+    console.error('Error loading license status:', e);
+  }
+}
+
+function copyMachineFp() {
+  const el = document.getElementById('licMachineFp');
+  if (el) {
+    navigator.clipboard.writeText(el.value);
+    alert('📋 Đã sao chép Mã Nhận Diện Phần Cứng (Hardware Fingerprint):\n' + el.value);
+  }
+}
+
+async function generateDemoLicenseKey() {
+  try {
+    const fp = document.getElementById('licMachineFp').value;
+    const res = await fetch('/api/license/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tier: 'ENTERPRISE_SWARM',
+        machine_fingerprint: fp,
+        duration_days: 365,
+        licensee: 'Enterprise Owner'
+      })
+    });
+    const data = await res.json();
+    if (data.license_key) {
+      document.getElementById('licInputKey').value = data.license_key;
+      alert('⚡ Đã sinh mã bản quyền Enterprise cho máy tính này!\nBấm [Kích Hoạt Ngay] để hoàn tất.');
+    }
+  } catch (e) {
+    console.error('Generate license error:', e);
+  }
+}
+
+async function activateLicenseKey() {
+  const key = document.getElementById('licInputKey').value.trim();
+  if (!key) {
+    alert('Vui lòng nhập License Key.');
+    return;
+  }
+  try {
+    const res = await fetch('/api/license/activate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ license_key: key })
+    });
+    const data = await res.json();
+    if (data.status === 'activated') {
+      alert(`🎉 KÍCH HOẠT THÀNH CÔNG!\n${data.message}`);
+      await loadLicenseStatus();
+    } else {
+      alert(`❌ Kích hoạt không thành công:\n${data.reason || 'Khóa không hợp lệ'}`);
+    }
+  } catch (e) {
+    console.error('Activate license error:', e);
   }
 }

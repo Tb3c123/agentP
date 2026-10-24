@@ -7,6 +7,8 @@
 .agents/tokens/
 .agents/cache/
 .agents/trash/
+.agents/backups/
+.agents/license.json
 .agents/db.sqlite
 .agents/db.sqlite-journal
 .agents/db.sqlite-wal

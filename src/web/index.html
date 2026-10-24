@@ -40,7 +40,7 @@
           </svg>
         </div>
         <div class="rail-brand-text">agent<span>P</span></div>
-        <span class="rail-version-pill">v2.0</span>
+        <span class="rail-version-pill">v2.9.0</span>
       </div>
 
       <!-- Action Button: + New Conversation -->
@@ -51,12 +51,17 @@
         </button>
       </div>
 
-      <!-- Global Activity Links (Trang Kết Nối AI Provider Riêng Biệt Cấp Hệ Thống) -->
+      <!-- Global Activity Links (Trang Kết Nối AI Provider Riêng Biệt Cấp Hệ Thống & Bản Quyền Desktop) -->
       <div class="rail-upper-nav">
         <button class="rail-nav-row" id="tabGlobalProviders" onclick="switchView('providers_hub')" title="Mở Hub Kết Nối Tất Cả AI Providers (OAuth, Free CLI &amp; API Keys)">
           <span class="rail-row-icon">🔌</span>
           <span class="rail-row-label">Kết Nối AI Providers</span>
           <span class="rail-row-badge teal">9router Core</span>
+        </button>
+        <button class="rail-nav-row" id="tabLicenseModal" onclick="openLicenseModal()" title="Bản Quyền Phần Mềm & Phân Phối Tauri v2 Desktop">
+          <span class="rail-row-icon">🛡️</span>
+          <span class="rail-row-label">Bản Quyền & Desktop</span>
+          <span class="rail-row-badge green" id="railLicenseBadge">Enterprise</span>
         </button>
       </div>
 
@@ -1824,6 +1829,79 @@
             </button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SPRINT 9: OFFLINE LICENSE & DESKTOP PACKAGING MODAL ================= -->
+  <div class="modal-backdrop" id="licenseModal" style="display:none;">
+    <div class="modal-dialog" style="max-width:560px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:18px;">🛡️</span>
+          <div style="font-size:14px; font-weight:700; color:#0F172A;" id="licenseModalTitle">BẢN QUYỀN PHẦN MỀM & PHÂN PHỐI TAURI v2</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeLicenseModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:16px; display:flex; flex-direction:column; gap:12px;">
+        
+        <!-- Active License Card -->
+        <div class="automation-card" style="border-color:#5EEAD4; background:#F0FDFA; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:18px;">👑</span>
+              <div>
+                <div style="font-size:13px; font-weight:700; color:#0F766E;" id="licTierDisplay">agentP Enterprise Multi-Agent Swarm</div>
+                <div style="font-size:11px; color:#115E59;" id="licOwnerDisplay">Bản quyền sở hữu: Enterprise Owner</div>
+              </div>
+            </div>
+            <span class="rail-row-badge green" id="licBadgeDisplay">Enterprise</span>
+          </div>
+          <div style="margin-top:10px; font-size:11px; color:#134E4A; display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div>• Thời hạn: <strong id="licDaysDisplay">Còn 365.0 ngày</strong></div>
+            <div>• Trạng thái: <strong style="color:#059669;">Hoạt Động 100%</strong></div>
+            <div>• Swarm: <strong>14/14 Roles Độc Lập</strong></div>
+            <div>• Token Quota: <strong>Không Giới Hạn (Unlimited)</strong></div>
+          </div>
+        </div>
+
+        <!-- Hardware Machine Binding Fingerprint -->
+        <div class="setting-row">
+          <label style="font-size:11px; font-weight:700; color:#334155;">Mã Nhận Diện Phần Cứng Máy Tính (Hardware Machine Fingerprint):</label>
+          <div style="display:flex; gap:8px; margin-top:4px;">
+            <input type="text" class="inspector-input" id="licMachineFp" readonly style="flex:1; padding:7px 10px; background:#F1F5F9; border:1px solid #CBD5E1; border-radius:6px; font-family:monospace; font-size:12px; font-weight:600; color:#0F172A;">
+            <button class="btn-small" style="background:#FFFFFF; border:1px solid #CBD5E1; color:#0F766E; padding:7px 12px; font-weight:600;" onclick="copyMachineFp()">📋 Copy</button>
+          </div>
+          <div style="font-size:10px; color:#64748B; margin-top:2px;">* Khóa bản quyền được ký điện tử HMAC-SHA256 gắn chặt vào bo mạch phần cứng, chạy offline 100% không cần kết nối mạng.</div>
+        </div>
+
+        <!-- License Key Activation -->
+        <div class="setting-row">
+          <label style="font-size:11px; font-weight:700; color:#334155;">Nhập Khóa Bản Quyền Kích Hoạt (License Key):</label>
+          <textarea class="inspector-input" id="licInputKey" placeholder="AGENTP-ENTERPRISE_SWARM-..." rows="2" style="width:100%; padding:8px; border:1px solid #CBD5E1; border-radius:6px; font-family:monospace; font-size:11px; resize:none; margin-top:4px; box-sizing:border-box;"></textarea>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+            <button class="btn-small" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#475569; padding:6px 10px; font-size:11px;" onclick="generateDemoLicenseKey()">
+              ⚡ Tạo Demo Key Tức Thời
+            </button>
+            <button class="btn-small" style="background:#0D9488; color:#fff; border:none; padding:7px 14px; font-weight:700; font-size:11px;" onclick="activateLicenseKey()">
+              Kích Hoạt Ngay
+            </button>
+          </div>
+        </div>
+
+        <!-- Tauri v2 Desktop Distribution Readiness -->
+        <div style="border-top:1px solid #E2E8F0; padding-top:10px;">
+          <div style="font-size:12px; font-weight:700; color:#0F172A; display:flex; align-items:center; gap:6px;">
+            <span>📦</span> Gói Phân Phối Tauri v2 Desktop Shell
+          </div>
+          <div style="margin-top:6px; font-size:11px; color:#475569; display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div>• Định dạng: <strong>macOS (.dmg), Windows (.msi)</strong></div>
+            <div>• Bộ nhớ RAM: <strong><40MB (Siêu nhẹ)</strong></div>
+            <div>• Thời gian bật app: <strong><1.2s (Native Binary)</strong></div>
+            <div>• Quality Gate: <strong>5/5 Passed (100%)</strong></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

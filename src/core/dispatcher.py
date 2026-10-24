@@ -24,6 +24,7 @@ from devops_controller import DevOpsController
 from provider_controller import ProviderController
 from swarm_controller import SwarmController
 from release_controller import ReleaseController
+from license_controller import LicenseController
 from ast_sync import AstSyncEngine
 
 class RequestDispatcher:
@@ -108,6 +109,14 @@ class RequestDispatcher:
         if path in ('/api/resilience/status', '/api/resilience'):
             return ReleaseController.get_resilience_status()
 
+        # 12. Sprint 9: Offline License, Desktop Bundle & Quality Gate
+        if path in ('/api/license/status', '/api/license'):
+            return LicenseController.get_license_status()
+        if path in ('/api/desktop/bundle-info', '/api/desktop/bundle'):
+            return LicenseController.get_desktop_bundle_info()
+        if path in ('/api/quality-gate/status', '/api/quality-gate'):
+            return LicenseController.get_quality_gate_status()
+
         # Fallback: Static web files
         return StaticController.serve_file(path)
 
@@ -174,6 +183,12 @@ class RequestDispatcher:
             return ReleaseController.create_snapshot()
         if path in ('/api/auth/token', '/api/auth/login'):
             return ReleaseController.generate_auth_token(body_data)
+
+        # Sprint 9: Offline License Activation & Key Generation
+        if path == '/api/license/activate':
+            return LicenseController.activate_license(body_data)
+        if path == '/api/license/generate':
+            return LicenseController.generate_license(body_data)
 
         headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
         import json
