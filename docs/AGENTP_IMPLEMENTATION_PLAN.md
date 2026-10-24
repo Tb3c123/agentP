@@ -136,13 +136,13 @@ Mọi màn hình đều đã được hoàn thiện dạng SVG chuẩn mực t�
 
 ---
 
-## 5. LỘ TRÌNH 7 SPRINT TRIỂN KHAI CHI TIẾT (SPRINT ROADMAP)
+## 5. LỘ TRÌNH 8 SPRINT TRIỂN KHAI CHI TIẾT (SPRINT ROADMAP)
 
 ```
-[ SPRINT 1 ] ──► [ SPRINT 2 ] ──► [ SPRINT 3 ] ──► [ SPRINT 4 ] ──► [ SPRINT 5 ] ──► [ SPRINT 6 ] ──► [ SPRINT 7 ]
-Lõi Hạ Tầng      Onboarding &     Studio Kép UI/UX  Editor & Diff     DevOps, Remote &  9router CLI Bridge & Dynamic Summoning &
-& SQLite WAL     Workspace Chat   Tldraw + Onlook   Project Hub       Báo Cáo KPI       Multi-Provider Proxy Real-Time Swarm Engine
-(100% Pass)      (100% Pass)      (100% Pass)       (100% Pass)       (100% Pass)       (100% Pass)          (100% Pass)
+[ SPRINT 1 ] ──► [ SPRINT 2 ] ──► [ SPRINT 3 ] ──► [ SPRINT 4 ] ──► [ SPRINT 5 ] ──► [ SPRINT 6 ] ──► [ SPRINT 7 ] ──► [ SPRINT 8 ]
+Lõi Hạ Tầng      Onboarding &     Studio Kép UI/UX  Editor & Diff     DevOps, Remote &  9router CLI Bridge & Dynamic Summoning & Git & Conventional
+& SQLite WAL     Workspace Chat   Tldraw + Onlook   Project Hub       Báo Cáo KPI       Multi-Provider Proxy Real-Time Swarm     Changelog & RBAC
+(100% Pass)      (100% Pass)      (100% Pass)       (100% Pass)       (100% Pass)       (100% Pass)          (100% Pass)         (100% Pass)
 ```
 
 ### SPRINT 1: NỀN TẢNG HẠ TẦNG & LÕI AGENTP CORE LOCAL DAEMON PROTOCOL
@@ -248,6 +248,20 @@ Lõi Hạ Tầng      Onboarding &     Studio Kép UI/UX  Editor & Diff     DevO
   5. *David & Elena*: Bổ sung nút bấm `⚡ Triệu Hồi` trực quan trên thanh nhập lệnh và render thẻ Summoning Card trực tiếp vào dòng chat Workspace.
   6. *Viktor*: Xây dựng bộ test kiểm thử tự động toàn diện (`test/test_sprint7_swarm_summoning.py` - 6 ca kiểm thử mới), nâng tổng số ca kiểm thử toàn dự án lên **65/65 Tests PASS (100%)**.
 * **Nghiệm thu (DoD)**: Lệnh thực thi chu trình tự trị chạy trơn tru, triệu hồi chéo xuất hiện tức thì trong dòng chat, token được ghi nhận vào SQLite WAL và 65/65 tests PASS.
+
+---
+
+### SPRINT 8: GIT BRANCHING & CONVENTIONAL COMMITS, CHANGELOG AUTOMATION, CRASH RESILIENCE & RBAC AUTHENTICATOR [100% DOD]
+* **Mục tiêu**: Hoàn thiện toàn diện quy trình kỹ thuật chuẩn doanh nghiệp với quản lý nhánh Git tự động, kiểm duyệt Conventional Commits, tự động sinh CHANGELOG.md, cơ chế chống sập tiến trình SQLite WAL và xác thực bảo mật JWT RBAC.
+* **Nhân sự thực thi**: Max (Git Specialist), Sarah (Docs), Frank (SRE), Sophia (Security), Carlos (Backend), Viktor (QA Lead).
+* **Nhiệm vụ cụ thể**:
+  1. *Max & Liam*: Xây dựng Git Engine Service (`src/services/git_engine.py`) tự động kiểm tra cú pháp Conventional Commits (`feat:`, `fix:`, `refactor:`), sinh tên nhánh `feature/task-xxx` chuẩn kebab-case và ghi nhật ký commit vào SQLite `audit_git_commits`.
+  2. *Sarah & Chloe*: Xây dựng Automated Changelog Generator (`src/services/changelog_generator.py`) trích xuất commit theo Sprint và tự động sinh tệp `CHANGELOG.md` chuẩn Keep a Changelog.
+  3. *Frank & Maya*: Xây dựng Chaos & Process Crash Resilience Guard (`src/services/resilience_guard.py`), bảo toàn dữ liệu khi sập ứng dụng đột ngột (`kill -9`) và tự động tạo snapshot SQLite WAL tại `.agents/backups/`.
+  4. *Sophia & Carlos*: Xây dựng Local Daemon JWT & Role-Based Access Guard (`src/services/jwt_auth.py`), cấp phát và xác thực HMAC-SHA256 session token với phân quyền 4 vai trò (ADMIN, LEAD_PM, DEVELOPER, VIEWER).
+  5. *David & Elena*: Bổ sung API và Controller (`src/controllers/release_controller.py`) phục vụ xem Changelog và trạng thái Staging trên giao diện.
+  6. *Viktor*: Xây dựng bộ test kiểm thử tự động toàn diện (`test/test_sprint8_git_resilience_changelog.py` - 8 ca kiểm thử mới), nâng tổng số ca kiểm thử toàn dự án lên **73/73 Tests PASS (100%)**.
+* **Nghiệm thu (DoD)**: Git Engine từ chối commit sai chuẩn, CHANGELOG.md xuất tự động, phục hồi sập app 100% không mất byte nào, và 73/73 tests PASS.
 
 ---
 

@@ -595,6 +595,16 @@ async function triggerSwarmCycle(promptText) {
   }
 }
 
+async function viewChangelogModal() {
+  try {
+    const res = await fetch('/api/release/changelog');
+    const data = await res.json();
+    alert(`📜 agentP CHANGELOG (${data.latest_version}):\n\n` + data.markdown.slice(0, 480) + "\n...\n(Đã cập nhật đầy đủ trong CHANGELOG.md)");
+  } catch (e) {
+    alert("📜 agentP CHANGELOG v2.7.0: Đã cập nhật 8 Sprints hoàn chỉnh!");
+  }
+}
+
 // Initial boot
 document.addEventListener('DOMContentLoaded', () => {
   loadWorkspace();

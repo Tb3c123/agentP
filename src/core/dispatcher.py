@@ -23,6 +23,7 @@ from studio_controller import StudioController
 from devops_controller import DevOpsController
 from provider_controller import ProviderController
 from swarm_controller import SwarmController
+from release_controller import ReleaseController
 from ast_sync import AstSyncEngine
 
 class RequestDispatcher:
@@ -99,6 +100,14 @@ class RequestDispatcher:
         if path in ('/api/swarm/token-budget', '/api/tokens/budget'):
             return SwarmController.get_token_budget()
 
+        # 11. Sprint 8: Changelog, Git Staging & Chaos Resilience
+        if path in ('/api/release/changelog', '/api/changelog'):
+            return ReleaseController.get_changelog()
+        if path in ('/api/git/staging', '/api/git/status'):
+            return ReleaseController.get_git_status()
+        if path in ('/api/resilience/status', '/api/resilience'):
+            return ReleaseController.get_resilience_status()
+
         # Fallback: Static web files
         return StaticController.serve_file(path)
 
@@ -153,6 +162,18 @@ class RequestDispatcher:
             return SwarmController.run_swarm_cycle(body_data)
         if path == '/api/swarm/summon':
             return SwarmController.summon_agent(body_data)
+
+        # Sprint 8: Git, Changelog, Chaos Resilience & Auth Endpoints
+        if path in ('/api/release/changelog/export', '/api/changelog/export'):
+            return ReleaseController.export_changelog()
+        if path == '/api/git/validate-commit':
+            return ReleaseController.validate_commit(body_data)
+        if path == '/api/git/create-branch':
+            return ReleaseController.create_branch(body_data)
+        if path in ('/api/resilience/snapshot', '/api/resilience/backup'):
+            return ReleaseController.create_snapshot()
+        if path in ('/api/auth/token', '/api/auth/login'):
+            return ReleaseController.generate_auth_token(body_data)
 
         headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
         import json
