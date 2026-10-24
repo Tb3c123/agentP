@@ -136,13 +136,13 @@ Mọi màn hình đều đã được hoàn thiện dạng SVG chuẩn mực t�
 
 ---
 
-## 5. LỘ TRÌNH 5 SPRINT TRIỂN KHAI CHI TIẾT (SPRINT ROADMAP)
+## 5. LỘ TRÌNH 7 SPRINT TRIỂN KHAI CHI TIẾT (SPRINT ROADMAP)
 
 ```
-[ SPRINT 1 ] ───► [ SPRINT 2 ] ───► [ SPRINT 3 ] ───► [ SPRINT 4 ] ───► [ SPRINT 5 ] ───► [ SPRINT 6 ]
-Lõi Hạ Tầng &      Onboarding &        Studio Kép UI/UX    Editor, File &      DevOps, Remote &    9router CLI Bridge &
-agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         Báo Cáo Nghiệm Thu  Multi-Provider Proxy
-(Liam, Carlos)     (David, Alex)       (Elena, David)      (Sam, Lucas)        (Liam, Sophia)      (Lucas, Carlos, Elena)
+[ SPRINT 1 ] ──► [ SPRINT 2 ] ──► [ SPRINT 3 ] ──► [ SPRINT 4 ] ──► [ SPRINT 5 ] ──► [ SPRINT 6 ] ──► [ SPRINT 7 ]
+Lõi Hạ Tầng      Onboarding &     Studio Kép UI/UX  Editor & Diff     DevOps, Remote &  9router CLI Bridge & Dynamic Summoning &
+& SQLite WAL     Workspace Chat   Tldraw + Onlook   Project Hub       Báo Cáo KPI       Multi-Provider Proxy Real-Time Swarm Engine
+(100% Pass)      (100% Pass)      (100% Pass)       (100% Pass)       (100% Pass)       (100% Pass)          (100% Pass)
 ```
 
 ### SPRINT 1: NỀN TẢNG HẠ TẦNG & LÕI AGENTP CORE LOCAL DAEMON PROTOCOL
@@ -234,6 +234,20 @@ agentP Daemon      Workspace + Kanban  Tldraw + Onlook     Project Hub         B
      - Xây dựng `src/services/provider_proxy.py`: Gateway chuyển đổi linh hoạt định dạng OpenAI (`/v1/chat/completions`) và Anthropic (`/v1/messages`), cơ chế tự động chuyển mạch dự phòng failover khi một provider mất kết nối.
   4. *Viktor*: Viết bộ test kiểm thử tích hợp toàn diện (`test/test_sprint6_proxy_bridge.py` - 8 ca kiểm thử mới), nâng tổng số unit test toàn dự án lên 56/56 Tests PASS (100%).
 * **Nghiệm thu (DoD)**: Claude Code CLI và Cursor trỏ về `127.0.0.1:9090` hoạt động trơn tru; giao diện tách bạch cấp hệ thống và cấp dự án rõ ràng, không lỗi cuộn; 56/56 tests PASS.
+
+---
+
+### SPRINT 7: DYNAMIC AGENT SUMMONING, REAL-TIME EVENT BUS & SWARM EXECUTION ENGINE [100% DOD]
+* **Mục tiêu**: Kích hoạt khả năng thực thi tự trị đa vòng (Multi-Turn Swarm Execution), giao thức triệu hồi chéo giữa các vai trò khi gặp vướng mắc kỹ thuật (Dynamic Agent Summoning), và hệ thống bus sự kiện thời gian thực (Event-Driven Pub-Sub Bus) quản lý ngân sách token.
+* **Nhân sự thực thi**: Alex (Lead PM), Marcus (Lead BA), Lucas (Senior Dev), Carlos (Backend), David (Frontend), Viktor (QA Lead), Chloe (Token/Cost).
+* **Nhiệm vụ cụ thể**:
+  1. *Carlos & Liam*: Xây dựng lõi Event-Driven Pub-Sub Bus (`src/services/pubsub_bus.py`) quản lý kênh phát sự kiện chat, kanban, token và summoning theo cơ chế singleton thread-safe.
+  2. *Marcus & Alex*: Thiết kế Giao thức Triệu Hồi Động (`src/services/summoning_service.py`), cho phép các kỹ sư hậu trường (David FE, Carlos BE) chủ động gửi yêu cầu tham vấn chéo tới Marcus BA, Maya Architect hay Sophia Security kèm theo luồng suy nghĩ `<thinking>`.
+  3. *Alex & Lucas*: Xây dựng Động cơ điều phối chu trình Swarm tự trị (`src/services/swarm_runner.py`), kết nối liền mạch từ đề bài $\rightarrow$ Phân rã story $\rightarrow$ Sinh code $\rightarrow$ Kiểm thử 100% PASS $\rightarrow$ Tự động tạo Cổng Kiểm Duyệt Checkpoint Gate cho Bạn phê duyệt.
+  4. *Chloe & Oliver*: Xây dựng Bộ kiểm soát chi phí & ngân sách Token Guard (`src/services/token_guard.py`), tự động tính toán tỷ lệ tiết kiệm prompt caching 1:1, chi phí USD và cảnh báo ngưỡng vượt định mức.
+  5. *David & Elena*: Bổ sung nút bấm `⚡ Triệu Hồi` trực quan trên thanh nhập lệnh và render thẻ Summoning Card trực tiếp vào dòng chat Workspace.
+  6. *Viktor*: Xây dựng bộ test kiểm thử tự động toàn diện (`test/test_sprint7_swarm_summoning.py` - 6 ca kiểm thử mới), nâng tổng số ca kiểm thử toàn dự án lên **65/65 Tests PASS (100%)**.
+* **Nghiệm thu (DoD)**: Lệnh thực thi chu trình tự trị chạy trơn tru, triệu hồi chéo xuất hiện tức thì trong dòng chat, token được ghi nhận vào SQLite WAL và 65/65 tests PASS.
 
 ---
 

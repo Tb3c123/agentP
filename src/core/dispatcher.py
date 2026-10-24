@@ -22,6 +22,7 @@ from static_controller import StaticController
 from studio_controller import StudioController
 from devops_controller import DevOpsController
 from provider_controller import ProviderController
+from swarm_controller import SwarmController
 from ast_sync import AstSyncEngine
 
 class RequestDispatcher:
@@ -92,6 +93,12 @@ class RequestDispatcher:
         if path in ('/api/cli-bridge/status', '/api/cli-bridge'):
             return ProviderController.get_cli_status()
 
+        # 10. Sprint 7: Real-Time Swarm Events & Token Budget
+        if path in ('/api/swarm/events', '/api/events'):
+            return SwarmController.get_events(query)
+        if path in ('/api/swarm/token-budget', '/api/tokens/budget'):
+            return SwarmController.get_token_budget()
+
         # Fallback: Static web files
         return StaticController.serve_file(path)
 
@@ -140,6 +147,12 @@ class RequestDispatcher:
             return ProviderController.test_provider(body_data)
         if path in ('/api/cli-bridge/generate-config', '/api/cli-bridge/generate'):
             return ProviderController.generate_cli_scripts()
+
+        # Sprint 7: Dynamic Swarm Execution & Peer Summoning
+        if path in ('/api/swarm/run-cycle', '/api/swarm/execute'):
+            return SwarmController.run_swarm_cycle(body_data)
+        if path == '/api/swarm/summon':
+            return SwarmController.summon_agent(body_data)
 
         headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
         import json

@@ -547,6 +547,54 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+// ================= SPRINT 7: DYNAMIC SUMMONING & SWARM CYCLE =================
+async function triggerDynamicSummon() {
+  const stream = document.getElementById('chatStream');
+  if (stream) {
+    stream.innerHTML += `
+      <div class="summon-card-banner" style="background:#F0FDFA; border:1px solid #99F6E4; border-radius:8px; padding:10px 14px; margin:10px 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+          <span style="font-weight:800; font-size:12px; color:#0F766E;">⚡ Dynamic Summoning: Frontend Dev triệu hồi Marcus BA</span>
+          <span style="font-size:10px; background:#CCFBF1; color:#0F766E; font-weight:700; padding:2px 6px; border-radius:4px;">Resolved</span>
+        </div>
+        <div style="font-size:11px; color:#134E4A;">Lý do: Làm rõ tỷ lệ quy đổi điểm thưởng sang voucher giảm giá</div>
+        <div style="font-size:11px; color:#0D9488; margin-top:4px; font-weight:600;">✓ Marcus BA: Đã cập nhật tiêu chí nghiệm thu và mở khóa tiếp tục code.</div>
+      </div>
+    `;
+    stream.scrollTop = stream.scrollHeight;
+  }
+  try {
+    await fetch('/api/swarm/summon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        caller_role: 'david_fe',
+        target_role: 'marcus_ba',
+        reason: 'Làm rõ tỷ lệ quy đổi điểm thưởng sang voucher giảm giá',
+        task_id: 'TASK-701'
+      })
+    });
+  } catch (e) {
+    console.warn('Summon error:', e);
+  }
+}
+
+async function triggerSwarmCycle(promptText) {
+  const prompt = promptText || 'Triển khai tính năng tự động tích điểm voucher';
+  try {
+    const res = await fetch('/api/swarm/run-cycle', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: prompt })
+    });
+    const data = await res.json();
+    alert(`⚡ CHU TRÌNH SWARM HOÀN TẤT!\nTask: ${data.task_id}\nThời gian: ${data.duration_sec}s\nCác giai đoạn: ${data.stages_completed.join(' -> ')}\nCheckpoint Gate: ${data.checkpoint.title}`);
+    loadWorkspace();
+  } catch (e) {
+    console.warn('Swarm cycle error:', e);
+  }
+}
+
 // Initial boot
 document.addEventListener('DOMContentLoaded', () => {
   loadWorkspace();

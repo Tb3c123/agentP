@@ -5,7 +5,7 @@
 
 [![Release](https://img.shields.io/badge/Release-v2.6.0-0D9488.svg?style=flat-square)](docs/AGENTP_IMPLEMENTATION_PLAN.md)
 [![Preflight Doctor](https://img.shields.io/badge/Pre--flight%20Doctor-7%2F7%20Criteria%20PASS-10B981.svg?style=flat-square)](scripts/preflight.py)
-[![Test Suite](https://img.shields.io/badge/Quality%20Gate-56%2F56%20Tests%20PASS%20(100%25)-0284C7.svg?style=flat-square)](test/)
+[![Test Suite](https://img.shields.io/badge/Quality%20Gate-65%2F65%20Tests%20PASS%20(100%25)-0284C7.svg?style=flat-square)](test/)
 [![UI Design](https://img.shields.io/badge/UI%2FUX-Clean%20Light%20Mode-D97706.svg?style=flat-square)](docs/UI_UX_DESIGN_SYSTEM.md)
 [![Proxy Engine](https://img.shields.io/badge/9router%20Core-In--House%20Local%20Proxy-4338CA.svg?style=flat-square)](src/services/provider_proxy.py)
 [![License](https://img.shields.io/badge/License-MIT-slate.svg?style=flat-square)](LICENSE)
@@ -100,11 +100,11 @@ python3 scripts/preflight.py
 ```
 > *Xác nhận 7/7 tiêu chí kỹ thuật: SQLite WAL, Node.js, Git, Daemon, Flutter, AVD, và 14 AI Roles sẵn sàng 100%.*
 
-### 2. Chạy toàn bộ bộ kiểm thử tự động (56 Tests)
+### 2. Chạy toàn bộ bộ kiểm thử tự động (65 Tests)
 ```bash
 python3 -m unittest discover -s test -p "test_*.py"
 ```
-> *Tất cả 56/56 ca kiểm thử tự động chạy hoàn tất trong <0.15 giây.*
+> *Tất cả 65/65 ca kiểm thử tự động chạy hoàn tất trong <0.18 giây.*
 
 ### 3. Khởi chạy agentP Core Daemon
 ```bash
