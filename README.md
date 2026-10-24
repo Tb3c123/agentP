@@ -1,202 +1,139 @@
-# agentP — Developer Multi-Agent Desktop Suite 🚀
+<div align="center">
 
-> **Hệ Thống Điều Phối Đa Tác Nhân Trí Tuệ Nhân Tạo (Multi-Agent Swarm Platform)**  
-> **Kiến trúc**: Single-Desk Command (Alex Lead/PM làm SPOC duy nhất) + 13 Chuyên Viên Kỹ Thuật Hậu Trường  
-> **Phong cách UI/UX**: Google Antigravity 2.0 Navigation Tree + 100% Clean Light Mode (Porcelain White, Alpine Teal, Tuscan Amber, Fedora Brown)  
-> **Lõi Giao Thức**: agentP Core Local Protocol Daemon (Chạy độc lập, không phụ thuộc bên ngoài)  
-> **Phiên bản hiện tại**: v2.6.0  
+# 🚀 agentP — Developer Multi-Agent Desktop Suite
+### *Nền Tảng Điều Phối Đa Tác Nhân Trí Tuệ Nhân Tạo Dành Cho Lập Trình Viên & Doanh Nghiệp*
+
+[![Release](https://img.shields.io/badge/Release-v2.6.0-0D9488.svg?style=flat-square)](docs/AGENTP_IMPLEMENTATION_PLAN.md)
+[![Preflight Doctor](https://img.shields.io/badge/Pre--flight%20Doctor-7%2F7%20Criteria%20PASS-10B981.svg?style=flat-square)](scripts/preflight.py)
+[![Test Suite](https://img.shields.io/badge/Quality%20Gate-56%2F56%20Tests%20PASS%20(100%25)-0284C7.svg?style=flat-square)](test/)
+[![UI Design](https://img.shields.io/badge/UI%2FUX-Clean%20Light%20Mode-D97706.svg?style=flat-square)](docs/UI_UX_DESIGN_SYSTEM.md)
+[![Proxy Engine](https://img.shields.io/badge/9router%20Core-In--House%20Local%20Proxy-4338CA.svg?style=flat-square)](src/services/provider_proxy.py)
+[![License](https://img.shields.io/badge/License-MIT-slate.svg?style=flat-square)](LICENSE)
+
+<br/>
+
+**[Giới Thiệu](#-giới-thiệu-tổng-quan)** •
+**[Điểm Nhấn Đột Phá](#-những-tính-năng-đột-phá-cốt-lõi)** •
+**[Kiến Trúc Swarm 14 Roles](#-ban-kỹ-thuật-14-chuyên-viên-ai)** •
+**[Khởi Chạy Nhanh](#-khởi-chạy-nhanh-quick-start)** •
+**[Kho Tài Liệu Kỹ Thuật (Docs)](#-kho-tài-liệu-hệ-thống-docs-navigator)**
+
+<br/>
+
+</div>
 
 ---
 
-## 📌 1. TRIẾT LÝ THIẾT KẾ & LUỒNG LÀM VIỆC ĐƠN BÀN (SINGLE-DESK)
+## 🌟 Giới Thiệu Tổng Quan
 
-Trong **agentP**, người dùng (Chủ dự án / Boss) **chỉ cần tương tác duy nhất với Alex (Trưởng Dự Án / Lead PM)** qua thanh chat. Bạn không cần chuyển tab thủ công hay quản lý 14 cửa sổ chat rời rạc:
+**agentP** là nền tảng máy trạm (Desktop & Local Daemon) điều phối đa tác nhân trí tuệ nhân tạo (Multi-Agent Swarm) được xây dựng dành riêng cho các kỹ sư phần mềm, kiến trúc sư hệ thống và nhà quản lý dự án.
+
+Thay vì phải mở hàng chục cửa sổ chat rời rạc hoặc sao chép mã nguồn qua lại giữa các AI chatbot, **agentP** định hình lại toàn bộ trải nghiệm phát triển phần mềm với **Triết Lý Đơn Bàn (Single-Desk Command)**:
+* Bạn chỉ làm việc và trao đổi duy nhất với **Alex (Trưởng Dự Án / Lead PM)**.
+* Đội ngũ **13 Chuyên viên Kỹ thuật Hậu trường (Backstage Swarm)** tự động tiếp nhận phân rã nhiệm vụ, viết code, sửa giao diện, kiểm thử tự động và báo cáo tiến độ theo thời gian thực.
+* Mọi tiến trình đều được cô lập phiên làm việc 1:1, lưu trữ bền vững trên **CSDL SQLite WAL Mode** và vận hành qua **agentP Core Daemon cục bộ** an toàn tuyệt đối.
+
+---
+
+## 💎 Những Tính Năng Đột Phá Cốt Lõi
+
+### 1. 🧑‍💼 Bàn Làm Việc Điều Hành Duy Nhất (Single-Desk Command)
+* **Alex (Lead PM) làm đầu mối duy nhất (SPOC)**: Nhận lệnh từ thanh chat, phân tích suy nghĩ đa chiều trong thẻ `<thinking>`, tự động phân rã User Story thành Subtask kỹ thuật.
+* **Cổng Kiểm Duyệt Hổ Phách (User Checkpoint Gate)**: Bất kỳ thay đổi mã nguồn, xóa file hay merge nhánh git đều phải được Bạn trực tiếp phê duyệt tại Checkpoint màu hổ phách sang trọng `#FFFBEB`.
+* **Nút Dừng Đột Ngột (Emergency Stop ESC)**: Hủy bỏ toàn bộ luồng suy nghĩ và tiến trình ngầm của các agent chỉ trong `<15ms`.
+
+### 2. 👥 Quản Lý Nhân Sự & Phân Bổ AI Model Linh Hoạt
+* Quản lý chuyên sâu **14 Chuyên viên AI** của dự án (Alex PM, Marcus BA, Maya Architect, Elena UI, David FE, Carlos BE, Lucas Senior, Viktor QA, Liam DevOps, Frank SRE, Sophia Security, Chloe Data, Sarah Docs, Oliver Perf).
+* **Tuỳ chọn AI Model động (Dropdown 11 models)**: Không gán cứng! Bạn tự do gán Claude 3.7 Sonnet cho Alex, DeepSeek R1 cho Viktor QA, GPT-4o cho Lucas, Gemini 2.5 cho David FE.
+* Hiển thị Session ID 1:1, đo độ trễ Latency thực tế và đồng bộ tự động vào SQLite `.agents/db.sqlite`.
+
+### 3. 🔌 Hub Kết Nối AI Providers & 9router In-House Core Engine
+* **Trang Kết Nối Toàn Cục Riêng Biệt (Global Providers Hub)**: Tái hiện chuẩn xác kiến trúc 9router với 4 phân khúc:
+  * **OAuth Providers**: Claude Code CLI, Cursor IDE Bridge, Codex, Gemini CLI.
+  * **Free Providers**: Antigravity Core, Qwen Code Free, Kimi Moonshot, GLM-4.
+  * **API Key Providers**: OpenRouter, DeepSeek, Anthropic, OpenAI, Groq, Cerebras, Cohere.
+  * **Compatible Providers**: Alibaba Custom, các endpoint OpenAI / Anthropic tương thích.
+* **Dynamic Proxy & Failover**: Gateway tự thân chạy trực tiếp trong daemon (`127.0.0.1:9090`), hỗ trợ `/v1/messages` và `/v1/chat/completions`. Khi một provider bị nghẽn, hệ thống tự động chuyển mạch dự phòng (Failover Safe Guard) tức thì.
+* **CLI Bridge Cho Developer**: Tự động nhận diện công cụ CLI và sinh script môi trường `.agents/bin/activate_bridge.sh` để Claude Code và Cursor kết nối trực tiếp.
+
+### 4. 🎨 Xưởng Thiết Kế UI/UX Kép (Dual-Mode Studio)
+* **Tab 1 - Tldraw Whiteboard**: Vẽ wireframe vector, sticky notes, liên kết luồng người dùng và xuất file `.tldr`.
+* **Tab 2 - Onlook DOM-to-Code**: Click-to-inspect phần tử UI, chỉnh sửa màu sắc sang Clean Light Mode và đồng bộ trực tiếp vào mã nguồn thật qua cơ chế AST 2 chiều với độ trễ `<50ms`.
+
+### 5. 📱 Mobile Remote Controller & AVD Android Runner
+* Quét mã QR (`AGENTP-PAIR-7749`) để ghép đôi điện thoại qua Wi-Fi cục bộ.
+* Theo dõi tiến độ Swarm, kiểm tra log và bấm phê duyệt Checkpoint Gate ngay trên điện thoại di động khi đang di chuyển.
+* Tích hợp bộ điều khiển máy ảo **Android Pixel 8 Pro** (chế độ Cửa sổ GUI hoặc Headless ngầm).
+
+### 6. 🛡️ Khóa An Toàn Antigravity Danger Zone
+* Cơ chế bảo vệ dữ liệu 2 lớp: Để xóa vĩnh viễn dự án, bắt buộc phải nhập chính xác 100% tên dự án để mở khóa nút xóa.
+* Thùng rác an toàn `.agents/trash/` cho phép khôi phục mọi tệp tin đã xóa trong vòng 30 ngày.
+
+---
+
+## 🐝 Ban Kỹ Thuật 14 Chuyên Viên AI
 
 ```
-                            ┌────────────────────────────────────────┐
-                            │        BẠN (CHỦ DỰ ÁN / USER)          │
-                            └───────────────────┬────────────────────┘
-                                                │ 1. Ra lệnh vào thanh chat
-                                                │ 4. Phê duyệt tại Cổng Checkpoint
-                                                ▼
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│ 🧑‍💼 ALEX (TRƯỞNG DỰ ÁN / LEAD PM) — ĐẦU MỐI DUY NHẤT (SPOC)                                   │
-│ • Tiếp nhận yêu cầu, suy nghĩ đa chiều trong thẻ <thinking>                                  │
-│ • Phân rã bài toán thành các Task kỹ thuật trong SQLite (.agents/db.sqlite)                  │
-│ • Điều phối 13 nhân sự hậu trường (Backstage Swarm) theo cơ chế cô lập 1:1                   │
-│ • Giám sát tiến độ Live Kanban 6 cột, nhận kết quả kiểm thử tự động từ Viktor QA             │
-│ • Trình Cổng Kiểm Duyệt (User Checkpoint Gate #04) màu Hổ Phách lên khung chat               │
-└───────────────────────────────────────────────┬─────────────────────────────────────────────┘
-                                                │ 2. Ủy thác nhiệm vụ (Session 1:1)
-                                                ▼
-┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│ 🐝 BAN KỸ THUẬT HẬU TRƯỜNG (BACKSTAGE SWARM - 13 CHUYÊN GIA)                                │
-│                                                                                             │
-│  [Marcus - BA]       ──► Phân rã User Stories & Acceptance Criteria (DoD)                    │
-│  [Elena - UI/UX]     ──► Vẽ phác thảo Tldraw & Tinh chỉnh CSS Onlook (Rose Pink)            │
-│  [Maya - Architect]  ──► Thiết kế CSDL SQLite WAL & Contract API (Cyan Teal)                │
-│  [David - FE Dev]    ──► Lập trình Giao diện Flutter & React 19 (Ocean Sky Blue)            │
-│  [Carlos - BE Dev]   ──► Xây dựng REST API, Daemon & Repositories (Emerald Green)            │
-│  [Lucas - Senior]    ──► Lập trình Lõi Core Engine & AST Sync 2 chiều (Royal Indigo)         │
-│  [Viktor - QA Lead]  ──► Kiểm thử tự động E2E, Unit Tests & Coverage >80% (Ruby Crimson)    │
-│  [Liam - DevOps]     ──► Đóng gói Bundle, Android AVD Pixel 8 Pro Bridge (Tangerine Orange) │
-│  [Frank - SRE]       ──► Độ tin cậy hệ thống & Chống sập tiến trình (Deep Purple)            │
-│  [Sophia - Security] ──► Kiểm toán bảo mật & Khóa An Toàn Danger Zone (Gold Bronze)         │
-│  [Chloe - Data]      ──► Báo cáo KPI, Xuất Excel .xlsx & Quản trị Token (Mint Teal)          │
-│  [Sarah - Docs]      ──► Biên soạn tài liệu kỹ thuật & Keep a Changelog (Slate Gray)         │
-│  [Oliver - Perf]     ──► Tối ưu độ trễ render <16.6ms & Bộ nhớ đệm Token (Cobalt Blue)       │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🎨 2. GIAO DIỆN CHUẨN GOOGLE ANTIGRAVITY 2.0 (CLEAN LIGHT MODE)
-
-Giao diện được tái cấu trúc toàn diện theo chuẩn **Google Antigravity 2.0**:
-
-- **Cánh Trái (Width 260px)**:
-  - Bộ điều khiển macOS Traffic Lights (🔴 🟡 🟢) kèm các icon thu gọn `◫`, quay lui `←`, tiến tới `→`, và tìm kiếm nhanh `🔍`.
-  - Nút bấm `+ New Conversation` (`+ Tạo Cuộc Hội Thoại Mới`).
-  - Liên kết cấp cao (Global): `🔌 Kết Nối AI Providers` (Trang kết nối độc lập 9router Hub: OAuth CLI, Free, API Key, Compatible).
-  - Cây thư mục dự án (Collapsible Projects Tree): Dưới dự án `📁 FoodDelivery-Loyalty-App` phân nhánh các không gian làm việc chuyên biệt: `🧑‍💼 Bàn Làm Việc Alex`, `🎨 Xưởng Thiết Kế UI/UX`, `📋 Bảng Tiến Độ Kanban`, `💻 Mã Nguồn & Monaco Diff`, `📱 Mobile Pairing & AVD`, `👥 Quản Lý Nhân Sự` (14 AI Specialists & Phân bổ AI Models linh hoạt), `🩺 Tiền Kiểm Hệ Thống` kèm mốc thời gian thực.
-  - Chân trang: Đèn mạng `● Host: 192.168.1.15:8080`, đồng hồ `🪙 42.5k saved` và nút `⚙️ Settings` (mở Khóa 2 lớp Antigravity Danger Zone).
-- **Ruy-Băng Trên Đỉnh (Top Swarm Ribbon - 52px)**:
-  - Xóa bỏ việc dồn ép bên trái, trải 14 chuyên viên kỹ thuật thành dải chip ngang phân màu theo nhóm chuyên môn (Amber, Pink, Blue, Green, Indigo, Red, Orange, Purple...).
-  - Alex PM có Desk Pill riêng màu Alpine Teal `#F0FDFA`.
-  - Tích hợp nút mở nhanh `🔌 AI Providers Hub`, `📱 Mobile Pairing`, chỉ số tiền kiểm `🩺 7/7 OK`, nhân sự `👥 14 Roles`, và nút khẩn cấp `⏹️ DỪNG ĐỘT NGỘT (ESC)`.
-- **Hệ Màu Clean Light Mode 100%**:
-  - Porcelain White (`#FFFFFF`), Slate Canvas (`#F8FAFC`).
-  - Alpine Teal (`#0D9488`), Tuscan Amber (`#D97706`), Fedora Brown (`#78350F`).
-  - Tuyệt đối không dùng Dark Mode hoặc màu neon gây mỏi mắt.
-
----
-
-## 🏛️ 3. HỆ THỐNG DESIGN PATTERNS ĐÃ ÁP DỤNG TRONG CODEBASE
-
-Dự án tuân thủ nghiêm ngặt các mẫu thiết kế hướng đối tượng kinh điển (GoF) và kiến trúc doanh nghiệp:
-
-1. **Mediator Pattern**: Alex PM đóng vai trò Mediator duy nhất tiếp nhận lệnh và điều phối 13 vai trò kỹ thuật, ngăn chặn bão token và liên lạc chéo hỗn loạn.
-2. **Hexagonal Architecture (Ports & Adapters)**: Tách biệt lõi Domain khỏi CSDL SQLite, Local Daemon và giao diện Web.
-3. **Front Controller & Action Dispatcher Pattern**: File `src/daemon/router.py` được tinh gọn xuống **<90 dòng**, chuyển giao toàn bộ yêu cầu HTTP cho `RequestDispatcher` (`src/core/dispatcher.py`) điều phối đến các Controller chuyên biệt.
-4. **Repository Pattern**: Tách biệt toàn bộ câu lệnh SQL thô ra khỏi controller, đóng gói vào tầng `src/repositories/` (`KanbanRepository`, `SkillsRepository`, `SessionsRepository`).
-5. **Strategy Pattern**: Thuật toán tính toán dòng so sánh split diff được đóng gói vào `src/services/diff_strategy.py` theo giao diện `DiffStrategyInterface`.
-6. **State Machine Pattern**: Kiểm soát chu trình chuyển đổi nghiêm ngặt của thẻ công việc qua 6 cột Kanban: `Backlog ➔ Spec/Design ➔ Development ➔ Review ➔ Quality Gate ➔ Done`.
-7. **Observer Pattern**: Phát và bắt sự kiện tự động cập nhật Live Kanban, Git Staging và AVD Runner.
-8. **Command & Memento Pattern**: Hỗ trợ nút Emergency Stop ESC hủy tiến trình trong <15ms và cơ chế hoàn tác thùng rác an toàn.
-
----
-
-## 📂 4. CẤU TRÚC THƯ MỤC CHUẨN HÓA (DIRECTORY MAP)
-
-```
-agentP/
-├── docs/                                  <-- TÀI LIỆU HỆ THỐNG & ĐẶC TẢ CHI TIẾT
-│   ├── UI_UX_DESIGN_SYSTEM.md             <-- Đặc tả 10 màn hình, Token màu, Antigravity Sidebar
-│   ├── DESIGN_PATTERNS_RESEARCH.md        <-- Nghiên cứu 8 Design Patterns & Quyết định của Marcus
-│   ├── AGENTP_IMPLEMENTATION_PLAN.md      <-- Kế hoạch tổng thể 5 Sprints & Lộ trình thực thi
-│   ├── DATABASE_SCHEMA_SPEC.md            <-- Cấu trúc 16 bảng SQLite WAL & Triggers
-│   ├── MULTI_AGENT_APP_SPEC.md            <-- Đặc tả 14 Agent Roles, Persona & Sessions 1:1
-│   └── assets/                            <-- Bản vẽ Vector Artboards (.svg) & Mockups
-├── src/
-│   ├── core/                              <-- DOMAIN CORE & DISPATCHER
-│   │   ├── mediator.py                    <-- AlexMediator (Mediator Pattern)
-│   │   ├── ports.py                       <-- Inbound & Outbound Ports
-│   │   ├── state_machine.py               <-- Kanban State Machine Transitions
-│   │   └── dispatcher.py                  <-- RequestDispatcher (Front Controller)
-│   ├── controllers/                       <-- MODULAR HTTP CONTROLLERS (<100 lines/file)
-│   │   ├── base_controller.py             <-- BaseController & JSON responders
-│   │   ├── workspace_controller.py        <-- Chat Bạn ⇄ Alex, Checkpoint Gate
-│   │   ├── kanban_controller.py           <-- 6 cột Kanban & Move task
-│   │   ├── studio_controller.py           <-- Dual-Mode UI Studio & AST Sync
-│   │   ├── code_controller.py             <-- File Tree, Monaco Split Diff, Trash
-│   │   ├── project_controller.py          <-- Auto-Naming, Settings, Danger Zone
-│   │   ├── skills_controller.py           <-- 30 Universal Skills API
-│   │   ├── protocol_controller.py         <-- Health, Sessions 1:1, Thinking Stream
-│   │   ├── devops_controller.py           <-- AVD Pixel 8 Pro, Remote Pairing, Excel Export
-│   │   └── static_controller.py           <-- Phục vụ tệp tĩnh Web & Assets
-│   ├── repositories/                      <-- REPOSITORY PATTERN (Data Layer)
-│   │   ├── base_repo.py                   <-- SQLite WAL Connection Manager
-│   │   ├── kanban_repo.py                 <-- Truy vấn & Cập nhật Kanban tasks
-│   │   ├── skills_repo.py                 <-- Nạp & Lọc 30 Universal Skills
-│   │   └── sessions_repo.py               <-- Quản lý 14 Sessions & Token Metrics
-│   ├── adapters/                          <-- HEXAGONAL ADAPTERS
-│   │   ├── sqlite_adapter.py              <-- SQLiteStorageAdapter
-│   │   └── daemon_adapter.py              <-- AgentPDaemonAdapter
-│   ├── services/                          <-- APPLICATION SERVICES
-│   │   ├── auto_namer.py                  <-- Thuật toán sinh tên dự án tự động
-│   │   ├── ast_sync.py                    <-- AST Sync Engine 2 chiều (<50ms)
-│   │   ├── diff_strategy.py               <-- Monaco Split Diff Strategy
-│   │   ├── project_manager.py             <-- File Explorer, Safe Trash, Danger Zone
-│   │   ├── avd_controller.py              <-- AVD Pixel 8 Pro, Hot Reload & Screenshot
-│   │   ├── remote_controller.py           <-- Mobile Remote Pairing & WebSocket Host
-│   │   ├── preflight_service.py           <-- Pre-flight Diagnostics 7 Criteria Service
-│   │   ├── excel_reporter.py              <-- Corporate Acceptance Excel/CSV Reporter
-│   │   └── command_workspace.py           <-- Workspace Facade
-│   ├── daemon/
-│   │   └── router.py                      <-- agentP Core Local Daemon (<95 lines)
-│   └── web/                               <-- GIAO DIỆN FRONTEND
-│       ├── index.html                     <-- Antigravity 2.0 Sidebar & 8 Full Views (All 10 Screens)
-│       ├── style.css                      <-- Clean Light Mode CSS + Role Domain Colors
-│       └── app.js                         <-- Client SPA Script điều khiển tương tác
-├── .agents/
-│   ├── db.sqlite                          <-- CSDL Cục Bộ SQLite WAL Mode
-│   ├── skills/                            <-- 30 Bộ Kỹ Năng Độc Lập (.agents/skills/*/SKILL.md)
-│   └── trash/                             <-- Thùng rác nội bộ an toàn (Safe Trash)
-├── reports/                               <-- BÁO CÁO NGHIỆM THU DOANH NGHIỆP
-│   └── agentp_acceptance_report.csv       <-- Báo cáo số liệu kỹ thuật, token & chi phí
-├── scripts/
-│   └── preflight.py                       <-- Bác Sĩ Tiền Kiểm 7 Tiêu Chí (Pre-flight Doctor)
-└── test/                                  <-- TOÀN BỘ BỘ TEST TỰ ĐỘNG (48/48 PASS)
-    ├── test_sprint5_devops_reports.py     <-- Test AVD, Remote Pairing, Preflight & Excel
-    ├── test_modular_controllers.py        <-- Test Dispatcher, Repositories & Controllers
-    ├── test_design_patterns.py            <-- Test Mediator, Hexagonal & State Machine
-    ├── test_agentp_protocol.py            <-- Test Health, Sessions 1:1, Thinking Log
-    ├── test_sqlite_architecture.py        <-- Test WAL, Foreign Keys & 16 Bảng
-    ├── test_workspace_command.py          <-- Test Chat stream & Checkpoint Gate
-    ├── test_smart_autoname.py             <-- Test Auto-Naming regex & heuristics
-    ├── test_studio_ast_sync.py            <-- Test Đồng bộ AST 2 chiều
-    └── test_file_explorer_danger_zone.py  <-- Test Safe Trash & Danger Zone Lock
+[Alex - PM]        ──► Tiếp nhận chỉ đạo, tư duy đa chiều <thinking>, điều phối Swarm
+[Marcus - BA]       ──► Rã nhỏ User Story, gán Story Points & Tiêu chí nghiệm thu DoD
+[Elena - UI/UX]     ──► Thiết kế Clean Light Mode, Tldraw Canvas & Onlook Inspector
+[Maya - Architect]  ──► Thiết kế CSDL SQLite WAL, Contract API & C4 Architecture
+[David - FE Dev]    ──► Lập trình React 19, Tailwind CSS & State Management
+[Carlos - BE Dev]   ──► Xây dựng REST API, Daemon Router & Repository Layer
+[Lucas - Senior]    ──► Lập trình Core Engine, AST Sync 2 chiều & Dynamic Proxy
+[Viktor - QA Lead]  ──► Kiểm thử tự động E2E, Unit Tests (56/56 Tests PASS)
+[Liam - DevOps]     ──► Quản lý máy ảo AVD Pixel 8, Docker Bundle & Mobile Bridge
+[Frank - SRE]       ──► Khả năng chịu lỗi, chống sập tiến trình & WAL recovery
+[Sophia - Security] ──► Kiểm toán quyền truy cập, RBAC & Khóa an toàn Danger Zone
+[Chloe - Data]      ──► Báo cáo KPI doanh nghiệp, xuất bảng tính Excel .csv / .xlsx
+[Sarah - Docs]      ──► Biên dịch tài liệu hệ thống & Keep a Changelog
+[Oliver - Perf]     ──► Tối ưu hóa độ trễ render <16.6ms & Token Prompt Caching
 ```
 
 ---
 
-## 🧰 5. THƯ VIỆN 30 KỸ NĂNG & QUY TẮC CHUYÊN BIỆT (30 UNIVERSAL SKILLS)
+## ⚡ Khởi Chạy Nhanh (Quick Start)
 
-Tất cả 14 chuyên viên AI được nạp sẵn 30 kỹ năng độc lập tại `.agents/skills/`:
-- **Quản Trị & Yêu Cầu (4)**: `agile-sprint-breakdown`, `smart-auto-naming`, `risk-checkpoint-gate`, `cost-token-guard`.
-- **Kiến Trúc & CSDL (4)**: `sqlite-wal-optimization`, `fastapi-async-daemon`, `api-contract-first`, `c4-architecture-modeling`.
-- **Thiết Kế UI/UX (4)**: `design-tokens-crafting`, `tldraw-canvas-wireframing`, `onlook-dom-to-code`, `responsive-layout-builder`.
-- **Lập Trình Frontend (4)**: `react-tailwind-components`, `flutter-bloc-state-machine`, `ast-sync-bidirectional`, `hot-reload-diagnostics`.
-- **Lập Trình Backend (4)**: `event-driven-pubsub`, `session-isolation-protocol`, `jwt-rbac-authenticator`, `chaos-resilience-testing`.
-- **Kiểm Thử & QA (4)**: `unit-test-coverage-enforcer`, `e2e-playwright-automation`, `a11y-wcag-compliance`, `preflight-system-doctor`.
-- **DevOps & Bảo Mật (4)**: `android-avd-manager`, `docker-multistage-bundle`, `git-branching-conventional`, `security-danger-zone-guard`.
-- **Tài Liệu & Báo Cáo (2)**: `excel-corporate-reporter`, `changelog-release-notes`.
-
----
-
-## 🩺 6. HƯỚNG DẪN KHỞI CHẠY & KIỂM ĐỊNH CHẤT LƯỢNG
-
-### Bước 1: Chạy Bác Sĩ Tiền Kiểm Hệ Thống (7 Tiêu chí)
+### 1. Kiểm tra môi trường với Bác Sĩ Tiền Kiểm (Pre-flight Doctor)
 ```bash
 python3 scripts/preflight.py
 ```
-*Kết quả chuẩn: 7/7 tiêu chí hoàn toàn sẵn sàng (100%).*
+> *Xác nhận 7/7 tiêu chí kỹ thuật: SQLite WAL, Node.js, Git, Daemon, Flutter, AVD, và 14 AI Roles sẵn sàng 100%.*
 
-### Bước 2: Chạy Toàn Bộ Test Suites Tự Động (56 tests)
+### 2. Chạy toàn bộ bộ kiểm thử tự động (56 Tests)
 ```bash
-python3 -m unittest discover -s test
+python3 -m unittest discover -s test -p "test_*.py"
 ```
-*Kết quả chuẩn: 56/56 tests PASS trong <0.15s (Sprint 1 -> Sprint 6).*
+> *Tất cả 56/56 ca kiểm thử tự động chạy hoàn tất trong <0.15 giây.*
 
-### Bước 3: Khởi Chạy agentP Core Daemon
+### 3. Khởi chạy agentP Core Daemon
 ```bash
 python3 src/daemon/router.py
 ```
-*Truy cập giao diện tại: [http://127.0.0.1:9090](http://127.0.0.1:9090)*
+*Mở trình duyệt và trải nghiệm giao diện làm việc tại: **[http://127.0.0.1:9090](http://127.0.0.1:9090)***
+
+### 4. Kích hoạt CLI Bridge cho Claude Code hoặc Cursor (Tuỳ chọn)
+```bash
+source .agents/bin/activate_bridge.sh
+```
 
 ---
 
-## 📜 7. NGUYÊN TẮC BẢO TOÀN VÀ ĐỒNG BỘ TÀI LIỆU (DOCUMENTATION INTEGRITY PROTOCOL)
+## 📚 Kho Tài Liệu Hệ Thống (Docs Navigator)
 
-> **CHỈ THỊ CỐT LÕI TỪ ALEX (LEAD PM)**:  
-> Mọi thay đổi về mã nguồn (Dev), cơ sở dữ liệu (Maya), quy trình (Marcus) hay giao diện (Elena) **BẮT BUỘC PHẢI CẬP NHẬT ĐỒNG THỜI VÀO TÀI LIỆU TƯƠNG ỨNG TRONG THƯ MỤC `docs/` VÀ `README.md`**. Tuyệt đối không để xảy ra tình trạng tài liệu lỗi thời (outdated) so với mã nguồn thực tế.
+Mọi chi tiết kỹ thuật sâu rộng được chuẩn hóa và lưu trữ đầy đủ trong thư mục `docs/`:
+
+| Tài Liệu | Mô Tả Trọng Tâm | Người Phụ Trách |
+| :--- | :--- | :--- |
+| **[AGENTP_MASTER_ARCHITECTURE.md](docs/AGENTP_MASTER_ARCHITECTURE.md)** | Cẩm nang kiến trúc tổng thể, Design Patterns, Directory Map & Nguyên tắc bảo toàn | **Alex & Carlos** |
+| **[AGENTP_IMPLEMENTATION_PLAN.md](docs/AGENTP_IMPLEMENTATION_PLAN.md)** | Lộ trình chi tiết 6 Sprints, Tiêu chuẩn nghiệm thu DoD & Phân bổ nhiệm vụ | **Alex & Marcus** |
+| **[UI_UX_DESIGN_SYSTEM.md](docs/UI_UX_DESIGN_SYSTEM.md)** | Đặc tả 10 màn hình chuẩn Antigravity, Design Tokens & Hệ màu Clean Light Mode | **Elena (UI/UX)** |
+| **[DATABASE_SCHEMA_SPEC.md](docs/DATABASE_SCHEMA_SPEC.md)** | Cấu trúc 17 bảng CSDL SQLite WAL, Foreign Keys, Triggers & Chống sập tiến trình | **Maya (Architect)** |
+| **[DESIGN_PATTERNS_RESEARCH.md](docs/DESIGN_PATTERNS_RESEARCH.md)** | Báo cáo nghiên cứu 8 mẫu thiết kế phần mềm kinh điển áp dụng trong source code | **Marcus (Lead BA)** |
+| **[MULTI_AGENT_APP_SPEC.md](docs/MULTI_AGENT_APP_SPEC.md)** | Hồ sơ chuyên môn, Persona và cơ chế cô lập Session 1:1 của 14 Chuyên viên AI | **Alex & Sarah** |
+
+---
+
+<div align="center">
+  <sub>Được phát triển và bảo chứng chất lượng bởi Ban Kỹ Thuật agentP Swarm • 2026</sub>
+</div>

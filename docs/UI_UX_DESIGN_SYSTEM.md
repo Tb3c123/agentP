@@ -122,34 +122,26 @@ Màn hình xuất hiện khi người dùng mở ứng dụng lần đầu hoặ
 
 ---
 
-## 4. TRANG 3: KẾT NỐI TÀI KHOẢN & GÁN MODEL 1:1 THEO AGENTP CORE DAEMON (PROVIDER SETUP)
+## 4. TRANG TOÀN CỤC: KẾT NỐI AI PROVIDERS & TRANG DỰ ÁN: QUẢN LÝ NHÂN SỰ 14 SPECIALISTS
 
-Màn hình cấu hình giúp tận dụng tài khoản có sẵn (CLI / OAuth Sessions) thay vì phụ thuộc API trả phí:
+Kiến trúc được bóc tách làm 2 không gian chức năng độc lập, tuân thủ nguyên tắc phân cấp và ngăn ngừa hoàn toàn lỗi dồn ngang (flex horizontal squish):
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ 🔌 KẾT NỐI TÀI KHOẢN & GÁN MODEL THỦ CÔNG (PROVIDER SESSIONS 1:1 AGENTP CORE DAEMON)               [X]│
-├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. KẾT NỐI TÀI KHOẢN HIỆN CÓ TRÊN MÁY (ACCOUNT SESSIONS & CLI LOGIN):                                  │
-│                                                                                                        │
-│   [🟢 Claude CLI Session]   Token: claude-user-... (Hạn dùng: 28 ngày)           [ Đã kết nối ]       │
-│   [🟢 Cursor Pro Session]   Tài khoản: developer@gmail.com                       [ Đã kết nối ]       │
-│   [⚪ GitHub Copilot CLI]    Chưa đăng nhập                                       [ 🔗 Đăng nhập OAuth]│
-│   [⚪ Local Ollama Engine]   Chưa chạy daemon                                     [ 🔄 Quét Local ]    │
-│   [⚪ OpenAI API Key]        Chỉ dùng làm dự phòng khẩn cấp                       [ + Thêm Key ]       │
-├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ 2. GÁN THỦ CÔNG MODEL CHO TỪNG ROLE DỰ ÁN (CHỈ CHỌN ĐƯỢC MODEL TỪ PROFILE ĐÃ KẾT NỐI):                 │
-│                                                                                                        │
-│   • Trưởng dự án (Lead/PM)  : [ Claude 3.7 Sonnet (Thinking Enabled) (via Claude CLI)               ▼ ]│
-│   • Business Analyst (BA)   : [ Claude 3.5 Sonnet (via Cursor Session)                              ▼ ]│
-│   • System Architect        : [ Claude 3.7 Sonnet (Thinking Enabled) (via Claude CLI)               ▼ ]│
-│   • Frontend & Backend Dev  : [ DeepSeek R1 (Reasoning Stream) (via Cursor Session)                 ▼ ]│
-│   • QA & Automation Tester  : [ Claude 3.5 Haiku (Tốc độ cao) (via Claude CLI)                      ▼ ]│
-│   • DevOps & Infrastructure : [ Claude 3.5 Sonnet (via Claude CLI)                                  ▼ ]│
-│                                                                                                        │
-│                                                                     [ Hủy bỏ ]   [ 💾 LƯU CẤU HÌNH ]   │
-└────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+### A. Trang Toàn Cục: 🔌 Hub Kết Nối AI Providers (Global Endpoint Proxy kiểu 9router)
+* **Vị trí**: Nằm trên thanh điều hướng cấp cao (`rail-upper-nav`).
+* **Bố cục (Layout)**: Header 100% width, Banner kết nối CLI 100% width, và lưới 4 cột dọc (`.providers-hub-columns-layout`):
+  1. **OAuth Providers**: Claude Code CLI, Antigravity, OpenAI Codex, Cursor, GitHub Copilot, Cline...
+  2. **Free Providers**: iFlow AI, Qwen Code, Gemini CLI, Kiro AI...
+  3. **API Key Providers**: OpenRouter, GLM Coding, DeepSeek, OpenAI, Anthropic, Groq, Cohere...
+  4. **Compatible Providers**: Alibaba Chat, Custom OpenAI / Anthropic Endpoints...
+* **Quy chuẩn Flexbox**: Luôn áp dụng `.providers-hub-view { flex-direction: column !important; }` để Header và Banner trải dài trọn vẹn, không bị ép thành cột con.
+
+### B. Trang Cấp Dự Án: 👥 Quản Lý Nhân Sự & Phân Bổ 14 AI Specialists
+* **Vị trí**: Nằm trong cây thư mục của từng dự án (`📁 FoodDelivery-Loyalty-App ➔ 👥 Quản Lý Nhân Sự`).
+* **Bố cục (Layout)**:
+  * Thanh Header: Tiêu đề, nút `Ping Kiểm Tra 14 Nhân Sự` và `Lưu Cấu Hình Nhân Sự`.
+  * Banner Ban Kỹ Thuật: Hiển thị 14/14 chuyên viên trực tuyến, token tiết kiệm.
+  * Bảng Nhân Sự 14 Roles: Cột Chuyên viên, **Tuỳ chọn AI Model động (Dropdown 11 models)**, Session ID 1:1, Latency ms, Trạng thái kết nối, Nút Ping.
+* **Quy chuẩn Flexbox**: Luôn áp dụng `.personnel-view { flex-direction: column !important; }`, bảng nhân sự có `min-width: 800px; width: 100%;` trong thẻ `.providers-table-card` có `overflow-x: auto;`.
 
 ---
 
